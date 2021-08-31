@@ -1,0 +1,38 @@
+.linkImg{
+    margin-left: 20%;
+}
+
+.linkImg .imageEvann{
+    width: 20vw;
+}
+
+.navBar{
+    background-color: rgb(60, 60, 59) !important;
+}
+
+.options{
+    width: 50% !important;
+}
+
+.options ul{
+    margin-left: 25%;
+}
+
+.options ul li a{
+    color: white !important;
+}
+
+.link{
+    text-decoration: none;
+}
+
+
+@media (max-width: 991px) {
+    .imageEvann{
+        width: 35vw;
+        margin-left: 0%;
+    }
+    .options ul{
+        margin-left: 0%;
+    }
+}
