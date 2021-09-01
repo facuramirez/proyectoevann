@@ -15,7 +15,7 @@ export default function RegisterOne() {
                     <div className={Style.contentDescription}>
                         <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
                         </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
+                        <Link to="/asociados/register" className={Style.linkRegister}>REGÍSTRATE</Link>                    
                         <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
                     </div>
                     <div className={Style.info}>

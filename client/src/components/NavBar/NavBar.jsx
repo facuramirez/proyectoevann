@@ -22,11 +22,12 @@ export default function NavBar() {
                                 <a className="nav-link" href="#">Servicios</a>
                             </li>                            
                             <li className="nav-item">
-                                <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Contacto</a>
+                                <a className="nav-link" href="#" tabIndex="-1" aria-disabled="true">Contacto</a>
                             </li>
-                            <Link to="/asociados" className={Style.link}>
+                            <Link to="/asociados" className={`${Style.link} nav-link`}>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Asociados</a>
+                                    Asociados
+                                    {/* <a className="nav-link" href="#" tabIndex="-1" aria-disabled="true">Asociados</a> */}
                                 </li>
                             </Link>
                         </ul>                    

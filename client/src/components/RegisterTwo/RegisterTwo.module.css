@@ -49,11 +49,22 @@
     align-self: center;
     margin-top: 3%;
     width: 90%;
-    height: 56%;
+    height: 49%;
     text-align: left;
     padding: 10px;
     padding-top: 30px;
     color: white;
+}
+
+.alertTexts,
+.alertTexts2{
+    color: red !important;
+    font-weight: bold;
+}
+
+.alertTexts2{
+    text-align: right;
+    margin-left: 15px;
 }
 
 .formRegister h4{
@@ -117,7 +128,7 @@
     width: 20%;
     align-self: center;
     font-size: 1.5vw;
-    margin-top: 5%;
+    margin-top: 7%;
     border-radius: 20px;
 }
 
