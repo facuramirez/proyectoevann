@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom';
 import Style from './RegisterOne.module.css';
 import register from '../../img/register.jpg'
+import { useEffect } from 'react';
 
 export default function RegisterOne() {
+
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    });
+
+
     return(
         <div>
             <div className={Style.containerRegister}>            

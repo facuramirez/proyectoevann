@@ -8,6 +8,11 @@ import swal from 'sweetalert';
 
 
 export default function RegisterTwo(){
+
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    });
+    
     let inputRepeatEmail;
     let inputRepeatPass;
 
@@ -235,12 +240,6 @@ export default function RegisterTwo(){
     function modifyAllData(value){
         setAlldata(formPrev => {return {...formPrev, ready:value }});
     }
-
-
-    // console.log('=======================================');
-    // console.log(alldata);
-    // console.log(form);
-    // console.log(error);
 
     return(
         <div>

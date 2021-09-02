@@ -9,6 +9,10 @@ import swal from 'sweetalert';
 
 export default function Login(){
 
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    });
+    
     let [form, setForm] = useState({
         mail: '',
         clave: ''

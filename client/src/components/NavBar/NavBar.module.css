@@ -32,13 +32,16 @@
     color: white !important;
     background-color: rgb(54, 232, 210);
     border-radius: 20px;
-    /* padding: 5px 15px 5px 15px !important; */
     padding: 0px;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
-    font-size: 1.5vw !important; 
+    font-size: 1.5vw !important;
+}
+
+.linkLogin:hover{
+    color: black !important;
 }
 
 @media (max-width: 991px) {
