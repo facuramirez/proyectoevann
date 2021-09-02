@@ -259,7 +259,7 @@ export default function RegisterTwo(){
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
                                 <h4 className={`col-1`}>Mail</h4>
-                                <input className={`mail col-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <input autoFocus className={`mail col-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                                 <h4 className={`${Style.repeatMailLabel} col-md-2 col-lg-2`}>Repetir Mail</h4>
                                 <input className={`${Style.repeatMail} repeatMail col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             </div>

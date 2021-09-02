@@ -13,11 +13,11 @@ export default function RegisterOne() {
                 <div className={`${Style.formComplete}`}>
                     <h1 className={`${Style.title}`}>Múevete con Evann</h1>
                     <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
+                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selecto grupo
                         </span>                        
                         <Link to="/asociados/register" className={Style.linkRegister}>REGÍSTRATE</Link>                    
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                        <span className={Style.here}>¿Olvidaste tu contraseña? click <a href="#">Aquí</a></span>
+                        <span className={Style.here}>Si ya te registraste, ingresá <Link to='/asociados/iniciar_sesion'>Aquí</Link></span>
+                        <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/asociados/recuperar_contraseña'>Aquí</Link></span>
                     </div>
                     <div className={Style.info}>
                         <div className={Style.box}>

@@ -36,7 +36,7 @@ export default function NavBar() {
                             </ul>
                             :
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                                <Link to="/iniciarSesion" className={`${Style.linkLogin} nav-link`}>
+                                <Link to="/asociados/iniciar_sesion" className={`${Style.linkLogin} nav-link`}>
                                     <li className="nav-item">
                                         Iniciar Sesión
                                     </li>
