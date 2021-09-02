@@ -3,7 +3,7 @@
 }
 
 .registerOne{
-    width: 100vw;
+    width: 100%;
 }
 
 .form{
@@ -60,12 +60,9 @@
 .alertTexts2{
     color: red !important;
     font-weight: bold;
+    margin-bottom: 0px;
 }
 
-.alertTexts2{
-    text-align: right;
-    margin-left: 15px;
-}
 
 .formRegister h4{
     font-size: 1.3vw;
@@ -108,12 +105,21 @@
     padding-left: 5%;
 }
 
+.inputFecha div div input{
+    text-align: center;
+}
+
 .cel2{
     width: 15%;
 }
 
 .repeatMail{
     width: 31.3%;
+}
+
+.fechaNac{
+    width: 27%;
+    padding-right: 0px;
 }
 
 .celInp1{
@@ -130,10 +136,26 @@
     font-size: 1.5vw;
     margin-top: 7%;
     border-radius: 20px;
+    border: none;
 }
 
 .save:hover{
     color: rgb(60, 60, 58);
+}
+
+.disabled{
+    /* pointer-events: none; */
+    cursor: pointer;
+    background-color: rgb(54, 232, 210);
+}
+
+.color{
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.color:hover{
+    color: white;
 }
 
 @media (max-width: 1088px) {

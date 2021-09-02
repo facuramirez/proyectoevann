@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Style from './RegisterTwo.module.css';
 import register from '../../img/register.jpg';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 
 export default function RegisterTwo(){
@@ -15,7 +18,6 @@ export default function RegisterTwo(){
         admin: '',
         direccion: '',
         fechaNac: '',
-        mail2: '',
         cel1: '',
         cel2: ''
     });
@@ -28,7 +30,6 @@ export default function RegisterTwo(){
         admin: '',
         direccion: '',
         fechaNac: '',
-        mail2: '',
         cel1: '',
         cel2: ''
       });
@@ -81,7 +82,26 @@ export default function RegisterTwo(){
             repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+            setAlldata({ready: true})
+        } else {
+            setAlldata({ready: false})
+        }
+
         if(name==='repeatMail' || name==='repeatClave') validMail(e);
+    }
+
+    const verifyData = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
+        
+        setForm({...form, [name]: value});
+
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+            setAlldata({ready: true})
+        } else {
+            setAlldata({ready: false})
+        }
     }
 
     const validMail = (e) => {
@@ -110,6 +130,12 @@ export default function RegisterTwo(){
             }
         }
 
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+            setAlldata({ready: true})
+        } else {
+            setAlldata({ready: false})
+        }
+
     }
 
     let [pass, setPass] = useState({
@@ -117,11 +143,85 @@ export default function RegisterTwo(){
         repeat: false
     });
 
-    
+    let [admin, setAdmin] = useState({
+        valid: false
+    })
 
+    const verifyAdmin = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
+        
+        if(!/^[A-Za-z]+$/g.test(value)){
+            setAdmin({...admin, valid: false});
+            setError({...error, [name]: 'Error'});
+            console.log('novalido');
+        } else {
+            setAdmin({...admin, valid: true});
+            setError({...error, [name]: ''});
+            console.log('VALIDO');
+        }
 
+        setForm({...form, [name]: value});
+        
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+            setAlldata({ready: true})
+        } else {
+            setAlldata({ready: false})
+        }
+    }
 
+    // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
+    const useStyles = makeStyles((theme) => ({
+        container: {
+          display: 'flex',
+          flexWrap: 'wrap',
+        },
+        textField: {
+          marginLeft: theme.spacing(1),
+          marginRight: theme.spacing(1),
+          width: 200,
+        },
+    }));
 
+    const classes = useStyles();
+    // ===========================================================
+
+    let [alldata, setAlldata] = useState({
+        ready: false
+    });
+
+    const save = (e) => {
+        e.preventDefault();
+        let link = document.querySelector('.notActive');
+        
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.mail2 && !error.cel1 && !error.cel2) {
+            link.classList.remove('RegisterTwo_disabled__1cqeV');
+        }
+        
+    }
+
+    const verifyCel = (e) => {
+        let number = e.target.value;
+        let name = e.target.name;
+
+        if(/^\d*$/.test(number)){
+            setError({...error, [name]: ''});
+        } else {
+            setError({...error, [name]: 'Error'});
+        }
+        setForm({...form, [name]:number})
+
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+            setAlldata({ready: true})
+        } else {
+            setAlldata({ready: false})
+        }
+    }
+
+    console.log('=======================================');
+    console.log(alldata);
+    console.log(form);
+    console.log(error);
     return(
         <div>
             <div className={Style.containerRegister}>            
@@ -176,25 +276,61 @@ export default function RegisterTwo(){
                             }
                             <div className={`row`}>
                                 <h4 className={`${Style.admLabel} col-sm-5 col-md-4 col-lg-4`}>Nombre del Administrador</h4>
-                                <input className={`${Style.inputLabel} col-sm-6 col-md-7 col-lg-7`} type="text" />
+                                <input className={`${Style.inputLabel} col-sm-6 col-md-7 col-lg-7`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
+                            {error.admin && form.admin ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras sin espacios</h5>
+                                </div>
+                                : null 
+                            }                            
                             <div className={`row`}>
                                 <h4 className={`col-2`}>Dirección</h4>
-                                <input className={`${Style.inputDir} col-9`} type="text" />
+                                <input className={`${Style.inputDir} col-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.fechaNac} col-4`}>Fecha de Nacimiento</h4>
-                                <input className={`${Style.inputFecha} col-7`} type="text" />
+                                <h4 className={`${Style.fechaNac} col-4 mt-2`}>Fecha de Nacimiento</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                    <TextField
+                                        id="date"
+                                        label=""
+                                        type="date"
+                                        name="fechaNac"
+                                        value={form.fechaNac}
+                                        onChange={(e)=> verifyData(e)}
+                                        // defaultValue="2017-05-24"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </form>
+
+                                {/* <input className={`${Style.inputFecha} col-7`} type="text" /> */}
                             </div>                            
                             <div className={`${Style.cel} row`}>
                                 <h4 className={`col-1`}>Celular1</h4>
-                                <input className={`${Style.celInp1} col-3`} type="text" />
+                                <input className={`${Style.celInp1} col-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
                                 <h4 className={`${Style.cel2} col-2`}>Celular2</h4>
-                                <input className={`${Style.celInp2} col-4`} type="text" />
-                            </div>                        
+                                <input className={`${Style.celInp2} col-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
+                            </div>
+                            {(error.cel1 && form.cel1 && error.cel2 && form.cel2) ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-5`}>Sólo números</h5>
+                                    <h5 className={`${Style.alertTexts} col-5 text-left`}>Sólo números</h5>
+                                </div>
+                                : (error.cel1 && !error.cel2)  ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
+                                </div>
+                                :(!error.cel1 && error.cel2)  ?
+                                <div className={`row justify-content-center`}>
+                                    <h5 className={`${Style.alertTexts} col-6 text-center`}>Sólo números</h5>
+                                </div>:null
+                            }
                         </div>
                     </div>
-                    <a href="" className={Style.save}>Guardar</a>
+                    <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)} disabled>Guardar</button>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>
                     <h1 className={`${Style.title}`}>Múevete con Evann</h1>
