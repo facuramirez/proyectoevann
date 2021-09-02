@@ -27,6 +27,19 @@
     color: white !important;
 }
 
+.linkLogin{
+    text-decoration: none;
+    color: white !important;
+    background-color: rgb(54, 232, 210);
+    border-radius: 20px;
+    /* padding: 5px 15px 5px 15px !important; */
+    padding: 0px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    font-size: 1.5vw !important; 
+}
 
 @media (max-width: 991px) {
     .imageEvann{
@@ -35,5 +48,13 @@
     }
     .options ul{
         margin-left: 0%;
+    }
+    .linkLogin{
+        width: 20vw;
+        margin-left: 40vw;
+        margin-top: 2vh;
+    }
+    .linkImg{
+        margin-left: 40vw;
     }
 }

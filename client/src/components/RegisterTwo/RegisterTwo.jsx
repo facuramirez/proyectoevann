@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Style from './RegisterTwo.module.css';
 import register from '../../img/register.jpg';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import swal from 'sweetalert';
 
 
 export default function RegisterTwo(){
@@ -21,7 +22,7 @@ export default function RegisterTwo(){
         cel1: '',
         cel2: ''
     });
-
+ 
     let [error, setError] = useState({
         mail: '',
         repeatMail: '',
@@ -82,7 +83,7 @@ export default function RegisterTwo(){
             repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -95,13 +96,13 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        setForm({...form, [name]: value});
-
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
         }
+
+        setForm({...form, [name]: value});
     }
 
     const validMail = (e) => {
@@ -130,7 +131,7 @@ export default function RegisterTwo(){
             }
         }
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -163,13 +164,13 @@ export default function RegisterTwo(){
 
         setForm({...form, [name]: value});
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
         }
     }
-
+    
     // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
     const useStyles = makeStyles((theme) => ({
         container: {
@@ -192,12 +193,20 @@ export default function RegisterTwo(){
 
     const save = (e) => {
         e.preventDefault();
-        let link = document.querySelector('.notActive');
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.mail2 && !error.cel1 && !error.cel2) {
-            link.classList.remove('RegisterTwo_disabled__1cqeV');
+        if(alldata.ready){
+            swal({
+                title: 'Administrador registrado con éxito!',
+                text: 'Por favor verifica tu correo para validar la cuenta',
+                icon: 'success'
+              })
+        } else {
+            swal({
+                title: 'Formulario incompleto!',
+                text: 'Debes completar el formulario para poder registrarte',
+                icon: 'error'
+              })
         }
-        
     }
 
     const verifyCel = (e) => {
@@ -211,17 +220,28 @@ export default function RegisterTwo(){
         }
         setForm({...form, [name]:number})
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1 && form.cel2 ) {
-            setAlldata({ready: true})
+        let buttonSave = document.querySelector('.notActive');
+
+        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+            modifyAllData(true);
+            let button = document.querySelector('.notActive');
+            console.log(alldata.ready, 'ready');
+            if(alldata.ready) button.disabled = false;
         } else {
-            setAlldata({ready: false})
+            modifyAllData(false);           
         }
     }
 
-    console.log('=======================================');
-    console.log(alldata);
-    console.log(form);
-    console.log(error);
+    function modifyAllData(value){
+        setAlldata(formPrev => {return {...formPrev, ready:value }});
+    }
+
+
+    // console.log('=======================================');
+    // console.log(alldata);
+    // console.log(form);
+    // console.log(error);
+
     return(
         <div>
             <div className={Style.containerRegister}>            
@@ -331,8 +351,8 @@ export default function RegisterTwo(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <h5>Complete el formulario para habilitar el botón...</h5>
-                        <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)} disabled>Guardar</button>
+                        <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
+                        <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                     </div>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>

@@ -181,12 +181,12 @@
 .disabled{
     /* pointer-events: none; */
     cursor: pointer;
-    background-color: rgb(54, 232, 210);
+    background-color: rgb(54, 232, 210) !important;
 }
 
 .color{
-    background-color: red;
-    cursor: not-allowed;
+    background-color: red !important;
+    cursor: not-allowed !important;
 }
 
 .color:hover{

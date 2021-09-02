@@ -17,6 +17,7 @@ export default function RegisterOne() {
                         </span>                        
                         <Link to="/asociados/register" className={Style.linkRegister}>REGÍSTRATE</Link>                    
                         <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
+                        <span className={Style.here}>¿Olvidaste tu contraseña? click <a href="#">Aquí</a></span>
                     </div>
                     <div className={Style.info}>
                         <div className={Style.box}>
