@@ -319,18 +319,21 @@ export default function RegisterTwo(){
                                     <h5 className={`${Style.alertTexts} col-5`}>Sólo números</h5>
                                     <h5 className={`${Style.alertTexts} col-5 text-left`}>Sólo números</h5>
                                 </div>
-                                : (error.cel1 && !error.cel2)  ?
+                                : (error.cel1 && !error.cel2) ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
                                 </div>
-                                :(!error.cel1 && error.cel2)  ?
+                                :(!error.cel1 && error.cel2) ?
                                 <div className={`row justify-content-center`}>
                                     <h5 className={`${Style.alertTexts} col-6 text-center`}>Sólo números</h5>
                                 </div>:null
                             }
                         </div>
                     </div>
-                    <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)} disabled>Guardar</button>
+                    <div className={Style.containerSave}>
+                        <h5>Complete el formulario para habilitar el botón...</h5>
+                        <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)} disabled>Guardar</button>
+                    </div>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>
                     <h1 className={`${Style.title}`}>Múevete con Evann</h1>

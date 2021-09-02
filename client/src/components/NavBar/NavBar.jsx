@@ -27,7 +27,6 @@ export default function NavBar() {
                             <Link to="/asociados" className={`${Style.link} nav-link`}>
                                 <li className="nav-item">
                                     Asociados
-                                    {/* <a className="nav-link" href="#" tabIndex="-1" aria-disabled="true">Asociados</a> */}
                                 </li>
                             </Link>
                         </ul>                    

@@ -127,6 +127,42 @@
     margin-left: 5% !important;
 }
 
+.containerSave{
+    margin-top: 10vh;
+}
+
+@media (max-width: 870px) {
+    .containerSave{
+        margin-top: 7vh;
+    }
+}
+
+@media (max-width: 800px) {
+    .containerSave{
+        margin-top: 6vh;
+    }
+    .containerSave h5{
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 550px) {
+    .containerSave{
+        margin-top: 5vh;
+    }
+}
+
+@media (max-width: 415px) {
+    .containerSave{
+        margin-top: 3vh;
+    }
+}
+
+.containerSave h5{
+    font-size: 0.8vw;
+    color: #ccc;
+}
+
 .save{
     text-decoration: none;
     background-color: rgb(54, 232, 210);
@@ -134,7 +170,6 @@
     width: 20%;
     align-self: center;
     font-size: 1.5vw;
-    margin-top: 7%;
     border-radius: 20px;
     border: none;
 }
@@ -245,14 +280,45 @@
 
 @media (max-width: 470px) {
     .formRegister{
-        height: 60%;    
+        height: 53%;    
+    }
+}
+
+@media (max-width: 445px) {
+    .fechaNac{
+        margin-top: 5px !important;
+    }
+}
+
+@media (max-width: 415px) {
+    .formRegister{
+        height: 58%;    
+    }
+    .fechaNac{
+        width: 30%;
     }
 }
 
 
 @media (max-width: 400px) {
     .formRegister{
-        height: 63%;    
+        height: 57%;    
+    }
+}
+
+@media (max-width: 380px) {
+    .formRegister{
+        height: 63%;
+        margin-top: 3px;
+    }
+    .containerSave{
+        margin-top: 2px;
+    }
+    .containerSave h5{
+        display: none !important;
+    }
+    .fechaNac{
+        width: 38%;   
     }
 }
 
@@ -264,7 +330,7 @@
 
 @media (max-width: 360px) {
     .formRegister{
-        height: 65%;    
+        height: 58%;    
     }
     .admLabel{
         width: 37%;
@@ -274,7 +340,13 @@
 
 @media (max-width: 340px) {
     .formRegister{
-        height: 65%;    
+        height: 60%;    
+    }
+    .containerSave h5{
+        display: none;
+    }
+    .containerSave{
+        margin-top: 1vh;
     }
 }
 
@@ -473,6 +545,34 @@
         width: 82%;
     } */
 }
+
+@media (max-width: 298px) {
+    .formRegister{
+        height: 63%;
+        margin-top: 0px;
+    }
+    .containerSave{
+        margin-top: 2px;
+    }
+    .containerSave h5{
+        display: none !important;
+    }
+}
+
+@media (max-width: 280px) {
+    .formRegister{
+        height: 66%;
+        margin-top: 0px;
+    }
+    .containerSave{
+        margin-top: 2px;
+    }
+    .containerSave h5{
+        display: none !important;
+    }
+}
+
+
 
 
 
