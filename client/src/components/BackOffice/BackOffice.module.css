@@ -1,0 +1,72 @@
+/* .containerBackOffice{
+    border: 1px solid orange;
+} */
+
+.menuBar{
+    height: 100vh;
+    color: white;
+    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+}
+
+.welcome{
+    background-image: linear-gradient(0deg, rgba(99, 109, 81, 0.3) 0%,rgba(198, 203, 94, 0.3) 100%),linear-gradient(90deg, rgb(18, 116, 125),rgb(20, 216, 80));
+    border-radius: 20px;
+    line-height: 5vh !important; 
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 4vh;
+    cursor: default;
+}
+
+.welcome h3{
+    font-size: 1.5vw !important;
+    padding-top: 1vh;
+}
+
+.close{
+    height: 12vh;
+    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+    color: white;
+    text-align: right;
+    padding: 0px !important;
+}
+
+.close a{
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    background-image: linear-gradient(0deg, rgb(94, 5, 4),rgb(253, 19, 61));
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    line-height: 11.5vh;
+    margin-right: 2vw;
+    transition: all 200ms;
+}
+
+.close a:hover{
+    color: black;
+}
+
+.menuOptions{
+    margin-top: 6vh;
+}
+
+.options{
+    font-size: 1.3vw;
+    background-image: repeating-linear-gradient(90deg, hsla(71,0%,0%,0.2) 0px, hsla(71,0%,0%,0.2) 0px,transparent 0px, transparent 1px,hsla(71,0%,0%,0.2) 1px, hsla(71,0%,0%,0.2) 4px,transparent 4px, transparent 5px,hsla(71,0%,0%,0.2) 5px, hsla(71,0%,0%,0.2) 8px),repeating-linear-gradient(135deg, hsla(71,0%,0%,0.2) 0px, hsla(71,0%,0%,0.2) 0px,transparent 0px, transparent 1px,hsla(71,0%,0%,0.2) 1px, hsla(71,0%,0%,0.2) 4px,transparent 4px, transparent 5px,hsla(71,0%,0%,0.2) 5px, hsla(71,0%,0%,0.2) 8px),linear-gradient(45deg, rgb(59, 59, 59),rgb(4, 4, 4));
+    border-radius: 20px;
+    width: 85%;
+    margin: 0px auto;
+    margin-top: 4vh;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    cursor: pointer;
+    border: 1px solid gray;
+    transition: all 300ms;
+}
+
+.options:hover{
+    background-image: repeating-linear-gradient(0deg, hsla(50,0%,40%,0.4) 0px, hsla(50,0%,40%,0.4) 1px,transparent 1px, transparent 2px),repeating-linear-gradient(90deg, hsla(50,0%,40%,0.4) 0px, hsla(50,0%,40%,0.4) 1px,transparent 1px, transparent 2px),linear-gradient(90deg, rgb(66,66,66),rgb(66,66,66));
+    box-shadow: 0px 0px 5px #ccc inset;
+}
