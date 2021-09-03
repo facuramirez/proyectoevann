@@ -10,7 +10,7 @@
     background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33)); 
     color: white;
     width: fit-content;
-    padding-top: 0.8vh;
+    padding-top: 5px;
     height: 7vh;
     padding-left: 1.5vw;
     padding-right: 1.5vw;
@@ -25,17 +25,86 @@
     width: 12vw;
 }
 
+.fondo{
+    background-image: repeating-linear-gradient(257deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),repeating-linear-gradient(152deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),repeating-linear-gradient(222deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),linear-gradient(90deg, rgb(37,37,37),rgb(37,37,37));
+    border-radius: 20px;
+    padding: 3vh;
+}
+
 .buttonsTwo .search{
     outline: none;
     width: 15vw;
+    margin-right: 2vw;
+    border: none;
+    border-radius: 20px;
+    
 }
 
 .buttonsTwo .inactives,
 .add{
     border: none;
-    background-color: rgb(54, 232, 210);
+    background-color: rgb(33, 37, 41);
     border-radius: 20px;
     font-weight: bold;
     font-size: 1.3vw;
+    color: white;
+    font-size: 1.5vw;
+    padding-top: 0.6vh;
+    padding-bottom: 0.6vh;
+    transition: all 300ms;
 }
 
+.buttonsTwo .inactives:hover,
+.add:hover{
+    color: #ccc;
+}
+
+.registers{
+    background-color: rgb(54, 232, 210);
+    width: fit-content;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: black;
+}
+
+.select select{
+    margin-left: 1vw;
+    border-radius: 20px;
+    outline: none;
+    transition: all 300ms;
+}
+
+.select select:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.select select:focus{
+    background-color: #ccc;
+}
+
+.table{
+    height: 40vh;
+    color: white;
+}
+
+.select,
+.pagination{
+    color: white;
+}
+
+.table{
+    color: white;
+}
+
+.tableHead{
+    color: white;
+    background-color: black;
+}
+
+.tableBody{
+    background-color: black;
+    color: white;
+}
