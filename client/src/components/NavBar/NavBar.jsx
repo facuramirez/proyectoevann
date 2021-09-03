@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 export default function NavBar() {
 
     let url = window.location.href.includes('asociados');
+    let url2 = window.location.href.includes('back_office');
 
     return(
         <div>
+            { !url2 ?
             <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                 <div className="container-fluid">
                     <Link to="/" className={Style.linkImg}>
@@ -48,6 +50,8 @@ export default function NavBar() {
                     </div>
                     
             </nav>
+            :null
+            }
         </div>
     )
 }

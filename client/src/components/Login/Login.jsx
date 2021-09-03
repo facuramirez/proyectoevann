@@ -5,9 +5,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Login(){
+
+    let history = useHistory();
 
     useEffect( () => {
         window.scrollTo(0, 0);
@@ -126,16 +129,18 @@ export default function Login(){
         ready: false
     });
 
-    const save = (e) => {
+    const login = (e) => {
         e.preventDefault();
         
         if(alldata.ready){
+            history.push('/back_office');
             swal({
                 title: 'Bienvenido a Evann!',
                 text: 'Que disfrutes tu estadía en la página',
                 icon: 'success',
                 timer: 2000
               })
+            
         } else {
             swal({
                 title: 'Datos incorrectos!',
@@ -193,7 +198,7 @@ export default function Login(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <button className={`${Style.save}`} onClick={(e)=>save(e)}>Ingresar</button>
+                        <button className={`${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
                     </div>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>
