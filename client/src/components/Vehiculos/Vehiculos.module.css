@@ -1,8 +1,8 @@
-.containerVehiculos{
+/* .containerVehiculos{
     padding: 2.5vw;
     background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
     height: 88vh;
-}
+} */
 
 .title{
     margin: 0px auto;
@@ -26,7 +26,7 @@
 }
 
 .fondo{
-    background-image: repeating-linear-gradient(257deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),repeating-linear-gradient(152deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),repeating-linear-gradient(222deg, hsla(20,0%,93%,0.12) 0px,transparent 2px,hsla(20,0%,93%,0.12) 5px,transparent 9px,hsla(20,0%,93%,0.12) 12px),linear-gradient(90deg, rgb(37,37,37),rgb(37,37,37));
+    /* background-image: repeating-linear-gradient(332deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(100deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(0deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),repeating-linear-gradient(90deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),linear-gradient(90deg, rgb(58,58,58),rgb(58,58,58)); */
     border-radius: 20px;
     padding: 3vh;
 }
@@ -60,13 +60,8 @@
 }
 
 .registers{
-    background-color: rgb(54, 232, 210);
     width: fit-content;
-    border-radius: 20px;
-    padding: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    color: black;
+    color: white;
 }
 
 .select select{

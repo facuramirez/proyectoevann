@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 
 export default function RegisterOne() {
 
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
+    // useEffect( () => {
+    //     window.scrollTo(0, 0);
+    // });
 
 
     return(

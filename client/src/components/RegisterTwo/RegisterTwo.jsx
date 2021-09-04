@@ -5,14 +5,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 
 export default function RegisterTwo(){
 
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
-    
+    let history = useHistory();
+
     let inputRepeatEmail;
     let inputRepeatPass;
 
@@ -48,8 +47,22 @@ export default function RegisterTwo(){
     const verifyMail = (e) => {
         let value = e.target.value;
         let name = e.target.name;
+        
         inputRepeatEmail = document.querySelector('.repeatMail');
         inputRepeatPass = document.querySelector('.repeatPass');
+
+        let repeat = document.querySelector('.repeatMail');
+
+        if(repeat.name === 'repeatMail'){
+            repeat.onpaste = (e) => {
+                e.preventDefault();
+                swal({
+                    title: 'Acción inválida!',
+                    text: 'Debes volver a escribir tu correo manualmente',
+                    icon: 'error'
+                  })
+            }
+        }
 
         // ================ PROCESO EMAIL, REPEAT EMAIL =====================
         if(name==='mail'){
@@ -196,15 +209,18 @@ export default function RegisterTwo(){
         ready: false
     });
 
-    const save = (e) => {
+    const save = async (e) => {
         e.preventDefault();
         
         if(alldata.ready){
-            swal({
+            await swal({
                 title: 'Administrador registrado con éxito!',
                 text: 'Por favor verifica tu correo para validar la cuenta',
-                icon: 'success'
+                icon: 'success',
+                timer: 2000,
+                buttons: ['']
               })
+            history.push('/');              
         } else {
             swal({
                 title: 'Formulario incompleto!',
@@ -239,6 +255,14 @@ export default function RegisterTwo(){
 
     function modifyAllData(value){
         setAlldata(formPrev => {return {...formPrev, ready:value }});
+    }
+    
+    window.onload = function() {
+        let repeat = document.querySelector('.repeatMail');
+        repeat.onpaste = (e) => {
+            e.preventDefault();
+            verifyMail();
+        }
     }
 
     return(

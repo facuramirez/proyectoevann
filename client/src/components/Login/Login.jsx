@@ -167,10 +167,10 @@ export default function Login(){
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Registro Administrador</h1>
+                    <h1 className={Style.title}>Iniciar sesión</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
-                            <h4>Registro Administrador</h4>
+                            <h4>Iniciar sesión</h4>
                             <h5>Tu usuario es tu mail</h5>
                         </div>
 

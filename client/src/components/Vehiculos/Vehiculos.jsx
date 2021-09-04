@@ -25,12 +25,12 @@ export default function Vehiculos() {
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Vehículos</h3>
                     </div>                        
-                    <div className={`${Style.menu} col-12 mt-3`}>
+                    <div className={`${Style.menu} col-12 mt-4`}>
                         <div className={`row justify-content-between`}>
                             <button className={`${Style.add} col-2`}>Nuevo</button>
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    <input className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
+                                    <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
                                     <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
                                 </div>
                             </div>
