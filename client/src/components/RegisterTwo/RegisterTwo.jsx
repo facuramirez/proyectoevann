@@ -173,11 +173,9 @@ export default function RegisterTwo(){
         if(!/^[A-Za-z]+$/g.test(value)){
             setAdmin({...admin, valid: false});
             setError({...error, [name]: 'Error'});
-            console.log('novalido');
         } else {
             setAdmin({...admin, valid: true});
             setError({...error, [name]: ''});
-            console.log('VALIDO');
         }
 
         setForm({...form, [name]: value});

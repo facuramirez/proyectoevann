@@ -1,16 +1,27 @@
 import { Link } from 'react-router-dom';
 import Style from './Vehiculos.module.css';
-import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
+import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
+import { FiUsers } from 'react-icons/fi';
+
+import { IoMdAddCircleOutline } from 'react-icons/io';
+import { AiFillCar } from 'react-icons/ai';
 
 
 export default function Vehiculos() {
 
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
+
+    // {
+    //     id: 1,
+    //     patente: 'abc123',
+    //     marca: 'Ford',
+    //     modelo: 'Fiesta',
+    //     tipo_veh: 'Auto',
+    //     observaciones: 'Nuevo'
+    // }
 
     let cars = [{
+        id: 1,
         patente: 'abc123',
         marca: 'Ford',
         modelo: 'Fiesta',
@@ -18,16 +29,41 @@ export default function Vehiculos() {
         observaciones: 'Nuevo'
     }];
 
+    const editCar = (e, id) => {
+        e.preventDefault();
+       alert('Editando car ' + id);
+    }
+
+    const deleteCar = (e, id) => {
+        e.preventDefault();
+        alert('Eliminando car ' +id);
+    }
+
+    const detailCar = (e, id) => {
+        e.preventDefault();
+        alert('Detalles car ' +id);
+    }
+    
+
+    const add = (e) => {
+        e.preventDefault();
+        // let vehiculos = document.querySelector('.containerVehiculos');
+        // vehiculos.style.display = "none";
+        // <h1>asdasd</h1>
+    }
+
     return(
         <div>
-            <div className={`${Style.containerVehiculos} row`}>
+            <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Vehículos</h3>
-                    </div>                        
+                    </div>
+                    {cars.length > 0 ?
+                    <div>        
                     <div className={`${Style.menu} col-12 mt-4`}>
                         <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2`}>Nuevo</button>
+                            <button className={`${Style.add} col-2`}><Link to="/back_office/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
@@ -37,15 +73,16 @@ export default function Vehiculos() {
                         </div>
                     </div>
                     <div className={`${Style.select} col-12`}>
-                        <div className={`row mt-4 mb-3`}>
+                        <div className={`row mt-4 mb-3`}>                          
                             <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
                             <select className={`col-1`}>
-                                <option value="value1" selected>5</option>
+                            <option value="value1" defaultValue>5</option>
                                 <option value="value2">10</option>
                                 <option value="value3">20</option>
                             </select>
                         </div>
                     </div>
+                    
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
                             <thead>
@@ -60,33 +97,24 @@ export default function Vehiculos() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
+                                {cars.map( (element, index) =>
+                               
+                                <tr key={index}>
+                                    <td>{element.id}</td>
                                     <td>ABC123</td>
                                     <td>Ford</td>
                                     <td>Fiesta</td>
                                     <td>Auto</td>
                                     <td>Modelo 2018</td>
-                                    <td>botones...</td>
+                                    <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
+                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>AKT561</td>
-                                    <td>Chevrolet</td>
-                                    <td>Corsa</td>
-                                    <td>Auto</td>
-                                    <td>Modelo 2016</td>
-                                    <td>botones...</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>ABC123</td>
-                                    <td>Renault</td>
-                                    <td>Megane</td>
-                                    <td>Auto</td>
-                                    <td>Modelo 2021</td>
-                                    <td>botones...</td>
-                                </tr>
+                                )
+                                
+                                }
                             </tbody>
                         </Table>
 
@@ -133,6 +161,10 @@ export default function Vehiculos() {
                     <div className={`${Style.pagination} col-12`}>
                         Paginado
                     </div> 
+                    </div>:<div>
+                        <br/>   
+                        <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
+                        </div>}
                 </div>
             </div>            
         </div>

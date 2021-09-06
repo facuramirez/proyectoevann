@@ -1,12 +1,13 @@
-import Style from './BackOffice.module.css';
+import Style from './NewCar.module.css';
 import { Link } from 'react-router-dom';
 import Vehiculos from '../Vehiculos/Vehiculos';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import image from '../../img/registerBack.jpg';
-import NewCar from '../NewCar/NewCar'
+import NewCarForm from './NewCarForm';
 
-export default function BackOffice() {
+
+export default function NewCar() {
 
     let history = useHistory();
     let url = window.location.href;
@@ -76,10 +77,7 @@ export default function BackOffice() {
                             <img src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
-                                {url.includes('nuevo_usuario') ?
-                                <NewCar />:
-                                <Vehiculos />
-                            }
+                                <NewCarForm />
                             </div>
                         </div>
 

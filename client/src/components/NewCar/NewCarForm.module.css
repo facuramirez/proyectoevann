@@ -1,0 +1,88 @@
+.containerVehiculos{
+    margin: 0px auto;
+    height: 80vh;
+}
+
+.title{
+    margin: 0px auto;
+    border-radius: 20px;
+    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33)); 
+    color: white;
+    width: fit-content;
+    padding-top: 5px;
+    height: 7vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+}
+
+.title h3{
+    font-size: 1.8vw;
+}
+
+.formCar{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgb(54, 232, 210);
+    align-self: center;
+    margin-top: 3%;
+    width: 80%;
+    height: 100%;
+    text-align: left;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    margin: 0px auto;
+}
+
+.titleForm{
+    margin-left: 3%;
+}
+
+input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(54, 232, 210);
+    background-color: rgb(60, 60, 58);
+    color: white;
+}
+
+.buttons a{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.3vw;
+    color: white;
+    font-size: 1.5vw;
+    padding-top: 0.6vh;
+    padding-bottom: 0.6vh;
+    transition: all 300ms;
+    text-decoration: none;
+    width: 15%;
+    padding-bottom: 1.5vh;
+}
+
+
+.buttons a:hover{
+    color: #ccc;
+}
+
+.buttons .first{
+    margin-right: 4%;
+}
+
+.buttons .third{
+    margin-left: 4%;
+}
+
+.iconBack,
+.iconSave,
+.iconClear{
+    margin-right: 0.8vw;
+}
+
+.alerts{
+    color: red;
+    font-size: 0.8vw;
+}
