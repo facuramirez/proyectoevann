@@ -6,7 +6,7 @@ import { FiUsers } from 'react-icons/fi';
 import { autos } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 
@@ -19,19 +19,29 @@ export default function Vehiculos() {
         dispatch(initialGetCars(autos));
     }, [autos])
 
-    
-    console.log(cars);
+    // ============== PAGINADO =============
+    let selectList = document.querySelector('select');
+    console.log(selectList, 'asdasdas');
+    let [currentPage, setCurrentPage] = useState(1);
+    let [registerPerPage, setRegisterPerPage] = useState(5);
 
-    // {
-    //     id: 1,
-    //     patente: 'abc123',
-    //     marca: 'Ford',
-    //     modelo: 'Fiesta',
-    //     tipo_veh: 'Auto',
-    //     observaciones: 'Nuevo'
-    // }
+    let indexOfLastRegister = currentPage * registerPerPage;
+    let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
+    cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
 
-    // let cars = autos;
+    const pageNumbers = [];
+
+    for(let i = 1; i <= Math.ceil(autos.length / registerPerPage) ; i++) {
+        pageNumbers.push(i);
+    }
+
+    const paginate = (e, pageNumber) => {
+        e.preventDefault();
+        setCurrentPage(pageNumber)
+    }
+
+    // =====================================
+
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -51,7 +61,9 @@ export default function Vehiculos() {
     const dropBox = (e) => {
         e.preventDefault();
         let name = parseInt(e.target.value);
-        
+        let selectValue = parseInt(e.target.value);
+
+        setRegisterPerPage(selectValue);
         cars = autos.slice(0, name);
         dispatch(filterCars(cars));
     }
@@ -106,11 +118,11 @@ export default function Vehiculos() {
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>ABC123</td>
-                                    <td>Ford</td>
-                                    <td>Fiesta</td>
-                                    <td>Auto</td>
-                                    <td>Modelo 2018</td>
+                                    <td>{element.patente}</td>
+                                    <td>{element.marca}</td>
+                                    <td>{element.modelo}</td>
+                                    <td>{element.tipo_veh}</td>
+                                    <td>{element.observaciones}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
@@ -164,7 +176,13 @@ export default function Vehiculos() {
                             </table> */}
                     </div>
                     <div className={`${Style.pagination} col-12`}>
-                        Paginado
+                        <ul className={`${Style.ulPagination}`}>
+                            {pageNumbers.map(number => (
+                                <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
+                                    <a href="">{number}</a>
+                                </li>
+                            ))}
+                        </ul>
                     </div> 
                     </div>:<div>
                         <br/>   

@@ -160,3 +160,28 @@
 .iconAdd{
     margin-right: 0.8vw;
 }
+
+.ulPagination{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 1.8vh;
+    width: 100%;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.liElements a{
+    text-decoration: none;
+    font-size: 2vw;
+    color: white;
+    margin-right: 10px;
+    background-color: rgb(33, 37, 41);
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 20px;
+}
+
+.liElements a:hover{
+    color: #ccc;
+}
