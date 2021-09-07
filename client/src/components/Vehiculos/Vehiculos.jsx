@@ -3,13 +3,24 @@ import Style from './Vehiculos.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
-
+import { autos } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialGetCars, filterCars } from '../../globalState/Actions';
 
 export default function Vehiculos() {
 
+    const dispatch = useDispatch();
+    let cars = useSelector( state => state['cars']);
+
+    useEffect( () => {
+        dispatch(initialGetCars(autos));
+    }, [autos])
+
+    
+    console.log(cars);
 
     // {
     //     id: 1,
@@ -20,14 +31,7 @@ export default function Vehiculos() {
     //     observaciones: 'Nuevo'
     // }
 
-    let cars = [{
-        id: 1,
-        patente: 'abc123',
-        marca: 'Ford',
-        modelo: 'Fiesta',
-        tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
-    }];
+    // let cars = autos;
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -43,14 +47,15 @@ export default function Vehiculos() {
         e.preventDefault();
         alert('Detalles car ' +id);
     }
-    
 
-    const add = (e) => {
+    const dropBox = (e) => {
         e.preventDefault();
-        // let vehiculos = document.querySelector('.containerVehiculos');
-        // vehiculos.style.display = "none";
-        // <h1>asdasd</h1>
+        let name = parseInt(e.target.value);
+        
+        cars = autos.slice(0, name);
+        dispatch(filterCars(cars));
     }
+    
 
     return(
         <div>
@@ -75,10 +80,10 @@ export default function Vehiculos() {
                     <div className={`${Style.select} col-12`}>
                         <div className={`row mt-4 mb-3`}>                          
                             <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                            <select className={`col-1`}>
-                            <option value="value1" defaultValue>5</option>
-                                <option value="value2">10</option>
-                                <option value="value3">20</option>
+                            <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
+                                <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                <option value="20" onChange={(e)=>dropBox(e)}>20</option>
                             </select>
                         </div>
                     </div>

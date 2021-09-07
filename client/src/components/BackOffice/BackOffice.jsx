@@ -7,10 +7,9 @@ import image from '../../img/registerBack.jpg';
 import NewCar from '../NewCar/NewCar'
 
 export default function BackOffice() {
-
+    
     let history = useHistory();
     let url = window.location.href;
-    console.log(url);
 
     const close = (e) => {
         e.preventDefault();

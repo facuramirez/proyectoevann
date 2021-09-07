@@ -11,7 +11,6 @@ export default function NewCar() {
 
     let history = useHistory();
     let url = window.location.href;
-    console.log(url);
 
     const close = (e) => {
         e.preventDefault();
