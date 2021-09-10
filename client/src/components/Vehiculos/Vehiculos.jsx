@@ -15,13 +15,7 @@ export default function Vehiculos() {
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
 
-    useEffect( () => {
-        dispatch(initialGetCars(autos));
-    }, [autos])
-
     // ============== PAGINADO =============
-    let selectList = document.querySelector('select');
-    console.log(selectList, 'asdasdas');
     let [currentPage, setCurrentPage] = useState(1);
     let [registerPerPage, setRegisterPerPage] = useState(5);
 
@@ -42,6 +36,9 @@ export default function Vehiculos() {
 
     // =====================================
 
+    useEffect( () => {
+        dispatch(initialGetCars(autos));
+    }, [autos])
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -60,11 +57,12 @@ export default function Vehiculos() {
 
     const dropBox = (e) => {
         e.preventDefault();
-        let name = parseInt(e.target.value);
-        let selectValue = parseInt(e.target.value);
 
+        let selectValue = parseInt(e.target.value);
+        
+        cars = autos.slice(0, selectValue);
         setRegisterPerPage(selectValue);
-        cars = autos.slice(0, name);
+        setCurrentPage(1);
         dispatch(filterCars(cars));
     }
     

@@ -4,7 +4,11 @@ import Vehiculos from '../Vehiculos/Vehiculos';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import image from '../../img/registerBack.jpg';
-import NewCar from '../NewCar/NewCar'
+import NewCar from '../NewCar/NewCar';
+import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
+import Bounce from 'react-reveal/Bounce';
+import Slide from 'react-reveal/Slide';
 
 export default function BackOffice() {
     
@@ -34,6 +38,7 @@ export default function BackOffice() {
     }
 
     return(
+        
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>
                 <section className={`${Style.menuBar} col-lg-2`}>
@@ -71,20 +76,27 @@ export default function BackOffice() {
                         <div className={`${Style.close} col-12`}>
                             <a href="" onClick={(e)=>close(e)}>Cerrar Sesión</a>
                         </div>
+                        
                         <div className={`${Style.pageOffice} col-12`}>
                             <img src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
                                 {url.includes('nuevo_usuario') ?
+                                
                                 <NewCar />:
-                                <Vehiculos />
+                                <Slide top>
+                                    <Vehiculos />
+                                </Slide>
                             }
                             </div>
                         </div>
+                        
 
                     </div>
                 </section>
             </div>
         </div>
+        
     )
+    
 }

@@ -5,6 +5,10 @@ import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import image from '../../img/registerBack.jpg';
 import NewCarForm from './NewCarForm';
+import Fade from 'react-reveal/Fade';
+import Flip from 'react-reveal/Flip';
+import Bounce from 'react-reveal/Bounce';
+import Slide from 'react-reveal/Slide';
 
 
 export default function NewCar() {
@@ -35,6 +39,7 @@ export default function NewCar() {
     }
 
     return(
+        
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>
                 <section className={`${Style.menuBar} col-lg-2`}>
@@ -76,7 +81,9 @@ export default function NewCar() {
                             <img src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
-                                <NewCarForm />
+                                <Slide top>
+                                    <NewCarForm />
+                                </Slide>
                             </div>
                         </div>
 
@@ -84,5 +91,6 @@ export default function NewCar() {
                 </section>
             </div>
         </div>
+        
     )
 }

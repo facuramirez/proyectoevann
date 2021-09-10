@@ -44,6 +44,21 @@ export default function RegisterTwo(){
         repeat: false
     });
     
+    // window.onload = function() {
+    //     let repeat = document.querySelector('.repeatMail');
+    //     let repeat2 = document.querySelector('.repeatPass');
+
+    //     repeat.onpaste = (e) => {
+    //         e.preventDefault();
+    //         paste(repeat);
+    //     }
+    //     repeat2.onpaste = (e) => {
+    //         e.preventDefault();
+    //         paste(repeat2);
+    //     }
+    // }
+
+    
     const verifyMail = (e) => {
         let value = e.target.value;
         let name = e.target.name;
@@ -52,17 +67,27 @@ export default function RegisterTwo(){
         inputRepeatPass = document.querySelector('.repeatPass');
 
         let repeat = document.querySelector('.repeatMail');
-
-        if(repeat.name === 'repeatMail'){
-            repeat.onpaste = (e) => {
-                e.preventDefault();
-                swal({
-                    title: 'Acción inválida!',
-                    text: 'Debes volver a escribir tu correo manualmente',
-                    icon: 'error'
-                  })
-            }
+        let repeat2 = document.querySelector('.repeatPass');
+        
+        repeat.onpaste = (e) => {
+            e.preventDefault();
+            swal({
+                title: 'Acción inválida!',
+                text: 'Por favor repita su correo manualmente',
+                icon: 'warning'
+            })
         }
+        
+        repeat2.onpaste = (e) => {
+            e.preventDefault();
+            swal({
+                title: 'Acción inválida!',
+                text: 'Por favor repita su clave manualmente',
+                icon: 'warning'
+            })
+        }
+        
+        
 
         // ================ PROCESO EMAIL, REPEAT EMAIL =====================
         if(name==='mail'){
@@ -170,7 +195,7 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        if(!/^[A-Za-z]+$/g.test(value)){
+        if(!/^[A-Za-z\s]+$/g.test(value)){
             setAdmin({...admin, valid: false});
             setError({...error, [name]: 'Error'});
         } else {
@@ -218,7 +243,7 @@ export default function RegisterTwo(){
                 timer: 2000,
                 buttons: ['']
               })
-            history.push('/');              
+            history.push('/asociados/iniciar_sesion');              
         } else {
             swal({
                 title: 'Formulario incompleto!',
@@ -255,13 +280,7 @@ export default function RegisterTwo(){
         setAlldata(formPrev => {return {...formPrev, ready:value }});
     }
     
-    window.onload = function() {
-        let repeat = document.querySelector('.repeatMail');
-        repeat.onpaste = (e) => {
-            e.preventDefault();
-            verifyMail();
-        }
-    }
+    
 
     return(
         <div>
@@ -298,10 +317,10 @@ export default function RegisterTwo(){
                             }
                             <div className={`row`}>
                                 <h4 className={`col-1`}>Clave</h4>
-                                <input className={`col-3 pass`} type="text" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <input className={`col-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                                 {/* <h1 className={`col-1`}></h1> */}
                                 <h4 className={`${Style.repeatPass} col-3`}>Repetir Clave</h4>
-                                <input className={`${Style.repeatPassInp} repeatPass col-4`} type="text" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
+                                <input className={`${Style.repeatPassInp} repeatPass col-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
                             </div>
                             {error.clave && form.clave ?
                                 <div className={`row`}>
@@ -321,7 +340,7 @@ export default function RegisterTwo(){
                             </div>
                             {error.admin && form.admin ?
                                 <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras sin espacios</h5>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras (y espacios) sin números</h5>
                                 </div>
                                 : null 
                             }                            

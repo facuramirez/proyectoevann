@@ -187,14 +187,14 @@ export default function Login(){
                             }
                             <div className={`row`}>
                                 <h4 className={`col-2`}>Clave</h4>
-                                <input className={`col-9 pass`} type="text" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <input className={`col-9 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                             </div>
-                            {error.clave && form.clave ?
+                            {/* {error.clave && form.clave ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Mínimo 8 caracteres, una letra y un número</h5>
                                 </div>
                                 : null 
-                            }                            
+                            }                             */}
                         </div>
                     </div>
                     <div className={Style.containerSave}>

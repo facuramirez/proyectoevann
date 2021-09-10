@@ -5,8 +5,13 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { VscSave } from 'react-icons/vsc';
 import { AiOutlineClear } from 'react-icons/ai';
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
+
+
 
 export default function NewCarForm(){
+    let history = useHistory();
+
     let [form, setForm] = useState({
         patente: '',
         marca: '',
@@ -75,20 +80,24 @@ export default function NewCarForm(){
         console.log(form, 'form');   
     }
 
-    const save = (e) => {
+    const save = async (e) => {
         e.preventDefault();
-        if(form.patente && form.marca && form.modelo && form.tipoVeh && form.observaciones && !error.patente && !error.marca && !error.modelo && !error.tipoVeh && !error.obervaciones){
-            swal({
+        if(form.patente && form.marca && form.modelo && form.tipoVeh && !error.patente && !error.marca && !error.modelo && !error.tipoVeh){
+            await swal({
                 title: 'Operación exitosa!',
                 text: 'El vehículo fue creado correctamente',
-                icon: 'success'
+                icon: 'success',
+                buttons: [''],
+                timer: 2000
               })
+            history.push('/back_office');
         } else {
-            swal({
-                title: 'Error!',
-                text: 'El formulario debe estar completo para poder guardarlo',
-                icon: 'error'
+            await swal({
+                title: 'Advertencia!',
+                text: 'Por favor complete los campos obligatorios antes de guardar',
+                icon: 'warning'
               })
+            document.querySelector('.inpPatente').focus();            
         }
     }
 
@@ -104,52 +113,57 @@ export default function NewCarForm(){
                         <section className={`row`}>
                             <div className={`col-12`}>
                                 <div className={`row`}>
-                                    <label className={`col-2 text-center`}>Patente</label>
-                                    <input className={`inpPatente col-9`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
-                                    {!form.patente && error.patente && document.querySelector('.inpPatente') ? 
+                                    <label className={`${Style.asterisk} col-8`}>(los campos con (*) son obligatorios)</label>
+                                </div>
+                            </div>
+                            <div className={`col-12`}>
+                                <div className={`row`}>
+                                    <label className={`col-3 text-center`}>Patente (*)</label>
+                                    <input className={`inpPatente col-8`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
+                                    {/* {!form.patente && error.patente && document.querySelector('.inpPatente') ? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-2 text-center`}>Marca</label>
-                                    <input className={`col-9 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
-                                    {!form.marca && error.marca && document.querySelector('.inpMarca') ? 
+                                    <label className={`col-3 text-center`}>Marca (*)</label>
+                                    <input className={`col-8 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
+                                    {/* {!form.marca && error.marca && document.querySelector('.inpMarca') ? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-2 text-center`}>Modelo</label>
-                                    <input className={`col-9 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
-                                    {!form.modelo && error.modelo && document.querySelector('.inpModelo') ? 
+                                    <label className={`col-3 text-center`}>Modelo (*)</label>
+                                    <input className={`col-8 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
+                                    {/* {!form.modelo && error.modelo && document.querySelector('.inpModelo') ? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-2 text-center`}>Tipo Vehículo</label>
-                                    <input className={`col-9 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.tipoVeh} name="tipoVeh"/>
-                                    {!form.tipoVeh && error.tipoVeh && document.querySelector('.inpTipoVeh')? 
+                                    <label className={`col-3 text-center`}>Tipo Vehículo (*)</label>
+                                    <input className={`col-8 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.tipoVeh} name="tipoVeh"/>
+                                    {/* {!form.tipoVeh && error.tipoVeh && document.querySelector('.inpTipoVeh')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-2 text-center`}>Observaciones</label>
-                                    <input className={`col-9 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                                    <label className={`col-3 text-center`}>Observaciones</label>
+                                    <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
+                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             
@@ -165,8 +179,6 @@ export default function NewCarForm(){
                 </div>
             </div>
         </div>
-
-
 
     )
 }
