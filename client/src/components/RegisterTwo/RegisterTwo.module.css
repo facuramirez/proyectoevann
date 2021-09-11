@@ -163,6 +163,31 @@
     color: #ccc;
 }
 
+.buttons{
+    margin-left: 4.3vw;
+}
+
+.back{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;    
+    color: white;
+    font-size: 1.5vw;
+    padding-top: 0.6vh;
+    padding-bottom: 1.2vh;
+    text-decoration: none;
+    width: 20%;
+    transition: all 300ms;
+}
+
+.back:hover{
+    color: #ccc;
+}
+
+.iconBack{
+    margin-right: 0.8vw;
+}
+
 .save{
     text-decoration: none;
     background-color: rgb(54, 232, 210);
@@ -170,18 +195,20 @@
     width: 20%;
     align-self: center;
     font-size: 1.5vw;
+    padding-top: 0.6vh;
+    padding-bottom: 1.2vh;
     border-radius: 20px;
     border: none;
 }
 
 .save:hover{
-    color: rgb(60, 60, 58);
+    color: #ccc;
 }
 
 .disabled{
     /* pointer-events: none; */
     cursor: pointer;
-    background-color: rgb(54, 232, 210) !important;
+    background-color: rgb(33, 37, 41) !important;
 }
 
 .color{

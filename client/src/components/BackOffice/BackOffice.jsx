@@ -84,9 +84,9 @@ export default function BackOffice() {
                                 {url.includes('nuevo_usuario') ?
                                 
                                 <NewCar />:
-                                <Slide top>
+                                <Fade>
                                     <Vehiculos />
-                                </Slide>
+                                </Fade>
                             }
                             </div>
                         </div>

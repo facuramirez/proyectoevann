@@ -2,6 +2,7 @@ import Style from './NavBar.module.css';
 import evann from '../../img/evannImage.png';
 import { Link } from 'react-router-dom';
 
+
 export default function NavBar() {
 
     let url = window.location.href.includes('asociados');

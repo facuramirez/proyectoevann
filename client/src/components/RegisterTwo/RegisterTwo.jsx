@@ -5,7 +5,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+import Fade from 'react-reveal/Fade';
+import LightSpeed from 'react-reveal/LightSpeed';
+import Reveal from 'react-reveal/Reveal';
 
 
 export default function RegisterTwo(){
@@ -276,13 +282,18 @@ export default function RegisterTwo(){
         }
     }
 
-    function modifyAllData(value){
+    const modifyAllData = (value) => {
         setAlldata(formPrev => {return {...formPrev, ready:value }});
     }
     
-    
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/asociados');
+        window.scrollTo(0, 0);
+    }
 
     return(
+        <Fade>
         <div>
             <div className={Style.containerRegister}>            
                 <img src={register} className={Style.registerOne}/>
@@ -392,7 +403,10 @@ export default function RegisterTwo(){
                     </div>
                     <div className={Style.containerSave}>
                         <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
-                        <button className={`${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                        <div className={`${Style.buttons} row w-75`}>
+                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`col-3 mx-auto ${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                        </div>
                     </div>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>
@@ -422,5 +436,6 @@ export default function RegisterTwo(){
                 
             </div>
         </div>
+        </Fade>
     )
 }

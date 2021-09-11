@@ -1,16 +1,24 @@
 import { Link } from 'react-router-dom';
 import Style from './RegisterOne.module.css';
 import register from '../../img/register.jpg'
-import { useEffect } from 'react';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+import Fade from 'react-reveal/Fade';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterOne() {
 
-    // useEffect( () => {
-    //     window.scrollTo(0, 0);
-    // });
-
+    let history = useHistory();
+    
+    const scrollUp = (e) => {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+        history.push('./asociados/register');
+    }
+    
 
     return(
+        <Fade>
         <div>
             <div className={Style.containerRegister}>            
                 <img src={register} className={Style.registerOne}/>
@@ -22,7 +30,7 @@ export default function RegisterOne() {
                     <div className={Style.contentDescription}>
                         <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selecto grupo
                         </span>                        
-                        <Link to="/asociados/register" className={Style.linkRegister}>REGÍSTRATE</Link>                    
+                        <Link to="/asociados/register" onClick={(e)=>scrollUp(e)}className={Style.linkRegister}>REGÍSTRATE</Link>                    
                         <span className={Style.here}>Si ya te registraste, ingresá <Link to='/asociados/iniciar_sesion'>Aquí</Link></span>
                         <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/asociados/recuperar_contraseña'>Aquí</Link></span>
                     </div>
@@ -47,5 +55,6 @@ export default function RegisterOne() {
                 
             </div>
         </div>
+        </Fade>
     )
 }

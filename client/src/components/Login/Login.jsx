@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import Fade from 'react-reveal/Fade';
 
 
 export default function Login(){
@@ -131,36 +133,43 @@ export default function Login(){
 
     const login = (e) => {
         e.preventDefault();
-        
-        if(alldata.ready){
-            history.push('/back_office');
+        history.push('/back_office');
             swal({
                 title: 'Bienvenido a Evann!',
                 text: 'Que disfrutes tu estadía en la página',
                 icon: 'success',
                 timer: 2000
               })
+
+        
+        // if(alldata.ready){
+        //     history.push('/back_office');
+        //     swal({
+        //         title: 'Bienvenido a Evann!',
+        //         text: 'Que disfrutes tu estadía en la página',
+        //         icon: 'success',
+        //         timer: 2000
+        //       })
             
-        } else {
-            swal({
-                title: 'Datos incorrectos!',
-                text: 'Por favor verifica que tus datos sean correctos',
-                icon: 'error'
-              })
-        }
+        // } else {
+        //     swal({
+        //         title: 'Datos incorrectos!',
+        //         text: 'Por favor verifica que tus datos sean correctos',
+        //         icon: 'error'
+        //       })
+        // }
+    }
+  
+
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/asociados');
+        window.scrollTo(0, 0);
     }
 
-    function modifyAllData(value){
-        setAlldata(formPrev => {return {...formPrev, ready:value }});
-    }
-
-
-    // console.log('=======================================');
-    // console.log(alldata);
-    // console.log(form);
-    // console.log(error);
 
     return(
+        <Fade>
         <div>
             <div className={Style.containerRegister}>            
                 <img src={register} className={Style.registerOne}/>
@@ -198,7 +207,10 @@ export default function Login(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <button className={`${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
+                        <div className={`${Style.buttons} row w-75 `}>
+                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`col-3 mx-auto ${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
+                        </div>
                     </div>
                 </div>
                 {/* <div className={`${Style.formComplete}`}>
@@ -228,5 +240,6 @@ export default function Login(){
                 
             </div>
         </div>
+        </Fade>
     )
 }

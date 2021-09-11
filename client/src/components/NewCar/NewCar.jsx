@@ -9,6 +9,7 @@ import Fade from 'react-reveal/Fade';
 import Flip from 'react-reveal/Flip';
 import Bounce from 'react-reveal/Bounce';
 import Slide from 'react-reveal/Slide';
+import Zoom from 'react-reveal/Zoom';
 
 
 export default function NewCar() {
@@ -81,9 +82,9 @@ export default function NewCar() {
                             <img src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
-                                <Slide top>
+                                <Fade>
                                     <NewCarForm />
-                                </Slide>
+                                </Fade>
                             </div>
                         </div>
 
