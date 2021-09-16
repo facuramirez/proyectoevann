@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './Vehiculos.module.css';
+import Style from './Facturas.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 
-export default function Vehiculos() {
+export default function Conductores() {
 
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
@@ -72,13 +72,12 @@ export default function Vehiculos() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Vehículos</h3>
+                        <h3>Facturas</h3>
                     </div>
                     {cars.length > 0 ?
                     <div>        
                     <div className={`${Style.menu} col-12 mt-4`}>
-                        <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
+                        <div className={`row justify-content-end`}>
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>

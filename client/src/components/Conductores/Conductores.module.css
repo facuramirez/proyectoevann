@@ -1,0 +1,191 @@
+/* .containerVehiculos{
+    padding: 2.5vw;
+    background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
+    height: 88vh;
+} */
+
+.title{
+    color: white;
+    width: fit-content;
+    /* margin: 0px auto;
+    border-radius: 20px;
+    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+    padding-top: 5px;
+    height: 7vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw; */
+}
+
+.title h3{
+    font-size: 1.8vw;
+}
+
+.buttonsTwo .search,
+.buttonsTwo .inactives{
+    width: 12vw;
+}
+
+.fondo{
+    /* background-image: repeating-linear-gradient(332deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(100deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(0deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),repeating-linear-gradient(90deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),linear-gradient(90deg, rgb(58,58,58),rgb(58,58,58)); */
+    border-radius: 20px;
+    padding: 3vh;
+}
+
+.buttonsTwo .search{
+    outline: none;
+    width: 15vw;
+    margin-right: 2vw;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 1px solid rgb(54, 232, 210);
+}
+
+
+
+.buttonsTwo .inactives,
+.add{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.3vw;
+    color: white;
+    font-size: 1.5vw;
+    padding-top: 0.6vh;
+    padding-bottom: 0.6vh;
+    transition: all 300ms;
+    padding-bottom: 0.8vh;
+}
+
+.add a{
+    color: white;
+    text-decoration: none;
+}
+
+.buttonsTwo .inactives:hover,
+.add a:hover{
+    color: #ccc;
+}
+
+.registers{
+    width: fit-content;
+    color: white;
+}
+
+.select select{
+    margin-left: 1vw;
+    border-radius: 20px;
+    outline: none;
+    transition: all 300ms;
+}
+
+.select select:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.select select:focus{
+    background-color: #ccc;
+}
+
+.table{
+    height: 44.8vh;
+    color: black;
+    overflow-y: scroll;
+    padding-top: 5px;
+}
+
+.table::-webkit-scrollbar{
+    width: 6px;
+    background-color: rgb(33, 37, 41);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.table::-webkit-scrollbar-thumb{
+    background-color: rgb(54, 232, 210);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.select,
+.pagination{
+    color: white;
+}
+
+.table{
+    color: white;
+}
+
+.tableHead{
+    color: white;
+    background-color: black;
+}
+
+.tableBody{
+    background-color: black;
+    color: white;
+}
+
+.buttons a svg{
+    color: white;
+    font-size: 1.8vw;
+}
+
+.buttons a:hover .edit{
+    color: lightblue;
+}
+
+.buttons a:hover .delete{
+    color: red;
+}
+
+.buttons a:hover .details{
+    color:yellow;
+}
+
+.noCars{
+    background-color: red;
+    color: white;
+    width: fit-content;
+    margin: 0px auto;
+    padding: 0.5vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-shadow: 0px 0px 10px black;
+}
+
+.iconAdd{
+    margin-right: 0.8vw;
+}
+
+.ulPagination{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 1.8vh;
+    width: 100%;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.liElements a{
+    text-decoration: none;
+    font-size: 2vw;
+    color: white;
+    margin-right: 10px;
+    background-color: rgb(33, 37, 41);
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 20px;
+}
+
+.liElements a:focus{
+    color: rgb(54, 232, 210);
+}
+
+.liElements a:hover{
+    color: rgb(54, 232, 210);
+}

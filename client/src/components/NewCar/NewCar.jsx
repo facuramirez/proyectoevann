@@ -53,7 +53,7 @@ export default function NewCar() {
                                 Mis Datos
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                Choferes
+                                Conductores
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 Vehículos

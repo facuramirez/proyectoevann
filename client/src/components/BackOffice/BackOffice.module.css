@@ -52,6 +52,11 @@
     margin-top: 6vh;
 }
 
+.menuOptions a{
+    text-decoration: none;
+    color: white;
+}
+
 .options{
     font-size: 1.3vw;
     /* background-image: repeating-linear-gradient(90deg, hsla(71,0%,0%,0.2) 0px, hsla(71,0%,0%,0.2) 0px,transparent 0px, transparent 1px,hsla(71,0%,0%,0.2) 1px, hsla(71,0%,0%,0.2) 4px,transparent 4px, transparent 5px,hsla(71,0%,0%,0.2) 5px, hsla(71,0%,0%,0.2) 8px),repeating-linear-gradient(135deg, hsla(71,0%,0%,0.2) 0px, hsla(71,0%,0%,0.2) 0px,transparent 0px, transparent 1px,hsla(71,0%,0%,0.2) 1px, hsla(71,0%,0%,0.2) 4px,transparent 4px, transparent 5px,hsla(71,0%,0%,0.2) 5px, hsla(71,0%,0%,0.2) 8px),linear-gradient(45deg, rgb(59, 59, 59),rgb(4, 4, 4));
@@ -67,7 +72,7 @@
     transition: all 300ms;
 }
 
-.options:hover{
+.options a:hover{
     color: #ccc;
 }
 /* .options:hover{
