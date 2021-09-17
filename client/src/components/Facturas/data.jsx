@@ -1,99 +1,77 @@
+let id = 1;
+
 export const autos = 
 [
     {
-        id: 1,
-        patente: 'DJU276',
-        marca: 'Ford',
-        modelo: 'Fiesta',
-        tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 2,
-        patente: 'MTE924',
-        marca: 'Renault',
-        modelo: 'Megane',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 3,
-        patente: 'CLF486',
-        marca: 'Peugeot',
-        modelo: '308',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 4,
-        patente: 'DJU276',
-        marca: 'Ford',
-        modelo: 'Fiesta',
-        tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 5,
-        patente: 'MTE924',
-        marca: 'Renault',
-        modelo: 'Megane',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 6,
-        patente: 'CLF486',
-        marca: 'Peugeot',
-        modelo: '308',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        id: id++,
+        nroFac: 324,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 7,
-        patente: 'DJU276',
-        marca: 'Ford',
-        modelo: 'Fiesta',
-        tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        id: id++,
+        nroFac: 23423,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 8,
-        patente: 'MTE924',
-        marca: 'Renault',
-        modelo: 'Megane',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        id: id++,
+        nroFac: 234234,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 9,
-        patente: 'CLF486',
-        marca: 'Peugeot',
-        modelo: '308',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        id: id++,
+        nroFac: 234234,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 10,
-        patente: 'DJU276',
-        marca: 'Ford',
-        modelo: 'Fiesta',
-        tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        id: id++,
+        nroFac: 234234,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 11,
-        patente: 'MTE924',
-        marca: 'Renault',
-        modelo: 'Megane',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        id: id++,
+        nroFac: 23432,
+        cliente: 'Laura',
+        importe: 4500
     },
     {
-        id: 12,
-        patente: 'CLF486',
-        marca: 'Peugeot',
-        modelo: '308',
-        tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        id: id++,
+        nroFac: 435345,
+        cliente: 'Laura',
+        importe: 4500
     }
 ];

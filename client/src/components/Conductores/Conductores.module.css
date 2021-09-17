@@ -34,13 +34,26 @@
 .buttonsTwo .search{
     outline: none;
     width: 15vw;
-    margin-right: 2vw;
+    margin-right: 0.5vw;
     border: none;
     border-radius: 20px;
     border-bottom: 1px solid rgb(54, 232, 210);
 }
 
-
+.searchIcon{
+    font-size: 2vw;
+    width: fit-content;
+    margin: 0px;
+    margin-top: 0.3vh;
+    margin-right: 2vw;
+    height: 5.5vh;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    background-color: #ccc;
+    box-shadow: 0px 0px 20px black inset;
+    border-radius: 999px;
+    cursor: pointer;
+}
 
 .buttonsTwo .inactives,
 .add{

@@ -9,6 +9,7 @@ import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
+import { FcSearch } from 'react-icons/fc';
 
 export default function Conductores() {
 
@@ -82,6 +83,7 @@ export default function Conductores() {
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
+                                    <FcSearch className={`${Style.searchIcon} col-1`}/>
                                     <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
                                 </div>
                             </div>

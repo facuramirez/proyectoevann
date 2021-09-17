@@ -8,6 +8,9 @@ import NewCarForm from '../NewCar/NewCarForm';
 import Conductores from '../Conductores/Conductores';
 import NewConductorForm from '../NewConductor/NewConductorForm';
 import Facturas from '../Facturas/Facturas';
+import Viajes from '../Viajes/Viajes';
+import Reclamos from '../Reclamos/Reclamos';
+import Alertas from '../Alertas/Alertas';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
@@ -61,16 +64,16 @@ export default function BackOffice() {
                                 <Link to="/back_office/vehiculos">Vehículos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/">Viajes</Link>
+                                <Link to="/back_office/viajes">Viajes</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office/facturas_y_pagos">Facturación y Pagos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/">Reclamos</Link>
+                                <Link to="/back_office/reclamos">Reclamos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/">Alertas</Link>
+                                <Link to="/back_office/alertas">Alertas</Link>
                             </div>
                         </div>
                     </div>
@@ -111,6 +114,21 @@ export default function BackOffice() {
                                 ruta === '/back_office/facturas_y_pagos' ?
                                     <Fade>
                                         <Facturas />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/viajes' ?
+                                    <Fade>
+                                        <Viajes />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/reclamos' ?
+                                    <Fade>
+                                        <Reclamos />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/alertas' ?
+                                    <Fade>
+                                        <Alertas />
                                     </Fade>
                                 :
                                 null

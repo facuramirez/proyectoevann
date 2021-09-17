@@ -65,8 +65,8 @@
     align-self: center;
 }
 
-.linkRegister:hover{
-    color: rgb(60, 60, 58);
+.linkRegister a:hover{
+    color: black;
 }
 
 

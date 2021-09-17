@@ -7,11 +7,29 @@ import { AiOutlineClear } from 'react-icons/ai';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import { Fade } from 'react-reveal/Fade';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 
 
 export default function NewCarForm(){
     let history = useHistory();
+
+    // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
+    const useStyles = makeStyles((theme) => ({
+        container: {
+          display: 'flex',
+          flexWrap: 'wrap',
+        },
+        textField: {
+          marginLeft: theme.spacing(1),
+          marginRight: theme.spacing(1),
+          width: 200,
+        },
+    }));
+
+    const classes = useStyles();
+    // ===========================================================
 
     let [form, setForm] = useState({
         nombre: '',
@@ -166,7 +184,22 @@ export default function NewCarForm(){
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-sm-6 col-md-5 col-lg-4 text-left`}>Fecha de Nacimiento (*)</label>
-                                    <input className={`col-sm-5 col-md-6 col-lg-7 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.fechaNac} name="fechaNac"/>
+                                    <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                    <TextField
+                                        id="date"
+                                        label=""
+                                        type="date"
+                                        name="fechaNac"
+                                        value={form.fechaNac}
+                                        onChange={(e)=> inputs(e)}
+                                        // defaultValue="2017-05-24"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </form>
+                                    {/* <input className={`col-sm-5 col-md-6 col-lg-7 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.fechaNac} name="fechaNac"/> */}
                                     {/* {!form.tipoVeh && error.tipoVeh && document.querySelector('.inpTipoVeh')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null

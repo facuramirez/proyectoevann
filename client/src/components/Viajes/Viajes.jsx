@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './Vehiculos.module.css';
+import Style from './Viajes.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -10,8 +10,25 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import { ImEye } from 'react-icons/im';
 
-export default function Vehiculos() {
+
+export default function Viajes() {
+
+   
+    let [form, setForm] = useState({
+        nroViaje: '',
+        cliente: '',
+        fecha: '',
+        distancia: ''
+    });
+
+    let [error, setError] = useState({
+        nroViaje: 'Error',
+        cliente: 'Error',
+        fecha: 'Error',
+        distancia: 'Error'
+    });
 
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
@@ -43,7 +60,7 @@ export default function Vehiculos() {
 
     const editCar = (e, id) => {
         e.preventDefault();
-       alert('Editando car ' + id);
+       alert('Viaje cliente ' + id);
     }
 
     const deleteCar = (e, id) => {
@@ -66,6 +83,30 @@ export default function Vehiculos() {
         setCurrentPage(1);
         dispatch(filterCars(cars));
     }
+
+    const inputs = (e) => {
+        e.preventDefault();
+        let name = e.target.name;
+        let value = e.target.value;
+
+        setForm({
+            ...form,
+            [name]: value
+        })
+
+        if(value === '') {
+            setError({
+                ...error,
+                [name]: 'Error'
+            })
+        } else {
+            setError({
+                ...error,
+                [name]: ''
+            })
+        }
+        console.log(form, 'form');   
+    }
     
 
     return(
@@ -73,18 +114,17 @@ export default function Vehiculos() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Vehículos</h3>
+                        <h3>Viajes</h3>
                     </div>
                     {cars.length > 0 ?
                     <div>        
                     <div className={`${Style.menu} col-12 mt-4`}>
-                        <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
+                        <div className={`row justify-content-end`}>
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
                                     <FcSearch className={`${Style.searchIcon} col-1`}/>
-                                    <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
+                                    <button className={`${Style.inactives} col-2`}>XXXXX</button>
                                 </div>
                             </div>
                         </div>
@@ -105,11 +145,10 @@ export default function Vehiculos() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Patente</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Tipo vehículo</th>
-                                    <th>Observaciones</th>
+                                    <th>Nro Viaje</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Distancia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -118,15 +157,14 @@ export default function Vehiculos() {
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.patente}</td>
-                                    <td>{element.marca}</td>
-                                    <td>{element.modelo}</td>
-                                    <td>{element.tipo_veh}</td>
-                                    <td>{element.observaciones}</td>
+                                    <td>{element.nroViaje}</td>
+                                    <td>{element.cliente}</td>
+                                    <td>{element.fecha}</td>
+                                    <td>{element.distancia}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a>
+                                        <a href="" onClick={(e)=>editCar(e, element.id)}><ImEye className={Style.edit}/></a>
+                                        {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
                                 </tr>
                                 )

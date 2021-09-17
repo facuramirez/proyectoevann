@@ -9,8 +9,24 @@ import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
+import { FcSearch } from 'react-icons/fc';
+import { ImEye } from 'react-icons/im';
 
-export default function Conductores() {
+
+export default function Facturas() {
+
+   
+    let [form, setForm] = useState({
+        nroFac: '',
+        cliente: '',
+        importe: ''
+    });
+
+    let [error, setError] = useState({
+        nroFac: 'Error',
+        cliente: 'Error',
+        importe: 'Error'
+    });
 
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
@@ -40,9 +56,9 @@ export default function Conductores() {
         dispatch(initialGetCars(autos));
     }, [autos])
 
-    const editCar = (e, id) => {
+    const editCar = (e, nro) => {
         e.preventDefault();
-       alert('Editando car ' + id);
+       alert('Factura nro ' + nro);
     }
 
     const deleteCar = (e, id) => {
@@ -65,6 +81,30 @@ export default function Conductores() {
         setCurrentPage(1);
         dispatch(filterCars(cars));
     }
+
+    const inputs = (e) => {
+        e.preventDefault();
+        let name = e.target.name;
+        let value = e.target.value;
+
+        setForm({
+            ...form,
+            [name]: value
+        })
+
+        if(value === '') {
+            setError({
+                ...error,
+                [name]: 'Error'
+            })
+        } else {
+            setError({
+                ...error,
+                [name]: ''
+            })
+        }
+        console.log(form, 'form');   
+    }
     
 
     return(
@@ -81,7 +121,8 @@ export default function Conductores() {
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
+                                    <FcSearch className={`${Style.searchIcon} col-1`}/>
+                                    <button className={`${Style.inactives} col-2`}>XXXXX</button>
                                 </div>
                             </div>
                         </div>
@@ -102,11 +143,9 @@ export default function Conductores() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Patente</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Tipo vehículo</th>
-                                    <th>Observaciones</th>
+                                    <th>Nro Factura</th>
+                                    <th>Cliente</th>
+                                    <th>Importe</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -115,15 +154,13 @@ export default function Conductores() {
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.patente}</td>
-                                    <td>{element.marca}</td>
-                                    <td>{element.modelo}</td>
-                                    <td>{element.tipo_veh}</td>
-                                    <td>{element.observaciones}</td>
+                                    <td>{element.nroFac}</td>
+                                    <td>{element.cliente}</td>
+                                    <td>{element.importe}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a>
+                                        <a href="" onClick={(e)=>editCar(e, element.nroFac)}><ImEye className={Style.edit}/></a>
+                                        {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
                                 </tr>
                                 )

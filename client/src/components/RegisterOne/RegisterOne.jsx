@@ -5,8 +5,26 @@ import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 import { useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function RegisterOne() {
+
+    // ============= Motion ================
+    const buttonVariants = {
+        hover: {
+            scale: 1.07,
+            textShadow: '0px 0px 8px rgb(255, 255, 255)',
+            boxShadow: '0px 0px 8px rgb(255, 255, 255)',
+            transition: {
+                duration: 0.25,
+                yoyo: Infinity
+            }
+        }
+    }
+
+
+
+    // =====================================
 
     let history = useHistory();
     
@@ -29,8 +47,15 @@ export default function RegisterOne() {
                     <h1 className={`${Style.title}`}>Múevete con Evann</h1>
                     <div className={Style.contentDescription}>
                         <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selecto grupo
-                        </span>                        
-                        <Link to="/asociados/register" onClick={(e)=>scrollUp(e)}className={Style.linkRegister}>REGÍSTRATE</Link>                    
+                        </span>
+                        <motion.button
+                            className={Style.linkRegister}
+                            variants={buttonVariants}
+                            whileHover='hover'>                  
+                            <Link to="/asociados/register" onClick={(e)=>scrollUp(e)} className={Style.linkRegister}>
+                                REGÍSTRATE
+                            </Link>
+                        </motion.button>                    
                         <span className={Style.here}>Si ya te registraste, ingresá <Link to='/asociados/iniciar_sesion'>Aquí</Link></span>
                         <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/asociados/recuperar_contraseña'>Aquí</Link></span>
                     </div>
