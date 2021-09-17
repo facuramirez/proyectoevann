@@ -8,14 +8,14 @@ export default function NavBar() {
 
     const imgVariants = {
         hidden: {
-            y: '-100vh',
+            x: '-100vh',
         },
         visible: {
-            y: 0,
+            x: 0,
             transition: {
-                delay: 0.2,
+                delay: 0.7,
                 type: 'spring',
-                stiffness: 100
+                stiffness: 500
             }
         }
         
