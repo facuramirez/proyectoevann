@@ -76,6 +76,13 @@ input{
     font-size: 1.1vw;
 } */
 
+.up{
+    background-color: rgb(60, 60, 58);
+    color: white;
+    border-bottom: 1px solid rgb(54, 232, 210);
+    
+}
+
 .buttons a{
     border: none;
     background-color: rgb(33, 37, 41);

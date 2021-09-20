@@ -110,6 +110,7 @@ export default function Conductores() {
                                     <th>Nacionalidad</th>
                                     <th>Fecha de Nacimiento</th>
                                     <th>Email</th>
+                                    <th>Estado</th>
                                     <th>Celular</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -124,11 +125,12 @@ export default function Conductores() {
                                     <td>{element.nacionalidad}</td>
                                     <td>{element.fechaNac}</td>
                                     <td>{element.email}</td>
+                                    <td>{element.estado}</td>
                                     <td>{element.cel}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a>
+                                        {/* <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
                                 </tr>
                                 )

@@ -124,7 +124,7 @@ export default function Viajes() {
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
                                     <FcSearch className={`${Style.searchIcon} col-1`}/>
-                                    <button className={`${Style.inactives} col-2`}>XXXXX</button>
+                                    {/* <button className={`${Style.inactives} col-2`}>XXXXX</button> */}
                                 </div>
                             </div>
                         </div>

@@ -48,14 +48,14 @@ export default function RegisterOne() {
                     <div className={Style.contentDescription}>
                         <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selecto grupo
                         </span>
-                        <motion.button
+                        <button
                             className={Style.linkRegister}
                             variants={buttonVariants}
                             whileHover='hover'>                  
                             <Link to="/asociados/register" onClick={(e)=>scrollUp(e)} className={Style.linkRegister}>
                                 REGÍSTRATE
                             </Link>
-                        </motion.button>                    
+                        </button>                    
                         <span className={Style.here}>Si ya te registraste, ingresá <Link to='/asociados/iniciar_sesion'>Aquí</Link></span>
                         <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/asociados/recuperar_contraseña'>Aquí</Link></span>
                     </div>

@@ -229,7 +229,8 @@ export default function NewCarForm(){
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-3 text-center`}>Foto (*)</label>
-                                    <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/>
+                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
+                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -239,7 +240,8 @@ export default function NewCarForm(){
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-3 text-center`}>Carne (*)</label>
-                                    <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/>
+                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
+                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -249,7 +251,8 @@ export default function NewCarForm(){
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-3 text-center`}>Licencia (*)</label>
-                                    <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/>
+                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
+                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
