@@ -1,6 +1,6 @@
 import Style from './NewCar.module.css';
 import { Link } from 'react-router-dom';
-import Vehiculos from '../Vehiculos/Vehiculos';
+import Vehiculos from '../Vehiculos';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import image from '../../img/registerBack.jpg';

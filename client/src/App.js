@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import RegisterOne from './components/RegisterOne/RegisterOne';
-import RegisterTwo from './components/RegisterTwo/RegisterTwo';
-import Contraseña from './components/Password/Password';
-import Login from './components/Login/Login';
-import BackOffice from './components/BackOffice/BackOffice';
-import NewCar from './components/NewCar/NewCar';
-import Vehiculos from './components/Vehiculos/Vehiculos';
-import { Route } from 'react-router-dom';
+import NavBar from './components/NavBar/index';
+import RegisterOne from './components/RegisterOne/index';
+import RegisterTwo from './components/RegisterTwo/index';
+import Contraseña from './components/Password/index';
+import Login from './components/Login/index';
+import BackOffice from './components/BackOffice/index';
+import NewCar from './components/NewCar/index';
+import Vehiculos from './components/Vehiculos/index';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
 
