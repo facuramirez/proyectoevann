@@ -3,7 +3,6 @@
 } */
 
 .menuBar{
-    height: 100vh;
     color: white;
     background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
 }
@@ -75,21 +74,20 @@
     box-shadow: 0px 0px 5px #ccc inset;
 } */
 
-.pageOffice{
+.details .pageOffice{
     position: relative;
     padding: 2.5vw;
-    height: 88vh;
+    height: 88vh !important;
 }
 
-.pageOffice img{
+.details .pageOffice .imageCar{
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 0;    
+    height: 88vh !important;
 }
 
-.pageOffice .opaco{
+.details .pageOffice .opaco{
     position: absolute;
     top: 0;
     left: 0;
@@ -99,7 +97,7 @@
     height: 100%;
 }
 
-.pageOffice .divOffice{
+.details .pageOffice .divOffice{
     position: absolute;
     top: 0;
     width: 90%;

@@ -11,6 +11,8 @@ import Facturas from '../Facturas';
 import Viajes from '../Viajes';
 import Reclamos from '../Reclamos';
 import Alertas from '../Alertas';
+import MisDatos from '../MisDatos';
+import EditarMisDatos from '../EditarMisDatos';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
@@ -49,13 +51,13 @@ export default function BackOffice() {
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>
                 <section className={`${Style.menuBar} col-lg-2`}>
-                <div className={`row`}>
+                    <div className={`row`}>
                         <div className={`${Style.welcome} col-12 align-self-center`}>
                             <h3>Bienvenido Facundo!</h3>
                         </div>
                         <div className={Style.menuOptions}>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/">Mis Datos</Link>
+                                <Link to="/back_office/mis_datos">Mis Datos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office/conductores">Conductores</Link>
@@ -88,9 +90,10 @@ export default function BackOffice() {
                             <img src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
-                                {ruta === '/back_office' ?                               
-                                    <h1>SOY BACKOFFICE</h1>
-                                :
+                                {
+                                // ruta === '/back_office' ?                               
+                                //     <h1>SOY BACKOFFICE</h1>
+                                // :
                                 ruta === '/back_office/vehiculos' ?
                                     <Fade>
                                         <Vehiculos />
@@ -129,6 +132,16 @@ export default function BackOffice() {
                                 ruta === '/back_office/alertas' ?
                                     <Fade>
                                         <Alertas />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/mis_datos' ?
+                                    <Fade>
+                                        <MisDatos />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/mis_datos/editar' ?
+                                    <Fade>
+                                        <EditarMisDatos />
                                     </Fade>
                                 :
                                 null

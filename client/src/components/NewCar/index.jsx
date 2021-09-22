@@ -79,7 +79,7 @@ export default function NewCar() {
                             <a href="" onClick={(e)=>close(e)}>Cerrar Sesión</a>
                         </div>
                         <div className={`${Style.pageOffice} col-12`}>
-                            <img src={image}/>
+                            <img className={`${Style.imageCar}`} src={image}/>
                             <div className={Style.opaco}></div>
                             <div className={`${Style.divOffice} row`}>
                                 <Fade>

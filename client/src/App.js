@@ -28,6 +28,8 @@ function App() {
       <Route exact path="/back_office/viajes" component={BackOffice} />
       <Route exact path="/back_office/reclamos" component={BackOffice} />
       <Route exact path="/back_office/alertas" component={BackOffice} />
+      <Route exact path="/back_office/mis_datos" component={BackOffice} />
+      <Route exact path="/back_office/mis_datos/editar" component={BackOffice} />
     </div>
   );
 }

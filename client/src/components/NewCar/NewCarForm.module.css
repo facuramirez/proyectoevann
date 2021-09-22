@@ -1,6 +1,6 @@
 .containerVehiculos{
     margin: 0px auto;
-    height: 80vh;
+    height: 110vh !important;
 }
 
 .asterisk{
@@ -90,3 +90,43 @@ input{
     color: red;
     font-size: 0.8vw;
 }
+
+.radioButtons{
+    width: 64%;
+}
+
+.radioButtons .labelRadio{
+    margin-left: 0.5rem;
+}
+
+.radioButtons .lines label{
+    border-bottom: 1px solid rgb(54, 232, 210);
+}
+
+.docs{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: fit-content;    
+}
+
+.docsDivs{
+    display: flex;
+    flex-flow: column wrap;
+    margin-left: 1rem;
+}
+
+.docsDivs .upButtons{
+    font-size: 0.9rem;
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(60, 60, 58);
+    border: 1px solid rgb(54, 232, 210);
+}
+
+.docsDivs .upButtons:nth-child(n+1){
+    margin-top: 0.27rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
