@@ -5,6 +5,8 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { VscSave } from 'react-icons/vsc';
 import { AiOutlineClear } from 'react-icons/ai';
 import swal from 'sweetalert';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 
 
@@ -101,6 +103,20 @@ export default function NewCarForm(){
         }
     }
 
+    // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
+    const useStyles = makeStyles((theme) => ({
+        container: {
+          display: 'flex',
+          flexWrap: 'wrap',
+        },
+        textField: {
+          marginLeft: theme.spacing(1),
+          marginRight: theme.spacing(1),
+          width: 200,
+        },
+    }));
+
+    const classes = useStyles();
 
     return(
         <div>            
@@ -119,14 +135,14 @@ export default function NewCarForm(){
                             
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Marca (*)</label>
+                                    <label className={`col-3 text-start`}>Marca (*)</label>
                                     <input className={`col-8 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
                                 </div>
                             </div>
                             
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Modelo (*)</label>
+                                    <label className={`col-4 text-start`}>Modelo (*)</label>
                                     <input className={`col-7 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
                                     {/* {!form.modelo && error.modelo && document.querySelector('.inpModelo') ? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
@@ -136,7 +152,7 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Patente (*)</label>
+                                    <label className={`col-4 text-start`}>Patente (*)</label>
                                     <input className={`inpPatente col-7`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
                                 </div>
                             </div>
@@ -162,7 +178,7 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-7 text-center`}>Capacidad Equipaje(*)</label>
+                                    <label className={`col-7 text-start`}>Capacidad Equipaje(*)</label>
                                     <input className={`col-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
@@ -172,7 +188,7 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Año (*)</label>
+                                    <label className={`col-4 text-start`}>Año (*)</label>
                                     <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
@@ -182,7 +198,7 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Kilometraje (*)</label>
+                                    <label className={`col-4 text-start`}>Kilometraje (*)</label>
                                     <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
@@ -192,17 +208,28 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Última revisión técnica (*)</label>
-                                    <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <label className={`col-4 text-start mt-1`}>Última revisión técnica (*)</label>
+                                    {/* <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/> */}
+                                    <form className={`${classes.container} ${Style.inputFecha} col-4`} noValidate>
+                                    <TextField
+                                        id="date"
+                                        label=""
+                                        type="date"
+                                        name="fechaNac"
+                                        onChange={(e)=>inputs(e)}
+                                        value={form.observaciones} name="observaciones"
+                                        // defaultValue="2017-05-24"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </form>
                                 </div>
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Líneas de negocio (*)</label>
+                                    <label className={`col-4 text-start`}>Líneas de negocio (*)</label>
                                     <div className={`${Style.radioButtons} row col-7`}>
                                         <div className={`${Style.lines} col-4 text-center`}>
                                             <input className={`text-center mt-1`} type="radio" name="options" value="Empresa" />
@@ -226,38 +253,45 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Documentos (*)</label>
+                                    <label className={`${Style.titleDoc} col-3 text-start mt-3`}>Documentos (*)</label>
                                     <div className={`${Style.docs} col-8`}>
                                         <div className={`${Style.docsDivs}`}>
-                                            <label className={`${Style.labelDocs}`}>Permiso de Circulación (*)</label>
-                                            <label className={`${Style.labelDocs} mt-2`}>Seguro Responsabilidad Civil (*)</label>
-                                            <label className={`${Style.labelDocs} mt-2`}>Permiso de Circulación (*)</label>
-                                            <label className={`${Style.labelDocs} mt-2`}>Decreto 80 (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Seguro Responsabilidad Civil (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Decreto 80 (*)</label>
                                             
                                         </div>
                                         <div className={`${Style.docsDivs}`}>
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            {/* <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
-                                            <button className={`${Style.upButtons}`}>Subir</button>
-                                            <button className={`${Style.upButtons}`}>Subir</button>
+                                            <button className={`${Style.upButtons}`}>Subir</button> */}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className={`col-12 mt-2`}>
+                            <div className={`col-12 mt-4`}>
                                 <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Fotos Vehículo (*)</label>
+                                    <label className={`${Style.titleVeh} col-3 text-center mt-2`}>Fotos Vehículo (*)</label>
                                     <div className={`${Style.docs} col-8`}>
                                         <div className={`${Style.docsDivs}`}>
-                                            <label className={`${Style.labelDocs}`}>Frente (*)</label>
-                                            <label className={`${Style.labelDocs} mt-2`}>Lateral (*)</label>
-                                            <label className={`${Style.labelDocs} mt-2`}>Atrás (*)</label>
+                                            <label className={`${Style.labelDocs} mt-2`}>Principal (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Foto1 (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Foto2 (*)</label>
                                             
                                         </div>
                                         <div className={`${Style.docsDivs}`}>
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            <input type="file" className={`${Style.upButtons}`} />
+                                            {/* <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
-                                            <button className={`${Style.upButtons}`}>Subir</button>
-                                            <button className={`${Style.upButtons}`}>Subir</button>
+                                            <button className={`${Style.upButtons}`}>Subir</button> */}
                                         </div>
                                     </div>
                                 </div>

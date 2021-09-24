@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
-import Style from './Vehiculos.module.css';
+import Style from './ConductoresDetail.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
-import { autos } from './data';
+import { conductores } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialGetCars, filterCars } from '../../globalState/Actions';
+import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 
-export default function Vehiculos() {
+export default function ConductoresDetail() {
+    useEffect( () => {
+
+    },[])
 
     const dispatch = useDispatch();
-    let cars = useSelector( state => state['cars']);
+    let drivers = useSelector( state => state['drivers']);
 
     // ============== PAGINADO =============
     let [currentPage, setCurrentPage] = useState(1);
@@ -22,11 +25,11 @@ export default function Vehiculos() {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
+    drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
 
     const pageNumbers = [];
 
-    for(let i = 1; i <= Math.ceil(autos.length / registerPerPage) ; i++) {
+    for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
         pageNumbers.push(i);
     }
 
@@ -38,8 +41,8 @@ export default function Vehiculos() {
     // =====================================
 
     useEffect( () => {
-        dispatch(initialGetCars(autos));
-    }, [autos])
+        dispatch(initialGetConductores(conductores));
+    }, [conductores])
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -61,11 +64,66 @@ export default function Vehiculos() {
 
         let selectValue = parseInt(e.target.value);
         
-        cars = autos.slice(0, selectValue);
+        drivers = conductores.slice(0, selectValue);
         setRegisterPerPage(selectValue);
         setCurrentPage(1);
-        dispatch(filterCars(cars));
+        dispatch(filterConductores(drivers));
     }
+    
+    // ================ SELECT ALL ===============================
+    const [todos, setTodos] = useState(false);
+    let checkUnit = document.querySelectorAll('#checkUnit');
+
+    const selectAll = (e) => {
+        let checkAll = document.getElementById('checkAll');
+        let checkUnit = document.querySelectorAll('#checkUnit');
+        // let checkAll = e.target.checked;
+        
+        if(checkAll.checked){
+            // setTodos(true);
+            checkUnit.forEach((element)=>{
+                element.checked = true;
+            })
+            console.log('HOLAA')
+        } else {
+            checkUnit.forEach((element)=>{
+                element.checked = false;
+            })
+            console.log('CHAU')
+        }
+    }
+    
+    
+    
+    useEffect( () => {
+        console.log('hola');
+    },[drivers])
+    
+    
+    if(checkUnit){
+        if(todos) {
+            drivers = drivers.map((element) => {
+                return {...element, asignacion:true}
+            })
+            drivers.forEach((element)=>{
+                return (element['asignacion'].checked, 'EACH CHECKED');
+            })
+            
+        } else {
+            drivers = drivers.map((element) => {
+                return {...element, asignacion:false}
+            })
+            drivers.forEach((element)=>{
+                return (element['asignacion'].checked === false, 'EACH NO CHECKED');
+            })    
+        }
+    }
+    
+
+    // =============================================================
+    
+   
+    console.log(drivers, 'ASDASD');
     
 
     return(
@@ -73,30 +131,40 @@ export default function Vehiculos() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Vehículos</h3>
+                        <h3>Asignación de conductores</h3>
+                        <p>Vehículo: DJU276</p>
                     </div>
-                    {cars.length > 0 ?
+                    {drivers.length > 0 ?
                     <div>        
                     <div className={`${Style.menu} col-12 mt-4`}>
                         <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
+                            {/* <button className={`${Style.add} col-2`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-1`}/>
-                                    <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
+                                    
+                                    {/* <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
+                                    <FcSearch className={`${Style.searchIcon} col-1`}/> */}
+                                    {/* <button className={`${Style.inactives} col-2`}>Ver inactivos</button> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={`${Style.select} col-12`}>
-                        <div className={`row mt-4 mb-3`}>                          
+                        <div className={`${Style.buttonsTwo} row justify-content-center mt-4 mb-3`}>                          
+                            
                             <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
                             <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
                                 <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
                                 <option value="10" onChange={(e)=>dropBox(e)}>10</option>
                                 <option value="20" onChange={(e)=>dropBox(e)}>20</option>
                             </select>
+                            <div className={`${Style.selectAll} col-4`}>
+                                <label >Seleccionar todos</label>
+                                <input type="checkbox" id="checkAll" onClick={(e)=>selectAll(e)}/>
+                            </div>
+                            <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
+                            <FcSearch className={`${Style.searchIcon} col-1`}/>
+                            
                         </div>
                     </div>
                     
@@ -105,32 +173,27 @@ export default function Vehiculos() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Patente</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Tipo vehículo</th>
-                                    <th>Observaciones</th>
-                                    <th>Acciones</th>
+                                    <th>Conductor</th>
+                                    <th>Asignación</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {cars.map( (element, index) =>
-                               
+                                {drivers.map( (element, index) =>
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.patente}</td>
-                                    <td>{element.marca}</td>
-                                    <td>{element.modelo}</td>
-                                    <td>{element.tipo_veh}</td>
-                                    <td>{element.observaciones}</td>
+                                    <td>{element.conductor}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                        <input className={`${Style.checkboxs}`} type="checkbox" id="checkUnit" />
+                                        {/* 
+                                        
+                                        defaultChecked={element['asignacion'] ? true:false}
+
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.details}/></Link>
+                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
+                                        {/* <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
                                 </tr>
-                                )
-                                
+                                )                                
                                 }
                             </tbody>
                         </Table>

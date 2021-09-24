@@ -22,6 +22,7 @@ function App() {
       <Route exact path="/back_office" component={BackOffice} />
       <Route exact path="/back_office/vehiculos" component={BackOffice} />
       <Route exact path="/back_office/vehiculos/nuevo_auto" component={BackOffice} />
+      <Route exact path="/back_office/vehiculos/detalles" component={BackOffice} />
       <Route exact path="/back_office/conductores" component={BackOffice} />
       <Route exact path="/back_office/conductores/nuevo_conductor" component={BackOffice} />
       <Route exact path="/back_office/facturas_y_pagos" component={BackOffice} />

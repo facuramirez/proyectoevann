@@ -2,10 +2,11 @@ import Style from './BackOffice.module.css';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory, useLocation } from 'react-router-dom';
-import image from '../../img/registerBack.jpg';
+import image from '../../img/regBack.jpg';
 import Vehiculos from '../Vehiculos';
 import NewCarForm from '../NewCar/NewCarForm';
 import Conductores from '../Conductores';
+import ConductoresDetail from '../ConductoresDetail';
 import NewConductorForm from '../NewConductor';
 import Facturas from '../Facturas';
 import Viajes from '../Viajes';
@@ -102,6 +103,11 @@ export default function BackOffice() {
                                 ruta === '/back_office/vehiculos/nuevo_auto' ?
                                     <Fade>
                                         <NewCarForm />
+                                    </Fade>
+                                :
+                                ruta === '/back_office/vehiculos/detalles' ?
+                                    <Fade>
+                                        <ConductoresDetail />
                                     </Fade>
                                 :
                                 ruta === '/back_office/conductores' ?

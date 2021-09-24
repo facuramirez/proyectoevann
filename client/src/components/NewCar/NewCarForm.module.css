@@ -53,6 +53,20 @@ input, select{
     color: white;
 }
 
+.inputFecha{
+    outline: none;
+    background-color: rgb(60, 60, 58);
+    border: 1px solid rgb(60, 60, 58);
+    border-bottom: 1px solid rgb(54, 232, 210);
+    
+    height: 2rem;
+}
+
+.inputFecha input{
+    color: white !important;
+    text-align: center;
+}
+
 .buttons a{
     border: none;
     background-color: rgb(33, 37, 41);
@@ -110,6 +124,11 @@ input, select{
     width: fit-content;    
 }
 
+.titleDoc{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
 .docsDivs{
     display: flex;
     flex-flow: column wrap;
@@ -117,16 +136,22 @@ input, select{
 }
 
 .docsDivs .upButtons{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-radius: 20px;
     color: white;
     background-color: rgb(60, 60, 58);
     border: 1px solid rgb(54, 232, 210);
+    padding: 0.3rem;
 }
 
 .docsDivs .upButtons:nth-child(n+1){
     margin-top: 0.27rem;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.titleVeh{
+    font-weight: bold;
+    text-decoration: underline;
 }
 
