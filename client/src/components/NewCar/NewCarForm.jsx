@@ -116,18 +116,14 @@ export default function NewCarForm(){
                                     <label className={`${Style.asterisk} col-8`}>(los campos con (*) son obligatorios)</label>
                                 </div>
                             </div>
-                            <div className={`col-6 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-4 text-center`}>Patente (*)</label>
-                                    <input className={`inpPatente col-7`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
-                                </div>
-                            </div>
+                            
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-3 text-center`}>Marca (*)</label>
                                     <input className={`col-8 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
                                 </div>
                             </div>
+                            
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-4 text-center`}>Modelo (*)</label>
@@ -140,12 +136,18 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-6 mt-2`}>
                                 <div className={`row`}>
+                                    <label className={`col-4 text-center`}>Patente (*)</label>
+                                    <input className={`inpPatente col-7`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
+                                </div>
+                            </div>
+                            <div className={`col-6 mt-2`}>
+                                <div className={`row`}>
                                     <label className={`col-5`}>Tipo Vehículo (*)</label>
-                                    <input className={`col-6 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.tipoVeh} name="tipoVeh"/>
-                                    {/* {!form.tipoVeh && error.tipoVeh && document.querySelector('.inpTipoVeh')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    {/* <input className={`col-6 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.tipoVeh} name="tipoVeh"/> */}
+                                    <select className={`col-6 inpTipoVeh`} name="tipoVeh">
+                                        <option value="1">Sedan</option>
+                                        <option value="2">Van</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className={`col-6 mt-2`}>
@@ -230,9 +232,11 @@ export default function NewCarForm(){
                                             <label className={`${Style.labelDocs}`}>Permiso de Circulación (*)</label>
                                             <label className={`${Style.labelDocs} mt-2`}>Seguro Responsabilidad Civil (*)</label>
                                             <label className={`${Style.labelDocs} mt-2`}>Permiso de Circulación (*)</label>
+                                            <label className={`${Style.labelDocs} mt-2`}>Decreto 80 (*)</label>
                                             
                                         </div>
                                         <div className={`${Style.docsDivs}`}>
+                                            <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
                                             <button className={`${Style.upButtons}`}>Subir</button>
