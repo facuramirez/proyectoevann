@@ -24,7 +24,16 @@ export default function BackOffice() {
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
-    console.log(ruta);
+
+    // if(document.querySelector('imageDom')){
+    //     if(ruta.includes('/nuevo_auto')) {
+    //         document.querySelector('imageDom').style.height = '135vh';
+    //         document.querySelector('opaco').style.height = '135vh';
+    //     } else if(ruta.includes('/vehiculos')) {
+    //         document.querySelector('imageDom').style.height = '100vh';
+    //         document.querySelector('opaco').style.height = '100vh';
+    //     }
+    // }
 
     const close = (e) => {
         e.preventDefault();
@@ -137,9 +146,39 @@ export default function BackOffice() {
                 
                 <section className={`${Style.details} d-sm-block d-md-block d-lg-block col-lg-10`}>
                     <div className={`row`}>                        
-                        <div className={`${Style.pageOffice} col-12`}>
-                            <img src={image}/>
-                            <div className={Style.opaco}></div>
+                        <div className={`${Style.pageOffice} col-12`}
+                            style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
+                            ruta.includes('/mis_datos') ? {height:'87vh'}:
+                            ruta.includes('/vehiculos/nuevo_auto') ? {height:'100vh'}:
+                            ruta.includes('/vehiculos') ? {height:'87vh'}:null
+                            }
+                        >
+                            <img src={image} className="imageDom"
+                                style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
+                                ruta.includes('/vehiculos') ? {height:'100%'}:
+                                ruta.includes('/mis_datos/editar') ? {height:'100%'}:
+                                ruta.includes('/mis_datos') ? {height:'100%'}:
+                                ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
+                                ruta.includes('/conductores') ? {height:'100%'}:
+                                ruta.includes('/viajes') ? {height:'100%'}:
+                                ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
+                                ruta.includes('/reclamos') ? {height:'100%'}:
+                                ruta.includes('/alertas') ? {height:'100%'}:null
+                                }
+                            />
+                            <div className={`${Style.opaco} opaco`}
+                                 style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
+                                 ruta.includes('/vehiculos') ? {height:'100%'}:
+                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
+                                 ruta.includes('/mis_datos') ? {height:'100%'}:
+                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
+                                 ruta.includes('/conductores') ? {height:'100%'}:
+                                 ruta.includes('/viajes') ? {height:'100%'}:
+                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
+                                 ruta.includes('/reclamos') ? {height:'100%'}:
+                                 ruta.includes('/alertas') ? {height:'100%'}:null
+                                 }
+                            ></div>
                             <div className={`${Style.divOffice} row`}>
                                 {
                                 // ruta === '/back_office' ?                               
@@ -147,12 +186,12 @@ export default function BackOffice() {
                                 // :
                                 ruta === '/back_office/vehiculos' ?
                                     <Fade>
-                                        <Vehiculos />
+                                        <Vehiculos alto='100'/>
                                     </Fade>
                                 :
                                 ruta === '/back_office/vehiculos/nuevo_auto' ?
                                     <Fade>
-                                        <NewCarForm />
+                                        <NewCarForm alto='135'/>
                                     </Fade>
                                 :
                                 ruta === '/back_office/vehiculos/detalles' ?

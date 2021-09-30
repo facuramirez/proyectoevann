@@ -85,29 +85,30 @@ export default function MisDatos() {
                         </div>
                     </div>
 
-                    <div className={`${Style.misDatos} mt-4`}>
-                        <section>
-                            <label>Mail:</label>
-                            <label>Clave:</label>
-                            <label>Nombre:</label>
-                            <label>Dirección:</label>
-                            <label>Fecha de Nacimiento:</label>
-                            <label>Celular1:</label>
-                            <label>Celular2:</label>
-                        </section>
-                        <section>
-                            <label className={`${Style.datos}`}>pablo@gmail.com</label>
-                            <label className={`${Style.datos}`}>***************</label>
-                            <label className={`${Style.datos}`}>Pablo Mendez</label>
-                            <label className={`${Style.datos}`}>Av.San Martin 123</label>
-                            <label className={`${Style.datos}`}>10/05/1982</label>
-                            <label className={`${Style.datos}`}>+54351756453</label>
-                            <label className={`${Style.datos}`}>-</label>
-                        </section>                        
-                    </div>
-
-
+                    <div className={`${Style.misDatos} mt-4`}>                        
+                            
+                        <label className={`${Style.lbl}`}>Mail:</label>
+                        <label className={`${Style.datos}`}>pablo@gmail.com</label>
                     
+                        <label className={`${Style.lbl}`}>Clave:</label>
+                        <label className={`${Style.datos}`}>***************</label>
+                    
+                        <label className={`${Style.lbl}`}>Nombre:</label>
+                        <label className={`${Style.datos}`}>Pablo Mendez</label>
+                    
+                        <label className={`${Style.lbl}`}>Dirección:</label>
+                        <label className={`${Style.datos}`}>Av.San Martin 123</label>
+                    
+                        <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                        <label className={`${Style.datos}`}>10/05/1982</label>
+                    
+                        <label className={`${Style.lbl}`}>Celular1:</label>
+                        <label className={`${Style.datos}`}>+54351756453</label>
+                    
+                        <label className={`${Style.lbl}`}>Celular2:</label>
+                        <label className={`${Style.datos}`}>-</label>
+                            
+                    </div>
                 </div>
             </div>            
         </div>

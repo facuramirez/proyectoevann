@@ -11,8 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 
-export default function Vehiculos() {
-
+export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
 
