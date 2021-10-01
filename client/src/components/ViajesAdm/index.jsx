@@ -114,7 +114,7 @@ export default function Viajes() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Viajes</h3>
+                        <h3>Administración de Usuarios</h3>
                     </div>
                     {cars.length > 0 ?
                     <div>        

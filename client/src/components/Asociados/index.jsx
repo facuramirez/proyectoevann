@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './Vehiculos.module.css';
+import Style from './Asociados.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -10,6 +10,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import { ImEye } from 'react-icons/im';
+import { FaRoute } from 'react-icons/fa';
+
 
 export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
@@ -42,19 +45,34 @@ export default function Vehiculos({alto}) {
 
     const editCar = (e, id) => {
         e.preventDefault();
-       alert('Editando car ' + id);
+       alert('Editando Car ' + id);
     }
 
     const deleteCar = (e, id) => {
         e.preventDefault();
-        alert('Eliminando car ' +id);
+        alert('Eliminando Car ' +id);
+    }
+
+    const detailAsoc = (e, id) => {
+        e.preventDefault();
+        alert('Detalles Asociado ' +id);
     }
 
     const detailCar = (e, id) => {
         e.preventDefault();
-        alert('Detalles car ' +id);
+        alert('Detalles Car ' +id);
     }
 
+    const detailConductores = (e, id) => {
+        e.preventDefault();
+        alert('Detalles Conductores ' +id);
+    }
+
+    const detailTravel = (e, id) => {
+        e.preventDefault();
+        alert('Detalles Viaje ' +id);
+    }
+    
     const dropBox = (e) => {
         e.preventDefault();
 
@@ -72,13 +90,13 @@ export default function Vehiculos({alto}) {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Vehículos</h3>
+                        <h3>Asociados</h3>
                     </div>
                     {cars.length > 0 ?
                     <div>        
                     <div className={`${Style.menu} col-12 mt-4`}>
                         <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2`}><Link to="/back_office_administracion/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
+                            <button className={`${Style.add} col-2 invisible`}><Link to="/back_office_administracion/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
                             <div className={`col-6`}>
                                 <div className={`${Style.buttonsTwo} row justify-content-end`}>
                                     <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
@@ -104,11 +122,10 @@ export default function Vehiculos({alto}) {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Patente</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Tipo vehículo</th>
-                                    <th>Observaciones</th>
+                                    <th>Mail</th>
+                                    <th>Nombre</th>
+                                    <th>Direccion</th>
+                                    <th>Fecha de Nacimiento</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -117,15 +134,18 @@ export default function Vehiculos({alto}) {
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.patente}</td>
-                                    <td>{element.marca}</td>
-                                    <td>{element.modelo}</td>
-                                    <td>{element.tipo_veh}</td>
-                                    <td>{element.observaciones}</td>
+                                    <td>{element.mail}</td>
+                                    <td>{element.nombre}</td>
+                                    <td>{element.direccion}</td>
+                                    <td>{element.fechaNac}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.details}/></Link>
+                                        <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
+
+                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><AiFillCar className={Style.car}/></a>
+                                        <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
+                                        <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
                                     </td>
                                 </tr>
                                 )

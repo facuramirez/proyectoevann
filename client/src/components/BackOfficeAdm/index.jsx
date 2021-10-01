@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory, useLocation } from 'react-router-dom';
 import image from '../../img/regBack.jpg';
-import VehiculosAdm from '../VehiculosAdm';
+import VehiculosAdm from '../Asociados';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
@@ -14,6 +14,7 @@ import ReclamosAdm from '../ReclamosAdm';
 import AlertasAdm from '../AlertasAdm';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
+import PasswordAdmin from '../PasswordAdmin';
 
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
@@ -84,10 +85,10 @@ export default function BackOfficeAdm() {
                                     <Link to="/back_office_administracion/conductores">Conductores</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office_administracion/vehiculos">Vehículos</Link>
+                                    <Link to="/back_office_administracion/vehiculos">Asociados</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office_administracion/viajes">Viajes</Link>
+                                    <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/facturas_y_pagos">Facturas y Pagos</Link>
@@ -123,14 +124,14 @@ export default function BackOfficeAdm() {
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                             </div>
-                            <div className={`${Style.options} col-12`}>
+                            {/* <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/conductores">Conductores</Link>
+                            </div> */}
+                            <div className={`${Style.options} col-12`}>
+                                <Link to="/back_office_administracion/vehiculos">Asociados</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office_administracion/vehiculos">Vehículos</Link>
-                            </div>
-                            <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office_administracion/viajes">Viajes</Link>
+                                <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/facturas_y_pagos">Facturación y Pagos</Link>
@@ -185,14 +186,19 @@ export default function BackOfficeAdm() {
                                 // ruta === '/back_office' ?                               
                                 //     <h1>SOY BACKOFFICE</h1>
                                 // :
+                                ruta === '/administracion/recuperar_contraseña' ?
+                                    <Fade>
+                                        <PasswordAdmin />
+                                    </Fade>
+                                :
                                 ruta === '/back_office_administracion/vehiculos' ?
                                     <Fade>
-                                        <VehiculosAdm alto='100'/>
+                                        <VehiculosAdm />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/vehiculos/nuevo_auto' ?
                                     <Fade>
-                                        <NewCarFormAdm alto='135'/>
+                                        <NewCarFormAdm />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/vehiculos/detalles' ?

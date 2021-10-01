@@ -11,6 +11,7 @@ import ContraseñaAdmin from './components/PasswordAdmin/index';
 import BackOfficeAdm from './components/BackOfficeAdm/index';
 import NewCar from './components/NewCar/index';
 import Vehiculos from './components/Vehiculos/index';
+import PasswordAdmin from './components/PasswordAdmin/index';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
       <Route exact path="/back_office/mis_datos/editar" component={BackOffice} />
 
       <Route exact path="/administracion" component={LoginAdmin} />
+      <Route exact path="/administracion/recuperar_contraseña" component={PasswordAdmin} />
       <Route exact path="/back_office_administracion" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/mis_datos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/mis_datos/editar" component={BackOfficeAdm} />
@@ -48,7 +50,7 @@ function App() {
       <Route exact path="/back_office_administracion/facturas_y_pagos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/reclamos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/alertas" component={BackOfficeAdm} />
-      <Route exact path="/back_office_administracion/recuperar_contraseña" component={BackOfficeAdm} />
+      
       
     </div>
   );

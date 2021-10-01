@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
+// import ViajesDetalle from './ViajesDetalle';
 
 
 export default function Viajes() {
@@ -162,7 +163,7 @@ export default function Viajes() {
                                     <td>{element.fecha}</td>
                                     <td>{element.distancia}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><ImEye className={Style.edit}/></a>
+                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><ImEye className={Style.edit}/></a>
                                         {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
