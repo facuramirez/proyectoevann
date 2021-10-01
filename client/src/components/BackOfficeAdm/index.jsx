@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory, useLocation } from 'react-router-dom';
 import image from '../../img/regBack.jpg';
-import Vehiculos from '../Vehiculos';
-import NewCarForm from '../NewCar/NewCarForm';
-import Conductores from '../Conductores';
-import ConductoresDetail from '../ConductoresDetail';
-import NewConductorForm from '../NewConductor';
-import Facturas from '../Facturas';
-import Viajes from '../Viajes';
-import Reclamos from '../Reclamos';
-import Alertas from '../Alertas';
-import MisDatos from '../MisDatos';
-import EditarMisDatos from '../EditarMisDatos';
+import VehiculosAdm from '../VehiculosAdm';
+import NewCarFormAdm from '../NewCarAdm/NewCarForm';
+import ConductoresAdm from '../ConductoresAdm';
+import ConductoresDetailAdm from '../ConductoresDetailAdm';
+import NewConductorFormAdm from '../NewConductorAdm';
+import FacturasAdm from '../FacturasAdm';
+import ViajesAdm from '../ViajesAdm';
+import ReclamosAdm from '../ReclamosAdm';
+import AlertasAdm from '../AlertasAdm';
+import MisDatosAdm from '../MisDatosAdm';
+import EditarMisDatosAdm from '../EditarMisDatosAdm';
+
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
@@ -64,7 +65,7 @@ export default function BackOfficeAdm() {
     //         <a className="col-8" href="" onClick={(e)=>close(e)}>Cerrar Sesión</a>
     //     </div>
     // </div>
-
+    
     return(
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>                 
@@ -77,25 +78,25 @@ export default function BackOfficeAdm() {
                         <div className={`${Style.divUlNav} collapse navbar-collapse`} id="navbarSupportedContent">
                             <ul className="navbar-nav">
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/mis_datos">Mis Datos</Link>
+                                    <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/conductores">Conductores</Link>
+                                    <Link to="/back_office_administracion/conductores">Conductores</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/vehiculos">Vehículos</Link>
+                                    <Link to="/back_office_administracion/vehiculos">Vehículos</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/viajes">Viajes</Link>
+                                    <Link to="/back_office_administracion/viajes">Viajes</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/facturas_y_pagos">Facturas y Pagos</Link>
+                                    <Link to="/back_office_administracion/facturas_y_pagos">Facturas y Pagos</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/reclamos">Reclamos</Link>
+                                    <Link to="/back_office_administracion/reclamos">Reclamos</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/alertas">Alertas</Link>
+                                    <Link to="/back_office_administracion/alertas">Alertas</Link>
                                 </li>
                                 <li className="nav-item active">
                                     <a className="nav-link" href="" aria-current="page" onClick={(e)=>close(e)}>Cerrar Sesión</a>
@@ -120,25 +121,25 @@ export default function BackOfficeAdm() {
                     <div className="row" >
                         <div className={`${Style.menuOptions} col-12`}>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/mis_datos">Mis Datos</Link>
+                                <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/conductores">Conductores</Link>
+                                <Link to="/back_office_administracion/conductores">Conductores</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/vehiculos">Vehículos</Link>
+                                <Link to="/back_office_administracion/vehiculos">Vehículos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/viajes">Viajes</Link>
+                                <Link to="/back_office_administracion/viajes">Viajes</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/facturas_y_pagos">Facturación y Pagos</Link>
+                                <Link to="/back_office_administracion/facturas_y_pagos">Facturación y Pagos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/reclamos">Reclamos</Link>
+                                <Link to="/back_office_administracion/reclamos">Reclamos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/alertas">Alertas</Link>
+                                <Link to="/back_office_administracion/alertas">Alertas</Link>
                             </div>
                         </div>
                     </div>
@@ -180,63 +181,63 @@ export default function BackOfficeAdm() {
                                  }
                             ></div>
                             <div className={`${Style.divOffice} row`}>
-                                {
+                            {
                                 // ruta === '/back_office' ?                               
                                 //     <h1>SOY BACKOFFICE</h1>
                                 // :
-                                ruta === '/back_office/vehiculos' ?
+                                ruta === '/back_office_administracion/vehiculos' ?
                                     <Fade>
-                                        <Vehiculos alto='100'/>
+                                        <VehiculosAdm alto='100'/>
                                     </Fade>
                                 :
-                                ruta === '/back_office/vehiculos/nuevo_auto' ?
+                                ruta === '/back_office_administracion/vehiculos/nuevo_auto' ?
                                     <Fade>
-                                        <NewCarForm alto='135'/>
+                                        <NewCarFormAdm alto='135'/>
                                     </Fade>
                                 :
-                                ruta === '/back_office/vehiculos/detalles' ?
+                                ruta === '/back_office_administracion/vehiculos/detalles' ?
                                     <Fade>
-                                        <ConductoresDetail />
+                                        <ConductoresDetailAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/conductores' ?
+                                ruta === '/back_office_administracion/conductores' ?
                                     <Fade>
-                                        <Conductores />
+                                        <ConductoresAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/conductores/nuevo_conductor' ?
+                                ruta === '/back_office_administracion/conductores/nuevo_conductor' ?
                                     <Fade>
-                                        <NewConductorForm />
+                                        <NewConductorFormAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/facturas_y_pagos' ?
+                                ruta === '/back_office_administracion/facturas_y_pagos' ?
                                     <Fade>
-                                        <Facturas />
+                                        <FacturasAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/viajes' ?
+                                ruta === '/back_office_administracion/viajes' ?
                                     <Fade>
-                                        <Viajes />
+                                        <ViajesAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/reclamos' ?
+                                ruta === '/back_office_administracion/reclamos' ?
                                     <Fade>
-                                        <Reclamos />
+                                        <ReclamosAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/alertas' ?
+                                ruta === '/back_office_administracion/alertas' ?
                                     <Fade>
-                                        <Alertas />
+                                        <AlertasAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/mis_datos' ?
+                                ruta === '/back_office_administracion/mis_datos' ?
                                     <Fade>
-                                        <MisDatos />
+                                        <MisDatosAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office/mis_datos/editar' ?
+                                ruta === '/back_office_administracion/mis_datos/editar' ?
                                     <Fade>
-                                        <EditarMisDatos />
+                                        <EditarMisDatosAdm />
                                     </Fade>
                                 :
                                 null

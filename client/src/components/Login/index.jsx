@@ -133,7 +133,7 @@ export default function Login(){
 
     const login = (e) => {
         e.preventDefault();
-        history.push('/back_office');
+        history.push('/back_office/mis_datos');
             swal({
                 title: 'Bienvenido a Evann!',
                 text: 'Que disfrutes tu estadía en la página',

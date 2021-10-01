@@ -134,7 +134,7 @@ export default function LoginAdmin(){
 
     const login = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion');
+        history.push('/back_office_administracion/mis_datos');
             swal({
                 title: 'Bienvenido a Evann!',
                 text: 'Que disfrutes tu estadía en la página',
