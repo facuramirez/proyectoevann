@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Style from './Login.module.css';
+import Style from './LoginAdmin.module.css';
 import register from '../../img/register.jpg';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,9 +8,10 @@ import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
+import { Link } from 'react-router-dom';
 
 
-export default function Login(){
+export default function LoginAdmin(){
 
     let history = useHistory();
 
@@ -133,7 +134,7 @@ export default function Login(){
 
     const login = (e) => {
         e.preventDefault();
-        history.push('/back_office');
+        history.push('/back_office_administracion');
             swal({
                 title: 'Bienvenido a Evann!',
                 text: 'Que disfrutes tu estadía en la página',
@@ -163,7 +164,7 @@ export default function Login(){
 
     const back = (e) => {
         e.preventDefault();
-        history.push('/asociados');
+        history.push('/');
         window.scrollTo(0, 0);
     }
 
@@ -179,7 +180,7 @@ export default function Login(){
                     <h1 className={Style.title}>Iniciar sesión</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
-                            <h4>Iniciar sesión - Asociados</h4>
+                            <h4>Iniciar sesión - Administración</h4>
                             <h5>Tu usuario es tu mail</h5>
                         </div>
 
@@ -198,6 +199,7 @@ export default function Login(){
                                 <h4 className={`col-2`}>Clave</h4>
                                 <input className={`col-9 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                             </div>
+                            <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/administracion/recuperar_contraseña'>Aquí</Link></span>
                             {/* {error.clave && form.clave ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Mínimo 8 caracteres, una letra y un número</h5>

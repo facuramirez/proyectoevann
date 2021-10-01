@@ -55,7 +55,12 @@ export default function NavBar() {
                                     <li className="nav-item">
                                         Asociados
                                     </li>
-                                </Link>                            
+                                </Link>
+                                <Link to="/administracion" className={`${Style.link} nav-link`}>
+                                    <li className="nav-item">
+                                        Administración
+                                    </li>
+                                </Link>                           
                             </ul>
                             :
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-center">

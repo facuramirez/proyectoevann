@@ -6,6 +6,9 @@ import RegisterTwo from './components/RegisterTwo/index';
 import Contraseña from './components/Password/index';
 import Login from './components/Login/index';
 import BackOffice from './components/BackOffice/index';
+import LoginAdmin from './components/LoginAdmin/index';
+import ContraseñaAdmin from './components/PasswordAdmin/index';
+import BackOfficeAdm from './components/BackOfficeAdm/index';
 import NewCar from './components/NewCar/index';
 import Vehiculos from './components/Vehiculos/index';
 import { Route, Switch } from 'react-router-dom';
@@ -31,6 +34,10 @@ function App() {
       <Route exact path="/back_office/alertas" component={BackOffice} />
       <Route exact path="/back_office/mis_datos" component={BackOffice} />
       <Route exact path="/back_office/mis_datos/editar" component={BackOffice} />
+
+      <Route exact path="/administracion" component={LoginAdmin} />
+      <Route exact path="/administracion/recuperar_contraseña" component={ContraseñaAdmin} />
+      <Route exact path="/back_office_administracion" component={BackOfficeAdm} />
     </div>
   );
 }
