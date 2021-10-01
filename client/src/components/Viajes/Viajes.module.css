@@ -95,13 +95,13 @@
 }
 
 .select select:hover{
-    background-color: #ccc;
+    /* background-color: #ccc; */
     cursor: pointer;
 }
-
+/* 
 .select select:focus{
     background-color: #ccc;
-}
+} */
 
 .table{
     height: 44.8vh;
