@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory, useLocation } from 'react-router-dom';
 import image from '../../img/regBack.jpg';
-import VehiculosAdm from '../Asociados';
+import Asociados from '../Asociados';
+import AsociadosEditar from '../AsociadosEditar';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
@@ -85,7 +86,7 @@ export default function BackOfficeAdm() {
                                     <Link to="/back_office_administracion/conductores">Conductores</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office_administracion/vehiculos">Asociados</Link>
+                                    <Link to="/back_office_administracion/asociados">Asociados</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
@@ -128,7 +129,7 @@ export default function BackOfficeAdm() {
                                 <Link to="/back_office_administracion/conductores">Conductores</Link>
                             </div> */}
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office_administracion/vehiculos">Asociados</Link>
+                                <Link to="/back_office_administracion/asociados">Asociados</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
@@ -151,13 +152,14 @@ export default function BackOfficeAdm() {
                         <div className={`${Style.pageOffice} col-12`}
                             style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
                             ruta.includes('/mis_datos') ? {height:'87vh'}:
-                            ruta.includes('/vehiculos/nuevo_auto') ? {height:'100vh'}:
-                            ruta.includes('/vehiculos') ? {height:'87vh'}:null
+                            ruta.includes('/asociados/editar') ? {height:'70vh'}:
+                            ruta.includes('/asociados') ? {height:'87vh'}:null
                             }
                         >
                             <img src={image} className="imageDom"
-                                style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
-                                ruta.includes('/vehiculos') ? {height:'100%'}:
+                                style={ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                ruta.includes('/asociados') ? {height:'88.3vh'}:
+                                ruta.includes('/asociados/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos') ? {height:'100%'}:
                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
@@ -169,8 +171,8 @@ export default function BackOfficeAdm() {
                                 }
                             />
                             <div className={`${Style.opaco} opaco`}
-                                 style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
-                                 ruta.includes('/vehiculos') ? {height:'100%'}:
+                                 style={ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                 ruta.includes('/asociados') ? {height:'88.3vh'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                  ruta.includes('/mis_datos') ? {height:'100%'}:
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
@@ -183,17 +185,24 @@ export default function BackOfficeAdm() {
                             ></div>
                             <div className={`${Style.divOffice} row`}>
                             {
-                                // ruta === '/back_office' ?                               
-                                //     <h1>SOY BACKOFFICE</h1>
-                                // :
+                                ruta === '/back_office_administracion' ?
+                                    <div>               
+                                    {history.push('back_office_administracion/mis_datos')}
+                                    </div>
+                                :
                                 ruta === '/administracion/recuperar_contraseña' ?
                                     <Fade>
                                         <PasswordAdmin />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/vehiculos' ?
+                                ruta === '/back_office_administracion/asociados' ?
                                     <Fade>
-                                        <VehiculosAdm />
+                                        <Asociados />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/asociados/editar' ?
+                                    <Fade>
+                                        <AsociadosEditar />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/vehiculos/nuevo_auto' ?

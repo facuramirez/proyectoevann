@@ -234,6 +234,13 @@
 .liElements a:hover{
     color: rgb(54, 232, 210);
 }
+/* 
+@media (max-width: 677px){
+    .misDatos{
+        min-height: 100%;
+    }    
+} */
+
 
 @media (max-width: 615px){
     .misDatos{

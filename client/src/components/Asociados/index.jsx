@@ -12,6 +12,8 @@ import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
 import { FaRoute } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
+import { editAssociated } from '../../globalState/Actions';
 
 
 export default function Vehiculos({alto}) {
@@ -43,9 +45,13 @@ export default function Vehiculos({alto}) {
         dispatch(initialGetCars(autos));
     }, [autos])
 
+    let history = useHistory();
+    
     const editCar = (e, id) => {
         e.preventDefault();
-       alert('Editando Car ' + id);
+       let asociado = cars.find((e) => e.id === id);
+       dispatch(editAssociated(asociado));
+       history.push('/back_office_administracion/asociados/editar')
     }
 
     const deleteCar = (e, id) => {
@@ -139,6 +145,7 @@ export default function Vehiculos({alto}) {
                                     <td>{element.direccion}</td>
                                     <td>{element.fechaNac}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                        <div>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                         <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
@@ -146,6 +153,7 @@ export default function Vehiculos({alto}) {
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><AiFillCar className={Style.car}/></a>
                                         <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
                                         <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
+                                        </div>
                                     </td>
                                 </tr>
                                 )

@@ -181,9 +181,11 @@ export default function BackOffice() {
                             ></div>
                             <div className={`${Style.divOffice} row`}>
                                 {
-                                // ruta === '/back_office' ?                               
-                                //     <h1>SOY BACKOFFICE</h1>
-                                // :
+                                ruta === '/back_office' ?
+                                    <div>               
+                                        {history.push('back_office/mis_datos')}
+                                    </div>
+                                :
                                 ruta === '/back_office/vehiculos' ?
                                     <Fade>
                                         <Vehiculos alto='100'/>
