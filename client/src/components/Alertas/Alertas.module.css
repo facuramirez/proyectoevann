@@ -17,7 +17,7 @@
 }
 
 .title h3{
-    font-size: 1.8vw;
+    font-size: 2rem;
 }
 
 .buttonsTwo .search,
@@ -80,6 +80,13 @@
 .buttonsTwo .inactives:hover,
 .add a:hover{
     color: #ccc;
+}
+
+.buttonsTwo .search,
+.buttonsTwo .searchIcon,
+.buttonsTwo .inactives{
+    width: fit-content;
+    font-size: 1rem;
 }
 
 .registers{
@@ -203,4 +210,39 @@
 
 .liElements a:hover{
     color: rgb(54, 232, 210);
+}
+
+@media (max-width: 767px){
+    .buttonsTwo{
+        margin-top: 1rem;
+    }
+}
+
+
+@media (max-width: 767px){
+    .buttonsTwo .search,
+    .buttonsTwo .inactives{
+        width: 30%;
+    }
+    .buttonsTwo .searchIcon{
+        width: 4rem;
+    }
+}
+
+@media (max-width: 472px){
+.buttonsTwo .search,
+    .buttonsTwo .inactives{
+        height: 40px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 578px){
+    .buttons a:nth-child(n+2){
+        margin-left: 5px;
+    }
+    
+    .buttons a svg{
+        font-size: 1rem;
+    }
 }

@@ -27,7 +27,6 @@
 }
 
 .title{
-    font-size: 1.5vw;
     border-radius: 20px;
     padding: 0.5vw;
     padding-left: 1.5vw;
@@ -36,7 +35,7 @@
     margin-top: 5%;
     align-self: center;
     margin-top: 3%;
-    font-size: 1.8vw;
+    font-size: 2rem;
     /* background-color: rgb(54, 232, 210); */
     align-self: flex-start !important;
 }
@@ -178,8 +177,10 @@
     font-size: 1.6vw;
     padding-top: 0.6vh;
     padding-bottom: 1.2vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
     text-decoration: none;
-    width: 25%;
+    width: fit-content;
     transition: all 300ms;
 }
 
@@ -195,11 +196,13 @@
     text-decoration: none;
     background-color: rgb(54, 232, 210);
     color: white;
-    width: 25%;
+    width: fit-content;
     align-self: center;
     font-size: 1.6vw;
     padding-top: 0.6vh;
     padding-bottom: 1.2vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-radius: 20px;
     border: none;
 }

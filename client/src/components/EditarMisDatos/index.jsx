@@ -299,7 +299,7 @@ export default function RegisterTwo(){
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Editar Administrador</h1>
+                    <h1 className={Style.title}>Editar</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
                             <h4>Editar Administrador</h4>
