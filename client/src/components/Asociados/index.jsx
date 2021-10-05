@@ -99,122 +99,84 @@ export default function Vehiculos({alto}) {
                         <h3>Asociados</h3>
                     </div>
                     {cars.length > 0 ?
-                    <div>        
-                    <div className={`${Style.menu} col-12 mt-4`}>
-                        <div className={`row justify-content-between`}>
-                            <button className={`${Style.add} col-2 invisible`}><Link to="/back_office_administracion/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
-                            <div className={`col-6`}>
-                                <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-1`}/>
-                                    <button className={`${Style.inactives} col-2`}>Ver inactivos</button>
+                    <div className="col-12">                        
+                        <div className={`${Style.select} row border mt-4 mb-3 justify-content-between`}>
+                            <section className="col-12 col-md-5 col-lg-5 mt-1">
+                                <div className="row border">                      
+                                    <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
+                                    <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                                        <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                        <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                        <option value="20" onChange={(e)=>dropBox(e)}>20</option>
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${Style.select} col-12`}>
-                        <div className={`row mt-4 mb-3`}>                          
-                            <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                            <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
-                                <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
-                                <option value="10" onChange={(e)=>dropBox(e)}>10</option>
-                                <option value="20" onChange={(e)=>dropBox(e)}>20</option>
-                            </select>
-                        </div>
-                    </div>
+                            </section>
+                            <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
+                                <div className={`${Style.buttonsTwo} row border justify-content-start justify-content-md-center justify-content-lg-end`}>
+                                    <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
+                                    <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
+                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                                </div>                                
+                            </section>
+                        </div>                      
                     
-                    <div className={`${Style.table} col-12`}>     
-                        <Table striped bordered hover variant="dark">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Mail</th>
-                                    <th>Nombre</th>
-                                    <th>Direccion</th>
-                                    <th>Fecha de Nacimiento</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cars.map( (element, index) =>
-                               
-                                <tr key={index}>
-                                    <td>{element.id}</td>
-                                    <td>{element.mail}</td>
-                                    <td>{element.nombre}</td>
-                                    <td>{element.direccion}</td>
-                                    <td>{element.fechaNac}</td>
-                                    <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <div>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
-
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><AiFillCar className={Style.car}/></a>
-                                        <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
-                                        <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                )
-                                
-                                }
-                            </tbody>
-                        </Table>
-
-                        {/* <table className={`${Style.table} table table-bordered mt-3`}>                                
-                                <thead className={`${Style.tableHead}`}>                                
+                        <div className={`${Style.table} col-12`}>     
+                            <Table striped bordered hover variant="dark">
+                                <thead>
                                     <tr>
-                                        <th>PATENTE</th>
-                                        <th>MARCA</th>
-                                        <th>MODELO</th>
-                                        <th>TIPO VEHÍCULO</th>
-                                        <th>OBSERVACIONES</th>
-                                        <th>ACCIONES</th>
+                                        <th>#</th>
+                                        <th>Mail</th>
+                                        <th>Nombre</th>
+                                        {/* <th>Direccion</th>
+                                        <th>Fecha de Nacimiento</th> */}
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                            
-                                <tbody className={`${Style.tableBody}`}>
-                                    {
-                                    cars.map( (reg, index) => 
-                                        <tr key={index}>
-                                            <td>{reg.patente}</td>
-                                            <td>{reg.marca}</td>
-                                            <td>{reg.modelo}</td>
-                                            <td>{reg.tipo_veh}</td>
-                                            <td>{reg.observaciones}</td>
-                                            <td>
-                                                <button className={`btn ${Style.button}`}>
-                                                    Edit
-                                                </button>
-                                                <Link to={`/user${reg.id}`}>
-                                                <button className={`btn ${Style.button} btn-warning`}>
-                                                    View
-                                                </button>
-                                                </Link>
+                                <tbody>
+                                    {cars.map( (element, index) =>
+                                
+                                    <tr key={index}>
+                                        <td>{element.id}</td>
+                                        <td>{element.mail}</td>
+                                        <td>{element.nombre}</td>
+                                        {/* <td>{element.direccion}</td>
+                                        <td>{element.fechaNac}</td> */}
+                                        <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                            <div>
+                                            <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
+                                            <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                            <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
 
-                                                <Link>
-                                                    <button className={`btn ${Style.button} btn-danger`}>Delete</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    )}                                    
+                                            <a href="" onClick={(e)=>detailCar(e, element.id)}><AiFillCar className={Style.car}/></a>
+                                            <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
+                                            <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    )
+                                    
+                                    }
                                 </tbody>
-                            </table> */}
+                            </Table>
+
+                            
+                        </div>
+                        <div className={`${Style.pagination} col-12`}>
+                            <ul className={`${Style.ulPagination}`}>
+                                {pageNumbers.map(number => (
+                                    <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
+                                        <a href="">{number}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div> 
                     </div>
-                    <div className={`${Style.pagination} col-12`}>
-                        <ul className={`${Style.ulPagination}`}>
-                            {pageNumbers.map(number => (
-                                <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
-                                    <a href="">{number}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div> 
-                    </div>:<div>
+                    :
+                    <div>
                         <br/>   
                         <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
-                        </div>}
+                    </div>
+                    }
                 </div>
             </div>            
         </div>
