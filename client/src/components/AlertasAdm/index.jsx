@@ -111,32 +111,30 @@ export default function Alertas() {
         <div>
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
-                    <div className={`${Style.title} col-12 mt-2`}>
+                <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Alertas</h3>
                     </div>
                     {cars.length > 0 ?
-                    <div>        
-                    <div className={`${Style.menu} col-12 mt-4`}>
-                        <div className={`row justify-content-end`}>
-                            <div className={`col-6`}>
-                                <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-1`}/>
-                                    {/* <button className={`${Style.inactives} col-2`}>XXXXX</button> */}
+                    <div className="col-12">                        
+                        <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
+                            <section className="col-12 col-md-5 col-lg-5 mt-1">
+                                <div className="row">                      
+                                    <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
+                                    <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                                        <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                        <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                        <option value="20" onChange={(e)=>dropBox(e)}>20</option>
+                                    </select>
                                 </div>
-                            </div>
+                            </section>
+                            <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
+                                <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
+                                    <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
+                                    <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
+                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                                </div>                                
+                            </section>
                         </div>
-                    </div>
-                    <div className={`${Style.select} col-12`}>
-                        <div className={`row mt-4 mb-3`}>                          
-                            <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                            <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
-                                <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
-                                <option value="10" onChange={(e)=>dropBox(e)}>10</option>
-                                <option value="20" onChange={(e)=>dropBox(e)}>20</option>
-                            </select>
-                        </div>
-                    </div>
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">

@@ -100,9 +100,9 @@ export default function Vehiculos({alto}) {
                     </div>
                     {cars.length > 0 ?
                     <div className="col-12">                        
-                        <div className={`${Style.select} row border mt-4 mb-3 justify-content-between`}>
+                        <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
                             <section className="col-12 col-md-5 col-lg-5 mt-1">
-                                <div className="row border">                      
+                                <div className="row">                      
                                     <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
                                     <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
                                         <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
@@ -112,7 +112,7 @@ export default function Vehiculos({alto}) {
                                 </div>
                             </section>
                             <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
-                                <div className={`${Style.buttonsTwo} row border justify-content-start justify-content-md-center justify-content-lg-end`}>
+                                <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
                                     <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
                                     <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
                                     <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
@@ -123,7 +123,7 @@ export default function Vehiculos({alto}) {
                         <div className={`${Style.table} col-12`}>     
                             <Table striped bordered hover variant="dark">
                                 <thead>
-                                    <tr>
+                                    <tr className={`${Style.tableH} col-12`}>  
                                         <th>#</th>
                                         <th>Mail</th>
                                         <th>Nombre</th>
@@ -132,7 +132,7 @@ export default function Vehiculos({alto}) {
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className={`${Style.tableB} col-12`}>  
                                     {cars.map( (element, index) =>
                                 
                                     <tr key={index}>

@@ -158,7 +158,7 @@ export default function BackOfficeAdm() {
                         >
                             <img src={image} className="imageDom"
                                 style={ruta.includes('/asociados/editar') ? {height:'135%'}:
-                                ruta.includes('/asociados') ? {height:'88.3vh'}:
+                                ruta.includes('/asociados') ? {height:'87vh'}:
                                 ruta.includes('/asociados/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos') ? {height:'100%'}:
@@ -172,7 +172,7 @@ export default function BackOfficeAdm() {
                             />
                             <div className={`${Style.opaco} opaco`}
                                  style={ruta.includes('/asociados/editar') ? {height:'135%'}:
-                                 ruta.includes('/asociados') ? {height:'88.3vh'}:
+                                 ruta.includes('/asociados') ? {height:'87vh'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                  ruta.includes('/mis_datos') ? {height:'100%'}:
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:

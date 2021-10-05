@@ -212,7 +212,7 @@
 
 .liElements a{
     text-decoration: none;
-    font-size: 2vw;
+    font-size: 1.8rem;
     color: white;
     margin-right: 10px;
     background-color: rgb(33, 37, 41);
@@ -227,6 +227,15 @@
 
 .liElements a:hover{
     color: rgb(54, 232, 210);
+}
+
+@media (max-width: 727px){
+    .tableH th:nth-child(3){
+        display: none !important;
+    }
+    .tableB td:nth-child(3){
+        display: none !important;
+    }
 }
 
 @media (max-width: 767px){
@@ -251,5 +260,15 @@
     .buttonsTwo .inactives{
         height: 40px;
         font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 578px){
+    .buttons a:nth-child(n+2){
+        margin-left: 5px;
+    }
+    
+    .buttons a svg{
+        font-size: 1rem;
     }
 }
