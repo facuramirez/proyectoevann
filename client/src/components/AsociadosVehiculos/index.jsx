@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './ViajesAdm.module.css';
+import Style from './AsociadosVehiculos.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -12,23 +12,7 @@ import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
 
-
-export default function Viajes() {
-
-    let [form, setForm] = useState({
-        nroViaje: '',
-        cliente: '',
-        fecha: '',
-        distancia: ''
-    });
-
-    let [error, setError] = useState({
-        nroViaje: 'Error',
-        cliente: 'Error',
-        fecha: 'Error',
-        distancia: 'Error'
-    });
-
+export default function VehiculosAsociados({alto}) {
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
 
@@ -59,7 +43,7 @@ export default function Viajes() {
 
     const editCar = (e, id) => {
         e.preventDefault();
-       alert('Viaje cliente ' + id);
+       alert('Editando car ' + id);
     }
 
     const deleteCar = (e, id) => {
@@ -82,30 +66,6 @@ export default function Viajes() {
         setCurrentPage(1);
         dispatch(filterCars(cars));
     }
-
-    const inputs = (e) => {
-        e.preventDefault();
-        let name = e.target.name;
-        let value = e.target.value;
-
-        setForm({
-            ...form,
-            [name]: value
-        })
-
-        if(value === '') {
-            setError({
-                ...error,
-                [name]: 'Error'
-            })
-        } else {
-            setError({
-                ...error,
-                [name]: ''
-            })
-        }
-        console.log(form, 'form');   
-    }
     
 
     return(
@@ -113,60 +73,60 @@ export default function Viajes() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0 flex-column`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Usuarios</h3>
-                    </div>
-                    
-                    <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
-                    
-                    {cars.length > 0 ?
-                    <div className="col-12">                        
-                        <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
-                            <section className="col-12 col-md-5 col-lg-5 mt-1">
-                                <div className="row">                      
-                                    <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                                    <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
-                                        <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
-                                        <option value="10" onChange={(e)=>dropBox(e)}>10</option>
-                                        <option value="20" onChange={(e)=>dropBox(e)}>20</option>
-                                    </select>
-                                </div>
-                            </section>
-                            <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
-                                <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
-                                    <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
-                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
-                                </div>                                
-                            </section>
+                            <h3>Vehículos</h3>
                         </div>
+                        
+                        {/* <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
+                        
+                        {cars.length > 0 ?
+                        <div className="col-12">                        
+                            <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
+                                <section className="col-12 col-md-5 col-lg-5 mt-1">
+                                    <div className="row">                      
+                                        <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
+                                        <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                                            <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                            <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                            <option value="20" onChange={(e)=>dropBox(e)}>20</option>
+                                        </select>
+                                    </div>
+                                </section>
+                                <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
+                                    <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
+                                        <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
+                                        <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
+                                        <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                                    </div>                                
+                                </section>
+                            </div>
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
-                            <thead className={`${Style.tableH}`}>
+                            <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nro Viaje</th>
-                                    <th>Cliente</th>
-                                    <th>Fecha</th>
-                                    <th>Distancia</th>
+                                    <th>Patente</th>
+                                    {/* <th>Marca</th> */}
+                                    <th>Modelo</th>
+                                    {/* <th>Tipo vehículo</th>
+                                    <th>Observaciones</th> */}
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody className={`${Style.tableB}`}>
+                            <tbody>
                                 {cars.map( (element, index) =>
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.nroViaje}</td>
-                                    <td>{element.cliente}</td>
-                                    <td>{element.fecha}</td>
-                                    <td>{element.distancia}</td>
+                                    <td>{element.patente}</td>
+                                    {/* <td>{element.marca}</td> */}
+                                    <td>{element.modelo}</td>
+                                    {/* <td>{element.tipo_veh}</td> */}
+                                    {/* <td>{element.observaciones}</td> */}
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><ImEye className={Style.edit}/></a>
-                                        {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
+                                        {/* <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
+                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
+                                        <Link to="/back_office/vehiculos/detalles"><ImEye className={Style.details}/></Link>
                                     </td>
                                 </tr>
                                 )

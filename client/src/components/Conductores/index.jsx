@@ -106,9 +106,9 @@ export default function Conductores() {
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
+                                    {/* <th>Dirección</th>
                                     <th>Nacionalidad</th>
-                                    <th>Fecha de Nacimiento</th>
+                                    <th>Fecha de Nacimiento</th> */}
                                     <th>Email</th>
                                     <th>Estado</th>
                                     <th>Celular</th>
@@ -121,9 +121,9 @@ export default function Conductores() {
                                 <tr key={index}>
                                     <td>{element.id}</td>
                                     <td>{element.nombre}</td>
-                                    <td>{element.direccion}</td>
+                                    {/* <td>{element.direccion}</td>
                                     <td>{element.nacionalidad}</td>
-                                    <td>{element.fechaNac}</td>
+                                    <td>{element.fechaNac}</td> */}
                                     <td>{element.email}</td>
                                     <td>{element.estado}</td>
                                     <td>{element.cel}</td>

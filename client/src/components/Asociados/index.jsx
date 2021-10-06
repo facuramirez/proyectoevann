@@ -143,13 +143,12 @@ export default function Vehiculos({alto}) {
                                         <td>{element.fechaNac}</td> */}
                                         <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                             <div>
-                                            <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                            <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                            <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
-
-                                            <a href="" onClick={(e)=>detailCar(e, element.id)}><AiFillCar className={Style.car}/></a>
-                                            <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
-                                            <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
+                                                <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
+                                                <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                                <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
+                                                <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
+                                                <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.conductores}/></Link>
+                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
                                             </div>
                                         </td>
                                     </tr>

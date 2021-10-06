@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import image from '../../img/regBack.jpg';
 import Asociados from '../Asociados';
 import AsociadosEditar from '../AsociadosEditar';
+import AsociadosVehiculos from '../AsociadosVehiculos';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
@@ -203,6 +204,11 @@ export default function BackOfficeAdm() {
                                 ruta === '/back_office_administracion/asociados/editar' ?
                                     <Fade>
                                         <AsociadosEditar />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/asociados/vehiculos' ?
+                                    <Fade>
+                                        <AsociadosVehiculos />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/vehiculos/nuevo_auto' ?

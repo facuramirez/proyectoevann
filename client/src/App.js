@@ -45,14 +45,14 @@ function App() {
       <Route exact path="/back_office_administracion/conductores/nuevo_conductor" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/asociados" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/asociados/editar" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/asociados/vehiculos" component={BackOfficeAdm} />      
       <Route exact path="/back_office_administracion/vehiculos/nuevo_auto" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/vehiculos/detalle" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/viajes" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/facturas_y_pagos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/reclamos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/alertas" component={BackOfficeAdm} />
-      
-      
+          
     </div>
   );
 }

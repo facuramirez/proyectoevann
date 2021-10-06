@@ -136,7 +136,7 @@ export default function ConductoresDetail() {
                     </div>
                     {drivers.length > 0 ?
                     <div>        
-                    <div className={`${Style.menu} col-12 mt-4`}>
+                    <div className={`${Style.menu} col-12`}>
                         <div className={`row justify-content-between`}>
                             {/* <button className={`${Style.add} col-2`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
                             <div className={`col-6`}>

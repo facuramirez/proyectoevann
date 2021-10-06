@@ -114,9 +114,10 @@ export default function Viajes() {
         <div>
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
-                <div className={`${Style.title} col-12 mt-2`}>
+                    <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Viajes</h3>
                     </div>
+                
                     {cars.length > 0 ?
                     <div className="col-12">                        
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
@@ -144,16 +145,15 @@ export default function Viajes() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nro Viaje</th>
-                                    <th>Cliente</th>
+                                    <th>Mail</th>
+                                    <th>Fecha de Nacimiento</th>
                                     <th>Fecha</th>
-                                    <th>Distancia</th>
+                                    <th>Dirección</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {cars.map( (element, index) =>
-                               
+                                {cars.map( (element, index) =>                               
                                 <tr key={index}>
                                     <td>{element.id}</td>
                                     <td>{element.nroViaje}</td>
@@ -166,8 +166,7 @@ export default function Viajes() {
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
                                 </tr>
-                                )
-                                
+                                )                                
                                 }
                             </tbody>
                         </Table>

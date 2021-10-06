@@ -147,13 +147,13 @@ export default function BackOffice() {
                 <section className={`${Style.details} d-sm-block d-md-block d-lg-block col-lg-10`}>
                     <div className={`row`}>                        
                         <div className={`${Style.pageOffice} col-12`}
-                            style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
+                            style={ruta.includes('/mis_datos/editar') ? {height:'100vh'}:
                             ruta.includes('/mis_datos') ? {height:'87vh'}:
                             ruta.includes('/vehiculos/nuevo_auto') ? {height:'100vh'}:
                             ruta.includes('/vehiculos') ? {height:'87vh'}:null
                             }
                         >
-                            <img src={image} className="imageDom"
+                            <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
                                 style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
                                 ruta.includes('/vehiculos') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
