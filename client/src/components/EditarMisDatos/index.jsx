@@ -299,19 +299,19 @@ export default function RegisterTwo(){
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Editar</h1>
+                    <h1 className={`${Style.title} mt-4`}>Editar</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
-                            <h4>Editar Administrador</h4>
+                            <h4 className={Style.titleEdit}>Editar Administrador</h4>
                             <h5>Tu usuario es tu mail</h5>
                         </div>
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
                                 <h4 className={`col-1`}>Mail</h4>
-                                <input autoFocus className={`mail col-10 col-sm-10 col-md-4 col-lg-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                <h4 className={`${Style.repeatMailLabel} text-sm-start text-md-center text-lg-center col-2 col-sm-2 col-md-2 col-lg-2`}>Repetir Mail</h4>
-                                <input className={`${Style.repeatMail} repeatMail col-sm-10 col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
+                                <input autoFocus className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`${Style.repeatMailLabel} col-2 text-sm-start text-md-center text-lg-center`}>Repetir Mail</h4>
+                                <input className={`${Style.repeatMail} col-11 col-sm-11 col-md-3 col-lg-4 repeatMail `} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
                                 <div className={`row`}>
@@ -327,10 +327,10 @@ export default function RegisterTwo(){
                             }
                             <div className={`row`}>
                                 <h4 className={`${Style.clave} col-1`}>Clave</h4>
-                                <input className={`${Style.claveInp} col-3 col-sm-10 col-md-3 col-lg-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <input className={`${Style.claveInp} col-11 col-sm-11 col-md-3 col-lg-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                                 {/* <h1 className={`col-1`}></h1> */}
-                                <h4 className={`${Style.repeatPass} text-sm-start text-md-center text-lg-center col-2`}>Repetir Clave</h4>
-                                <input className={`${Style.repeatPassInp} repeatPass col-4 col-sm-8 col-md-4 col-lg-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
+                                <h4 className={`${Style.repeatPass} mt-2 mt-sm-2 text-sm-start text-md-center text-lg-center col-2`}>Repetir Clave</h4>
+                                <input className={`${Style.repeatPassInp} mt-2 mt-sm-2 repeatPass col-11 col-sm-11 col-md-4 col-lg-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
                             </div>
                             {error.clave && form.clave ?
                                 <div className={`row`}>
@@ -345,8 +345,8 @@ export default function RegisterTwo(){
                                 : null                                
                             }
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-5 col-md-4 col-lg-4`}>Nombre del Administrador</h4>
-                                <input className={`${Style.inputLabel} col-sm-6 col-md-7 col-lg-7`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                <h4 className={`${Style.admLabel} col-sm-4 col-md-4 col-lg-4`}>Nombre del Administrador</h4>
+                                <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-7 col-lg-7`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.admin && form.admin ?
                                 <div className={`row`}>
@@ -356,11 +356,11 @@ export default function RegisterTwo(){
                             }                            
                             <div className={`row`}>
                                 <h4 className={`${Style.dir} col-2`}>Dirección</h4>
-                                <input className={`${Style.inputDir} col-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
+                                <input className={`${Style.inputDir} mt-2 mt-sm-2 col-11 col-sm-11 col-md-9 col-lg-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.fechaNac} col-4 mt-2`}>Fecha de Nacimiento</h4>
-                                <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                <h4 className={`${Style.fechaNac} co-4 col-md-4 col-lg-4 mt-2`}>Fecha de Nacimiento</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-7 col-lg-7`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -369,7 +369,7 @@ export default function RegisterTwo(){
                                         value={form.fechaNac}
                                         onChange={(e)=> verifyData(e)}
                                         // defaultValue="2017-05-24"
-                                        className={classes.textField}
+                                        className={`${Style.fechaNacField} ${classes.textField}`}
                                         InputLabelProps={{
                                         shrink: true,
                                         }}
@@ -377,12 +377,12 @@ export default function RegisterTwo(){
                                 </form>
 
                                 {/* <input className={`${Style.inputFecha} col-7`} type="text" /> */}
-                            </div>                            
+                            </div>
                             <div className={`${Style.cel} row`}>
-                                <h4 className={`col-1`}>Celular1</h4>
-                                <input className={`${Style.celInp1} col-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
-                                <h4 className={`${Style.cel2} col-2`}>Celular2</h4>
-                                <input className={`${Style.celInp2} col-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`col-1 mt-2`}>Celular1</h4>
+                                <input className={`${Style.celInp1} mt-2 mt-sm-2 col-11 col-sm-11 col-md-3 col-lg-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`${Style.cel2} col-2 mt-sm-2`}>Celular2</h4>
+                                <input className={`${Style.celInp2} mt-2 mt-sm-2 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
                             </div>
                             {(error.cel1 && form.cel1 && error.cel2 && form.cel2) ?
                                 <div className={`row`}>
