@@ -226,6 +226,7 @@
     color: white;
 }
 
+
 @media (max-width: 1088px) {
     .repeatMailLabel{
         width: 18%;
@@ -714,7 +715,72 @@
     }
 }
 
+@media (max-width: 581px){
+    .repeatMail{
+        margin-left: 1.3rem !important;
+    }
+}
 
+@media (max-width: 498px){
+    .repeatPassInp{
+        margin-left: 1.3rem !important;
+    }
+    .celInp2{
+        width: 33.5%;
+    }
+    .inputLabel{
+        width: 69.3%;
+    }
+}
 
+@media (max-width: 475px){
+    .inputLabel{
+        width: 69%;
+    }
+    .celInp2{
+        width: 32.5%;
+    }
+}
 
+@media (max-width: 440px){
+    .repeatPassInp{
+        width: 76%;
+    }
+    .repeatMail{
+        width: 76.7%;
+    }
+    .inputLabel{
+        width: 69.4%;
+    }
+    .celInp2{
+        width: 32%;
+    }
+}
+
+@media (max-width: 410px){
+    .celInp2{
+        width: 31.2%;
+    }
+    .repeatPassInp{
+        width: 75.5%;
+    }
+}
+
+@media (max-width: 360px){
+    .repeatMail{
+        width: 76.2% !important;
+    }
+    .inputLabel{
+        width: 70%;
+    }
+    .celInp2{
+        width: 33%;
+    }
+}
+
+/* 
+.formRegister input[type="text"]{
+    width: 100%;
+    max-width: 58vw !important;
+} */
 
