@@ -309,9 +309,9 @@ export default function RegisterTwo(){
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
                                 <h4 className={`col-1`}>Mail</h4>
-                                <input autoFocus className={`mail col-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                <h4 className={`${Style.repeatMailLabel} col-md-2 col-lg-2`}>Repetir Mail</h4>
-                                <input className={`${Style.repeatMail} repeatMail col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
+                                <input autoFocus className={`mail col-10 col-sm-10 col-md-4 col-lg-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`${Style.repeatMailLabel} text-sm-start text-md-center text-lg-center col-2 col-sm-2 col-md-2 col-lg-2`}>Repetir Mail</h4>
+                                <input className={`${Style.repeatMail} repeatMail col-sm-10 col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
                                 <div className={`row`}>
@@ -326,11 +326,11 @@ export default function RegisterTwo(){
                                 : null                                
                             }
                             <div className={`row`}>
-                                <h4 className={`col-1`}>Clave</h4>
-                                <input className={`col-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`${Style.clave} col-1`}>Clave</h4>
+                                <input className={`${Style.claveInp} col-3 col-sm-10 col-md-3 col-lg-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                                 {/* <h1 className={`col-1`}></h1> */}
-                                <h4 className={`${Style.repeatPass} col-3`}>Repetir Clave</h4>
-                                <input className={`${Style.repeatPassInp} repeatPass col-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
+                                <h4 className={`${Style.repeatPass} text-sm-start text-md-center text-lg-center col-2`}>Repetir Clave</h4>
+                                <input className={`${Style.repeatPassInp} repeatPass col-4 col-sm-8 col-md-4 col-lg-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
                             </div>
                             {error.clave && form.clave ?
                                 <div className={`row`}>
@@ -355,7 +355,7 @@ export default function RegisterTwo(){
                                 : null 
                             }                            
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Dirección</h4>
+                                <h4 className={`${Style.dir} col-2`}>Dirección</h4>
                                 <input className={`${Style.inputDir} col-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>

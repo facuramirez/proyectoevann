@@ -103,7 +103,6 @@
 
 .repeatPass{
     width: 23%;
-    padding-left: 5%;
 }
 
 .inputFecha div div input{
@@ -182,6 +181,7 @@
     text-decoration: none;
     width: fit-content;
     transition: all 300ms;
+    margin-right: 2rem;
 }
 
 .back:hover{
@@ -609,8 +609,106 @@
     .formComplete{        
         width: 90vw;
     }
+    .containerSave h5{
+        margin-top: 0.5rem !important;
+    }
+    .buttons{
+        display: flex;
+        flex-flow: column wrap;
+        margin: 0px auto;
+    }
+    .buttons .save{
+        order: 1;
+        margin-top: 1.3rem !important;
+        font-size: 1rem;
+    }
+    .buttons .back{
+        order: 2;
+        margin: 0px auto;
+        margin-top: 1.5rem !important;
+        font-size: 1rem;
+    }
+    .containerSave{
+        margin-top: 3rem !important;
+    }
+    .containerSave h5{
+        font-size: 0.7rem;
+    }
 }
 
+@media (max-width: 767px){
+    .titleForm h4{
+        font-size: 1rem;
+    }
+    .titleForm h5{
+        font-size: 0.5rem;
+    }
+    .repeatMailLabel{
+        margin-top: 0.7rem !important;
+    }
+    .repeatMail{
+        margin-top: 0.6rem;
+        width: 77.3%;
+    }
+    .clave{
+        margin-top: 0.4rem !important;
+    }
+    .claveInp{
+        margin-top: 0.3rem;
+        width: 82.5%;
+    }
+    .repeatPass{
+        margin-top: 0.7rem !important;
+    }
+    .repeatPassInp{
+        margin-top: 0.6rem;
+        width: 76.5%;
+    }
+    .data div h4{
+        width: fit-content !important;
+    }
+    .admLabel{
+        margin-top: 0.4rem !important;
+    }
+    .inputLabel{
+        margin-top: 0.2rem;
+        width: 68.4%;
+    }
+    .dir{
+        margin-top: 0.5rem !important;
+    }
+    .inputDir{
+        margin-top: 0.4rem;
+        width: 79.4%;
+    }
+    .fechaNac{
+        margin-top: 0.6rem !important;
+    }
+    .containerSave h5{
+        margin-top: 0.5rem !important;
+    }
+    .cel h4{
+        margin-top: 0.3rem;
+    }
+    .cel .celInp1,
+    .cel .celInp2{
+        margin-top: 0.2rem;
+    }
+    .buttons{
+        display: flex;
+        flex-flow: column wrap;
+        margin: 0px auto;
+    }
+    .buttons .save{
+        order: 1;
+        margin-top: 0.6rem;
+    }
+    .buttons .back{
+        order: 2;
+        margin: 0px auto;
+        margin-top: 0.8rem;
+    }
+}
 
 
 
