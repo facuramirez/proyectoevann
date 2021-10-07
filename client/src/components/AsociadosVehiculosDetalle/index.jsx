@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom';
-import Style from './Conductores.module.css';
+import Style from './AsociadosVehiculosDetalle.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
-import { conductores } from './data';
+import { autos } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialGetConductores, filterConductores } from '../../globalState/Actions';
+import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
-import { ImEye } from 'react-icons/im';
 
-export default function Conductores() {
-
+export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
-    let drivers = useSelector( state => state['drivers']);
+    let cars = useSelector( state => state['cars']);
 
     // ============== PAGINADO =============
     let [currentPage, setCurrentPage] = useState(1);
@@ -23,11 +21,11 @@ export default function Conductores() {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
+    cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
 
     const pageNumbers = [];
 
-    for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
+    for(let i = 1; i <= Math.ceil(autos.length / registerPerPage) ; i++) {
         pageNumbers.push(i);
     }
 
@@ -39,97 +37,96 @@ export default function Conductores() {
     // =====================================
 
     useEffect( () => {
-        dispatch(initialGetConductores(conductores));
-    }, [conductores])
+        dispatch(initialGetCars(autos));
+    }, [autos])
 
-    const editCar = (e, id) => {
+    // const editCar = (e, id) => {
+    //     e.preventDefault();
+    //    alert('Editando car ' + id);
+    // }
+
+    const approveCar = (e, id) => {
         e.preventDefault();
-       alert('Editando car ' + id);
+        alert(`Auto ${id} aprobado!`);
     }
 
-    const deleteCar = (e, id) => {
-        e.preventDefault();
-        alert('Eliminando car ' +id);
-    }
-
-    const detailCar = (e, id) => {
-        e.preventDefault();
-        alert('Detalles car ' +id);
-    }
+    // const detailCar = (e, id) => {
+    //     e.preventDefault();
+    //     alert('Detalles car ' +id);
+    // }
 
     const dropBox = (e) => {
         e.preventDefault();
 
         let selectValue = parseInt(e.target.value);
         
-        drivers = conductores.slice(0, selectValue);
+        cars = autos.slice(0, selectValue);
         setRegisterPerPage(selectValue);
         setCurrentPage(1);
-        dispatch(filterConductores(drivers));
+        dispatch(filterCars(cars));
     }
     
 
     return(
         <div>
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
-                <div className={`${Style.fondo} row m-0`}>
+                <div className={`${Style.fondo} row m-0 flex-column`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Conductores Asociado "XXX"</h3>
-                    </div>
-                    {drivers.length > 0 ?
-                    <div className="col-12">                        
-                        <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
-                            <section className="col-12 col-md-5 col-lg-5 mt-1">
-                                <div className="row">                      
-                                    <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                                    <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
-                                        <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
-                                        <option value="10" onChange={(e)=>dropBox(e)}>10</option>
-                                        <option value="20" onChange={(e)=>dropBox(e)}>20</option>
-                                    </select>
-                                </div>
-                            </section>
-                            <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
-                                <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
-                                    <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
-                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
-                                </div>                                
-                            </section>
+                            <h3>Asociado XXX - Vehículo XXX</h3>
                         </div>
+                        
+                        {/* <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
+                        
+                        {cars.length > 0 ?
+                        <div className="col-12">                        
+                            <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
+                                <section className="col-12 col-md-5 col-lg-5 mt-1">
+                                    <div className="row">                      
+                                        <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
+                                        <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                                            <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                            <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                            <option value="20" onChange={(e)=>dropBox(e)}>20</option>
+                                        </select>
+                                    </div>
+                                </section>
+                                <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
+                                    <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
+                                        <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
+                                        <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
+                                        <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                                    </div>                                
+                                </section>
+                            </div>
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    {/* <th>Dirección</th>
-                                    <th>Nacionalidad</th>
-                                    <th>Fecha de Nacimiento</th>
-                                    <th>Email</th>
-                                    <th>Estado</th>
-                                    <th>Celular</th> */}
+                                    <th>Patente</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Tipo vehículo</th>
+                                    <th>Observaciones</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {drivers.map( (element, index) =>
+                                {cars.map( (element, index) =>
                                
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.nombre}</td>
-                                    {/* <td>{element.direccion}</td>
-                                    <td>{element.nacionalidad}</td>
-                                    <td>{element.fechaNac}</td>
-                                    <td>{element.email}</td>
-                                    <td>{element.estado}</td>
-                                    <td>{element.cel}</td> */}
+                                    <td>{element.patente}</td>
+                                    <td>{element.marca}</td>
+                                    <td>{element.modelo}</td>
+                                    <td>{element.tipo_veh}</td>
+                                    <td>{element.observaciones}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         {/* <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
-                                        {/* <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
-                                        <Link to="/back_office_administracion/asociados/conductores/detalles"><ImEye className={Style.details}/></Link>
+                                        {/* <Link to="/back_office/vehiculos/detalles"><FiUsers className={Style.details}/></Link> */}
+                                        <button type="button" onClick={(e)=>approveCar(e, element.id)} className={`${Style.approve} btn btn-success`}>Aprobar</button>
                                     </td>
                                 </tr>
                                 )

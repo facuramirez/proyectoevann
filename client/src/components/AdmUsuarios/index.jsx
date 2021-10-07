@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './ViajesAdm.module.css';
+import Style from './AdmUsuarios.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -113,7 +113,7 @@ export default function Viajes() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0 flex-column`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Usuarios</h3>
+                        <h3>Administración de Usuarios</h3>
                     </div>
                     
                     <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
@@ -164,7 +164,7 @@ export default function Viajes() {
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><ImEye className={Style.edit}/></a>
+                                        <Link to="/back_office_administracion/usuarios/detalles"><ImEye className={Style.edit}/></Link>
                                         {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>

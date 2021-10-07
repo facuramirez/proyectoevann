@@ -6,12 +6,13 @@ import image from '../../img/regBack.jpg';
 import Asociados from '../Asociados';
 import AsociadosEditar from '../AsociadosEditar';
 import AsociadosVehiculos from '../AsociadosVehiculos';
+import AsociadosVehiculosDetalle from '../AsociadosVehiculosDetalle';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
 import NewConductorFormAdm from '../NewConductorAdm';
 import FacturasAdm from '../FacturasAdm';
-import ViajesAdm from '../ViajesAdm';
+import AdmUsuarios from '../AdmUsuarios';
 import ReclamosAdm from '../ReclamosAdm';
 import AlertasAdm from '../AlertasAdm';
 import MisDatosAdm from '../MisDatosAdm';
@@ -133,7 +134,7 @@ export default function BackOfficeAdm() {
                                 <Link to="/back_office_administracion/asociados">Asociados</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
+                                <Link to="/back_office_administracion/usuarios">Administración de Usuarios</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/facturas_y_pagos">Facturación y Pagos</Link>
@@ -165,7 +166,7 @@ export default function BackOfficeAdm() {
                                 ruta.includes('/mis_datos') ? {height:'100%'}:
                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                 ruta.includes('/conductores') ? {height:'100%'}:
-                                ruta.includes('/viajes') ? {height:'100%'}:
+                                ruta.includes('/usuarios') ? {height:'100%'}:
                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                 ruta.includes('/reclamos') ? {height:'100%'}:
                                 ruta.includes('/alertas') ? {height:'100%'}:null
@@ -178,7 +179,7 @@ export default function BackOfficeAdm() {
                                  ruta.includes('/mis_datos') ? {height:'100%'}:
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                  ruta.includes('/conductores') ? {height:'100%'}:
-                                 ruta.includes('/viajes') ? {height:'100%'}:
+                                 ruta.includes('/usuarios') ? {height:'100%'}:
                                  ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                  ruta.includes('/reclamos') ? {height:'100%'}:
                                  ruta.includes('/alertas') ? {height:'100%'}:null
@@ -216,16 +217,27 @@ export default function BackOfficeAdm() {
                                         <NewCarFormAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/vehiculos/detalles' ?
+                                ruta === '/back_office_administracion/asociados/vehiculos/detalles' ?
                                     <Fade>
-                                        <ConductoresDetailAdm />
+                                        <AsociadosVehiculosDetalle />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/conductores' ?
+                                ruta === '/back_office_administracion/asociados/conductores' ?
                                     <Fade>
                                         <ConductoresAdm />
                                     </Fade>
                                 :
+                                ruta === '/back_office_administracion/asociados/conductores/detalles' ?
+                                    <Fade>
+                                        <ConductoresDetailAdm />
+                                    </Fade>
+                                :
+
+                                // ruta === '/back_office_administracion/conductores' ?
+                                //     <Fade>
+                                //         <ConductoresAdm />
+                                //     </Fade>
+                                // :
                                 ruta === '/back_office_administracion/conductores/nuevo_conductor' ?
                                     <Fade>
                                         <NewConductorFormAdm />
@@ -236,9 +248,14 @@ export default function BackOfficeAdm() {
                                         <FacturasAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/viajes' ?
+                                ruta === '/back_office_administracion/usuarios' ?
                                     <Fade>
-                                        <ViajesAdm />
+                                        <AdmUsuarios />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/usuarios/detalles' ?
+                                    <Fade>
+                                        <ConductoresDetailAdm />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/reclamos' ?

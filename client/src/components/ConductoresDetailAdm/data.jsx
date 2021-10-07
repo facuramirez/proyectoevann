@@ -1,30 +1,20 @@
 let id = 1;
 
-export const conductores = 
+export const roles = 
 [
     {
         id: id++,
-        conductor: 'Juan Pablo',
+        rol: 'Administrador',
         asignacion: false
     },
     {
         id: id++,
-        conductor: 'Francisco',
+        rol: 'Moderador',
         asignacion: true
     },
     {
         id: id++,
-        conductor: 'Manuel',
+        rol: 'Supervisor',
         asignacion: true
-    },
-    {
-        id: id++,
-        conductor: 'Pedro',
-        asignacion: false
-    },
-    {
-        id: id++,
-        conductor: 'Marcelo',
-        asignacion: false
     }
 ];

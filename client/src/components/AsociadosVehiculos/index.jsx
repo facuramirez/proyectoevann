@@ -73,7 +73,7 @@ export default function VehiculosAsociados({alto}) {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0 flex-column`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                            <h3>Vehículos</h3>
+                            <h3>Asociado "XXX" - Vehículos</h3>
                         </div>
                         
                         {/* <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/vehiculos/nuevo_auto"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
@@ -124,9 +124,7 @@ export default function VehiculosAsociados({alto}) {
                                     {/* <td>{element.tipo_veh}</td> */}
                                     {/* <td>{element.observaciones}</td> */}
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        {/* <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
-                                        <Link to="/back_office/vehiculos/detalles"><ImEye className={Style.details}/></Link>
+                                        <Link to="/back_office_administracion/asociados/vehiculos/detalles"><ImEye className={Style.details}/></Link>
                                     </td>
                                 </tr>
                                 )

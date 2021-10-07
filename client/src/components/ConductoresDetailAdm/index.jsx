@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import Style from './ConductoresDetail.module.css';
+import Style from './ConductoresDetailAdm.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
-import { conductores } from './data';
+import { roles } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 
-export default function ConductoresDetail() {
+export default function ConductoresDetailAdm() {
     useEffect( () => {
 
     },[])
@@ -25,11 +25,11 @@ export default function ConductoresDetail() {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
+    drivers = roles.slice(indexOfFirstRegister, indexOfLastRegister);
 
     const pageNumbers = [];
 
-    for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
+    for(let i = 1; i <= Math.ceil(roles.length / registerPerPage) ; i++) {
         pageNumbers.push(i);
     }
 
@@ -41,8 +41,8 @@ export default function ConductoresDetail() {
     // =====================================
 
     useEffect( () => {
-        dispatch(initialGetConductores(conductores));
-    }, [conductores])
+        dispatch(initialGetConductores(roles));
+    }, [roles])
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -64,7 +64,7 @@ export default function ConductoresDetail() {
 
         let selectValue = parseInt(e.target.value);
         
-        drivers = conductores.slice(0, selectValue);
+        drivers = roles.slice(0, selectValue);
         setRegisterPerPage(selectValue);
         setCurrentPage(1);
         dispatch(filterConductores(drivers));
@@ -84,19 +84,17 @@ export default function ConductoresDetail() {
             checkUnit.forEach((element)=>{
                 element.checked = true;
             })
-            console.log('HOLAA')
         } else {
             checkUnit.forEach((element)=>{
                 element.checked = false;
             })
-            console.log('CHAU')
         }
     }
     
     
     
     useEffect( () => {
-        console.log('hola');
+        
     },[drivers])
     
     
@@ -121,9 +119,6 @@ export default function ConductoresDetail() {
     
 
     // =============================================================
-    
-   
-    console.log(drivers, 'ASDASD');
     
 
     return(
@@ -158,10 +153,10 @@ export default function ConductoresDetail() {
                                 <option value="10" onChange={(e)=>dropBox(e)}>10</option>
                                 <option value="20" onChange={(e)=>dropBox(e)}>20</option>
                             </select>
-                            <div className={`${Style.selectAll} col-4`}>
+                            {/* <div className={`${Style.selectAll} col-4`}>
                                 <label >Seleccionar todos</label>
                                 <input type="checkbox" id="checkAll" onClick={(e)=>selectAll(e)}/>
-                            </div>
+                            </div> */}
                             <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
                             <FcSearch className={`${Style.searchIcon} col-1`}/>
                             
@@ -173,7 +168,7 @@ export default function ConductoresDetail() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Conductor</th>
+                                    <th>Rol</th>
                                     <th>Asignación</th>
                                 </tr>
                             </thead>
@@ -181,7 +176,7 @@ export default function ConductoresDetail() {
                                 {drivers.map( (element, index) =>
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.conductor}</td>
+                                    <td>{element.rol}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <input className={`${Style.checkboxs}`} type="checkbox" id="checkUnit" />
                                         {/* 
