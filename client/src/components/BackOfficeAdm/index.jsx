@@ -74,9 +74,9 @@ export default function BackOfficeAdm() {
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
-                    <div className="container-fluid">
+                    <div className={`${Style.menu} container-fluid`}>
                         <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido Facundo!</a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className={`${Style.divUlNav} collapse navbar-collapse`} id="navbarSupportedContent">
@@ -84,14 +84,14 @@ export default function BackOfficeAdm() {
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                                 </li>
-                                <li className={`nav-item active d-md-block d-lg-none`}>
+                                {/* <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/conductores">Conductores</Link>
-                                </li>
+                                </li> */}
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/asociados">Asociados</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office_administracion/viajes">Administración de Usuarios</Link>
+                                    <Link to="/back_office_administracion/usuarios">Administración de Usuarios</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/facturas_y_pagos">Facturas y Pagos</Link>
@@ -158,7 +158,7 @@ export default function BackOfficeAdm() {
                             ruta.includes('/asociados') ? {height:'87vh'}:null
                             }
                         >
-                            <img src={image} className="imageDom"
+                            <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
                                 style={ruta.includes('/asociados/editar') ? {height:'135%'}:
                                 ruta.includes('/asociados') ? {height:'87vh'}:
                                 ruta.includes('/asociados/editar') ? {height:'100%'}:

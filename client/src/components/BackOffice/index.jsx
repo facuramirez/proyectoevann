@@ -69,9 +69,9 @@ export default function BackOffice() {
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
-                    <div className="container-fluid">
+                    <div className={`${Style.menu} container-fluid`}>
                         <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido Facundo!</a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className={`${Style.divUlNav} collapse navbar-collapse`} id="navbarSupportedContent">

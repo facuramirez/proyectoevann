@@ -22,7 +22,7 @@
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
-    width: 12vw;
+    width: 2rem;
 }
 
 .fondo{
@@ -33,7 +33,7 @@
 
 .buttonsTwo .search{
     outline: none;
-    width: 15vw;
+    width: 2rem;
     margin-right: 0.5vw;
     border: none;
     border-radius: 20px;
@@ -42,7 +42,6 @@
 
 .searchIcon{
     font-size: 2vw;
-    width: fit-content;
     margin: 0px;
     margin-top: 0.3vh;
     margin-right: 2vw;
@@ -55,20 +54,18 @@
     cursor: pointer;
 }
 
-
-
 .buttonsTwo .inactives,
 .add{
     border: none;
     background-color: rgb(33, 37, 41);
     border-radius: 20px;
     font-weight: bold;
-    font-size: 1.4rem;
     color: white;
+    font-size: 1.2rem;
     padding-top: 0.6vh;
-    padding-bottom: 0.6vh;
-    transition: all 300ms;
     padding-bottom: 0.8vh;
+    transition: all 300ms;
+    width: fit-content;
 }
 
 .add a{
@@ -86,6 +83,10 @@
 .buttonsTwo .inactives{
     width: fit-content;
     font-size: 1rem;
+}
+
+.buttonsTwo .search{
+    width: 10rem;
 }
 
 .registers{
@@ -118,6 +119,7 @@
 
 .table::-webkit-scrollbar{
     width: 6px;
+    height: 6px;
     background-color: rgb(33, 37, 41);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -150,7 +152,7 @@
 
 .buttons a svg{
     color: white;
-    font-size: 1.8vw;
+    font-size: 1.5rem;
 }
 
 .buttons a:hover .edit{
@@ -194,7 +196,7 @@
 
 .liElements a{
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color: white;
     margin-right: 10px;
     background-color: rgb(33, 37, 41);
@@ -211,37 +213,46 @@
     color: rgb(54, 232, 210);
 }
 
-@media (max-width: 767px){
-    .buttonsTwo{
-        margin-top: 1rem;
+@media (min-width: 767px){
+    .registers{
+        width: fit-content;
+        color: white;
     }
 }
 
-
-@media (max-width: 767px){
-    .buttonsTwo .search,
-    .buttonsTwo .inactives{
-        width: 30%;
+@media (max-width: 767px){    
+    .search{
+        height: 2rem !important;
+        
     }
-    .buttonsTwo .searchIcon{
-        width: 4rem;
+    /* .searchIcon{
+        width: fit-content;
     }
-}
-
-@media (max-width: 472px){
-.buttonsTwo .search,
-    .buttonsTwo .inactives{
-        height: 40px;
-        font-size: 0.7rem;
-    }
+    .inactives{
+        width: fit-content;
+    } */
 }
 
 @media (max-width: 578px){
     .buttons a:nth-child(n+2){
         margin-left: 5px;
     }
-    
-    .buttons a svg{
-        font-size: 1rem;
+}
+
+@media (max-width: 576px){
+    .searchIcon{
+        width: 5rem !important;
+        margin-left: 1rem;
+    }
+    .search{
+        margin-top: 3px;
     }
 }
+
+@media (max-width: 450px){
+    .inactives{
+        margin-top: 1.2rem !important;
+    }
+}
+
+

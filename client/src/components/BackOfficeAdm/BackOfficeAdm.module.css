@@ -6,6 +6,19 @@ body{
     background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
 }
 
+.buttonHamburguer{
+    border: none !important;
+}
+
+.buttonHamburguer:focus{
+    box-shadow: none
+}
+
+.buttonHamburguer span{
+    background-image: url('../../img/hamburguesaIcon.png') !important;
+    font-size: 2.5rem;
+}
+
 .divUlNav{
     justify-content: right;
 }
@@ -141,4 +154,22 @@ body{
     top: 0;
     width: 90%;
     margin: 0px auto;
+}
+
+@media (max-width: 767px){
+    .buttonHamburguer span{
+        font-size: 2rem !important;
+    }
+    .welcome{
+        font-size: 1rem
+    }
+    .pageOffice .image{
+        display: none !important;
+    }
+    html{
+        background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+    }
+    .opaco{
+        height: 0% !important;
+    }
 }

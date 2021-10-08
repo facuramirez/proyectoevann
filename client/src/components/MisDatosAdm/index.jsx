@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './MisDatos.module.css';
+import Style from './MisDatosAdm.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -85,7 +85,7 @@ export default function MisDatos() {
                         </div>
                     </div>
 
-                    <div className={`${Style.misDatos} mt-4`}>                        
+                    <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
                         <label className={`${Style.lbl}`}>Mail:</label>
                         <label className={`${Style.datos}`}>pablo@gmail.com</label>
