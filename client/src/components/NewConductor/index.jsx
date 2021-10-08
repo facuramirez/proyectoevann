@@ -1,18 +1,21 @@
-import Style from './NewConductorForm.module.css';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { VscSave } from 'react-icons/vsc';
-import { AiOutlineClear } from 'react-icons/ai';
-import swal from 'sweetalert';
-import { useHistory } from 'react-router-dom';
-import { Fade } from 'react-reveal/Fade';
+import { useState, useEffect } from 'react';
+import Style from './NewConductor.module.css';
+import register from '../../img/register.jpg';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import swal from 'sweetalert';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+import Fade from 'react-reveal/Fade';
+import LightSpeed from 'react-reveal/LightSpeed';
+import Reveal from 'react-reveal/Reveal';
 
 
+export default function NewConductor(){
 
-export default function NewCarForm(){
     let history = useHistory();
 
     // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
@@ -125,7 +128,7 @@ export default function NewCarForm(){
                 buttons: [''],
                 timer: 2000
               })
-            history.push('/back_office/conductores');
+            history.push('/back_office_administracion/conductores');
         } else {
             await swal({
                 title: 'Advertencia!',
@@ -136,55 +139,49 @@ export default function NewCarForm(){
         }
     }
 
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/back_office/conductores');
+    }
 
     return(
-        <div>            
-            <div className={`${Style.containerVehiculos} containerVehiculos`}>
-                <div className={`${Style.fondo} row m-0`}>
-                    <div className={`${Style.title} col-12 mt-4`}>
-                        <h3>Nuevo Conductor</h3>
-                    </div>
-                    <div className={`${Style.formCar} col-12 mt-4`}>
-                        <section className={`row`}>
-                            <div className={`col-12`}>
-                                <div className={`row`}>
-                                    <label className={`${Style.asterisk} col-8`}>(los campos con (*) son obligatorios)</label>
-                                </div>
+        <Fade>
+        <div>
+            <div className={Style.containerRegister}>
+                <div className={Style.form}>
+                </div>
+                <div className={`${Style.formComplete}`}>
+                    <h1 className={`${Style.title} mt-4`}>Nuevo Conductor</h1>
+                    <div className={Style.formRegister}>
+                        <div className={Style.titleForm}>
+                            <h4 className={Style.titleEdit}>Completar formulario</h4>
+                            <h5>Tu usuario es tu mail</h5>
+                        </div>
+
+                        <div className={`${Style.data}`}>
+                            <div className={`row`}>
+                                <h4 className={`col-1 mt-md-2 mt-lg-2`}>Nombre</h4>
+                                <input autoFocus className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="nombre" onChange={(e)=>inputs(e)} value={form.nombre}/>
+                                <h4 className={`${Style.repeatMailLabel} col-2 mt-md-2 mt-lg-2 text-sm-start text-md-center text-lg-end`}>Dirección</h4>
+                                <input className={`${Style.repeatMail} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `} type="text" name="direccion" onChange={(e)=>inputs(e)} value={form.direccion}/>
                             </div>
-                            <div className={`col-6`}>
+                            {/* {error.mail && form.mail ?
                                 <div className={`row`}>
-                                    <label className={`col-5 text-center`}>Nombre (*)</label>
-                                    <input className={`col-6 inpPatente`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.nombre} name="nombre"/>
-                                    {/* {!form.patente && error.patente && document.querySelector('.inpPatente') ? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
                                 </div>
-                            </div>
-                            <div className={`col-6`}>
+                                : null 
+                            }
+                            {!error.mail && !email.repeat && form.repeatMail ?
                                 <div className={`row`}>
-                                    <label className={`col-5 text-center`}>Dirección (*)</label>
-                                    <input className={`col-5 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.direccion} name="direccion"/>
-                                    {/* {!form.marca && error.marca && document.querySelector('.inpMarca') ? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <h5 className={`${Style.alertTexts2} col-9`}>Debe repetir exactamente el correo colocado</h5>
                                 </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-sm-5 col-md-4 col-lg-3 text-center`}>Nacionalidad (*)</label>
-                                    <input className={`col-sm-6 col-md-7 col-lg-8 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.nacionalidad} name="nacionalidad"/>
-                                    {/* {!form.modelo && error.modelo && document.querySelector('.inpModelo') ? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-sm-6 col-md-5 col-lg-4 text-left`}>Fecha de Nacimiento (*)</label>
-                                    <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                : null                      
+                            } */}
+                            <div className={`row`}>
+                                <h4 className={`${Style.clave} col-2 mt-md-2 mt-lg-2`}>Nacionalidad</h4>
+                                <input className={`${Style.claveInp} col-11 col-sm-11 col-md-3 col-lg-2 mt-md-2 mt-lg-2 pass`} type="password" name="nacionalidad" onChange={(e)=>inputs(e)} value={form.nacionalidad}/>
+                                <h4 className={`${Style.fechaNac} col-4 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2 text-end`}>Fecha de Nacimiento</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-4`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -193,87 +190,131 @@ export default function NewCarForm(){
                                         value={form.fechaNac}
                                         onChange={(e)=> inputs(e)}
                                         // defaultValue="2017-05-24"
-                                        className={classes.textField}
+                                        className={`${Style.fechaNacField} ${classes.textField}`}
                                         InputLabelProps={{
                                         shrink: true,
                                         }}
                                     />
                                 </form>
-                                    {/* <input className={`col-sm-5 col-md-6 col-lg-7 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.fechaNac} name="fechaNac"/> */}
-                                    {/* {!form.tipoVeh && error.tipoVeh && document.querySelector('.inpTipoVeh')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
                             </div>
-                            <div className={`col-6 mt-2`}>
+                            {/* {error.clave && form.clave ?
                                 <div className={`row`}>
-                                    <label className={`col-5 text-center`}>Email (*)</label>
-                                    <input className={`col-6 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.email} name="email"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <h5 className={`${Style.alertTexts} col-6`}>Mínimo 8 caracteres, una letra y un número</h5>
                                 </div>
+                                : null 
+                            }
+                            {!error.clave && !pass.repeat && form.repeatClave ?
+                                <div className={`row justify-content-center`}>
+                                    <h5 className={`${Style.alertTexts2} col-5`}>Debe repetir exactamente la clave colocada</h5>
+                                </div>
+                                : null                                
+                            } */}
+                            {/* <div className={`row`}>
+                                <h4 className={`${Style.admLabel} mt-md-2 mt-lg-2 col-4 col-sm-4 col-md-3 col-lg-3`}>Nombre Administrador</h4>
+                                <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-3 col-lg-3`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                <h4 className={`${Style.dir} col-2 mt-md-2 mt-lg-2 text-end`}>Dirección</h4>
+                                <input className={`${Style.inputDir} mt-2 mt-sm-2 col-11 col-sm-11 col-md-3 col-lg-3`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
-                            <div className={`col-6 mt-2`}>
+                            {error.admin && form.admin ?
                                 <div className={`row`}>
-                                    <label className={`col-5 text-center`}>Celular (*)</label>
-                                    <input className={`col-5 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.cel} name="cel"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras (y espacios) sin números</h5>
                                 </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Foto (*)</label>
-                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
-                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Carne (*)</label>
-                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
-                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-3 text-center`}>Licencia (*)</label>
-                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                                    <button className={`${Style.up} col-2`} onClick={()=>alert('Subir archivo')}>Subir</button>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
+                                : null 
+                            } */}
+                            
+                            
+                            <div className={`row`}>
+                                <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email</h4>
+                                <input autoFocus className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="email" onChange={(e)=>inputs(e)} value={form.email}/>
+                                <h4 className={`${Style.repeatMailLabel} col-2 mt-md-2 mt-lg-2 text-sm-start text-md-center text-lg-end`}>Celular</h4>
+                                <input className={`${Style.repeatMail} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `} type="text" name="cel" onChange={(e)=>inputs(e)} value={form.cel}/>
                             </div>
                             
-                        </section>
+                            
+                            <div className={`${Style.fotos} row`}>
+                                <h4 className={`col-3 col-sm-3 col-md-2 col-lg-2 mt-md-3 mt-lg-3`}>Foto (*)</h4>
+                                {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
+                                <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                                    <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
+                                    :null
+                                } */}
+                            </div>
+                        
+                        
+                            <div className={`${Style.fotos} row`}>
+                                <h4 className={`col-2 mt-md-3 mt-lg-3`}>Carne (*)</h4>
+                                {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
+                                <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                                    <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
+                                    :null
+                                } */}
+                            </div>
+                        
+                        
+                            <div className={`${Style.fotos} row`}>
+                                <h4 className={`col-2 mt-md-3 mt-lg-3`}>Licencia (*)</h4>
+                                {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
+                                <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                                    <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
+                                    :null
+                                } */}
+                            </div>
+                            
+
+                            {/* <div className="row" >
+                                <div className={`${Style.docs} col-8`}>
+                                    <div className={`${Style.docsDivs}`}>
+                                        <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
+                                        <label className={`${Style.labelDocs} mt-3`}>Seguro Responsabilidad Civil (*)</label>
+                                        <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
+                                    </div>
+                                    <div className={`${Style.docsDivs}`}>
+                                        <input type="file" className={`${Style.upButtons}`} />
+                                        <input type="file" className={`${Style.upButtons}`} />
+                                        <input type="file" className={`${Style.upButtons}`} />
+                                    </div>
+                                </div>
+                            </div> */}
+                        </div>
                     </div>
-                    <div className={`col-12 mt-4`}>
-                        <div className={`${Style.buttons} row justify-content-center`}>
-                            <Link to='/back_office/conductores' className={`${Style.first} col-3`}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</Link>
-                            <a className={`${Style.second} col-3`} href="" onClick={ (e) => save(e) }><VscSave className={`${Style.iconSave}`} />Guardar</a>
-                            <a className={`${Style.third} col-3`} href="" onClick={(e)=>clear(e)}><AiOutlineClear className={`${Style.iconClear}`}/>Limpiar</a>
+                    <div className={Style.containerSave}>
+                        <h5 className={``}>Complete el formulario para habilitar el botón...</h5>
+                        <div className={`${Style.buttons} row w-75`}>
+                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`col-3 mx-auto ${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                         </div>
                     </div>
                 </div>
+                {/* <div className={`${Style.formComplete}`}>
+                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
+                    <div className={Style.contentDescription}>
+                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
+                        </span>                        
+                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
+                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
+                    </div>
+                    <div className={Style.info}>
+                        <div className={Style.box}>
+                            <h3>Más ingresos</h3>
+                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
+                        </div>
+                        <div className={Style.box}>
+                            <h3>Nuestra App</h3>
+                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
+                        </div>
+                        <div className={Style.box}>
+                            <h3>Pasajeros Vip</h3>
+                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
+                        </div>
+                    </div>            
+                                   
+                </div>                     */}
+                
             </div>
         </div>
-
+        </Fade>
     )
 }
-
-

@@ -158,7 +158,7 @@ export default function BackOffice() {
                                 ruta.includes('/vehiculos') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos') ? {height:'100%'}:
-                                ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
+                                ruta.includes('/conductores/nuevo_conductor') ? {height:'115%'}:
                                 ruta.includes('/conductores') ? {height:'100%'}:
                                 ruta.includes('/viajes') ? {height:'100%'}:
                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
@@ -171,7 +171,7 @@ export default function BackOffice() {
                                  ruta.includes('/vehiculos') ? {height:'100%'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                  ruta.includes('/mis_datos') ? {height:'100%'}:
-                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
+                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'115%'}:
                                  ruta.includes('/conductores') ? {height:'100%'}:
                                  ruta.includes('/viajes') ? {height:'100%'}:
                                  ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
