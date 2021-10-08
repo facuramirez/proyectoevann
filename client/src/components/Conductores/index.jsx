@@ -81,28 +81,28 @@ export default function Conductores() {
                     {drivers.length > 0 ?
                     <div className="col-12">                        
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
-                            <section className="col-12 col-md-5 col-lg-5 mt-1">
-                                <div className="row">                      
-                                    <h6 className={`${Style.registers} col-7 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                                    <select className={`dropBox col-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                            <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
+                                <div className="row">
+                                    <h6 className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
+                                    <select className={`${Style.regPag} dropBox col-3 col-sm-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
                                         <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
                                         <option value="10" onChange={(e)=>dropBox(e)}>10</option>
                                         <option value="20" onChange={(e)=>dropBox(e)}>20</option>
                                     </select>
                                 </div>
                             </section>
-                            <section className={`${Style.divButtons} col-12 col-md-7 col-lg-7 `}>   
-                                <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
-                                    <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
-                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                            <section className={`${Style.divButtons} col-12 col-sm-12 col-md-7 col-lg-7 mt-3 mt-sm-3`}>   
+                                <div className={`${Style.buttonsTwo} row justify-content-sm-start justify-content-md-center justify-content-lg-end`}>
+                                    <input autoFocus className={`${Style.search} col-4 col-sm-4 col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
+                                    <FcSearch className={`${Style.searchIcon} col-5 col-sm-5 col-md-1 col-lg-1`}/>
+                                    <button className={`${Style.inactives} col-5 col-sm-5 col-md-2 col-lg-2 mt-0 mt-sm-0 mt-md-0 mt-lg-0`}>Ver inactivos</button>
                                 </div>                                
                             </section>
                         </div>
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
-                            <thead>
+                            <thead className={Style.tableH}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
@@ -115,7 +115,7 @@ export default function Conductores() {
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className={Style.tableB}>
                                 {drivers.map( (element, index) =>
                                
                                 <tr key={index}>

@@ -167,10 +167,17 @@
     color: white;
 }
 
+.titleForm h4{
+    font-size: 1.2rem;
+}
+.titleForm h5{
+    font-size: 0.6rem;
+}
 
 @media (max-width: 992px) {
     .formComplete{        
         width: 90vw;
+        margin: 0px auto;
     }
     .containerSave h5{
         margin-top: 0.5rem !important;
@@ -215,9 +222,6 @@
     }
     .data div h4{
         width: fit-content !important;
-    }
-    .dir{
-        margin-top: 0.5rem !important;
     }
     .containerSave{
         margin-top: 0.8rem !important;

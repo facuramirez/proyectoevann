@@ -19,7 +19,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -39,7 +39,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -59,7 +59,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -79,7 +79,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -99,7 +99,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -119,7 +119,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -139,7 +139,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -159,7 +159,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     },
     {
@@ -179,7 +179,7 @@ export const conductores =
         nacionalidad: 'Chilena',
         fechaNac: '20/04/1970',
         email: 'fran@gmail.com',
-        estado: 'No asignado',
+        estado: 'N/A',
         cel: '+54876567282'
     }
 ];

@@ -85,7 +85,7 @@ export default function MisDatos() {
                         </div>
                     </div>
 
-                    <div className={`${Style.misDatos} mt-4`}>                        
+                    <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
                         <label className={`${Style.lbl}`}>Mail:</label>
                         <label className={`${Style.datos}`}>pablo@gmail.com</label>

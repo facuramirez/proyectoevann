@@ -7,13 +7,6 @@
 .title{
     color: white;
     width: fit-content;
-    /* margin: 0px auto;
-    border-radius: 20px;
-    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
-    padding-top: 5px;
-    height: 7vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw; */
 }
 
 .title h3{
@@ -22,18 +15,17 @@
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
-    width: 12vw;
+    width: 2rem;
 }
 
 .fondo{
-    /* background-image: repeating-linear-gradient(332deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(100deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(0deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),repeating-linear-gradient(90deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),linear-gradient(90deg, rgb(58,58,58),rgb(58,58,58)); */
     border-radius: 20px;
     padding: 3vh;
 }
 
 .buttonsTwo .search{
     outline: none;
-    width: 15vw;
+    width: 2rem;
     margin-right: 0.5vw;
     border: none;
     border-radius: 20px;
@@ -42,7 +34,6 @@
 
 .searchIcon{
     font-size: 2vw;
-    width: fit-content;
     margin: 0px;
     margin-top: 0.3vh;
     margin-right: 2vw;
@@ -87,10 +78,10 @@
     font-size: 1rem;
 }
 
-.registers{
-    width: fit-content;
-    color: white;
+.buttonsTwo .search{
+    width: 10rem;
 }
+
 
 .select select{
     margin-left: 1vw;
@@ -100,13 +91,9 @@
 }
 
 .select select:hover{
-    /* background-color: #ccc; */
     cursor: pointer;
 }
-/* 
-.select select:focus{
-    background-color: #ccc;
-} */
+
 
 .table{
     height: 44.8vh;
@@ -150,7 +137,7 @@
 
 .buttons a svg{
     color: white;
-    font-size: 1.8vw;
+    font-size: 1.5rem;
 }
 
 .buttons a:hover .edit{
@@ -211,37 +198,54 @@
     color: rgb(54, 232, 210);
 }
 
-@media (max-width: 767px){
-    .buttonsTwo{
-        margin-top: 1rem;
+.regPag{
+    width: 4rem;
+}
+
+.registers{
+    width: fit-content;
+}
+
+@media (min-width: 767px){
+    .registers{
+        width: fit-content;
+        color: white;
     }
 }
 
-
-@media (max-width: 767px){
-    .buttonsTwo .search,
-    .buttonsTwo .inactives{
-        width: 30%;
+@media (max-width: 767px){    
+    .search{
+        height: 2rem !important;
+        
     }
-    .buttonsTwo .searchIcon{
-        width: 4rem;
+    /* .searchIcon{
+        width: fit-content;
     }
-}
-
-@media (max-width: 472px){
-.buttonsTwo .search,
-    .buttonsTwo .inactives{
-        height: 40px;
-        font-size: 0.7rem;
-    }
+    .inactives{
+        width: fit-content;
+    } */
 }
 
 @media (max-width: 578px){
     .buttons a:nth-child(n+2){
         margin-left: 5px;
     }
-    
-    .buttons a svg{
-        font-size: 1rem;
+}
+
+@media (max-width: 576px){
+    .searchIcon{
+        width: 5rem !important;
+        margin-left: 1rem;
+    }
+    .search{
+        margin-top: 3px;
     }
 }
+
+@media (max-width: 450px){
+    .inactives{
+        margin-top: 1.2rem !important;
+    }
+}
+
+
