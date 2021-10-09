@@ -10,8 +10,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 export default function ConductoresDetailAdm() {
+
+    let history = useHistory();
+
     useEffect( () => {
 
     },[])
@@ -120,50 +126,52 @@ export default function ConductoresDetailAdm() {
 
     // =============================================================
     
+    const save = async (e) => {
+        e.preventDefault();        
+            await swal({
+                title: 'Roles asignados con éxito!',
+                text: ' ',
+                icon: 'success',
+                timer: 2000,
+                buttons: ['']
+            })      
+    }
+
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/back_office_administracion/usuarios');
+        window.scrollTo(0, 0);
+    }
 
     return(
         <div>
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Asignación de conductores</h3>
-                        <p>Vehículo: DJU276</p>
+                        <h3>Asignación de roles</h3>
+                        <p>Usuario: "XXXXX"</p>
                     </div>
                     {drivers.length > 0 ?
-                    <div>        
-                    <div className={`${Style.menu} col-12 mt-4`}>
-                        <div className={`row justify-content-between`}>
-                            {/* <button className={`${Style.add} col-2`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
-                            <div className={`col-6`}>
-                                <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    
-                                    {/* <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-1`}/> */}
-                                    {/* <button className={`${Style.inactives} col-2`}>Ver inactivos</button> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${Style.select} col-12`}>
-                        <div className={`${Style.buttonsTwo} row justify-content-center mt-4 mb-3`}>                          
-                            
+                    <div>
+                    
+                    {/* <div className={`${Style.select} col-12`}>
+                        <div className={`${Style.buttonsTwo} row justify-content-center mt-4 mb-3`}>                            
                             <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
                             <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
                                 <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
                                 <option value="10" onChange={(e)=>dropBox(e)}>10</option>
                                 <option value="20" onChange={(e)=>dropBox(e)}>20</option>
                             </select>
-                            {/* <div className={`${Style.selectAll} col-4`}>
+                            <div className={`${Style.selectAll} col-4`}>
                                 <label >Seleccionar todos</label>
                                 <input type="checkbox" id="checkAll" onClick={(e)=>selectAll(e)}/>
-                            </div> */}
+                            </div>
                             <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                            <FcSearch className={`${Style.searchIcon} col-1`}/>
-                            
+                            <FcSearch className={`${Style.searchIcon} col-1`}/>                            
                         </div>
-                    </div>
+                    </div> */}
                     
-                    <div className={`${Style.table} col-12`}>     
+                    <div className={`${Style.table} col-12 mt-5`}>     
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>
@@ -192,55 +200,21 @@ export default function ConductoresDetailAdm() {
                                 }
                             </tbody>
                         </Table>
-
-                        {/* <table className={`${Style.table} table table-bordered mt-3`}>                                
-                                <thead className={`${Style.tableHead}`}>                                
-                                    <tr>
-                                        <th>PATENTE</th>
-                                        <th>MARCA</th>
-                                        <th>MODELO</th>
-                                        <th>TIPO VEHÍCULO</th>
-                                        <th>OBSERVACIONES</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
-                            
-                                <tbody className={`${Style.tableBody}`}>
-                                    {
-                                    cars.map( (reg, index) => 
-                                        <tr key={index}>
-                                            <td>{reg.patente}</td>
-                                            <td>{reg.marca}</td>
-                                            <td>{reg.modelo}</td>
-                                            <td>{reg.tipo_veh}</td>
-                                            <td>{reg.observaciones}</td>
-                                            <td>
-                                                <button className={`btn ${Style.button}`}>
-                                                    Edit
-                                                </button>
-                                                <Link to={`/user${reg.id}`}>
-                                                <button className={`btn ${Style.button} btn-warning`}>
-                                                    View
-                                                </button>
-                                                </Link>
-
-                                                <Link>
-                                                    <button className={`btn ${Style.button} btn-danger`}>Delete</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    )}                                    
-                                </tbody>
-                            </table> */}
+                       
                     </div>
-                    <div className={`${Style.pagination} col-12`}>
-                        <ul className={`${Style.ulPagination}`}>
+                    <div className={`${Style.buttons} col-12 mt-3`}>
+                        
+                        <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                        <button className={`col-3 mx-auto ${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                        
+                        {/* <ul className={`${Style.ulPagination}`}>
                             {pageNumbers.map(number => (
                                 <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
                                     <a href="">{number}</a>
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
+
                     </div> 
                     </div>:<div>
                         <br/>   

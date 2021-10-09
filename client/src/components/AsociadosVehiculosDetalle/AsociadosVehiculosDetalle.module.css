@@ -110,7 +110,7 @@
 } */
 
 .table{
-    height: 44.8vh;
+    height: fit-content;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;

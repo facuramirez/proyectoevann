@@ -133,84 +133,47 @@ export default function NewCarForm(){
                                 </div>
                             </div>
                             
-                            <div className={`col-6 mt-2`}>
+                            <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-3 text-start`}>Marca (*)</label>
-                                    <input className={`col-8 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
+                                    <label className={`col-sm-3 col-md-2 col-lg-2 text-start`}>Marca (*)</label>
+                                    <input className={`col-sm-9 col-md-4 col-lg-4 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
+                                    <label className={`mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}>Modelo (*)</label>
+                                    <input className={`mt-sm-2 mt-md-0 mt-lg-0 col-sm-9 col-md-4 col-lg-4 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
                                 </div>
                             </div>
-                            
-                            <div className={`col-6 mt-2`}>
+                            <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-start`}>Modelo (*)</label>
-                                    <input className={`col-7 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
-                                    {/* {!form.modelo && error.modelo && document.querySelector('.inpModelo') ? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-6 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-4 text-start`}>Patente (*)</label>
-                                    <input className={`inpPatente col-7`} type="text" autoFocus onChange={(e)=>inputs(e)} value={form.patente} name="patente"/>
-                                </div>
-                            </div>
-                            <div className={`col-6 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-5`}>Tipo Vehículo (*)</label>
-                                    {/* <input className={`col-6 inpTipoVeh`} type="text" onChange={(e)=>inputs(e)} value={form.tipoVeh} name="tipoVeh"/> */}
-                                    <select className={`col-6 inpTipoVeh`} name="tipoVeh">
+                                    <label className={`col-sm-4 col-md-3 col-lg-3`}>Tipo Vehículo (*)</label>
+                                    <select className={`col-sm-8 col-md-3 col-lg-3 inpTipoVeh`} name="tipoVeh">
                                         <option value="1">Sedan</option>
                                         <option value="2">Van</option>
                                     </select>
+                                    <label className={`${Style.cantPas} mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-4 col-md-3 col-lg-3 text-start text-md-start text-lg-start`}>Pasajeros (*)</label>
+                                    <select className={`mt-sm-2 mt-md-0 mt-lg-0 col-sm-8 col-md-3 col-lg-3 inpTipoVeh`} name="tipoVeh">
+                                        <option value="1">1 pasajero</option>
+                                        <option value="2">2 pasajeros</option>
+                                        <option value="2">3 pasajeros</option>
+                                        <option value="2">4 pasajeros</option>
+                                        <option value="2">5 pasajeros</option>
+                                    </select>
+                                    {/* <input className={`col-lg-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/> */}
                                 </div>
                             </div>
-                            <div className={`col-6 mt-2`}>
+                        
+                            <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-7`}>Capacidad Pasajeros(*)</label>
-                                    <input className={`col-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <label className={`col-sm-3 col-md-2 col-lg-2 text-start`}>Equipaje (*)</label>
+                                    <input className={`col-sm-9 col-md-4 col-lg-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
+                                    <label className={`mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}>Año (*)</label>
+                                    <input className={`mt-sm-2 mt-md-0 mt-lg-0 col-sm-9 col-md-4 col-lg-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
                                 </div>
                             </div>
-                            <div className={`col-6 mt-2`}>
+                            <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-7 text-start`}>Capacidad Equipaje(*)</label>
-                                    <input className={`col-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-6 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-4 text-start`}>Año (*)</label>
-                                    <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-6 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-4 text-start`}>Kilometraje (*)</label>
-                                    <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
-                                </div>
-                            </div>
-                            <div className={`col-12 mt-2`}>
-                                <div className={`row`}>
-                                    <label className={`col-4 text-start mt-1`}>Última revisión técnica (*)</label>
-                                    {/* <input className={`col-7 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/> */}
-                                    <form className={`${classes.container} ${Style.inputFecha} col-4`} noValidate>
+                                    <label className={`${Style.kilometrajeLabel} col-sm-4 col-md-2 col-lg-2 text-start`}>Kilometraje (*)</label>
+                                    <input className={`col-sm-8 col-md-2 col-lg-3 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
+                                    <label className={`col-sm-6 col-md-4 col-lg-3 text-start mt-2 mt-sm-2 mt-md-0 mt-lg-0`}>Última revisión técnica (*)</label>
+                                    <form className={`${classes.container} ${Style.inputFecha} mt-sm-2 mt-md-0 mt-lg-0 col-sm-6 col-md-3 col-lg-3`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -224,23 +187,23 @@ export default function NewCarForm(){
                                         shrink: true,
                                         }}
                                     />
-                                </form>
+                                    </form>                                
                                 </div>
                             </div>
-                            <div className={`col-12 mt-2`}>
+                            <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-4 text-start`}>Líneas de negocio (*)</label>
-                                    <div className={`${Style.radioButtons} row col-7`}>
-                                        <div className={`${Style.lines} col-4 text-center`}>
-                                            <input className={`text-center mt-1`} type="radio" name="options" value="Empresa" />
+                                    <label className={`col-12 col-sm-5 col-md-4 col-lg-4 text-start`}>Líneas de negocio (*)</label>
+                                    <div className={`${Style.radioButtons} row col-12 col-sm-7 col-md-8 col-lg-8`}>
+                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                            <input className={`text-center`} type="radio" name="options" value="Empresa" />
                                             <label className={`${Style.labelRadio}`}>Empresa</label>
                                         </div>
-                                        <div className={`${Style.lines} col-4 text-center`}>
-                                            <input className={`text-center mt-1`} type="radio" name="options" value="Familiar" />
+                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                            <input className={`text-center`} type="radio" name="options" value="Familiar" />
                                             <label className={`${Style.labelRadio}`}>Familiar</label>
                                         </div>
-                                        <div className={`${Style.lines} col-4 text-center`}>
-                                            <input className={`text-center mt-1`} type="radio" name="options" value="Eventos" />
+                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                            <input className={`text-center`} type="radio" name="options" value="Eventos" />
                                             <label className={`${Style.labelRadio}`}>Eventos</label>
                                         </div>
                                     </div>

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 
 export default function Viajes() {
@@ -161,7 +162,7 @@ export default function Viajes() {
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <Link to="/back_office_administracion/usuarios/detalles"><ImEye className={Style.edit}/></Link>
+                                        <Link to="/back_office_administracion/usuarios/detalles"><RiLockPasswordLine className={Style.edit}/></Link>
                                         {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>
