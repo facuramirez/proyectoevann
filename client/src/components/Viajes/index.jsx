@@ -142,22 +142,22 @@ export default function Viajes() {
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
-                            <thead>
+                            <thead className={Style.tableH}>
                                 <tr>
                                     <th>#</th>
-                                    <th>Mail</th>
-                                    <th>Fecha de Nacimiento</th>
+                                    <th className={Style.asociado}>Asociado</th>
+                                    <th>Conductor</th>
                                     <th>Fecha</th>
-                                    <th>Dirección</th>
+                                    <th>Distancia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className={Style.tableB}>
                                 {cars.map( (element, index) =>                               
                                 <tr key={index}>
                                     <td>{element.id}</td>
-                                    <td>{element.nroViaje}</td>
-                                    <td>{element.cliente}</td>
+                                    <td>{element.asociado}</td>
+                                    <td>{element.conductor}</td>
                                     <td>{element.fecha}</td>
                                     <td>{element.distancia}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>

@@ -114,7 +114,7 @@
 } */
 
 .table{
-    height: 44.8vh;
+    height: fit-content;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -216,6 +216,7 @@
     color: rgb(54, 232, 210);
 }
 
+
 @media (min-width: 767px){
     .registers{
         width: fit-content;
@@ -228,12 +229,6 @@
         height: 2rem !important;
         
     }
-    /* .searchIcon{
-        width: fit-content;
-    }
-    .inactives{
-        width: fit-content;
-    } */
 }
 
 @media (max-width: 578px){
@@ -255,6 +250,9 @@
 @media (max-width: 450px){
     .inactives{
         margin-top: 1.2rem !important;
+    }
+    .tableH tr th:nth-child(n+2){
+        min-width: 10rem;
     }
 }
 

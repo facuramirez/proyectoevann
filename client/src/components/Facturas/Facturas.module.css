@@ -256,6 +256,9 @@
     .inactives{
         margin-top: 1.2rem !important;
     }
+    .tableH tr th:nth-child(n+2){
+        min-width: 10rem;
+    }
 }
 
 

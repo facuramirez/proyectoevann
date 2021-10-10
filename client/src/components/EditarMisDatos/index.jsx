@@ -407,35 +407,10 @@ export default function RegisterTwo(){
                         <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
                         <div className={`${Style.buttons} row w-75`}>
                             <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                            <button className={`col-3 mx-auto ${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                         </div>
                     </div>
-                </div>
-                {/* <div className={`${Style.formComplete}`}>
-                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
-                    <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
-                        </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                    </div>
-                    <div className={Style.info}>
-                        <div className={Style.box}>
-                            <h3>Más ingresos</h3>
-                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Nuestra App</h3>
-                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Pasajeros Vip</h3>
-                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
-                        </div>
-                    </div>            
-                                   
-                </div>                     */}
-                
+                </div>                
             </div>
         </div>
         </Fade>

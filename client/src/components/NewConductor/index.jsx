@@ -135,7 +135,7 @@ export default function NewConductor(){
                 text: 'Por favor complete los campos obligatorios antes de guardar',
                 icon: 'warning'
               })
-            document.querySelector('.inpPatente').focus();            
+            document.getElementById('nombreLabel').focus();          
         }
     }
 
@@ -160,7 +160,7 @@ export default function NewConductor(){
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
-                                <h4 className={`col-1 mt-md-2 mt-lg-2`}>Nombre</h4>
+                                <h4 className={`col-1 mt-md-2 mt-lg-2`} id="nombreLabel">Nombre</h4>
                                 <input autoFocus className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="nombre" onChange={(e)=>inputs(e)} value={form.nombre}/>
                                 <h4 className={`${Style.repeatMailLabel} col-2 mt-md-2 mt-lg-2 text-sm-start text-md-center text-lg-end`}>Dirección</h4>
                                 <input className={`${Style.repeatMail} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `} type="text" name="direccion" onChange={(e)=>inputs(e)} value={form.direccion}/>

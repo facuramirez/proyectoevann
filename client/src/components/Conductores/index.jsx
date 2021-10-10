@@ -102,7 +102,7 @@ export default function Conductores() {
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
-                            <thead className={Style.tableH}>
+                            <thead className={`${Style.tableH}`}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>

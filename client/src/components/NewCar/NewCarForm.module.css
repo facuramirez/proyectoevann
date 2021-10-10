@@ -26,7 +26,7 @@
 
 .formCar{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
     border: 1px solid rgb(54, 232, 210);
     margin-top: 3%;
     width: 100%;
@@ -49,8 +49,8 @@ input, select{
     background-color: rgb(60, 60, 58);
     color: white;
     height: 1.7rem !important;
+    
 }
-
 
 .inputFecha{
     outline: none;
@@ -62,7 +62,7 @@ input, select{
 
 .inputFecha input{
     color: white !important;
-    text-align: center;
+    text-align: center !important;
     height: 0.9rem !important;
     font-size: 0.9rem !important;
 }
@@ -73,12 +73,12 @@ input, select{
     border-radius: 20px;
     font-weight: bold;
     color: white;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
     padding-top: 0.6vh;
     padding-bottom: 1.5vh;
     transition: all 300ms;
     text-decoration: none;
-    width: 15%;    
+    width: fit-content;    
 }
 
 
@@ -105,8 +105,16 @@ input, select{
     font-size: 0.8vw;
 }
 
+.lineaNegocio{
+    width: fit-content;
+    margin-right: 2rem;
+}
+
 .radioButtons{
+    display: flex;
+    flex-flow: row wrap;
     padding: 0px;
+    width: fit-content;
 }
 
 .radioButtons .labelRadio{
@@ -114,9 +122,9 @@ input, select{
 }
 
 .lines{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: flex !important;
+    flex-flow: row !important;
+    justify-content: center !important;
 }
 
 .radioButtons .lines label{
@@ -141,19 +149,28 @@ input, select{
     margin-left: 1rem;
 }
 
+
 .docsDivs .upButtons{
     font-size: 0.8rem;
     border-radius: 20px;
     color: white;
     background-color: rgb(60, 60, 58);
     border: 1px solid rgb(54, 232, 210);
-    padding: 0.3rem;
 }
 
-.docsDivs .upButtons:nth-child(n+1){
-    margin-top: 0.27rem;
+.docsDivs .upButtons{
+    padding-top: 0.3rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-bottom: 1.8rem;
+}
+
+.docsDivs .upButtons:nth-child(1){
+    margin-top: 0.5rem;
+}
+
+.docsDivs .upButtons:nth-child(n+2){
+    margin-top: 0.3rem;
 }
 
 .titleVeh{
@@ -174,5 +191,39 @@ input, select{
     }
     select{
         height: 1.4rem !important;
+    }
+}
+
+@media (max-width: 470px){wid
+    input,
+    select,
+    .inputFecha,
+    .docsDivs .upButtons{
+        max-width: 75vw !important;
+    }
+    .docsDivs{
+        margin-left: 0px;
+    }
+    .inputsFile{
+        max-width: 75vw !important;
+        padding: 0px;
+    }
+    .inputRadio:nth-child(n+2){
+        margin-left: 1rem;
+    }
+    .buttons{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttons a{
+        margin: 0px !important;
+    }
+    .buttons a:nth-child(n+2){
+        margin-top: 0.7rem !important;
+    }
+    .buttons .third{
+        margin-bottom: 1rem !important;
     }
 }

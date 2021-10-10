@@ -74,7 +74,9 @@ export default function BackOffice() {
                         <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
+                        
                         <div className={`${Style.divUlNav} collapse navbar-collapse`} id="navbarSupportedContent">
+            
                             <ul className="navbar-nav">
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office/mis_datos">Mis Datos</Link>
@@ -99,19 +101,9 @@ export default function BackOffice() {
                                 </li>
                                 <li className="nav-item active">
                                     <a className="nav-link" href="" aria-current="page" onClick={(e)=>close(e)}>Cerrar Sesión</a>
-                                </li>
-                                
-                                {/* <li className="nav-item">
-                                    <a className="nav-link" href="#">Features</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">Pricing</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link disabled" href="#">Disabled</a>
-                                </li> */}
-                            </ul>
-                        </div>
+                                </li>                               
+                            </ul>                            
+                        </div>                        
                     </div>
                 </nav>
                 
@@ -252,7 +244,6 @@ export default function BackOffice() {
             
             </div>
         </div>
-        
     )
     
 }
