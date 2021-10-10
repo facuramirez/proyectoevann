@@ -168,50 +168,9 @@ export default function Viajes() {
                                     </td>
                                 </tr>
                                 )
-                                
                                 }
                             </tbody>
                         </Table>
-
-                        {/* <table className={`${Style.table} table table-bordered mt-3`}>                                
-                                <thead className={`${Style.tableHead}`}>                                
-                                    <tr>
-                                        <th>PATENTE</th>
-                                        <th>MARCA</th>
-                                        <th>MODELO</th>
-                                        <th>TIPO VEHÍCULO</th>
-                                        <th>OBSERVACIONES</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
-                            
-                                <tbody className={`${Style.tableBody}`}>
-                                    {
-                                    cars.map( (reg, index) => 
-                                        <tr key={index}>
-                                            <td>{reg.patente}</td>
-                                            <td>{reg.marca}</td>
-                                            <td>{reg.modelo}</td>
-                                            <td>{reg.tipo_veh}</td>
-                                            <td>{reg.observaciones}</td>
-                                            <td>
-                                                <button className={`btn ${Style.button}`}>
-                                                    Edit
-                                                </button>
-                                                <Link to={`/user${reg.id}`}>
-                                                <button className={`btn ${Style.button} btn-warning`}>
-                                                    View
-                                                </button>
-                                                </Link>
-
-                                                <Link>
-                                                    <button className={`btn ${Style.button} btn-danger`}>Delete</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    )}                                    
-                                </tbody>
-                            </table> */}
                     </div>
                     <div className={`${Style.pagination} col-12`}>
                         <ul className={`${Style.ulPagination}`}>

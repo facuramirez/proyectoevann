@@ -138,7 +138,7 @@ export default function Facturas() {
                     
                     <div className={`${Style.table} col-12`}>     
                         <Table striped bordered hover variant="dark">
-                            <thead>
+                            <thead className={`${Style.tableH}`}>
                                 <tr>
                                     <th>#</th>
                                     <th>Nro Factura</th>

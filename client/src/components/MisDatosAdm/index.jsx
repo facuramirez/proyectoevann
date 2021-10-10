@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 
-export default function MisDatos() {
+export default function MisDatosAdm() {
 
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
