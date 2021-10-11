@@ -53,8 +53,6 @@
     cursor: pointer;
 }
 
-
-
 .buttonsTwo .inactives,
 .add{
     border: none;
@@ -249,10 +247,10 @@
 }
 
 @media (max-width: 576px){
-    /* .searchIcon{
+    .searchIcon{
         width: 5rem !important;
         margin-left: 1rem;
-    } */
+    }
     .search{
         margin-top: 3px;
     }
