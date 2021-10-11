@@ -299,7 +299,7 @@
     }
 }
 
-@media (max-width: 460px){
+@media (max-width: 576px){
     .misDatos{
         width: 100% !important;
     }    
@@ -313,11 +313,11 @@
     }
 }
 
-@media (max-width: 380px){
+/* @media (max-width: 380px){
     .misDatos .lbl,
     .misDatos .datos{
         font-size: 0.9rem !important;
     }
-}
+} */
 
 

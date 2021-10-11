@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Style from './Conductores.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
@@ -10,10 +10,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
-import { ImEye } from 'react-icons/im';
+import { ImBackward, ImEye } from 'react-icons/im';
 
 export default function Conductores() {
-
+    let history = useHistory();
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
@@ -68,13 +68,17 @@ export default function Conductores() {
         dispatch(filterConductores(drivers));
     }
     
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/back_office_administracion/asociados')
+    }
 
     return(
         <div>
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Conductores Asociado "XXX"</h3>
+                        <h3>Asociado "XXX" - Conductores</h3>
                     </div>
                     {drivers.length > 0 ?
                     <div className="col-12">                        
@@ -93,7 +97,7 @@ export default function Conductores() {
                                 <div className={`${Style.buttonsTwo} row justify-content-start justify-content-md-center justify-content-lg-end`}>
                                     <input autoFocus className={`${Style.search} col-md-2 col-lg-2`} type="text" placeholder="Buscar..."/>
                                     <FcSearch className={`${Style.searchIcon} col-md-1 col-lg-1`}/>
-                                    <button className={`${Style.inactives} col-md-2 col-lg-2`}>Ver inactivos</button>
+                                    <button onClick={(e)=>back(e)} className={`${Style.inactives} col-md-2 col-lg-2`}>Volver</button>
                                 </div>                                
                             </section>
                         </div>

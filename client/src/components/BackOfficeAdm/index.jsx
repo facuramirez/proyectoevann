@@ -155,16 +155,18 @@ export default function BackOfficeAdm() {
                             style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
                             ruta.includes('/mis_datos') ? {height:'87vh'}:
                             ruta.includes('/asociados/editar') ? {height:'70vh'}:
+                            ruta.includes('/asociados/conductores/detalles') ? {height:'100vh'}:
                             ruta.includes('/asociados') ? {height:'87vh'}:null
                             }
                         >
                             <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
-                                style={ruta.includes('/asociados/vehiculos/detalles') ? {height:'150%'}:
+                                style={ruta.includes('/asociados/vehiculos/detalles') ? {height:'150%'}:                                
                                 ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                ruta.includes('/conductores/detalles') ? {height:'105%'}:
                                 ruta.includes('/asociados') ? {height:'87vh'}:
                                 ruta.includes('/asociados/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
-                                ruta.includes('/mis_datos') ? {height:'100%'}:
+                                ruta.includes('/mis_datos') ? {height:'100%'}:                                
                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                 ruta.includes('/conductores') ? {height:'100%'}:
                                 ruta.includes('/usuarios') ? {height:'100%'}:
@@ -176,9 +178,10 @@ export default function BackOfficeAdm() {
                             <div className={`${Style.opaco} opaco`}
                                  style={ruta.includes('/vehiculos/detalles') ? {height:'150%'}:
                                  ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                 ruta.includes('/conductores/detalles') ? {height:'105%'}:
                                  ruta.includes('/asociados') ? {height:'87vh'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
-                                 ruta.includes('/mis_datos') ? {height:'100%'}:
+                                 ruta.includes('/mis_datos') ? {height:'100%'}:                                 
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                  ruta.includes('/conductores') ? {height:'100%'}:
                                  ruta.includes('/usuarios') ? {height:'100%'}:
