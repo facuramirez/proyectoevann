@@ -3,6 +3,80 @@
     background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
     height: 88vh;
 } */
+.misDatos{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    border: 1px solid rgb(54, 232, 210);
+    width: 90%;
+    height: 80%;
+    padding: 0px;
+    padding: 1rem;
+    margin: 0px auto;
+}
+
+.misDatos label{
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;
+    padding: 0.3rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    color: white;
+    margin-top: 0.5rem;
+    width: 40%;
+}
+
+.buttonsDetalle{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.divApprove,
+.divBack{
+    width: 15rem;
+}
+
+.approve{
+    margin: 0px auto;
+    font-size: 1.3rem;
+}
+
+.approve:focus{
+    box-shadow: none;    
+}
+
+.back{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;    
+    color: white;
+    font-size: 1.3rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    width: fit-content;
+    transition: all 300ms;
+}
+
+.back:hover{
+    color: #ccc;
+}
+
+.iconBack{
+    margin-right: 0.8vw;
+}
+
+.misDatos .lbl{
+    font-weight: bold;
+}
+
+.datos{
+    /* margin-left: 1rem; */
+    background-color: rgb(52, 58, 65) !important;
+}
 
 .title{
     color: white;
@@ -18,11 +92,12 @@
 
 .title h3{
     font-size: 2rem;
+    width:fit-content;
 }
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
-    width: 1rem;
+    width: 12vw;
 }
 
 .fondo{
@@ -55,7 +130,6 @@
     cursor: pointer;
 }
 
-
 .buttonsTwo .inactives,
 .add{
     border: none;
@@ -65,8 +139,9 @@
     color: white;
     font-size: 1.2rem;
     padding-top: 0.6vh;
-    padding-bottom: 0.8vh;
+    padding-bottom: 0.6vh;
     transition: all 300ms;
+    padding-bottom: 0.8vh;
     width: fit-content;
 }
 
@@ -78,14 +153,6 @@
 .buttonsTwo .inactives:hover,
 .add a:hover{
     color: #ccc;
-}
-
-
-.buttonsTwo .search,
-.buttonsTwo .searchIcon,
-.buttonsTwo .inactives{
-    width: fit-content;
-    font-size: 1rem;
 }
 
 .registers{
@@ -101,16 +168,16 @@
 }
 
 .select select:hover{
-    /* background-color: #ccc; */
+    background-color: #ccc;
     cursor: pointer;
 }
-/* 
+
 .select select:focus{
     background-color: #ccc;
-} */
+}
 
 .table{
-    height: fit-content;
+    height: 44.8vh;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -118,7 +185,6 @@
 
 .table::-webkit-scrollbar{
     width: 6px;
-    height: 6px;
     background-color: rgb(33, 37, 41);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -164,18 +230,6 @@
 
 .buttons a:hover .details{
     color:yellow;
-}
-
-.approve{
-    height: 2rem;
-    padding: 0px;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-
-.approve:focus{
-    outline: none;
-    box-shadow: none;
 }
 
 .noCars{
@@ -224,37 +278,38 @@
     color: rgb(54, 232, 210);
 }
 
-@media (max-width: 767px){
-    .buttonsTwo{
-        margin-top: 1rem;
+@media (max-width: 992px){
+    .misDatos{
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 700px){
+    .misDatos{
+        flex-flow: column wrap;
+        width: 80% !important;
+        align-items: center;
+        height: fit-content;
+    }
+    .misDatos label{
+        width: 90% !important;
+    }
+    .misDatos .lbl{
+        margin-top: 1rem !important;
+    }
+}
+
+@media (max-width: 460px){
+    .misDatos{
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 380px){
+    .misDatos .lbl,
+    .misDatos .datos{
+        font-size: 0.9rem !important;
     }
 }
 
 
-@media (max-width: 767px){
-    .buttonsTwo .search,
-    .buttonsTwo .inactives{
-        width: 30%;
-    }
-    .buttonsTwo .searchIcon{
-        width: 4rem;
-    }
-}
-
-@media (max-width: 472px){
-.buttonsTwo .search,
-    .buttonsTwo .inactives{
-        height: 40px;
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 578px){
-    .buttons a:nth-child(n+2){
-        margin-left: 5px;
-    }
-    
-    .buttons a svg{
-        font-size: 1rem;
-    }
-}

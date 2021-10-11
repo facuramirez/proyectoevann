@@ -99,7 +99,7 @@ export default function NewCarForm(){
                 text: 'Por favor complete los campos obligatorios antes de guardar',
                 icon: 'warning'
               })
-            document.querySelector('.inpPatente').focus();            
+            document.querySelector('#marca').focus();            
         }
     }
 
@@ -127,15 +127,15 @@ export default function NewCarForm(){
                     </div>
                     <div className={`${Style.formCar} col-11 mt-4`}>
                         <section className={`row justify-content-center m-auto`}>
-                            <div className={`col-11`}>
+                            <div className={`col-12`}>
                                 <div className={`row`}>
-                                    <label className={`${Style.asterisk} col-10`}>(los campos con (*) son obligatorios)</label>
+                                    <label className={`${Style.asterisk} col-12 text-left`}>(los campos con (*) son obligatorios)</label>
                                 </div>
                             </div>
                             
                             <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`col-sm-3 col-md-2 col-lg-2 text-start`}>Marca (*)</label>
+                                    <label className={`col-sm-3 col-md-2 col-lg-2 text-start`} id="marca">Marca (*)</label>
                                     <input className={`col-sm-9 col-md-4 col-lg-4 inpMarca`} type="text" onChange={(e)=>inputs(e)} value={form.marca} name="marca"/>
                                     <label className={`mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}>Modelo (*)</label>
                                     <input className={`mt-sm-2 mt-md-0 mt-lg-0 col-sm-9 col-md-4 col-lg-4 inpModelo`} type="text" onChange={(e)=>inputs(e)} value={form.modelo} name="modelo"/>
@@ -226,7 +226,7 @@ export default function NewCarForm(){
                                         <div className={`${Style.docsDivs} row`}>
                                             <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
                                             <label className={`${Style.labelDocs} mt-3`}>Seguro Responsabilidad Civil (*)</label>
-                                            <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Seguro de terceros (*)</label>
                                             <label className={`${Style.labelDocs} mt-3`}>Decreto 80 (*)</label>                                            
                                         </div>
                                         <div className={`${Style.docsDivs} row`}>

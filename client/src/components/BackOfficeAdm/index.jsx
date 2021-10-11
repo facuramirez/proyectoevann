@@ -159,7 +159,8 @@ export default function BackOfficeAdm() {
                             }
                         >
                             <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
-                                style={ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                style={ruta.includes('/asociados/vehiculos/detalles') ? {height:'150%'}:
+                                ruta.includes('/asociados/editar') ? {height:'135%'}:
                                 ruta.includes('/asociados') ? {height:'87vh'}:
                                 ruta.includes('/asociados/editar') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
@@ -170,10 +171,11 @@ export default function BackOfficeAdm() {
                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                 ruta.includes('/reclamos') ? {height:'100%'}:
                                 ruta.includes('/alertas') ? {height:'100%'}:null
-                                }
+                            }
                             />
                             <div className={`${Style.opaco} opaco`}
-                                 style={ruta.includes('/asociados/editar') ? {height:'135%'}:
+                                 style={ruta.includes('/vehiculos/detalles') ? {height:'150%'}:
+                                 ruta.includes('/asociados/editar') ? {height:'135%'}:
                                  ruta.includes('/asociados') ? {height:'87vh'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
                                  ruta.includes('/mis_datos') ? {height:'100%'}:

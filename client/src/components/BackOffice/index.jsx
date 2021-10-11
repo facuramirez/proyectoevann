@@ -101,7 +101,7 @@ export default function BackOffice() {
                                 </li>
                                 <li className="nav-item active">
                                     <a className="nav-link" href="" aria-current="page" onClick={(e)=>close(e)}>Cerrar Sesión</a>
-                                </li>                               
+                                </li>
                             </ul>                            
                         </div>                        
                     </div>
