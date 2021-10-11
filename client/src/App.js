@@ -48,7 +48,9 @@ function App() {
       <Route exact path="/back_office_administracion/asociados/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/asociados/vehiculos/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/asociados/conductores" component={BackOfficeAdm} /> 
-      <Route exact path="/back_office_administracion/asociados/conductores/detalles" component={BackOfficeAdm} /> 
+      <Route exact path="/back_office_administracion/asociados/conductores/detalles" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/asociados/viajes" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/asociados/viajes/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/vehiculos/nuevo_auto" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/vehiculos/detalle" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/usuarios" component={BackOfficeAdm} />

@@ -76,7 +76,8 @@ export default function Vehiculos({alto}) {
 
     const detailTravel = (e, id) => {
         e.preventDefault();
-        alert('Detalles Viaje ' +id);
+        // alert('Detalles Viaje ' +id);
+        history.push('/back_office_administracion/asociados/viajes')
     }
     
     const dropBox = (e) => {

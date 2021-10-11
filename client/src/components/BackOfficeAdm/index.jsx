@@ -7,6 +7,8 @@ import Asociados from '../Asociados';
 import AsociadosEditar from '../AsociadosEditar';
 import AsociadosVehiculos from '../AsociadosVehiculos';
 import AsociadosVehiculosDetalle from '../AsociadosVehiculosDetalle';
+import AsociadosViajes from '../AsociadosViajes';
+import AsociadosViajesDetalle from '../AsociadosViajesDetalle';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
@@ -237,12 +239,16 @@ export default function BackOfficeAdm() {
                                         <ConductoresDetailAdm />
                                     </Fade>
                                 :
-
-                                // ruta === '/back_office_administracion/conductores' ?
-                                //     <Fade>
-                                //         <ConductoresAdm />
-                                //     </Fade>
-                                // :
+                                ruta === '/back_office_administracion/asociados/viajes' ?
+                                    <Fade>
+                                        <AsociadosViajes />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/asociados/viajes/detalles' ?
+                                    <Fade>
+                                        <AsociadosViajesDetalle />
+                                    </Fade>
+                                :
                                 ruta === '/back_office_administracion/conductores/nuevo_conductor' ?
                                     <Fade>
                                         <NewConductorFormAdm />
