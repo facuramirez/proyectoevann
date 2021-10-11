@@ -206,6 +206,10 @@
     width: fit-content;
 }
 
+.search{
+    height: 2rem !important;
+}
+
 @media (min-width: 767px){
     .registers{
         width: fit-content;
@@ -218,12 +222,6 @@
         height: 2rem !important;
         
     }
-    /* .searchIcon{
-        width: fit-content;
-    }
-    .inactives{
-        width: fit-content;
-    } */
 }
 
 @media (max-width: 578px){

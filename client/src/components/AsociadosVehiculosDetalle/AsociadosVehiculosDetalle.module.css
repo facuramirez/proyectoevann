@@ -302,6 +302,14 @@
 @media (max-width: 460px){
     .misDatos{
         width: 100% !important;
+    }    
+    .divApprove,
+    .divBack{
+        width: 8.5rem !important;
+    }
+    .approve,
+    .back{
+        font-size: 0.9rem !important;
     }
 }
 

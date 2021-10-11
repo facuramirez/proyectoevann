@@ -310,10 +310,10 @@ export default function AsociadosEditar(){
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
-                                <h4 className={`col-1`}>Mail</h4>
-                                <input autoFocus className={`mail col-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                <h4 className={`${Style.repeatMailLabel} col-md-2 col-lg-2`}>Repetir Mail</h4>
-                                <input className={`${Style.repeatMail} repeatMail col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-md-1 col-lg-1`}>Mail</h4>
+                                <input autoFocus className={`col-md-4 col-lg-4 mt-1 mt-md-0 mt-lg-0 mail`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`${Style.repeatMailLabel} col-md-2 col-lg-2 mt-2 mt-md-0 mt-lg-0`}>Repetir Mail</h4>
+                                <input className={`${Style.repeatMail} repeatMail col-md-5 col-lg-5 mt-1 mt-md-0 mt-lg-0`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
                                 <div className={`row`}>
@@ -328,11 +328,11 @@ export default function AsociadosEditar(){
                                 : null                                
                             }
                             <div className={`row`}>
-                                <h4 className={`col-1`}>Clave</h4>
-                                <input className={`col-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-md-1 col-lg-1 mt-2 mt-md-2 mt-lg-2`}>Clave</h4>
+                                <input className={`col-md-5 col-lg-5 mt-1 mt-md-2 mt-lg-2 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                                 {/* <h1 className={`col-1`}></h1> */}
-                                <h4 className={`${Style.repeatPass} col-3`}>Repetir Clave</h4>
-                                <input className={`${Style.repeatPassInp} repeatPass col-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
+                                <h4 className={`${Style.repeatPass} col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Repetir Clave</h4>
+                                <input className={`${Style.repeatPassInp} col-md-4 col-lg-4 mt-1 mt-md-2 mt-lg-2 repeatPass`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
                             </div>
                             {error.clave && form.clave ?
                                 <div className={`row`}>
@@ -347,8 +347,8 @@ export default function AsociadosEditar(){
                                 : null                                
                             }
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-5 col-md-4 col-lg-4`}>Nombre del Administrador</h4>
-                                <input className={`${Style.inputLabel} col-sm-6 col-md-7 col-lg-7`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                <h4 className={`${Style.admLabel} col-sm-12 col-md-4 col-lg-4 mt-2 mt-md-2 mt-lg-2`}>Nombre del Administrador</h4>
+                                <input className={`${Style.inputLabel} col-sm-12 col-md-8 col-lg-8 mt-md-2 mt-lg-2`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.admin && form.admin ?
                                 <div className={`row`}>
@@ -357,12 +357,12 @@ export default function AsociadosEditar(){
                                 : null 
                             }                            
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Dirección</h4>
-                                <input className={`${Style.inputDir} col-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
+                                <h4 className={`col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Dirección</h4>
+                                <input className={`${Style.inputDir} col-md-10 col-lg-10 mt-md-2 mt-lg-2`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.fechaNac} col-4 mt-2`}>Fecha de Nacimiento</h4>
-                                <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                <h4 className={`${Style.fechaNac} col-md-4 col-lg-4 mt-2 mt-md-2 mt-lg-2`}>Fecha de Nacimiento</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} col-md-7 col-lg-7 mt-md-2 mt-lg-2 p-0`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -377,14 +377,12 @@ export default function AsociadosEditar(){
                                         }}
                                     />
                                 </form>
-
-                                {/* <input className={`${Style.inputFecha} col-7`} type="text" /> */}
                             </div>                            
                             <div className={`${Style.cel} row`}>
-                                <h4 className={`col-1`}>Celular1</h4>
-                                <input className={`${Style.celInp1} col-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
-                                <h4 className={`${Style.cel2} col-2`}>Celular2</h4>
-                                <input className={`${Style.celInp2} col-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Celular1</h4>
+                                <input className={`${Style.celInp1} col-md-4 col-lg-4 mt-md-2 mt-lg-2`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`${Style.cel2} col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Celular2</h4>
+                                <input className={`${Style.celInp2} col-md-4 col-lg-4 mt-md-2 mt-lg-2`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
                             </div>
                             {(error.cel1 && form.cel1 && error.cel2 && form.cel2) ?
                                 <div className={`row`}>
@@ -403,38 +401,13 @@ export default function AsociadosEditar(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
+                        <h5 className={``}>Complete el formulario para habilitar el botón...</h5>
                         <div className={`${Style.buttons} row w-75`}>
                             <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                            <button className={`col-3 mx-auto ${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                         </div>
                     </div>
-                </div>
-                {/* <div className={`${Style.formComplete}`}>
-                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
-                    <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
-                        </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                    </div>
-                    <div className={Style.info}>
-                        <div className={Style.box}>
-                            <h3>Más ingresos</h3>
-                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Nuestra App</h3>
-                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Pasajeros Vip</h3>
-                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
-                        </div>
-                    </div>            
-                                   
-                </div>                     */}
-                
+                </div>                
             </div>
         </div>
         </Fade>

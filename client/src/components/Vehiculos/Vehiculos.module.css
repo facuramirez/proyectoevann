@@ -215,6 +215,10 @@
     color: rgb(54, 232, 210);
 }
 
+.search{
+    height: 2rem !important;
+}
+
 @media (min-width: 767px){
     .registers{
         width: fit-content;
