@@ -10,8 +10,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import { useHistory } from 'react-router-dom';
 
 export default function ConductoresDetail() {
+
+    let history = useHistory();
+
     useEffect( () => {
 
     },[])
@@ -96,7 +100,7 @@ export default function ConductoresDetail() {
     
     
     useEffect( () => {
-        console.log('hola');
+        
     },[drivers])
     
     
@@ -119,12 +123,12 @@ export default function ConductoresDetail() {
         }
     }
     
+    const back = (e) => {
+        e.preventDefault();
+        history.push('/back_office_administracion/usuarios');
+    }
 
-    // =============================================================
-    
-   
-    console.log(drivers, 'ASDASD');
-    
+    // =============================================================    
 
     return(
         <div>
@@ -135,40 +139,33 @@ export default function ConductoresDetail() {
                         <p>Vehículo: DJU276</p>
                     </div>
                     {drivers.length > 0 ?
-                    <div>        
-                    <div className={`${Style.menu} col-12`}>
-                        <div className={`row justify-content-between`}>
-                            {/* <button className={`${Style.add} col-2`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button> */}
-                            <div className={`col-6`}>
-                                <div className={`${Style.buttonsTwo} row justify-content-end`}>
-                                    
-                                    {/* <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                                    <FcSearch className={`${Style.searchIcon} col-1`}/> */}
-                                    {/* <button className={`${Style.inactives} col-2`}>Ver inactivos</button> */}
+                    <div>
+                    
+                    <div className={`${Style.select} col-12 col-md-12 col-lg-12`}>
+                        <div className={`${Style.buttonsTwo} row mt-4`}>        
+                            <div className={`col-12 col-md-7 col-lg-7 text-end`}>
+                                <div className={`${Style.divRegisters} row`}>
+                                    <label className={`${Style.registers} col-7 col-md-6 col-lg-6 pt-1 m-0`}>Registros por página</label>
+                                    <div className={`${Style.divSelect} col-3 col-md-4 col-lg-4 text-start`}>                                    
+                                        <select className={`dropBox`} onChange={(e)=>dropBox(e)}>
+                                            <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
+                                            <option value="10" onChange={(e)=>dropBox(e)}>10</option>
+                                            <option value="20" onChange={(e)=>dropBox(e)}>20</option>
+                                        </select>
+                                    </div>
+                                    <label className={`${Style.selectLbl} col-7 col-md-6 col-lg-6 mt-1`}>Seleccionar todos</label>
+                                    <input className={`${Style.selectInp} col-3 col-md-4 col-lg-4 mt-1`} type="checkbox" id="checkAll" onClick={(e)=>selectAll(e)}/>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className={`${Style.select} col-12`}>
-                        <div className={`${Style.buttonsTwo} row justify-content-center mt-4 mb-3`}>                          
-                            
-                            <h6 className={`${Style.registers} col-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                            <select className={`dropBox col-1`} onChange={(e)=>dropBox(e)}>
-                                <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
-                                <option value="10" onChange={(e)=>dropBox(e)}>10</option>
-                                <option value="20" onChange={(e)=>dropBox(e)}>20</option>
-                            </select>
-                            <div className={`${Style.selectAll} col-4`}>
-                                <label >Seleccionar todos</label>
-                                <input type="checkbox" id="checkAll" onClick={(e)=>selectAll(e)}/>
+                            <div className="col-12 col-md-5 col-lg-5">
+                                <input autoFocus className={`${Style.search} col-3 col-md-2 col-lg-4 mt-3 mt-md-0 mt-lg-0`} type="text" placeholder="Buscar..."/>
+                                <FcSearch className={`${Style.searchIcon} col-2 col-md-1 col-lg-1 mt-3 mt-md-0 mt-lg-0`}/>
+                                <button className={`${Style.back} col-3 col-md-12 col-lg-12 mt-0 mt-md-1 mt-lg-1`} onClick={(e)=>back(e)}>Volver</button>
                             </div>
-                            <input autoFocus className={`${Style.search} col-2`} type="text" placeholder="Buscar..."/>
-                            <FcSearch className={`${Style.searchIcon} col-1`}/>
-                            
                         </div>
                     </div>
                     
-                    <div className={`${Style.table} col-12`}>     
+                    <div className={`${Style.table} col-12 mt-3`}>     
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>
@@ -184,13 +181,7 @@ export default function ConductoresDetail() {
                                     <td>{element.conductor}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <input className={`${Style.checkboxs}`} type="checkbox" id="checkUnit" />
-                                        {/* 
-                                        
-                                        defaultChecked={element['asignacion'] ? true:false}
-
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
-                                        {/* <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
+                
                                     </td>
                                 </tr>
                                 )                                
@@ -198,45 +189,7 @@ export default function ConductoresDetail() {
                             </tbody>
                         </Table>
 
-                        {/* <table className={`${Style.table} table table-bordered mt-3`}>                                
-                                <thead className={`${Style.tableHead}`}>                                
-                                    <tr>
-                                        <th>PATENTE</th>
-                                        <th>MARCA</th>
-                                        <th>MODELO</th>
-                                        <th>TIPO VEHÍCULO</th>
-                                        <th>OBSERVACIONES</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
-                            
-                                <tbody className={`${Style.tableBody}`}>
-                                    {
-                                    cars.map( (reg, index) => 
-                                        <tr key={index}>
-                                            <td>{reg.patente}</td>
-                                            <td>{reg.marca}</td>
-                                            <td>{reg.modelo}</td>
-                                            <td>{reg.tipo_veh}</td>
-                                            <td>{reg.observaciones}</td>
-                                            <td>
-                                                <button className={`btn ${Style.button}`}>
-                                                    Edit
-                                                </button>
-                                                <Link to={`/user${reg.id}`}>
-                                                <button className={`btn ${Style.button} btn-warning`}>
-                                                    View
-                                                </button>
-                                                </Link>
-
-                                                <Link>
-                                                    <button className={`btn ${Style.button} btn-danger`}>Delete</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    )}                                    
-                                </tbody>
-                            </table> */}
+                        
                     </div>
                     <div className={`${Style.pagination} col-12`}>
                         <ul className={`${Style.ulPagination}`}>

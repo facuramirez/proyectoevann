@@ -17,12 +17,22 @@
 }
 
 .title h3{
-    font-size: 1.8vw;
+    font-size: 2rem;
 }
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
-    width: 12vw;
+    width: fit-content;
+    font-size: 1rem;
+}
+
+.buttonsTwo .search{
+    font-size: 1rem !important;
+}
+
+.buttonsTwo .search{
+    width: 9rem;
+    padding-left: 0.7rem;
 }
 
 .buttonsTwo select{
@@ -38,26 +48,26 @@
 
 .buttonsTwo .search{
     outline: none;
-    width: 15vw;
     margin-right: 0.5vw;
     border: none;
     border-radius: 20px;
     border-bottom: 1px solid rgb(54, 232, 210);
 }
 
+
+
 .selectAll input{
     margin-left: 0.5rem;
 }
 
 .searchIcon{
-    font-size: 2vw;
-    width: fit-content;
+    font-size: 2.5rem !important;
+    width: 2.7rem;
     margin: 0px;
-    margin-top: 0.3vh;
     margin-right: 2vw;
-    height: 5.5vh;
-    padding-top: 0.5vh;
-    padding-bottom: 0.5vh;
+    height: 1.9rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     background-color: #ccc;
     box-shadow: 0px 0px 20px black inset;
     border-radius: 999px;
@@ -90,16 +100,20 @@
 }
 
 .registers{
-    width: fit-content;
     color: white;
 }
 
 .select select{
-    margin-left: 1vw;
     border-radius: 20px;
     outline: none;
     transition: all 300ms;
 }
+
+.selectInp{
+    width: 1rem;
+    margin-left: 1.5rem;
+}
+
 
 .select select:hover{
     background-color: #ccc;
@@ -217,3 +231,80 @@
 .liElements a:hover{
     color: rgb(54, 232, 210);
 }
+
+.search{
+    height: 2rem !important;
+    width: fit-content !important;
+}
+
+.divSelect select{
+    width: 3.5rem;
+    padding-left: 0.7rem;
+}
+
+.back{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;    
+    color: white;
+    font-size: 1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.3rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    text-decoration: none;
+    width: 5rem;
+    transition: all 300ms;
+    margin-right: 2rem;
+}
+
+.back:hover{
+    color: #ccc;
+}
+
+@media (max-width: 767px){    
+    .search{
+        height: 2rem !important;
+    }
+    .searchIcon{
+        margin: 0px !important;
+    }
+}
+
+@media (max-width: 578px){
+    .buttons a:nth-child(n+2){
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 576px){
+    .searchIcon{
+       margin: 0px !important;
+    }
+}
+
+@media (max-width: 450px){
+    .inactives{
+        margin-top: 1.2rem !important;
+    }
+    .tableH tr th:nth-child(n+2){
+        min-width: 10rem;
+    }
+}
+
+@media (max-width: 369px){
+    .registers,
+    .selectLbl{
+        font-size: 0.75rem;
+        width: fit-content;
+    }
+    .selectLbl,
+    .selectInp{
+        margin-top: 0.3rem;
+    }
+    .divSelect select{
+        font-size: 0.9rem;
+    }
+}
+
+

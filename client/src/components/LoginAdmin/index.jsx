@@ -176,18 +176,22 @@ export default function LoginAdmin(){
                 <img src={register} className={Style.registerOne}/>
                 <div className={Style.form}>
                 </div>
-                <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Iniciar sesión</h1>
-                    <div className={Style.formRegister}>
-                        <div className={Style.titleForm}>
-                            <h4>Iniciar sesión - Administración</h4>
-                            <h5>Tu usuario es tu mail</h5>
+                <div className={`${Style.formComplete} row`}>
+                    <h1 className={`${Style.title} col-12 mt-5 mt-sm-5 mt-md-5 mt-lg-5`}>Iniciar Sesión</h1>
+                    
+                    <div className={`${Style.formRegister} row p-3 mt-3 mt-sm-3 mt-md-3 mt-lg-3`}>
+                        <div className={`${Style.titleForm} col-12 col-sm-12 col-md-12 col-lg-12`}>
+                            <div className={`row`}>
+                                <h3 className={`${Style.iniciar} d-none d-sm-block d-md-block d-lg-block col-12 col-md-12 col-lg-12`}>Iniciar sesión - Administración</h3>
+                                <h3 className={`${Style.iniciar} d-block d-sm-none d-md-none d-lg-none col-12 col-md-12 col-lg-12`}>Administración</h3>
+                                <h5 className={`${Style.parragraph} col-12 col-md-12 col-lg-12`}>Tu usuario es tu mail</h5>
+                            </div>
                         </div>
 
-                        <div className={`${Style.data}`}>
+                        <div className={`${Style.data} col-12 col-md-12 col-lg-12`}>
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Mail</h4>
-                                <input autoFocus className={`mail col-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-2 col-sm-2 col-md-2 col-lg-2`}>Mail</h4>
+                                <input autoFocus className={`${Style.mailInp} mail col-12 col-sm-9 col-md-9 col-lg-9 mt-1 mt-sm-1 mt-md-0 mt-lg-0`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
                                 <div className={`row`}>
@@ -196,8 +200,8 @@ export default function LoginAdmin(){
                                 : null 
                             }
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Clave</h4>
-                                <input className={`col-9 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-2 col-sm-2 col-md-2 col-lg-2`}>Clave</h4>
+                                <input className={`${Style.claveInp} col-12 col-sm-9 col-md-9 col-lg-9 mt-1 mt-sm-1 mt-md-0 mt-lg-0 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             <span className={Style.here}>¿Olvidaste tu contraseña? click <Link to='/administracion/recuperar_contraseña'>Aquí</Link></span>
                             {/* {error.clave && form.clave ?
@@ -207,38 +211,15 @@ export default function LoginAdmin(){
                                 : null 
                             }                             */}
                         </div>
-                    </div>
-                    <div className={Style.containerSave}>
-                        <div className={`${Style.buttons} row w-75 `}>
-                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
+                        <div className={`${Style.containerSave} col-11 col-sm-11 col-md-11 col-lg-11 mt-3 mt-sm-4 mt-md-5 mt-lg-5`}>
+                            <div className={`${Style.buttons} row justify-content-center align-items-center`}>
+                                <button className={`col-3 col-md-3 col-lg-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                                <button className={`col-3 col-md-3 col-lg-3 ${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
-                {/* <div className={`${Style.formComplete}`}>
-                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
-                    <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
-                        </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                    </div>
-                    <div className={Style.info}>
-                        <div className={Style.box}>
-                            <h3>Más ingresos</h3>
-                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Nuestra App</h3>
-                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Pasajeros Vip</h3>
-                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
-                        </div>
-                    </div>            
-                                   
-                </div>                     */}
                 
             </div>
         </div>

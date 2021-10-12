@@ -11,6 +11,7 @@ import AsociadosViajes from '../AsociadosViajes';
 import AsociadosViajesDetalle from '../AsociadosViajesDetalle';
 import NewCarFormAdm from '../NewCarAdm/NewCarForm';
 import ConductoresAdm from '../ConductoresAdm';
+import ConductoresDetail from '../ConductoresDetail';
 import ConductoresDetailAdm from '../ConductoresDetailAdm';
 import NewConductorFormAdm from '../NewConductorAdm';
 import FacturasAdm from '../FacturasAdm';
@@ -154,12 +155,12 @@ export default function BackOfficeAdm() {
                 <section className={`${Style.details} d-sm-block d-md-block d-lg-block col-lg-10`}>
                     <div className={`row`}>                        
                         <div className={`${Style.pageOffice} col-12`}
-                            style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
-                            ruta.includes('/mis_datos') ? {height:'87vh'}:
-                            ruta.includes('/asociados/editar') ? {height:'70vh'}:
-                            ruta.includes('/asociados/conductores/detalles') ? {height:'100vh'}:
-                            ruta.includes('/asociados') ? {height:'87vh'}:null
-                            }
+                            // style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
+                            // ruta.includes('/mis_datos') ? {height:'87vh'}:
+                            // ruta.includes('/asociados/editar') ? {height:'70vh'}:
+                            // ruta.includes('/asociados/conductores/detalles') ? {height:'100vh'}:
+                            // ruta.includes('/asociados') ? {height:'87vh'}:null
+                            // }
                         >
                             <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
                                 style={ruta.includes('/asociados/vehiculos/detalles') ? {height:'150%'}:                                
@@ -171,6 +172,7 @@ export default function BackOfficeAdm() {
                                 ruta.includes('/mis_datos') ? {height:'100%'}:                                
                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                 ruta.includes('/conductores') ? {height:'100%'}:
+                                ruta.includes('/usuarios/detalles') ? {height:'105%'}:
                                 ruta.includes('/usuarios') ? {height:'100%'}:
                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                 ruta.includes('/reclamos') ? {height:'100%'}:
@@ -186,6 +188,7 @@ export default function BackOfficeAdm() {
                                  ruta.includes('/mis_datos') ? {height:'100%'}:                                 
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'100%'}:
                                  ruta.includes('/conductores') ? {height:'100%'}:
+                                 ruta.includes('/usuarios/detalles') ? {height:'105%'}:
                                  ruta.includes('/usuarios') ? {height:'100%'}:
                                  ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                  ruta.includes('/reclamos') ? {height:'100%'}:
@@ -266,7 +269,7 @@ export default function BackOfficeAdm() {
                                 :
                                 ruta === '/back_office_administracion/usuarios/detalles' ?
                                     <Fade>
-                                        <ConductoresDetailAdm />
+                                        <ConductoresDetail />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/reclamos' ?
