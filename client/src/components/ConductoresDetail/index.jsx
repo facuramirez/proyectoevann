@@ -160,7 +160,7 @@ export default function ConductoresDetail() {
                             <div className="col-12 col-md-5 col-lg-5">
                                 <input autoFocus className={`${Style.search} col-3 col-md-2 col-lg-4 mt-3 mt-md-0 mt-lg-0`} type="text" placeholder="Buscar..."/>
                                 <FcSearch className={`${Style.searchIcon} col-2 col-md-1 col-lg-1 mt-3 mt-md-0 mt-lg-0`}/>
-                                <button className={`${Style.back} col-3 col-md-12 col-lg-12 mt-0 mt-md-1 mt-lg-1`} onClick={(e)=>back(e)}>Volver</button>
+                                <button className={`${Style.back} col-3 col-md-12 col-lg-12 mt-2 mt-sm-1 mt-md-1 mt-lg-1`} onClick={(e)=>back(e)}>Volver</button>
                             </div>
                         </div>
                     </div>
