@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerVehiculos{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -225,10 +230,21 @@
     }
 }
 
-@media (max-width: 767px){    
+@media (max-width: 767px){
+    .containerVehiculos{
+        background-image: none;
+    }
     .search{
-        height: 2rem !important;
-        
+        height: 2rem !important;        
+    }
+    .containerVehiculos{
+        background-image: none;
+    }
+    .tableH tr th:nth-child(n+2){
+        min-width: 7rem;
+    }
+    .tableH tr th:nth-child(5){
+        min-width: 9rem;
     }
 }
 

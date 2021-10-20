@@ -295,7 +295,7 @@ export default function RegisterTwo(){
     return(
         <Fade>
         <div>
-            <div className={Style.containerRegister}>
+            <div className={Style.containerEditarMisDatos}>
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>

@@ -156,6 +156,10 @@ body{
     margin: 0px auto;
 }
 
+.pageOffice .image{
+    opacity: 0.7 !important;
+}
+
 @media (max-width: 767px){
     .buttonHamburguer span{
         font-size: 2rem !important;

@@ -153,13 +153,10 @@ export default function Vehiculos({alto}) {
                                             </div>
                                         </td>
                                     </tr>
-                                    )
-                                    
+                                    )                                    
                                     }
                                 </tbody>
-                            </Table>
-
-                            
+                            </Table>                            
                         </div>
                         <div className={`${Style.pagination} col-12`}>
                             <ul className={`${Style.ulPagination}`}>

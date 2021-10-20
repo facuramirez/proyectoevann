@@ -1,6 +1,8 @@
 .containerVehiculos{
-    margin: 0px auto;
-    height: 110vh !important;
+    /* margin: 0px auto;
+    height: 110vh !important; */
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
 }
 
 .asterisk{
@@ -64,6 +66,10 @@ input, select{
     text-align: center !important;
     height: 0.9rem !important;
     font-size: 0.9rem !important;
+}
+
+.buttons{
+    margin-bottom: 1rem;
 }
 
 .buttons a{
@@ -185,6 +191,9 @@ input, select{
 
 
 @media (max-width: 767px){
+    .containerVehiculos{
+        background-image: none;
+    }
     input{
         height: 1.4rem !important;
     }

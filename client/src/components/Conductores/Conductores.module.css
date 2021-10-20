@@ -3,6 +3,10 @@
     background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
     height: 88vh;
 } */
+.containerConductores{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
 
 .title{
     color: white;
@@ -95,7 +99,7 @@
 
 
 .table{
-    height: 44.8vh;
+    height: fit-content;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -209,6 +213,10 @@
     height: 2rem !important;
 }
 
+.tableH tr th:nth-child(3){
+    min-width: 12rem;
+}
+
 @media (min-width: 767px){
     .registers{
         width: fit-content;
@@ -218,8 +226,16 @@
 
 @media (max-width: 767px){    
     .search{
-        height: 2rem !important;
-        
+        height: 2rem !important;    
+    }
+    .containerConductores{
+        background-image: none;        
+    }
+    .tableH tr th:nth-child(n+2){
+        min-width: 10rem;
+    }
+    .tableH tr th:nth-child(3){
+        min-width: 15rem;
     }
 }
 

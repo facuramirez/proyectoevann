@@ -4,27 +4,17 @@ export const conductores =
 [
     {
         id: id++,
-        conductor: 'Juan Pablo',
+        conductor: 'Administrador',
         asignacion: false
     },
     {
         id: id++,
-        conductor: 'Francisco',
+        conductor: 'Moderador',
         asignacion: true
     },
     {
         id: id++,
-        conductor: 'Manuel',
+        conductor: 'Usuario',
         asignacion: true
-    },
-    {
-        id: id++,
-        conductor: 'Pedro',
-        asignacion: false
-    },
-    {
-        id: id++,
-        conductor: 'Marcelo',
-        asignacion: false
     }
 ];

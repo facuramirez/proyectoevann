@@ -70,11 +70,11 @@ export default function MisDatos() {
 
     return(
         <div>
-            <div className={`${Style.containerVehiculos} row containerVehiculos`}>
+            <div className={`${Style.containerMisDatos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Mis Datos</h3>
-                    </div>                   
+                    </div>
                     
                     <div>        
                         <div className={`${Style.menu} col-12 mt-4`}>

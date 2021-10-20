@@ -3,14 +3,21 @@
     background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
     height: 88vh;
 } */
+
+.containerMisDatos{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .misDatos{
     display: flex;
     flex-flow: row wrap;
     align-items: start;
     justify-content: space-evenly;
     border: 1px solid rgb(54, 232, 210);
-    width: 85vh;
-    height: 72%;
+    width: 80%;
+    margin: 0px auto;
+    height: fit-content;
     padding: 0px;
     padding: 1rem;
 }
@@ -234,13 +241,12 @@
 .liElements a:hover{
     color: rgb(54, 232, 210);
 }
-/* 
-@media (max-width: 677px){
-    .misDatos{
-        min-height: 100%;
-    }    
-} */
 
+@media (max-width: 776px){
+    .containerMisDatos{
+        background-image: none;
+    }
+}
 
 @media (max-width: 615px){
     .misDatos{

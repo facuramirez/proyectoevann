@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerViajes{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -226,10 +231,15 @@
     }
 }
 
-@media (max-width: 767px){    
+@media (max-width: 767px){
+    .containerViajes{
+        background-image: none;
+    }
     .search{
         height: 2rem !important;
-        
+    }
+    .tableH tr th:nth-child(n+2){
+        min-width: 10rem;
     }
 }
 

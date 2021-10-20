@@ -135,8 +135,8 @@ export default function ConductoresDetail() {
             <div className={`${Style.containerVehiculos} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Asignación de conductores</h3>
-                        <p>Vehículo: DJU276</p>
+                        <h3>Asignación de Roles</h3>
+                        <p>Usuario: "XXXXX"</p>
                     </div>
                     {drivers.length > 0 ?
                     <div>
@@ -170,7 +170,7 @@ export default function ConductoresDetail() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Conductor</th>
+                                    <th>Roles</th>
                                     <th>Asignación</th>
                                 </tr>
                             </thead>

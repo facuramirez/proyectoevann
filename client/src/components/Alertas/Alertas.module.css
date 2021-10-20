@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerAlertas{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -113,7 +118,7 @@
 } */
 
 .table{
-    height: 44.8vh;
+    height: fit-content;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -226,10 +231,21 @@
     }
 }
 
-@media (max-width: 767px){    
+@media (max-width: 767px){
+    .containerAlertas{
+        background-image: none;
+    }
     .search{
         height: 2rem !important;
-        
+    }
+    .tableH tr th:nth-child(2){
+        min-width: 11rem;
+    }
+    .tableH tr th:nth-child(3){
+        min-width: 11rem;
+    }
+    .tableH tr th:nth-child(4){
+        min-width: 7rem;
     }
 }
 
@@ -252,11 +268,5 @@
 @media (max-width: 450px){
     .inactives{
         margin-top: 1.2rem !important;
-    }
-    .tableH tr th:nth-child(n+3){
-        min-width: 10rem;
-    }
-    .tableH tr th:nth-child(2){
-        min-width: 12rem;
     }
 }

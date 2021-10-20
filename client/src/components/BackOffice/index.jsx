@@ -139,30 +139,31 @@ export default function BackOffice() {
                 <section className={`${Style.details} d-sm-block d-md-block d-lg-block col-lg-10`}>
                     <div className={`row`}>                        
                         <div className={`${Style.pageOffice} col-12`}
-                            style={ruta.includes('/mis_datos/editar') ? {height:'100vh'}:
-                            ruta.includes('/mis_datos') ? {height:'87vh'}:
-                            ruta.includes('/vehiculos/nuevo_auto') ? {height:'100vh'}:
-                            ruta.includes('/vehiculos') ? {height:'87vh'}:null
-                            }
+                            // style={ruta.includes('/mis_datos/editar') ? {height:'100vh'}:
+                            // ruta.includes('/mis_datos') ? {height:'87vh'}:
+                            // ruta.includes('/vehiculos/nuevo_auto') ? {height:'100vh'}:
+                            // ruta.includes('/vehiculos') ? {height:'87vh'}:null
+                            // }
                         >
-                            <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
+                            {/* <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
                                 style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
                                 ruta.includes('/vehiculos') ? {height:'100%'}:
                                 ruta.includes('/mis_datos/editar') ? {height:'100%'}:
-                                ruta.includes('/mis_datos') ? {height:'100%'}:
+                                ruta.includes('/mis_datos') ? {height:'fit-content', minHeight: '100%', maxHeight: '120%'}:
                                 ruta.includes('/conductores/nuevo_conductor') ? {height:'115%'}:
-                                ruta.includes('/conductores') ? {height:'100%'}:
+                                ruta.includes('/conductores') ? {height:'fit-content', minHeight: '100vh', maxHeight: 'fit-content'}:
                                 ruta.includes('/viajes') ? {height:'100%'}:
                                 ruta.includes('/facturas_y_pagos') ? {height:'100%'}:
                                 ruta.includes('/reclamos') ? {height:'100%'}:
                                 ruta.includes('/alertas') ? {height:'100%'}:null
                                 }
-                            />
-                            <div className={`${Style.opaco} opaco`}
+                            /> */}
+
+                            {/* <div className={`${Style.opaco} opaco`}
                                  style={ruta.includes('/vehiculos/nuevo_auto') ? {height:'135%'}:
                                  ruta.includes('/vehiculos') ? {height:'100%'}:
                                  ruta.includes('/mis_datos/editar') ? {height:'100%'}:
-                                 ruta.includes('/mis_datos') ? {height:'100%'}:
+                                 ruta.includes('/mis_datos') ? {height:'fit-content'}:
                                  ruta.includes('/conductores/nuevo_conductor') ? {height:'115%'}:
                                  ruta.includes('/conductores') ? {height:'100%'}:
                                  ruta.includes('/viajes') ? {height:'100%'}:
@@ -170,7 +171,7 @@ export default function BackOffice() {
                                  ruta.includes('/reclamos') ? {height:'100%'}:
                                  ruta.includes('/alertas') ? {height:'100%'}:null
                                  }
-                            ></div>
+                            ></div> */}
                             <div className={`${Style.divOffice} row`}>
                                 {
                                 ruta === '/back_office' ?
