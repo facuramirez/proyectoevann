@@ -70,7 +70,7 @@ export default function Conductores() {
     
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/asociados')
+        history.push('/back_office_administracion/pendientes_aprobacion')
     }
     
     return(
@@ -133,7 +133,7 @@ export default function Conductores() {
                                         {/* <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a> */}
                                         {/* <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
-                                        <Link to="/back_office_administracion/asociados/conductores/detalles"><ImEye className={Style.details}/></Link>
+                                        <Link to="/back_office_administracion/pendientes_aprobacion/conductores/detalles"><ImEye className={Style.details}/></Link>
                                     </td>
                                 </tr>
                                 )

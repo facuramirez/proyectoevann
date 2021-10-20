@@ -111,7 +111,7 @@ export default function Viajes() {
 
     return(
         <div>
-            <div className={`${Style.containerVehiculos} row containerVehiculos`}>
+            <div className={`${Style.containerAdmUsuarios} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0 flex-column`}>
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Administración de Usuarios</h3>
@@ -162,7 +162,7 @@ export default function Viajes() {
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <Link to="/back_office_administracion/usuarios/detalles"><RiLockPasswordLine className={Style.edit}/></Link>
+                                        <Link to="/back_office_administracion/usuarios/roles"><RiLockPasswordLine className={Style.edit}/></Link>
                                         {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                         <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                                     </td>

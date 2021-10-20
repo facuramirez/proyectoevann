@@ -94,7 +94,7 @@ export default function Vehiculos({alto}) {
 
     return(
         <div>
-            <div className={`${Style.containerVehiculos} row containerVehiculos`}>
+            <div className={`${Style.containerAsociados} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Asociados</h3>
@@ -119,7 +119,7 @@ export default function Vehiculos({alto}) {
                                     {/* <button className={`${Style.inactives} col-5 col-sm-5 col-md-2 col-lg-2 mt-0 mt-sm-0 mt-md-0 mt-lg-0`}>Ver inactivos</button> */}
                                 </div>                                
                             </section>
-                        </div>                      
+                        </div>
                     
                         <div className={`${Style.table} col-12`}>     
                             <Table striped bordered hover variant="dark">
@@ -147,9 +147,9 @@ export default function Vehiculos({alto}) {
                                                 <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                                 <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                                 <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
-                                                <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
+                                                {/* <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
                                                 <Link to="/back_office_administracion/asociados/conductores"><FiUsers className={Style.conductores}/></Link>
-                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
+                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
                                             </div>
                                         </td>
                                     </tr>

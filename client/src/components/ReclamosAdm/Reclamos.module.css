@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerReclamosAdm{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -113,7 +118,7 @@
 } */
 
 .table{
-    height: 44.8vh;
+    height: fit-content;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -226,7 +231,10 @@
     }
 }
 
-@media (max-width: 767px){    
+@media (max-width: 767px){
+    .containerReclamosAdm{
+        background-image: none;
+    }
     .search{
         height: 2rem !important;
         

@@ -18,6 +18,7 @@ import FacturasAdm from '../FacturasAdm';
 import AdmUsuarios from '../AdmUsuarios';
 import ReclamosAdm from '../ReclamosAdm';
 import AlertasAdm from '../AlertasAdm';
+import PendientesAprobacion from '../PendientesAprobacion';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
 import PasswordAdmin from '../PasswordAdmin';
@@ -105,6 +106,9 @@ export default function BackOfficeAdm() {
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/alertas">Alertas</Link>
                                 </li>
+                                <li className={`nav-item active d-md-block d-lg-none`}>
+                                    <Link to="/back_office_administracion/pendientes_aprobacion">Pendientes de aprobación</Link>
+                                </li>
                                 <li className="nav-item active">
                                     <a className="nav-link" href="" aria-current="page" onClick={(e)=>close(e)}>Cerrar Sesión</a>
                                 </li>
@@ -148,6 +152,9 @@ export default function BackOfficeAdm() {
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/alertas">Alertas</Link>
                             </div>
+                            <div className={`${Style.options} col-12`}>
+                                <Link to="/back_office_administracion/pendientes_aprobacion">Pendientes de aprobación</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,7 +169,7 @@ export default function BackOfficeAdm() {
                             // ruta.includes('/asociados') ? {height:'87vh'}:null
                             // }
                         >
-                            <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
+                            {/* <img src={image} className={`${Style.image} imageDom d-md-block d-lg-block`}
                                 style={ruta.includes('/asociados/vehiculos/detalles') ? {height:'150%'}:                                
                                 ruta.includes('/asociados/editar') ? {height:'135%'}:
                                 ruta.includes('/conductores/detalles') ? {height:'105%'}:
@@ -178,8 +185,8 @@ export default function BackOfficeAdm() {
                                 ruta.includes('/reclamos') ? {height:'100%'}:
                                 ruta.includes('/alertas') ? {height:'100%'}:null
                             }
-                            />
-                            <div className={`${Style.opaco} opaco`}
+                            /> */}
+                            {/* <div className={`${Style.opaco} opaco`}
                                  style={ruta.includes('/vehiculos/detalles') ? {height:'150%'}:
                                  ruta.includes('/asociados/editar') ? {height:'135%'}:
                                  ruta.includes('/conductores/detalles') ? {height:'105%'}:
@@ -194,7 +201,7 @@ export default function BackOfficeAdm() {
                                  ruta.includes('/reclamos') ? {height:'100%'}:
                                  ruta.includes('/alertas') ? {height:'100%'}:null
                                  }
-                            ></div>
+                            ></div> */}
                             <div className={`${Style.divOffice} row`}>
                             {
                                 ruta === '/back_office_administracion' ?
@@ -217,7 +224,7 @@ export default function BackOfficeAdm() {
                                         <AsociadosEditar />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/vehiculos' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/vehiculos' ?
                                     <Fade>
                                         <AsociadosVehiculos />
                                     </Fade>
@@ -227,27 +234,27 @@ export default function BackOfficeAdm() {
                                         <NewCarFormAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/vehiculos/detalles' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/vehiculos/detalles' ?
                                     <Fade>
                                         <AsociadosVehiculosDetalle />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/conductores' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/conductores' ?
                                     <Fade>
                                         <ConductoresAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/conductores/detalles' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/conductores/detalles' ?
                                     <Fade>
                                         <ConductoresDetailAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/viajes' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/viajes' ?
                                     <Fade>
                                         <AsociadosViajes />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/asociados/viajes/detalles' ?
+                                ruta === '/back_office_administracion/pendientes_aprobacion/viajes/detalles' ?
                                     <Fade>
                                         <AsociadosViajesDetalle />
                                     </Fade>
@@ -267,7 +274,7 @@ export default function BackOfficeAdm() {
                                         <AdmUsuarios />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/usuarios/detalles' ?
+                                ruta === '/back_office_administracion/usuarios/roles' ?
                                     <Fade>
                                         <ConductoresDetail />
                                     </Fade>
@@ -282,6 +289,11 @@ export default function BackOfficeAdm() {
                                         <AlertasAdm />
                                     </Fade>
                                 :
+                                ruta === '/back_office_administracion/pendientes_aprobacion' ?
+                                <Fade>
+                                    <PendientesAprobacion />
+                                </Fade>
+                            :
                                 ruta === '/back_office_administracion/mis_datos' ?
                                     <Fade>
                                         <MisDatosAdm />

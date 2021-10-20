@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Style from './Reclamos.module.css';
+import Style from './PendientesAprobacion.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -11,25 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
+import { FaRoute } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
+import { editAssociated } from '../../globalState/Actions';
 
 
-export default function Reclamos() {
-
-   
-    let [form, setForm] = useState({
-        nroReclamo: '',
-        cliente: '',
-        fecha_hora: '',
-        estado: ''
-    });
-
-    let [error, setError] = useState({
-        nroReclamo: 'Error',
-        cliente: 'Error',
-        fecha_hora: 'Error',
-        estado: 'Error'
-    });
-
+export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
 
@@ -58,21 +45,41 @@ export default function Reclamos() {
         dispatch(initialGetCars(autos));
     }, [autos])
 
-    const editCar = (e, nro) => {
+    let history = useHistory();
+    
+    const editCar = (e, id) => {
         e.preventDefault();
-       alert('Reclamo nro ' + nro);
+       let asociado = cars.find((e) => e.id === id);
+       dispatch(editAssociated(asociado));
+       history.push('/back_office_administracion/asociados/editar')
     }
 
     const deleteCar = (e, id) => {
         e.preventDefault();
-        alert('Eliminando car ' +id);
+        alert('Eliminando Car ' +id);
+    }
+
+    const detailAsoc = (e, id) => {
+        e.preventDefault();
+        alert('Detalles Asociado ' +id);
     }
 
     const detailCar = (e, id) => {
         e.preventDefault();
-        alert('Detalles car ' +id);
+        alert('Detalles Car ' +id);
     }
 
+    const detailConductores = (e, id) => {
+        e.preventDefault();
+        alert('Detalles Conductores ' +id);
+    }
+
+    const detailTravel = (e, id) => {
+        e.preventDefault();
+        // alert('Detalles Viaje ' +id);
+        history.push('/back_office_administracion/pendientes_aprobacion/viajes')
+    }
+    
     const dropBox = (e) => {
         e.preventDefault();
 
@@ -83,38 +90,14 @@ export default function Reclamos() {
         setCurrentPage(1);
         dispatch(filterCars(cars));
     }
-
-    const inputs = (e) => {
-        e.preventDefault();
-        let name = e.target.name;
-        let value = e.target.value;
-
-        setForm({
-            ...form,
-            [name]: value
-        })
-
-        if(value === '') {
-            setError({
-                ...error,
-                [name]: 'Error'
-            })
-        } else {
-            setError({
-                ...error,
-                [name]: ''
-            })
-        }
-        console.log(form, 'form');   
-    }
     
 
     return(
         <div>
-            <div className={`${Style.containerReclamosAdm} row containerVehiculos`}>
+            <div className={`${Style.containerPendientes} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
-                        <h3>Reclamos</h3>
+                        <h3>Pendientes de Aprobación</h3>
                     </div>
                     {cars.length > 0 ?
                     <div className="col-12">                        
@@ -138,52 +121,56 @@ export default function Reclamos() {
                             </section>
                         </div>
                     
-                    <div className={`${Style.table} col-12`}>     
-                        <Table striped bordered hover variant="dark">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nro Reclamo</th>
-                                    <th>Cliente</th>
-                                    <th>Fecha y Hora</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cars.map( (element, index) =>
-                               
-                                <tr key={index}>
-                                    <td>{element.id}</td>
-                                    <td className={Style.nroReclamo}>{element.nroReclamo}</td>
-                                    <td className={Style.cliente}>{element.cliente}</td>
-                                    <td className={Style.fechaYhora}>{element.fecha_hora}</td>
-                                    <td>{element.estado}</td>
-                                    <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.nroReclamo)}><ImEye className={Style.edit}/></a>
-                                        {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
-                                    </td>
-                                </tr>
-                                )
+                        <div className={`${Style.table} col-12`}>     
+                            <Table striped bordered hover variant="dark">
+                                <thead>
+                                    <tr className={`${Style.tableH} col-12`}>  
+                                        <th>#</th>
+                                        <th>Mail</th>
+                                        <th className={`${Style.nombre}`}>Nombre</th>
+                                        {/* <th>Direccion</th>
+                                        <th>Fecha de Nacimiento</th> */}
+                                        <th className={`${Style.acciones}`}>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody className={`${Style.tableB} col-12`}>  
+                                    {cars.map( (element, index) =>
                                 
-                                }
-                            </tbody>
-                        </Table>
+                                    <tr key={index}>
+                                        <td>{element.id}</td>
+                                        <td>{element.mail}</td>
+                                        <td>{element.nombre}</td>
+                                        {/* <td>{element.direccion}</td>
+                                        <td>{element.fechaNac}</td> */}
+                                        <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                            <div>
+                                                <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos"><AiFillCar className={Style.car}/></Link>
+                                                <Link to="/back_office_administracion/pendientes_aprobacion/conductores"><FiUsers className={Style.conductores}/></Link>
+                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    )                                    
+                                    }
+                                </tbody>
+                            </Table>                            
+                        </div>
+                        <div className={`${Style.pagination} col-12`}>
+                            <ul className={`${Style.ulPagination}`}>
+                                {pageNumbers.map(number => (
+                                    <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
+                                        <a href="">{number}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div> 
                     </div>
-                    <div className={`${Style.pagination} col-12`}>
-                        <ul className={`${Style.ulPagination}`}>
-                            {pageNumbers.map(number => (
-                                <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
-                                    <a href="">{number}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div> 
-                    </div>:<div>
+                    :
+                    <div>
                         <br/>   
                         <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
-                        </div>}
+                    </div>
+                    }
                 </div>
             </div>            
         </div>

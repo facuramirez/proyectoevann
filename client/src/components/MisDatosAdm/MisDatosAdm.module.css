@@ -15,8 +15,9 @@
     align-items: start;
     justify-content: space-evenly;
     border: 1px solid rgb(54, 232, 210);
-    width: 85vh;
-    height: 72%;
+    width: 80%;
+    margin: 0px auto;
+    height: fit-content;
     padding: 0px;
     padding: 1rem;
 }
@@ -240,19 +241,19 @@
 .liElements a:hover{
     color: rgb(54, 232, 210);
 }
-/* 
-@media (max-width: 677px){
-    .misDatos{
-        min-height: 100%;
-    }    
-} */
+
+@media (max-width: 776px){
+    .containerMisDatosAdm{
+        background-image: none;
+    }  
+}
 
 
 @media (max-width: 615px){
     .misDatos{
         flex-flow: column wrap;
         align-items: center;
-        height: 110vh;
+        height: fit-content;
     }
     .misDatos label{
         width: 80% !important;

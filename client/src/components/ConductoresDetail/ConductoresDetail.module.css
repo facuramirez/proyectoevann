@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerDetail{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -116,13 +121,13 @@
 
 
 .select select:hover{
-    background-color: #ccc;
+    /* background-color: #ccc; */
     cursor: pointer;
 }
 
-.select select:focus{
+/* .select select:focus{
     background-color: #ccc;
-}
+} */
 
 .table{
     height: fit-content;

@@ -4,6 +4,11 @@
     height: 88vh;
 } */
 
+.containerAsociados{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+}
+
 .title{
     color: white;
     width: fit-content;
@@ -243,7 +248,10 @@
     }    
 }
 
-@media (max-width: 767px){    
+@media (max-width: 767px){   
+    .containerAsociados{
+        background-image: none;
+    } 
     .search{
         height: 2rem !important;
         

@@ -76,7 +76,7 @@ export default function AsociadosVehiculosDetalle() {
 
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/asociados/vehiculos');
+        history.push('/back_office_administracion/pendientes_aprobacion/vehiculos');
         window.scrollTo(0, 0);
     }
 

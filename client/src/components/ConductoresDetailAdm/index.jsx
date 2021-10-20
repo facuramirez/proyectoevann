@@ -76,13 +76,13 @@ export default function ConductoresDetailAdm() {
 
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/asociados/conductores');
+        history.push('/back_office_administracion/pendientes_aprobacion/conductores');
         window.scrollTo(0, 0);
     }
 
     return(
         <div>
-            <div className={`${Style.containerVehiculos} row containerVehiculos`}>
+            <div className={`${Style.containerRoles} row containerVehiculos`}>
                 <div className={`${Style.fondo} row m-0`}>
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Asociado "XXX" - Conductor "XXX" </h3>

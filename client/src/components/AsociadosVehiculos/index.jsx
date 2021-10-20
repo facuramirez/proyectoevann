@@ -70,7 +70,7 @@ export default function VehiculosAsociados({alto}) {
     
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/asociados')
+        history.push('/back_office_administracion/pendientes_aprobacion')
 
     }
 
@@ -127,7 +127,7 @@ export default function VehiculosAsociados({alto}) {
                                     {/* <td>{element.tipo_veh}</td> */}
                                     {/* <td>{element.observaciones}</td> */}
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <Link to="/back_office_administracion/asociados/vehiculos/detalles"><ImEye className={Style.details}/></Link>
+                                        <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles"><ImEye className={Style.details}/></Link>
                                     </td>
                                 </tr>
                                 )

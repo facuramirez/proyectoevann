@@ -76,7 +76,7 @@ export default function AsociadosViajesDetalle() {
 
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/asociados/viajes');
+        history.push('/back_office_administracion/pendientes_aprobacion/viajes');
         window.scrollTo(0, 0);
     }
 

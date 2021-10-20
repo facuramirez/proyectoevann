@@ -295,7 +295,7 @@ export default function EditarMisDatosAdm(){
     return(
         <Fade>
         <div>
-            <div className={Style.containerRegister}>
+            <div className={Style.containerEditarMisDatosAdm}>
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
