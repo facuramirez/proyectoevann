@@ -30,7 +30,7 @@ export default function NavBar() {
             <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                 <div className="container-fluid">
                     <Link to="/" className={Style.linkImg}>
-                        <motion.img src={evann} className={`${Style.imageEvann}`} 
+                        <motion.img src={evann} className={`${Style.imageEvann}`}
                             variants={imgVariants}
                             initial='hidden'
                             animate='visible'

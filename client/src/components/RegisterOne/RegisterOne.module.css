@@ -1,5 +1,8 @@
 .containerRegister{
     position: relative;
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: 100% 100%;
+    min-height: 110vh !important;
 }
 
 .registerOne{
@@ -19,9 +22,8 @@
 .formComplete{
     position: absolute;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     align-items: center;
-    flex-direction: column;
     width: 64vw;
     height: 100%;
     top: 0vw;
@@ -30,7 +32,7 @@
 
 .title{
     margin-top: 11%;
-    font-size: 3vw;
+    font-size: 2rem;
     color: white;
 }
 
@@ -39,14 +41,14 @@
     flex-direction: column;
     border: 1px solid rgb(54, 232, 210);
     width: 75%;
-    height: 40%;
+    min-height: 40%;
     text-align: justify;
+    padding-bottom: 1rem
 }
 
 .description{    
     width: 100%;
-    height: 55%;
-    font-size: 1.3vw;
+    font-size: 1rem;
     color: white;
     padding: 20px;
     padding-left: 10%;
@@ -55,8 +57,11 @@
 
 
 .linkRegister{
-    width: 40%;
-    font-size: 2vw;
+    width: fit-content;
+    font-size: 2rem;
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     color: black;
     text-decoration: none;
     background-color: rgb(54, 232, 210);
@@ -72,7 +77,7 @@
 
 .here{
     margin-top: 2%;
-    font-size: 1.2vw;
+    font-size: 1rem;
     color: white;
     align-self: center;
 }
@@ -88,6 +93,7 @@
 
 .info{
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     width: 90%;
 }
@@ -104,11 +110,11 @@
 }
 
 .box h3{
-    font-size: 1.8vw;
+    font-size: 1.5rem;
 }
 
 .box .textBox{
-    font-size: 1vw;
+    font-size: 0.7rem;
     height: 10%;
 }
 
@@ -121,6 +127,76 @@
     }
 }
 
-@media (max-width: 1088px){
+@media(max-width: 992px){
+    .linkRegister{
+        font-size: 1.5rem;
+    }
+}
 
+
+@media (max-width: 767px){    
+    .containerRegister{
+        background-image: none;
+    }
+    .containerRegister .form{
+        display: none;
+        left: 0px;        
+        position: absolute;
+        background-color: rgb(60, 60, 58);
+        opacity: 0.8;
+        width: 100%;
+        height: 100%;
+    }    
+    .containerRegister .formRegister{
+        margin-top: 1rem;
+        width: 100%;
+        text-align: left;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .containerRegister .formComplete{
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 97%;
+        top: 0vw;
+        left: 1rem;
+        right: 1rem;
+        margin: 0px auto
+    }
+}
+
+@media (max-width: 500px){    
+    .containerRegister{      
+        min-height: 120vh !important;
+    }
+    .containerRegister .linkRegister{
+        font-size: 1.2rem;
+    }
+    .containerRegister .info{
+        flex-flow: row wrap;
+    }
+    .containerRegister .contentDescription{
+        margin-top: 1rem;
+        padding: 1rem !important;
+    }
+    .containerRegister .contentDescription .description{
+        font-size: 0.9rem !important;
+    }
+    .containerRegister .contentDescription .linkRegister{
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    .containerRegister .contentDescription .here{
+        font-size: 0.8rem !important;
+    }
+    .containerRegister .formComplete .info{
+        margin-top: 1rem;
+    }
+    .containerRegister .formComplete .info .box{
+        /* margin-top: 9%;
+        justify-content: center; */
+        width: 90%;
+    }
 }

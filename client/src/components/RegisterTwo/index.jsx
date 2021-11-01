@@ -379,8 +379,8 @@ export default function RegisterTwo(){
                         </div>
                         <div className={`${Style.data}`}>
                             <div className={`row`}>                        
-                                <h4 className={`col-sm-3 col-md-2 col-lg-2`}>Mail</h4>
-                                <input autoFocus className={`mail col-11 col-sm-8 col-md-9 col-md-9 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Mail</h4>
+                                <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                                 {error.mail && form.mail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
@@ -389,8 +389,8 @@ export default function RegisterTwo(){
                                 }
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.repeatMailLabel} col-sm-4 col-md-3 col-lg-2`}>Repetir Mail</h4>
-                                <input className={`${Style.repeatMail} repeatMail col-11 col-sm-7 col-md-8 col-lg-9`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`${Style.repeatMailLabel} col-sm-3 col-md-3 col-lg-2`}>Repetir Mail</h4>
+                                <input className={`${Style.repeatMail} repeatMail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             {!error.mail && !email.repeat && form.repeatMail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts2} col-9`}>Debe repetir exactamente el correo colocado</h5>
@@ -399,8 +399,8 @@ export default function RegisterTwo(){
                             }
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-3 col-md-2 col-lg-2`}>Nombre</h4>
-                                <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-9 col-lg-9`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Nombre</h4>
+                                <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.admin && form.admin ?
                                 <div className={`row`}>

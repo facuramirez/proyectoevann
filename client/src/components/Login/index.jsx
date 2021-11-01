@@ -140,7 +140,7 @@ export default function Login(){
             password: form.clave
         }
 
-        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/4/approve`)
+        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/4/approve/`)
         .then(response => {
             console.log(response.data, 'RESPONSE');
         })
@@ -148,7 +148,7 @@ export default function Login(){
             console.log(error);
         })
 
-        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login`, data)
+        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(response => {
             console.log(response.data, 'RESPONSE');
         })
@@ -179,10 +179,11 @@ export default function Login(){
     return(
         <Fade>
         <div>
-            <div className={Style.containerRegister}>            
-                <img src={register} className={Style.registerOne}/>
+            <div className={Style.containerRegister}>      
+                {/* <img src={register} className={Style.registerOne}/> */}
                 <div className={Style.form}>
                 </div>
+
                 <div className={`${Style.formComplete}`}>
                     <h1 className={Style.title}>Iniciar sesión</h1>
                     <div className={Style.formRegister}>
@@ -202,7 +203,7 @@ export default function Login(){
                                 </div>
                                 : null 
                             }
-                            <div className={`row`}>
+                            <div className={`row mt-3`}>
                                 <h4 className={`col-2`}>Clave</h4>
                                 <input className={`col-9 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                             </div>
@@ -215,37 +216,12 @@ export default function Login(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <div className={`${Style.buttons} row w-75 `}>
-                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
+                        <div className={`${Style.buttons} row d-flex justify-content-center`}>
+                            <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`${Style.save}`} onClick={(e)=>login(e)}>Ingresar</button>
                         </div>
                     </div>
-                </div>
-                {/* <div className={`${Style.formComplete}`}>
-                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
-                    <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
-                        </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                    </div>
-                    <div className={Style.info}>
-                        <div className={Style.box}>
-                            <h3>Más ingresos</h3>
-                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Nuestra App</h3>
-                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Pasajeros Vip</h3>
-                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
-                        </div>
-                    </div>            
-                                   
-                </div>                     */}
-                
+                </div>                
             </div>
         </div>
         </Fade>

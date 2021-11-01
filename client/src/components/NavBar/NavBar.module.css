@@ -32,12 +32,14 @@
     color: white !important;
     background-color: rgb(54, 232, 210);
     border-radius: 20px;
-    padding: 0px;
+    padding: 0.1rem 1rem 0.1rem 1rem !important;
+    /* padding: 0px;
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 2px !important;
-    padding-bottom: 2px !important;
-    font-size: 1.5vw !important;
+    padding-bottom: 2px !important; */
+    font-size: 1rem !important;
+    width: fit-content !important;
 }
 
 .linkLogin:hover{
@@ -53,9 +55,8 @@
         margin-left: 0%;
     }
     .linkLogin{
-        width: 20vw;
-        margin-left: 40vw;
-        margin-top: 2vh;
+        margin: 0px auto;
+        margin-top: 0.7rem;
     }
     .linkImg{
         margin-left: 40vw;
