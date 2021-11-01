@@ -12,6 +12,7 @@ import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
+import axios from '../../axiosConfig';
 
 
 export default function RegisterTwo(){
@@ -50,6 +51,8 @@ export default function RegisterTwo(){
         repeat: false
     });
     
+    let prueba = Object.keys(form);
+    
     // window.onload = function() {
     //     let repeat = document.querySelector('.repeatMail');
     //     let repeat2 = document.querySelector('.repeatPass');
@@ -70,10 +73,10 @@ export default function RegisterTwo(){
         let name = e.target.name;
         
         inputRepeatEmail = document.querySelector('.repeatMail');
-        inputRepeatPass = document.querySelector('.repeatPass');
+        // inputRepeatPass = document.querySelector('.repeatPass');
 
         let repeat = document.querySelector('.repeatMail');
-        let repeat2 = document.querySelector('.repeatPass');
+        // let repeat2 = document.querySelector('.repeatPass');
         
         repeat.onpaste = (e) => {
             e.preventDefault();
@@ -84,14 +87,14 @@ export default function RegisterTwo(){
             })
         }
         
-        repeat2.onpaste = (e) => {
-            e.preventDefault();
-            swal({
-                title: 'Acción inválida!',
-                text: 'Por favor repita su clave manualmente',
-                icon: 'warning'
-            })
-        }
+        // repeat2.onpaste = (e) => {
+        //     e.preventDefault();
+        //     swal({
+        //         title: 'Acción inválida!',
+        //         text: 'Por favor repita su clave manualmente',
+        //         icon: 'warning'
+        //     })
+        // }
         
         
 
@@ -128,8 +131,8 @@ export default function RegisterTwo(){
         setForm({
             ...form,
             [name]: value,
-            repeatMail: inputRepeatEmail.disabled ? '':inputRepeatEmail.value,
-            repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
+            repeatMail: inputRepeatEmail.disabled ? '':inputRepeatEmail.value
+            // repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
         if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
@@ -238,18 +241,87 @@ export default function RegisterTwo(){
         ready: false
     });
 
+    let loginUser = {
+        username: 'aacevedo@gty.cl',
+        password: 'Afn_5_PgRXIDUgTRMRzSvg'
+    }
+
+    let registracion = {
+        user: {
+            rut: 'rut',
+            name: 'Facundo',
+            last_name: 'Ramirez',
+            address: 'Av.Lopez y Planes 123',
+            birth_date: '1990-10-12',
+            phone_number: '73736466',
+            phone_number2: '73736466',
+            email: 'facundo123123@gmail.com'
+        },
+        bank_account: {
+          number: 1,
+          type: 'Banco Santander',
+          bank: 1
+        },
+        billing_settings: {
+          frequency: 1
+        }
+    }
+
     const save = async (e) => {
         e.preventDefault();
-        
+        let data = {
+            user: {
+                rut: 'rut',
+                name: form.admin,
+                last_name: 'apellido_prueba',
+                address: form.direccion,
+                birth_date: form.fechaNac,
+                phone_number: form.cel1,
+                phone_number2: form.cel2,
+                email: form.mail
+            },
+            bank_account: {
+                number: 1,
+                type: 'probando_Type',
+                bank: 1
+            },
+            billing_settings: {
+                frequency: 1
+            }
+        };
+
+        // if(alldata.ready){
+        //     console.log('LISTO', data);
+        // } else {
+        //     console.log('NO LISTO TODAVIA', data);
+        // }
+
+        console.log(data, 'data');
         if(alldata.ready){
             await swal({
-                title: 'Administrador registrado con éxito!',
-                text: 'Por favor verifica tu correo para validar la cuenta',
-                icon: 'success',
-                timer: 2000,
-                buttons: ['']
-              })
-            history.push('/asociados/iniciar_sesion');              
+                title: '¿Seguro?',
+                text: '¿Confirmar registro de asociado?',
+                icon: 'warning',
+                buttons: ['NO','SI']
+            })
+            .then(async(response) => {
+                if(response){
+                    await axios.post('http://ec2-3-138-119-132.us-east-2.compute.amazonaws.com:8000/accounts/owners/', data)
+                    .then(async (response) => {
+                        await swal({
+                            title: 'Administrador registrado con éxito!',
+                            text: 'Por favor verifica tu correo para validar la cuenta',
+                            icon: 'success',
+                            timer: 2000,
+                            buttons: ['']
+                        })
+                        history.push('/asociados/iniciar_sesion');
+                    })
+                    .catch(error => {
+                        console.log(error, 'ERROR POST OWNER');
+                    })
+                } // cierro if
+            }) // cierro then                     
         } else {
             swal({
                 title: 'Formulario incompleto!',
@@ -272,10 +344,9 @@ export default function RegisterTwo(){
 
         let buttonSave = document.querySelector('.notActive');
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.mail && !error.repeatMail && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.admin && form.direccion && form.fechaNac && form.cel1) {
             modifyAllData(true);
             let button = document.querySelector('.notActive');
-            console.log(alldata.ready, 'ready');
             if(alldata.ready) button.disabled = false;
         } else {
             modifyAllData(false);           
@@ -296,58 +367,40 @@ export default function RegisterTwo(){
         <Fade>
         <div>
             <div className={Style.containerRegister}>            
-                <img src={register} className={Style.registerOne}/>
+                {/* <img src={register} className={Style.registerOne}/> */}
                 <div className={Style.form}>
                 </div>
-                <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Registro Administrador</h1>
-                    <div className={Style.formRegister}>
+                <div className={`${Style.formComplete} row`}>
+                    <h1 className={`${Style.title} col-5`}>Registro Asociado</h1>
+                    <div className={`${Style.formRegister} col-12`}>
                         <div className={Style.titleForm}>
-                            <h4>Registro Administrador</h4>
+                            <h4>Registro Asociado</h4>
                             <h5>Tu usuario es tu mail</h5>
                         </div>
-
                         <div className={`${Style.data}`}>
-                            <div className={`row`}>
-                                <h4 className={`col-1`}>Mail</h4>
-                                <input autoFocus className={`mail col-4`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                <h4 className={`${Style.repeatMailLabel} col-md-2 col-lg-2`}>Repetir Mail</h4>
-                                <input className={`${Style.repeatMail} repeatMail col-md-3 col-lg-4`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
-                            </div>
-                            {error.mail && form.mail ?
+                            <div className={`row`}>                        
+                                <h4 className={`col-sm-3 col-md-2 col-lg-2`}>Mail</h4>
+                                <input autoFocus className={`mail col-11 col-sm-8 col-md-9 col-md-9 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                {error.mail && form.mail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
                                 </div>
-                                : null 
-                            }
+                                : null
+                                }
+                            </div>
+                            <div className={`row`}>
+                                <h4 className={`${Style.repeatMailLabel} col-sm-4 col-md-3 col-lg-2`}>Repetir Mail</h4>
+                                <input className={`${Style.repeatMail} repeatMail col-11 col-sm-7 col-md-8 col-lg-9`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             {!error.mail && !email.repeat && form.repeatMail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts2} col-9`}>Debe repetir exactamente el correo colocado</h5>
                                 </div>
                                 : null                                
                             }
-                            <div className={`row`}>
-                                <h4 className={`col-1`}>Clave</h4>
-                                <input className={`col-3 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
-                                {/* <h1 className={`col-1`}></h1> */}
-                                <h4 className={`${Style.repeatPass} col-3`}>Repetir Clave</h4>
-                                <input className={`${Style.repeatPassInp} repeatPass col-4`} type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyMail(e)}disabled/>
                             </div>
-                            {error.clave && form.clave ?
-                                <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Mínimo 8 caracteres, una letra y un número</h5>
-                                </div>
-                                : null 
-                            }
-                            {!error.clave && !pass.repeat && form.repeatClave ?
-                                <div className={`row justify-content-center`}>
-                                    <h5 className={`${Style.alertTexts2} col-5`}>Debe repetir exactamente la clave colocada</h5>
-                                </div>
-                                : null                                
-                            }
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-5 col-md-4 col-lg-4`}>Nombre del Administrador</h4>
-                                <input className={`${Style.inputLabel} col-sm-6 col-md-7 col-lg-7`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                <h4 className={`${Style.admLabel} col-sm-3 col-md-2 col-lg-2`}>Nombre</h4>
+                                <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-9 col-lg-9`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.admin && form.admin ?
                                 <div className={`row`}>
@@ -356,12 +409,12 @@ export default function RegisterTwo(){
                                 : null 
                             }                            
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Dirección</h4>
-                                <input className={`${Style.inputDir} col-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
+                                <h4 className={`col-11 col-sm-3 col-md-3 col-lg-2`}>Dirección</h4>
+                                <input className={`${Style.inputDir} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.fechaNac} col-4 mt-2`}>Fecha de Nacimiento</h4>
-                                <form className={`${classes.container} ${Style.inputFecha} col-7`} noValidate>
+                                <h4 className={`${Style.fechaNac} col-11 col-md-5 col-lg-4`}>Fecha de Nacimiento</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} col-11 col-md-6 col-lg-7`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -380,10 +433,10 @@ export default function RegisterTwo(){
                                 {/* <input className={`${Style.inputFecha} col-7`} type="text" /> */}
                             </div>                            
                             <div className={`${Style.cel} row`}>
-                                <h4 className={`col-1`}>Celular1</h4>
-                                <input className={`${Style.celInp1} col-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
-                                <h4 className={`${Style.cel2} col-2`}>Celular2</h4>
-                                <input className={`${Style.celInp2} col-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`col-11 col-sm-3 col-md-2 col-lg-2`}>Celular1</h4>
+                                <input className={`${Style.celInp1} col-11 col-sm-8 col-md-3 col-lg-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`${Style.cel2} col-11 col-sm-3 col-md-2 col-lg-2 text-md-center text-lg-center`}>Celular2</h4>
+                                <input className={`${Style.celInp2} col-11 col-sm-8 col-md-4 col-lg-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
                             </div>
                             {(error.cel1 && form.cel1 && error.cel2 && form.cel2) ?
                                 <div className={`row`}>
@@ -402,38 +455,13 @@ export default function RegisterTwo(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
-                        <div className={`${Style.buttons} row w-75`}>
-                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                        <h5 className={`${alldata.ready ? "d-none":null} text-center`}>Complete el formulario para habilitar el botón...</h5>
+                        <div className={`${Style.buttons} row d-flex justify-content-center`}>
+                            <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                         </div>
                     </div>
-                </div>
-                {/* <div className={`${Style.formComplete}`}>
-                    <h1 className={`${Style.title}`}>Múevete con Evann</h1>
-                    <div className={Style.contentDescription}>
-                        <span className={Style.description}>Súmate al servicio de transporte de personas con el standard más alto del país. Regístra tus datos e ingresa tus automóviles y conductores para que seas parte de nuestro selectro grupo
-                        </span>                        
-                            <a href="" className={Style.linkRegister}><Link to="/asociados/register">REGÍSTRATE</Link></a>                        
-                        <span className={Style.here}>Si ya te registraste, ingresá <a href="#">Aquí</a></span>
-                    </div>
-                    <div className={Style.info}>
-                        <div className={Style.box}>
-                            <h3>Más ingresos</h3>
-                            <p className={Style.textBox}>Gana mas conduciento con nuestra frecuencia de viajes y recibe los mejores beneficios por tu servicio.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Nuestra App</h3>
-                            <p className={Style.textBox}>Se tu propio jefe, tendrás siempre información actualizada respecto de tus viajes, tarifas trayectos, etc.</p>    
-                        </div>
-                        <div className={Style.box}>
-                            <h3>Pasajeros Vip</h3>
-                            <p className={Style.textBox}>Conduce para los más exigentes y exclusivos pasajeros y empresas de nuestro país.</p>
-                        </div>
-                    </div>            
-                                   
-                </div>                     */}
-                
+                </div>                
             </div>
         </div>
         </Fade>

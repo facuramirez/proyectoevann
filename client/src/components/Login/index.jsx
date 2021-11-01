@@ -8,6 +8,8 @@ import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
+// import axios from '../../axiosConfig';
+import axios from 'axios';
 
 
 export default function Login(){
@@ -131,34 +133,40 @@ export default function Login(){
         ready: false
     });
 
-    const login = (e) => {
+    const login = async (e) => {
         e.preventDefault();
-        history.push('/back_office/mis_datos');
-            swal({
-                title: 'Bienvenido a Evann!',
-                text: 'Que disfrutes tu estadía en la página',
-                icon: 'success',
-                timer: 2000
-              })
+        let data = {
+            username: form.mail,
+            password: form.clave
+        }
+
+        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/4/approve`)
+        .then(response => {
+            console.log(response.data, 'RESPONSE');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login`, data)
+        .then(response => {
+            console.log(response.data, 'RESPONSE');
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
         
-        // if(alldata.ready){
-        //     history.push('/back_office');
-        //     swal({
-        //         title: 'Bienvenido a Evann!',
-        //         text: 'Que disfrutes tu estadía en la página',
-        //         icon: 'success',
-        //         timer: 2000
-        //       })
-            
-        // } else {
-        //     swal({
-        //         title: 'Datos incorrectos!',
-        //         text: 'Por favor verifica que tus datos sean correctos',
-        //         icon: 'error'
-        //       })
-        // }
+        // history.push('/back_office/mis_datos');
+
+        // swal({
+        //     title: 'Bienvenido a Evann!',
+        //     text: 'Que disfrutes tu estadía en la página',
+        //     icon: 'success',
+        //     timer: 2000
+        //     })
     }
+    
   
 
     const back = (e) => {

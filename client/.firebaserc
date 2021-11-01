@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "reactdeploy-f7d54",
-    "y": "evann11102021"
+    "y": "evann11102021",
+    "evann": "evanndeploy"
   },
   "targets": {}
 }
