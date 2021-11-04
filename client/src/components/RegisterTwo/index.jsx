@@ -23,27 +23,37 @@ export default function RegisterTwo(){
     let inputRepeatPass;
 
     let [form, setForm] = useState({
+        rut: '',
         mail: '',
         repeatMail: '',
         clave: '',
         repeatClave: '',
         admin: '',
+        ape: '',
         direccion: '',
-        fechaNac: '',
+        fechaNac: '2021-01-01',
         cel1: '',
-        cel2: ''
+        cel2: '',
+        cuenta: '',
+        tipo_cuenta: '',
+        banco: ''
     });
  
     let [error, setError] = useState({
+        rut: '',
         mail: '',
         repeatMail: '',
         clave: '',
         repeatClave: '',
         admin: '',
+        ape: '',
         direccion: '',
         fechaNac: '',
         cel1: '',
-        cel2: ''
+        cel2: '',
+        cuenta: '',
+        tipo_cuenta: '',
+        banco: ''
       });
     
     let [email, setEmail] = useState({
@@ -75,10 +85,10 @@ export default function RegisterTwo(){
         inputRepeatEmail = document.querySelector('.repeatMail');
         // inputRepeatPass = document.querySelector('.repeatPass');
 
-        let repeat = document.querySelector('.repeatMail');
+        // let repeat = document.querySelector('.repeatMail');
         // let repeat2 = document.querySelector('.repeatPass');
         
-        repeat.onpaste = (e) => {
+        inputRepeatEmail.onpaste = (e) => {
             e.preventDefault();
             swal({
                 title: 'Acción inválida!',
@@ -113,20 +123,20 @@ export default function RegisterTwo(){
         
         // =========================================================================
         // ================ PROCESO PASSWORD, REPEAT PASSWORD ======================
-        if(name==='clave'){
-            let typedPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-            if(!typedPass.test(value)){
-                setError({...error, [name]: 'Error'});
-                setPass({...pass, valid: false});
-                console.log(error, 'invalido');                
-                inputRepeatPass.disabled = true;
-            } else {
-                setError({...error, [name]: ''});
-                setPass({...pass, valid: true});
-                console.log(error, 'VALIDO');                
-                inputRepeatPass.disabled = false;
-            }
-        }
+        // if(name==='clave'){
+        //     let typedPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        //     if(!typedPass.test(value)){
+        //         setError({...error, [name]: 'Error'});
+        //         setPass({...pass, valid: false});
+        //         console.log(error, 'invalido');                
+        //         inputRepeatPass.disabled = true;
+        //     } else {
+        //         setError({...error, [name]: ''});
+        //         setPass({...pass, valid: true});
+        //         console.log(error, 'VALIDO');                
+        //         inputRepeatPass.disabled = false;
+        //     }
+        // }
 
         setForm({
             ...form,
@@ -135,7 +145,7 @@ export default function RegisterTwo(){
             // repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -148,7 +158,7 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!form.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -173,17 +183,17 @@ export default function RegisterTwo(){
             }
         }
 
-        if(name==='repeatClave'){
-            if(value === clave){
-                setPass({...pass, repeat:true});
-                setError({...error, [name]: ''});
-            }else{
-                setPass({...pass, repeat:false});
-                setError({...error, [name]: 'Error'});
-            }
-        }
+        // if(name==='repeatClave'){
+        //     if(value === clave){
+        //         setPass({...pass, repeat:true});
+        //         setError({...error, [name]: ''});
+        //     }else{
+        //         setPass({...pass, repeat:false});
+        //         setError({...error, [name]: 'Error'});
+        //     }
+        // }
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -214,7 +224,7 @@ export default function RegisterTwo(){
 
         setForm({...form, [name]: value});
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -242,13 +252,13 @@ export default function RegisterTwo(){
     });
 
     let loginUser = {
-        username: 'aacevedo@gty.cl',
-        password: 'Afn_5_PgRXIDUgTRMRzSvg'
+        username: process.env.REACT_APP_USER_BACKEND,
+        password: process.env.REACT_APP_PASSWORD_BACKEND
     }
 
     let registracion = {
         user: {
-            rut: 'rut',
+            rut: 'rut', // DNI Chileno a partir de 6000000-5 (en vez de 5 puede ir del 1 al 9)
             name: 'Facundo',
             last_name: 'Ramirez',
             address: 'Av.Lopez y Planes 123',
@@ -258,12 +268,12 @@ export default function RegisterTwo(){
             email: 'facundo123123@gmail.com'
         },
         bank_account: {
-          number: 1,
-          type: 'Banco Santander',
-          bank: 1
+          number: 1, // Aca va el numero de cuenta bancaria
+          type: 0,  // Tipo de cuenta (menu desplegable) por ej: cta cte, por ahora "0" (cero)
+          bank: 1 // Menu desplegable (Get Bancos Backend). Mientras dejar en 1
         },
         billing_settings: {
-          frequency: 1
+          frequency: 1 // Cada cuanto tiempo se le va a pagar al asociado
         }
     }
 
@@ -271,9 +281,9 @@ export default function RegisterTwo(){
         e.preventDefault();
         let data = {
             user: {
-                rut: 'rut',
+                rut: form.rut,
                 name: form.admin,
-                last_name: 'apellido_prueba',
+                last_name: form.ape,
                 address: form.direccion,
                 birth_date: form.fechaNac,
                 phone_number: form.cel1,
@@ -281,23 +291,16 @@ export default function RegisterTwo(){
                 email: form.mail
             },
             bank_account: {
-                number: 1,
-                type: 'probando_Type',
+                number: 0,
+                type: form.tipo_cuenta,
                 bank: 1
             },
             billing_settings: {
                 frequency: 1
             }
         };
-
-        // if(alldata.ready){
-        //     console.log('LISTO', data);
-        // } else {
-        //     console.log('NO LISTO TODAVIA', data);
-        // }
-
-        console.log(data, 'data');
-        if(alldata.ready){
+        
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
             await swal({
                 title: '¿Seguro?',
                 text: '¿Confirmar registro de asociado?',
@@ -306,7 +309,7 @@ export default function RegisterTwo(){
             })
             .then(async(response) => {
                 if(response){
-                    await axios.post('http://ec2-3-138-119-132.us-east-2.compute.amazonaws.com:8000/accounts/owners/', data)
+                    await axios.post(`${process.env.REACT_APP_BACKEND}/owners/`, data)
                     .then(async (response) => {
                         await swal({
                             title: 'Administrador registrado con éxito!',
@@ -334,17 +337,18 @@ export default function RegisterTwo(){
     const verifyCel = (e) => {
         let number = e.target.value;
         let name = e.target.name;
-
+    
         if(/^\d*$/.test(number)){
             setError({...error, [name]: ''});
         } else {
             setError({...error, [name]: 'Error'});
         }
+        
         setForm({...form, [name]:number})
 
         let buttonSave = document.querySelector('.notActive');
 
-        if(!error.mail && !error.repeatMail && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
             modifyAllData(true);
             let button = document.querySelector('.notActive');
             if(alldata.ready) button.disabled = false;
@@ -379,6 +383,16 @@ export default function RegisterTwo(){
                         </div>
                         <div className={`${Style.data}`}>
                             <div className={`row`}>                        
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut</h4>
+                                <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="rut" value={form.rut} onChange={(e)=> verifyCel(e)}/>
+                                {error.rut && form.rut ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
+                                </div>
+                                : null
+                                }
+                            </div>
+                            <div className={`row`}>                        
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Mail</h4>
                                 <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                                 {error.mail && form.mail ?
@@ -407,7 +421,17 @@ export default function RegisterTwo(){
                                     <h5 className={`${Style.alertTexts} col-6`}>Sólo letras (y espacios) sin números</h5>
                                 </div>
                                 : null 
-                            }                            
+                            }
+                            <div className={`row`}>
+                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Apellido</h4>
+                                <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="ape" value={form.ape} onChange={(e)=> verifyAdmin(e)}/>
+                            </div>
+                            {error.ape && form.ape ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras (y espacios) sin números</h5>
+                                </div>
+                                : null 
+                            }
                             <div className={`row`}>
                                 <h4 className={`col-11 col-sm-3 col-md-3 col-lg-2`}>Dirección</h4>
                                 <input className={`${Style.inputDir} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
@@ -452,6 +476,44 @@ export default function RegisterTwo(){
                                     <h5 className={`${Style.alertTexts} col-6 text-center`}>Sólo números</h5>
                                 </div>:null
                             }
+                            <div className={`row`}>                        
+                                <h4 className={`col-sm-4 col-md-5 col-lg-3`}>Nro Cuenta Bancaria</h4>
+                                <input className={`mail col-11 col-sm-7 col-md-6 col-lg-8`} type="text" name="cuenta" value={form.cuenta} onChange={(e)=> verifyCel(e)}/>
+                                {error.cuenta && form.cuenta ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
+                                </div>
+                                : null
+                                }
+                            </div>
+                            <div className={`row`}>                   
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Tipo Cuenta</h4>
+                                <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="tipo_cuenta" value={form.tipo_cuenta} onChange={(e)=> verifyData(e)}>
+                                    <option value="CC" selected onChange={(e)=> verifyData(e)}>CC</option>
+                                    <option value="CV" onChange={(e)=> verifyData(e)}>CV</option>
+                                    <option value="CE" onChange={(e)=> verifyData(e)}>CE</option>    
+                                </select>
+                                {error.tipo_cuenta && form.tipo_cuenta ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Debe completar este campo</h5>
+                                </div>
+                                : null
+                                }
+                            </div>
+                            <div className={`row`}>                   
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Banco</h4>
+                                <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="banco" value={form.banco} onChange={(e)=> verifyData(e)}>
+                                    <option value="value1">Banco1</option>
+                                    <option value="value2" selected>Banco2</option>
+                                    <option value="value3">Banco3</option>    
+                                </select>
+                                {error.banco && form.banco ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Debe completar este campo</h5>
+                                </div>
+                                : null
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className={Style.containerSave}>
