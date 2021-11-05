@@ -1,7 +1,8 @@
 .containerRegister{
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
-    min-height: 87vh;
+    background-size: cover;
+    background-position: center;
+    min-height: 86vh;
 }
 
 .form{
@@ -42,6 +43,7 @@
 
 .formRegister{
     border: 1px solid rgb(54, 232, 210);
+    margin: 0px auto;
     align-self: center;
     margin-top: 2rem;
     width: 90%;
@@ -66,7 +68,6 @@
     display: inline;
     margin-top: 0.2rem;
     padding: 0px !important;
-    
 }
 
 .formRegister h5{
@@ -159,40 +160,17 @@
     color: white;
 }
 
-/* @media (max-width: 767px){    
+@media (max-width: 1220px){    
     .containerRegister{
-        background-image: none;        
-        
+        min-height: 90vh;
     }
-    .containerRegister .form{
-        display: none;
-        left: 0px;        
-        position: absolute;
-        background-color: rgb(60, 60, 58);
-        opacity: 0.8;
-        width: 100%;
-        height: 100%;
-        top: 0vw;
-    }    
-    .containerRegister .formRegister{
-        margin-top: 1rem;
-        width: 100%;
-        text-align: left;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+}
+
+@media (max-width: 992px){    
+    .containerRegister{
+        min-height: 90vh;
     }
-    .containerRegister .formComplete{
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        width: 80%;
-        top: 0vw;
-        left: 1rem;
-        right: 1rem;
-        margin: 0px auto
-    }
-} */
+}
 
 @media (max-width: 767px){    
     .containerRegister{
@@ -210,209 +188,3 @@
     }
 }
 
-/* .containerRegister{
-    position: relative;
-    background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;    
-    min-height: 88vh !important;
-}
-
-
-.form{
-    position: absolute;
-    background-color: rgb(60, 60, 58);
-    opacity: 0.8;
-    width: 64vw;
-    height: 100%;
-    top: 0vw;
-    left: 17vw;
-}
-
-.formComplete{
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 64vw;
-    height: 100%;
-    top: 0vw;
-    left: 18vw;
-    right: 18vw;
-}
-
-.title{
-    font-size: 1.3rem;
-    width: fit-content;
-    border-radius: 20px;
-    padding: 0.5rem;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-    color: white;
-    align-self: center;
-    margin-top: 4rem;
-    background-color: rgb(54, 232, 210);
-}
-
-.titleForm{
-    margin-left: 3%;
-}
-
-.formRegister{
-    border: 1px solid rgb(54, 232, 210);
-    align-self: center;
-    margin-top: 2rem;
-    width: 90%;
-    text-align: left;
-    padding-left: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    color: white;
-}
-
-.alertTexts,
-.alertTexts2{
-    color: red !important;
-    font-weight: bold;
-    margin-bottom: 0px;
-}
-
-
-.formRegister h4{
-    font-size: 1rem;
-    margin: 0px;
-    display: inline;
-    margin-top: 0.2rem;
-    padding: 0px !important;
-    
-}
-
-.formRegister h5{
-    font-size: 0.7rem;
-    color: #ccc;
-}
-
-.formRegister .data{
-    display: flex;
-    flex-direction: column;
-    padding-left: 3%;
-    margin-top: 2%;
-}
-
-.formRegister .data div{
-    margin-top: 1%;
-}
-
-.fechaNac{
-    line-height: 3rem;
-}
-
-
-.inputFecha div div input{
-    text-align: center;
-    color: white;
-}
-
-.containerSave{
-    margin-top: 2.5rem;
-}
-
-.containerSave h5{
-    font-size: 0.7rem;
-    color: #ccc;
-}
-
-.back{
-    border: none;
-    background-color: rgb(33, 37, 41);
-    border-radius: 20px;    
-    color: white;
-    font-size: 1.2rem;
-    padding-top: 0.6vh;
-    padding-bottom: 1.2vh;
-    margin-right: 0.8rem;
-    text-decoration: none;
-    width: fit-content;
-    transition: all 300ms;
-}
-
-.back:hover{
-    color: #ccc;
-}
-
-.iconBack{
-    margin-right: 0.8vw;
-}
-
-.save{
-    text-decoration: none;
-    background-color: rgb(33, 37, 41);
-    color: white;
-    margin-left: 0.8rem;
-    width: fit-content;
-    align-self: center;
-    font-size: 1.2rem;
-    padding-top: 0.6vh;
-    padding-bottom: 1.2vh;
-    border-radius: 20px;
-    border: none;
-}
-
-.save:hover{
-    color: #ccc;
-}
-
-.disabled{
-    
-    cursor: pointer;
-    background-color: rgb(33, 37, 41) !important;
-}
-
-.color{
-    background-color: red !important;
-    cursor: not-allowed !important;
-}
-
-.color:hover{
-    color: white;
-}
-
-@media (max-width: 767px){    
-    .containerRegister{
-        background-image: none;        
-        
-    }
-    .containerRegister .form{
-        display: none;
-        left: 0px;        
-        position: absolute;
-        background-color: rgb(60, 60, 58);
-        opacity: 0.8;
-        width: 100%;
-        height: 100%;
-        top: 0vw;
-    }    
-    .containerRegister .formRegister{
-        margin-top: 1rem;
-        width: 100%;
-        text-align: left;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-    .containerRegister .formComplete{
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        width: 80%;
-        top: 0vw;
-        left: 1rem;
-        right: 1rem;
-        margin: 0px auto
-    }
-}
-
-@media (max-width: 580px){    
-    .containerRegister .form{
-        left: 15vw;
-    }   
-} */

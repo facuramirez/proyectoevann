@@ -1,3 +1,7 @@
+/* .containerNavBar{
+    min-height: 11vh;
+} */
+
 .linkImg{
     margin-left: 20%;
 }
@@ -8,6 +12,7 @@
 
 .navBar{
     background-color: rgb(60, 60, 59) !important;
+    
 }
 
 .options{
@@ -33,11 +38,6 @@
     background-color: rgb(54, 232, 210);
     border-radius: 20px;
     padding: 0.1rem 1rem 0.1rem 1rem !important;
-    /* padding: 0px;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important; */
     font-size: 1rem !important;
     width: fit-content !important;
 }

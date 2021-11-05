@@ -1,13 +1,9 @@
 .containerRegister{
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
-    
-    min-height: 90vh;
+    background-size: cover;
+    background-position: center;
+    min-height: 86vh;
 }
-/* 
-.registerOne{
-    background-size: 100% 100%;
-} */
 
 .form{
     background-color: rgb(60, 60, 58);
@@ -133,6 +129,9 @@
     .containerRegister .formComplete{
         width: 100%;
     }
+    .containerRegister{
+        min-height: 90vh;
+    }
 }
 
 
@@ -198,204 +197,3 @@
         margin-top: 2.5rem;
     }
 }
-
-/* .containerRegister{
-    position: relative;
-    background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
-    min-height: 100vh;
-}
-
-.registerOne{
-    background-size: 100% 100%;
-}
-
-.form{
-    position: absolute;
-    background-color: rgb(60, 60, 58);
-    opacity: 0.8;
-    width: 64vw;
-    height: 100%;
-    top: 0vw;
-    left: 18vw;
-}
-
-.formComplete{
-    position: absolute;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 64vw;
-    min-height: 90vh;
-    top: 0vw;
-    left: 18vw;
-}
-
-.title{
-    font-size: 2rem;
-    color: white;
-    margin-top: 1rem;
-}
-
-.contentDescription{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgb(54, 232, 210);
-    width: 75%;
-    min-height: 40%;
-    text-align: justify;
-    padding-bottom: 1rem;
-}
-
-.description{    
-    width: 100%;
-    font-size: 1rem;
-    color: white;
-    padding: 20px;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-.linkRegister{
-    width: fit-content;
-    font-size: 2rem;
-    padding: 0.2rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    color: black;
-    text-decoration: none;
-    background-color: rgb(54, 232, 210);
-    border-radius: 20px;
-    text-align: center;
-    align-self: center;
-}
-
-.linkRegister a:hover{
-    color: black;
-}
-
-
-.here{
-    margin-top: 2%;
-    font-size: 1rem;
-    color: white;
-    align-self: center;
-}
-
-.here a{
-    color: white;
-    text-decoration: none;
-}
-
-.here a:hover{
-    text-decoration: underline;
-}
-
-.info{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 1rem;
-    width: 90%;
-}
-
-.box{
-    justify-content: center;
-    width: 30%;
-}
-
-.box h3,
-.box .textBox{
-    color: white;
-}
-
-.box h3{
-    font-size: 1.5rem;
-}
-
-.box .textBox{
-    font-size: 0.7rem;
-    height: 10%;
-}
-
-@media (max-width: 500px) {
-    .box{
-        margin-top: 10px;
-    }
-    .description{
-        padding: 8px;
-    }
-}
-
-@media(max-width: 992px){
-    .linkRegister{
-        font-size: 1.5rem;
-    }
-}
-
-
-@media (max-width: 767px){    
-    .containerRegister{
-        background-image: none;
-    }
-    .containerRegister .form{
-        display: none;
-        left: 0px;        
-        position: absolute;
-        background-color: rgb(60, 60, 58);
-        opacity: 0.8;
-        width: 100%;
-        height: 100%;
-    }    
-    .containerRegister .formRegister{
-        margin-top: 1rem;
-        width: 100%;
-        text-align: left;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-    .containerRegister .formComplete{
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        width: 97%;
-        top: 0vw;
-        left: 1rem;
-        right: 1rem;
-        margin: 0px auto
-    }
-}
-
-@media (max-width: 500px){    
-    .containerRegister{      
-        min-height: 120vh !important;
-    }
-    .containerRegister .linkRegister{
-        font-size: 1.2rem;
-    }
-    .containerRegister .contentDescription{
-        margin-top: 1rem;
-        padding: 1rem !important;
-    }
-    .containerRegister .contentDescription .description{
-        font-size: 0.9rem !important;
-    }
-    .containerRegister .contentDescription .linkRegister{
-        margin-top: 0.8rem;
-        margin-bottom: 0.8rem;
-    }
-    .containerRegister .contentDescription .here{
-        font-size: 0.8rem !important;
-    }
-    .containerRegister .formComplete .info{
-        margin-top: 1rem;
-    }
-    .containerRegister .formComplete .info .box{
-        width: 90%;
-    }
-    .containerRegister .title{
-        margin-top: 2.5rem;
-    }
-} */

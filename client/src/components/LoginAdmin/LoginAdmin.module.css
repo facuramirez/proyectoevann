@@ -1,32 +1,28 @@
 .containerRegister{
-    position: relative;
-    height: 80vh;
-}
-
-.registerOne{
-    width: 100%;
-    height: 87vh !important;
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 86vh;
 }
 
 .form{
-    position: absolute;
     background-color: rgb(60, 60, 58);
     opacity: 0.8;
     width: 64vw;
-    height: 87vh;
+    height: 100%;
     top: 0vw;
-    left: 18vw;
+    left: 17vw;
 }
 
 .formComplete{
-    position: absolute;
+    margin: 0px auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 64vw;
+    width: 60%;
     height: 100%;
-    top: 0vw;
-    left: 18vw;
+    padding-bottom: 3rem;
+    padding-top: 1rem;
 }
 
 .title{
@@ -64,10 +60,11 @@
 
 
 .formRegister h4{
-    font-size: 1.3vw;
+    font-size: 1rem;
     margin: 0px;
     display: inline;
-    margin-top: 3px;
+    margin-top: 0.2rem;
+    
 }
 
 .formRegister h5{
@@ -197,39 +194,31 @@
     text-decoration: underline;
 }
 
-
-@media (max-width: 992px){
-    .data h4{
-        font-size: 1rem !important;
-    }
-}
-
-@media (max-width: 767px){
-    .registerOne,
-    .form{
-        display: none;
-    }
+@media (max-width: 1220px){    
     .containerRegister{
-        padding-top: 23rem !important;
+        min-height: 90vh;
     }
 }
 
-@media (max-width: 668px){
-    .iniciar{
-        font-size: 1.1rem !important;
+@media (max-width: 992px){    
+    .containerRegister{
+        min-height: 90vh;
     }
 }
 
-@media (max-width: 578px){
-    .back,
-    .save{
-        font-size: 1rem;
-        width: 6rem;
-        margin: 0px auto;
-        margin-top: 0.5rem;
+@media (max-width: 767px){    
+    .containerRegister{
+        background-image: none;
     }
-    .here{
-        font-size: 0.7rem;
+    .formComplete{
+        width: 80%;
+        padding-top: 0rem;
+    }
+}
+
+@media (max-width: 580px){
+    .containerRegister .formRegister{
+        padding-left: 1.5rem;
     }
 }
 

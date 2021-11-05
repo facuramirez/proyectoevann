@@ -25,7 +25,7 @@ export default function NavBar() {
     let url2 = window.location.href.includes('back_office');
 
     return(
-        <div>
+        <div className={`${Style.containerNavBar}`}>
             { !url2 ?
             <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                 <div className="container-fluid">
