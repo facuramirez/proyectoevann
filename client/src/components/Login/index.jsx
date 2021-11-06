@@ -10,11 +10,14 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 // import axios from '../../axiosConfig';
 import axios from 'axios';
+import { dataUser } from '../../globalState/Actions';
+import { useDispatch } from 'react-redux';
 
 
 export default function Login(){
 
     let history = useHistory();
+    let dispatch = useDispatch();
 
     useEffect( () => {
         window.scrollTo(0, 0);
@@ -140,31 +143,25 @@ export default function Login(){
             password: form.clave
         }
 
-        await axios.post(`${process.env.REACT_APP_BACKEND}/owners/4/approve/`)
-        .then(response => {
-            console.log(response.data, 'RESPONSE');
-        })
-        .catch(error => {
-            console.log(error);
-        })
-
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(response => {
-            console.log(response.data, 'RESPONSE');
+            dispatch(dataUser(response.data));
+            history.push('/back_office/mis_datos');
+            swal({
+                title: 'Bienvenido a Evann!',
+                text: 'Que disfrutes tu estadía en la página',
+                icon: 'success',
+                timer: 2000
+            })
         })
         .catch(error => {
-            console.log(error);
+            swal({
+                title: 'Datos Incorrectos!',
+                text: 'El correo y/o la contraseña no son válidos',
+                icon: 'warning',
+                timer: 2500
+            })
         })
-
-        
-        // history.push('/back_office/mis_datos');
-
-        // swal({
-        //     title: 'Bienvenido a Evann!',
-        //     text: 'Que disfrutes tu estadía en la página',
-        //     icon: 'success',
-        //     timer: 2000
-        //     })
     }
     
   

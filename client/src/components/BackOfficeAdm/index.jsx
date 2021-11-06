@@ -22,6 +22,7 @@ import PendientesAprobacion from '../PendientesAprobacion';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
 import PasswordAdmin from '../PasswordAdmin';
+import { useSelector } from 'react-redux';
 
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
@@ -33,6 +34,8 @@ export default function BackOfficeAdm() {
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
+
+    let owner = useSelector(state => state['owner']);
 
     // if(document.querySelector('imageDom')){
     //     if(ruta.includes('/nuevo_auto')) {
@@ -79,7 +82,7 @@ export default function BackOfficeAdm() {
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                     <div className={`${Style.menu} container-fluid`}>
-                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido Facundo!</a>
+                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {owner.name}</a>
                         <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -160,8 +163,8 @@ export default function BackOfficeAdm() {
                 </div>
                 
                 <section className={`${Style.details} d-sm-block d-md-block d-lg-block col-lg-10`}>
-                    <div className={`row`}>                        
-                        <div className={`${Style.pageOffice} col-12`}
+                    {/* <div className={`row`}>                         */}
+                        <div className={`${Style.pageOffice}`}
                             // style={ruta.includes('/mis_datos/editar') ? {height:'96vh'}:
                             // ruta.includes('/mis_datos') ? {height:'87vh'}:
                             // ruta.includes('/asociados/editar') ? {height:'70vh'}:
@@ -202,7 +205,7 @@ export default function BackOfficeAdm() {
                                  ruta.includes('/alertas') ? {height:'100%'}:null
                                  }
                             ></div> */}
-                            <div className={`${Style.divOffice} row`}>
+                            <div className={`${Style.divOffice} `}>
                             {
                                 ruta === '/back_office_administracion' ?
                                     <div>               
@@ -308,8 +311,6 @@ export default function BackOfficeAdm() {
                                 
                                 }
                             </div>
-                        
-                        </div>
                     </div>
                 </section>
             

@@ -93,7 +93,7 @@ export default function PasswordAdmin(){
         <Fade>
         <div>
             <div className={Style.containerRegister}>            
-                <img src={register} className={Style.registerOne}/>
+                {/* <img src={register} className={Style.registerOne}/> */}
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>

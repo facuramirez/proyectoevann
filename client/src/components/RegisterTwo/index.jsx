@@ -293,13 +293,14 @@ export default function RegisterTwo(){
             bank_account: {
                 number: 0,
                 type: form.tipo_cuenta,
-                bank: 1
+                bank: parseInt(form.banco)
             },
             billing_settings: {
                 frequency: 1
             }
         };
-        
+        console.log(data);
+
         if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
             await swal({
                 title: '¿Seguro?',
@@ -366,6 +367,7 @@ export default function RegisterTwo(){
         history.push('/asociados');
         window.scrollTo(0, 0);
     }
+
 
     return(
         <Fade>
@@ -503,9 +505,11 @@ export default function RegisterTwo(){
                             <div className={`row`}>                   
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Banco</h4>
                                 <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="banco" value={form.banco} onChange={(e)=> verifyData(e)}>
-                                    <option value="value1">Banco1</option>
-                                    <option value="value2" selected>Banco2</option>
-                                    <option value="value3">Banco3</option>    
+                                    <option value="1" selected>Scotiabank</option>
+                                    <option value="2">Banco de Chile</option>
+                                    <option value="3">Banco del Estado</option>
+                                    <option value="4">Banco EDW</option>
+                                    <option value="5">Banco BCI</option>
                                 </select>
                                 {error.banco && form.banco ?
                                 <div className={`row`}>

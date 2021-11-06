@@ -9,11 +9,15 @@ import { useHistory } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { dataUser } from '../../globalState/Actions';
+import { useDispatch } from 'react-redux';
 
 
 export default function LoginAdmin(){
 
     let history = useHistory();
+    let dispatch = useDispatch();
 
     useEffect( () => {
         window.scrollTo(0, 0);
@@ -132,33 +136,33 @@ export default function LoginAdmin(){
         ready: false
     });
 
-    const login = (e) => {
+    const login = async (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/mis_datos');
-            swal({
-                title: 'Bienvenido a Evann!',
-                text: 'Que disfrutes tu estadía en la página',
-                icon: 'success',
-                timer: 2000
-              })
+        let data = {
+            username: form.mail,
+            password: form.clave
+        }
 
-        
-        // if(alldata.ready){
-        //     history.push('/back_office');
-        //     swal({
-        //         title: 'Bienvenido a Evann!',
-        //         text: 'Que disfrutes tu estadía en la página',
-        //         icon: 'success',
-        //         timer: 2000
-        //       })
-            
-        // } else {
-        //     swal({
-        //         title: 'Datos incorrectos!',
-        //         text: 'Por favor verifica que tus datos sean correctos',
-        //         icon: 'error'
-        //       })
-        // }
+        await axios.post(`${process.env.REACT_APP_BACKEND}/admins/login/`, data)
+        .then(response => {
+            console.log(response.data);
+            dispatch(dataUser(response.data));
+            history.push('/back_office_administracion/mis_datos');
+            swal({
+            title: 'Bienvenido a Evann!',
+            text: 'Puedes administrar la página como desees!',
+            icon: 'success',
+            timer: 2000
+            })
+        })
+        .catch(error => {
+            swal({
+                title: 'Datos Incorrectos!',
+                text: 'El correo y/o la contraseña no son válidos',
+                icon: 'warning',
+                timer: 2500
+                })
+        })
     }
   
 
@@ -183,7 +187,7 @@ export default function LoginAdmin(){
                         <div className={`${Style.titleForm} col-12 col-sm-12 col-md-12 col-lg-12`}>
                             <div className={`row`}>
                                 <h3 className={`${Style.iniciar} d-none d-sm-block d-md-block d-lg-block col-12 col-md-12 col-lg-12`}>Iniciar sesión - Administración</h3>
-                                <h3 className={`${Style.iniciar} d-block d-sm-none d-md-none d-lg-none col-12 col-md-12 col-lg-12`}>Administración</h3>
+                                {/* <h3 className={`${Style.iniciar} d-block d-sm-none d-md-none d-lg-none col-12 col-md-12 col-lg-12`}>Administración</h3> */}
                                 <h5 className={`${Style.parragraph} col-12 col-md-12 col-lg-12`}>Tu usuario es tu mail</h5>
                             </div>
                         </div>
@@ -197,7 +201,7 @@ export default function LoginAdmin(){
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
                                 </div>
-                                : null 
+                                : null
                             }
                             <div className={`row`}>
                                 <h4 className={`col-2 col-sm-2 col-md-2 col-lg-2`}>Clave</h4>

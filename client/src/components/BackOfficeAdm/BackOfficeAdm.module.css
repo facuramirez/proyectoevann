@@ -125,19 +125,16 @@ body{
     box-shadow: 0px 0px 5px #ccc inset;
 } */
 
-.pageOffice{
-    position: relative;
+/* .pageOffice{
     padding: 2.5vw;
-    height: 87vh;
-}
+} */
 
-.pageOffice img{
+/* .pageOffice img{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100%; */
-}
+} */
 
 .pageOffice .opaco{
     position: absolute;
@@ -149,12 +146,12 @@ body{
     /* height: 100%; */
 }
 
-.pageOffice .divOffice{
+/* .pageOffice .divOffice{
     position: absolute;
     top: 0;
     width: 90%;
     margin: 0px auto;
-}
+} */
 
 @media (max-width: 767px){
     .buttonHamburguer span{

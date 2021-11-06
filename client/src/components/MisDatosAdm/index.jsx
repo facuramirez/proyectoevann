@@ -13,6 +13,8 @@ import { FcSearch } from 'react-icons/fc';
 
 export default function MisDatosAdm() {
 
+    let owner = useSelector(state => state['owner']);
+
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
@@ -80,7 +82,6 @@ export default function MisDatosAdm() {
                         <div className={`${Style.menu} col-12 mt-4`}>
                             <div className={`row justify-content-between`}>
                                 <button className={`${Style.add} col-2`}><Link to="/back_office_administracion/mis_datos/editar"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Editar</Link></button>
-                                
                             </div>
                         </div>
                     </div>
@@ -88,24 +89,24 @@ export default function MisDatosAdm() {
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
                         <label className={`${Style.lbl}`}>Mail:</label>
-                        <label className={`${Style.datos}`}>pablo@gmail.com</label>
+                        <label className={`${Style.datos}`}>{owner.email}</label>
                     
-                        <label className={`${Style.lbl}`}>Clave:</label>
-                        <label className={`${Style.datos}`}>***************</label>
+                        <label className={`${Style.lbl}`}>Apellido:</label>
+                        <label className={`${Style.datos}`}>{owner.last_name}</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
-                        <label className={`${Style.datos}`}>Pablo Mendez</label>
+                        <label className={`${Style.datos}`}>{owner.name}</label>
                     
-                        <label className={`${Style.lbl}`}>Dirección:</label>
-                        <label className={`${Style.datos}`}>Av.San Martin 123</label>
+                        <label className={`${Style.lbl}`}>Rut:</label>
+                        <label className={`${Style.datos}`}>{owner.rut}</label>
                     
-                        <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                        <label className={`${Style.lbl}`}>Fecha de Nacimiento: (HC)</label>
                         <label className={`${Style.datos}`}>10/05/1982</label>
                     
-                        <label className={`${Style.lbl}`}>Celular1:</label>
+                        <label className={`${Style.lbl}`}>Celular1: (HC)</label>
                         <label className={`${Style.datos}`}>+54351756453</label>
                     
-                        <label className={`${Style.lbl}`}>Celular2:</label>
+                        <label className={`${Style.lbl}`}>Celular2: (HC)</label>
                         <label className={`${Style.datos}`}>-</label>
                             
                     </div>

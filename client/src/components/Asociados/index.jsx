@@ -14,10 +14,23 @@ import { ImEye } from 'react-icons/im';
 import { FaRoute } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { editAssociated } from '../../globalState/Actions';
+import axios from 'axios';
 
-
-export default function Vehiculos({alto}) {
+export default function Asociados({alto}) {
     const dispatch = useDispatch();
+    let owners;
+
+    useEffect( () => {
+        axios.get(`${process.env.REACT_APP_BACKEND}/owners/`)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }, [])
+
+    
     let cars = useSelector( state => state['cars']);
 
     // ============== PAGINADO =============

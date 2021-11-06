@@ -12,7 +12,7 @@ import { initialGetConductores, filterConductores } from '../../globalState/Acti
 import { FcSearch } from 'react-icons/fc';
 
 export default function MisDatos() {
-
+    
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
@@ -66,7 +66,7 @@ export default function MisDatos() {
         setCurrentPage(1);
         dispatch(filterConductores(drivers));
     }
-    
+
 
     return(
         <div>
