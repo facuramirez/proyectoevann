@@ -22,7 +22,7 @@ import { useSelector } from 'react-redux';
 
 export default function BackOffice() {
     
-    let owner = useSelector(state => state['owner']);
+    let user = useSelector(state => state['user']);
 
     let history = useHistory();
     let url = window.location.href;
@@ -54,7 +54,7 @@ export default function BackOffice() {
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                     <div className={`${Style.menu} container-fluid`}>
-                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {owner.name}</a>
+                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {user.name}</a>
                         <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

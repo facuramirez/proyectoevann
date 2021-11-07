@@ -145,7 +145,7 @@ export default function LoginAdmin(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/admins/login/`, data)
         .then(response => {
-            console.log(response.data);
+    
             dispatch(dataUser(response.data));
             history.push('/back_office_administracion/mis_datos');
             swal({

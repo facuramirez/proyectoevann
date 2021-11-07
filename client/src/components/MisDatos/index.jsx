@@ -13,6 +13,8 @@ import { FcSearch } from 'react-icons/fc';
 
 export default function MisDatos() {
     
+    let user = useSelector(state => state['user']);
+    
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
@@ -88,22 +90,22 @@ export default function MisDatos() {
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
                         <label className={`${Style.lbl}`}>Mail:</label>
-                        <label className={`${Style.datos}`}>pablo@gmail.com</label>
+                        <label className={`${Style.datos}`}>{user.email}</label>
                     
-                        <label className={`${Style.lbl}`}>Clave:</label>
-                        <label className={`${Style.datos}`}>***************</label>
+                        <label className={`${Style.lbl}`}>Apellido:</label>
+                        <label className={`${Style.datos}`}>{user.last_name}</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
-                        <label className={`${Style.datos}`}>Pablo Mendez</label>
+                        <label className={`${Style.datos}`}>{user.name}</label>
                     
-                        <label className={`${Style.lbl}`}>Dirección:</label>
-                        <label className={`${Style.datos}`}>Av.San Martin 123</label>
+                        <label className={`${Style.lbl}`}>Rut:</label>
+                        <label className={`${Style.datos}`}>{user.rut}</label>
                     
-                        <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                        <label className={`${Style.lbl}`}>Fecha de Nacimiento: (HC)</label>
                         <label className={`${Style.datos}`}>10/05/1982</label>
                     
                         <label className={`${Style.lbl}`}>Celular1:</label>
-                        <label className={`${Style.datos}`}>+54351756453</label>
+                        <label className={`${Style.datos}`}>324234234</label>
                     
                         <label className={`${Style.lbl}`}>Celular2:</label>
                         <label className={`${Style.datos}`}>-</label>

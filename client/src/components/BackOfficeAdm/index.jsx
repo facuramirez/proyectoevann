@@ -28,25 +28,37 @@ import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
 import Slide from 'react-reveal/Slide';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { dataUser } from '../../globalState/Actions';
+
 
 export default function BackOfficeAdm() {
-    
+    let dispatch = useDispatch();
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
 
-    let owner = useSelector(state => state['owner']);
+    let user = useSelector(state => state['user']);
+    console.log(user);
+    // if(user === {}) history.push('/administracion');
+    if(Object.keys(user).length === 0) history.push('/administracion');
 
-    // if(document.querySelector('imageDom')){
-    //     if(ruta.includes('/nuevo_auto')) {
-    //         document.querySelector('imageDom').style.height = '135vh';
-    //         document.querySelector('opaco').style.height = '135vh';
-    //     } else if(ruta.includes('/vehiculos')) {
-    //         document.querySelector('imageDom').style.height = '100vh';
-    //         document.querySelector('opaco').style.height = '100vh';
-    //     }
-    // }
+    // let userData;
 
+    // useEffect( () => {
+    //     axios.get(`${process.env.REACT_APP_BACKEND}/admins/`)
+    //     .then(response => {
+    //         userData = response.data.find( usuario => usuario.rut === user.rut)
+    //         console.log(user, 'USER');
+    //         dispatch(dataUser(userData));
+            
+    //     })
+    // }, [])
+
+    
+    
     const close = (e) => {
         e.preventDefault();
         swal({
@@ -79,10 +91,11 @@ export default function BackOfficeAdm() {
     
     return(
         <div>
+            {user ? 
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                     <div className={`${Style.menu} container-fluid`}>
-                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {owner.name}</a>
+                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {user.name}</a>
                         <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -315,6 +328,7 @@ export default function BackOfficeAdm() {
                 </section>
             
             </div>
+            :null}
         </div>
         
     )

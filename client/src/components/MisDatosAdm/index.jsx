@@ -10,11 +10,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import axios from 'axios';
+import { dataUser } from '../../globalState/Actions';
+
 
 export default function MisDatosAdm() {
 
-    let owner = useSelector(state => state['owner']);
-
+    let user = useSelector(state => state['user']);
+    
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
@@ -89,22 +92,22 @@ export default function MisDatosAdm() {
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
                         <label className={`${Style.lbl}`}>Mail:</label>
-                        <label className={`${Style.datos}`}>{owner.email}</label>
+                        <label className={`${Style.datos}`}>{user.email}</label>
                     
                         <label className={`${Style.lbl}`}>Apellido:</label>
-                        <label className={`${Style.datos}`}>{owner.last_name}</label>
+                        <label className={`${Style.datos}`}>{user.last_name}</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
-                        <label className={`${Style.datos}`}>{owner.name}</label>
+                        <label className={`${Style.datos}`}>{user.name}</label>
                     
                         <label className={`${Style.lbl}`}>Rut:</label>
-                        <label className={`${Style.datos}`}>{owner.rut}</label>
+                        <label className={`${Style.datos}`}>{user.rut}</label>
                     
                         <label className={`${Style.lbl}`}>Fecha de Nacimiento: (HC)</label>
                         <label className={`${Style.datos}`}>10/05/1982</label>
                     
                         <label className={`${Style.lbl}`}>Celular1: (HC)</label>
-                        <label className={`${Style.datos}`}>+54351756453</label>
+                        <label className={`${Style.datos}`}>234234234</label>
                     
                         <label className={`${Style.lbl}`}>Celular2: (HC)</label>
                         <label className={`${Style.datos}`}>-</label>
