@@ -21,7 +21,7 @@ export default function Asociados({alto}) {
     let owners;
 
     useEffect( () => {
-        axios.get(`${process.env.REACT_APP_BACKEND}/owners/`)
+        axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
         .then(response => {
             console.log(response.data);
         })
@@ -30,14 +30,6 @@ export default function Asociados({alto}) {
         })
     }, [])
 
-    // axios.get(`${process.env.REACT_APP_BACKEND}/owners/`)
-    //     .then(response => {
-    //         console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
-    
     let cars = useSelector( state => state['cars']);
 
     // ============== PAGINADO =============

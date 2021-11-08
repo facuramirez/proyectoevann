@@ -12,9 +12,19 @@ import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
-
+import axios from '../../axiosConfig';
 
 export default function EditarMisDatosAdm(){
+    
+    const prueba = async () => {
+        await axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
+        .then(response => {
+            console.log(response, 'MIS DATOS ADM USER INFO');
+        })
+        .catch(error => {
+            console.log(error, 'mis datos ADM ERROR');
+        })
+    }
 
     let history = useHistory();
 
@@ -408,6 +418,7 @@ export default function EditarMisDatosAdm(){
                         <div className={`${Style.buttons} row w-75`}>
                             <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
                             <button className={`col-3 mx-auto ${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                            <button className={`col-3 mx-auto`} onClick={(e)=>prueba(e)}>PRUEBA</button>
                         </div>
                     </div>
                 </div>                

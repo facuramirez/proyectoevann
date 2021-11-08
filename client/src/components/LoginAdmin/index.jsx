@@ -144,16 +144,21 @@ export default function LoginAdmin(){
         }
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/admins/login/`, data)
-        .then(response => {
-    
-            dispatch(dataUser(response.data));
-            history.push('/back_office_administracion/mis_datos');
-            swal({
-            title: 'Bienvenido a Evann!',
-            text: 'Puedes administrar la página como desees!',
-            icon: 'success',
-            timer: 2000
+        .then(async(response) => {
+            await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
+            .then(response => {
+                dispatch(dataUser(response.data));
+                history.push('/back_office_administracion/mis_datos');
+                swal({
+                title: 'Bienvenido a Evann!',
+                text: 'Puedes administrar la página como desees!',
+                icon: 'success',
+                timer: 2000
+                })
             })
+            .catch(error => {
+                console.log(error);
+            })    
         })
         .catch(error => {
             swal({

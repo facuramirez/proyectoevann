@@ -41,7 +41,7 @@ export default function BackOfficeAdm() {
     let {pathname:ruta} = useLocation();
 
     let user = useSelector(state => state['user']);
-    console.log(user);
+    
     // if(user === {}) history.push('/administracion');
     if(Object.keys(user).length === 0) history.push('/administracion');
 

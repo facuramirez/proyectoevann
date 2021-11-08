@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import { dataUser } from '../../globalState/Actions';
 
 
@@ -21,6 +21,17 @@ export default function MisDatosAdm() {
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
+    // useEffect( () => {
+    //     axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
+    //     .then(response => {
+    //         console.log(response.data, 'MIS DATOS ADM INFO USER');
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     })
+    // }, [])
+    
+        
     // ============== PAGINADO =============
     let [currentPage, setCurrentPage] = useState(1);
     let [registerPerPage, setRegisterPerPage] = useState(5);
@@ -48,7 +59,7 @@ export default function MisDatosAdm() {
 
     const editCar = (e, id) => {
         e.preventDefault();
-       alert('Editando car ' + id);
+        alert('Editando car ' + id);
     }
 
     const deleteCar = (e, id) => {
@@ -91,8 +102,8 @@ export default function MisDatosAdm() {
 
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
                             
-                        <label className={`${Style.lbl}`}>Mail:</label>
-                        <label className={`${Style.datos}`}>{user.email}</label>
+                        {/* <label className={`${Style.lbl}`}>Mail:</label>
+                        <label className={`${Style.datos}`}>{user.email ? user.email:'-'}</label> */}
                     
                         <label className={`${Style.lbl}`}>Apellido:</label>
                         <label className={`${Style.datos}`}>{user.last_name}</label>
@@ -103,14 +114,17 @@ export default function MisDatosAdm() {
                         <label className={`${Style.lbl}`}>Rut:</label>
                         <label className={`${Style.datos}`}>{user.rut}</label>
                     
-                        <label className={`${Style.lbl}`}>Fecha de Nacimiento: (HC)</label>
-                        <label className={`${Style.datos}`}>10/05/1982</label>
+                        <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                        <label className={`${Style.datos}`}>{user.birth_date}</label>
+
+                        <label className={`${Style.lbl}`}>Dirección:</label>
+                        <label className={`${Style.datos}`}>{user.address}</label>
                     
-                        <label className={`${Style.lbl}`}>Celular1: (HC)</label>
-                        <label className={`${Style.datos}`}>234234234</label>
+                        <label className={`${Style.lbl}`}>Celular1:</label>
+                        <label className={`${Style.datos}`}>{user.phone_number}</label>
                     
-                        <label className={`${Style.lbl}`}>Celular2: (HC)</label>
-                        <label className={`${Style.datos}`}>-</label>
+                        <label className={`${Style.lbl}`}>Celular2:</label>
+                        <label className={`${Style.datos}`}>{user.phone_number2 ? user.phone_number2:'-'}</label>
                             
                     </div>
                 </div>
