@@ -38,11 +38,11 @@ export default function Asociados({alto}) {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
+    owners = owners.slice(indexOfFirstRegister, indexOfLastRegister);
 
     const pageNumbers = [];
 
-    for(let i = 1; i <= Math.ceil(autos.length / registerPerPage) ; i++) {
+    for(let i = 1; i <= Math.ceil(owners.length / registerPerPage) ; i++) {
         pageNumbers.push(i);
     }
 
@@ -54,8 +54,8 @@ export default function Asociados({alto}) {
     // =====================================
 
     useEffect( () => {
-        dispatch(initialGetCars(autos));
-    }, [autos])
+        dispatch(initialGetCars(owners));
+    }, [owners])
 
     let history = useHistory();
     
@@ -137,9 +137,9 @@ export default function Asociados({alto}) {
                             <Table striped bordered hover variant="dark">
                                 <thead>
                                     <tr className={`${Style.tableH} col-12`}>  
-                                        <th>#</th>
-                                        <th>Mail</th>
-                                        <th className={`${Style.nombre}`}>Nombre</th>
+                                        <th>Rut</th>
+                                        <th>Nombre</th>
+                                        <th className={`${Style.nombre}`}>Apellido</th>
                                         {/* <th>Direccion</th>
                                         <th>Fecha de Nacimiento</th> */}
                                         <th className={`${Style.acciones}`}>Acciones</th>

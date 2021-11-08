@@ -19,6 +19,7 @@ import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
 import Slide from 'react-reveal/Slide';
 import { useSelector } from 'react-redux';
+import axios from '../../axiosConfig';
 
 export default function BackOffice() {
     
@@ -44,7 +45,13 @@ export default function BackOffice() {
                     buttons: [''],
                     timer: 2000
                 })
-                history.push('/');
+                await axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
+                .then(response => {
+                    history.push('/');
+                })
+                .catch(error => {
+                    alert('Error al cerrar sesión!')
+                })
             }            
         });
     }

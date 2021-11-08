@@ -12,6 +12,7 @@ import BackOfficeAdm from './components/BackOfficeAdm/index';
 import NewCar from './components/NewCar/index';
 import Vehiculos from './components/Vehiculos/index';
 import PasswordAdmin from './components/PasswordAdmin/index';
+import PasswordFirst from './components/PasswordFirst';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/asociados/register" component={RegisterTwo} />
       <Route exact path="/asociados/recuperar_contraseña" component={Contraseña} />
       <Route exact path="/asociados/iniciar_sesion" component={Login} />
+      <Route exact path="/asociados/cambiar_contraseña" component={PasswordFirst} />
       <Route exact path="/back_office" component={BackOffice} />
       <Route exact path="/back_office/vehiculos" component={BackOffice} />
       <Route exact path="/back_office/vehiculos/nuevo_auto" component={BackOffice} />

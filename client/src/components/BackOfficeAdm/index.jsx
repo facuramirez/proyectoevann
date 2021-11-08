@@ -75,7 +75,13 @@ export default function BackOfficeAdm() {
                     buttons: [''],
                     timer: 2000
                 })
-                history.push('/');
+                await axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
+                .then(response => {
+                    history.push('/');
+                })
+                .catch(error => {
+                    alert('Error al cerrar sesión!')
+                })                
             }            
         });
     }
