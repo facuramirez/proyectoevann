@@ -13,17 +13,16 @@ import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
 import { FaRoute } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
-import { editAssociated } from '../../globalState/Actions';
+import { editAssociated, getOwners } from '../../globalState/Actions';
 import axios from '../../axiosConfig';
 
 export default function Asociados({alto}) {
     const dispatch = useDispatch();
-    let owners;
 
     useEffect( () => {
-        axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
+        axios.get(`${process.env.REACT_APP_BACKEND}/owners/`)
         .then(response => {
-            console.log(response.data);
+            dispatch(getOwners(response.data));
         })
         .catch(error => {
             console.log(error);
@@ -31,6 +30,7 @@ export default function Asociados({alto}) {
     }, [])
 
     let cars = useSelector( state => state['cars']);
+    let owners = useSelector( state => state['owners']);
 
     // ============== PAGINADO =============
     let [currentPage, setCurrentPage] = useState(1);
@@ -61,8 +61,8 @@ export default function Asociados({alto}) {
     
     const editCar = (e, id) => {
         e.preventDefault();
-       let asociado = cars.find((e) => e.id === id);
-       dispatch(editAssociated(asociado));
+    //    let asociado = cars.find((e) => e.id === id);
+    //    dispatch(editAssociated(asociado));
        history.push('/back_office_administracion/asociados/editar')
     }
 
@@ -103,7 +103,6 @@ export default function Asociados({alto}) {
         dispatch(filterCars(cars));
     }
     
-
     return(
         <div>
             <div className={`${Style.containerAsociados} row containerVehiculos`}>
@@ -112,7 +111,7 @@ export default function Asociados({alto}) {
                         <h3>Asociados</h3>
                     </div>
                     {cars.length > 0 ?
-                    <div className="col-12">                        
+                    <div className="col-12">       
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
                             <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                                 <div className="row">
@@ -133,7 +132,8 @@ export default function Asociados({alto}) {
                             </section>
                         </div>
                     
-                        <div className={`${Style.table} col-12`}>     
+                        <div className={`${Style.table} col-12`}>
+                            {owners ?
                             <Table striped bordered hover variant="dark">
                                 <thead>
                                     <tr className={`${Style.tableH} col-12`}>  
@@ -146,19 +146,19 @@ export default function Asociados({alto}) {
                                     </tr>
                                 </thead>
                                 <tbody className={`${Style.tableB} col-12`}>  
-                                    {cars.map( (element, index) =>
+                                    {owners.map( (owner, index) =>
                                 
                                     <tr key={index}>
-                                        <td>{element.id}</td>
-                                        <td>{element.mail}</td>
-                                        <td>{element.nombre}</td>
+                                        <td>{owner.user.rut}</td>
+                                        <td>{owner.user.name}</td>
+                                        <td>{owner.user.last_name}</td>
                                         {/* <td>{element.direccion}</td>
                                         <td>{element.fechaNac}</td> */}
                                         <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                             <div>
-                                                <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                                <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                                <a href="" onClick={(e)=>detailAsoc(e, element.id)}><ImEye className={Style.details}/></a>
+                                                <a href="" onClick={(e)=>editCar(e, owner.user.rut)}><TiEdit className={Style.edit}/></a>
+                                                <a href="" onClick={(e)=>deleteCar(e, owner.user.rut)}><TiDeleteOutline className={Style.delete}/></a>
+                                                <a href="" onClick={(e)=>detailAsoc(e, owner.user.rut)}><ImEye className={Style.details}/></a>
                                                 {/* <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
                                                 <Link to="/back_office_administracion/asociados/conductores"><FiUsers className={Style.conductores}/></Link>
                                                 <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
@@ -168,7 +168,9 @@ export default function Asociados({alto}) {
                                     )                                    
                                     }
                                 </tbody>
-                            </Table>                            
+                            </Table>
+                            :null
+                        }                      
                         </div>
                         <div className={`${Style.pagination} col-12`}>
                             <ul className={`${Style.ulPagination}`}>

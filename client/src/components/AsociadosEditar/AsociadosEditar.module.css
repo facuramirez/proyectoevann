@@ -1,10 +1,12 @@
 .containerRegister{
-    position: relative;
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: cover;
+    background-position: center;
 }
 
-.registerOne{
+/* .registerOne{
     width: 100%;
-}
+} */
 /* 
 .form{
     position: absolute;
@@ -191,5 +193,11 @@
     }
     .data div:nth-child(n+3) h4{
         line-height: 1.5rem !important;
+    }
+}
+
+@media (max-width: 767px){
+    .containerRegister{
+        background-image: none;
     }
 }

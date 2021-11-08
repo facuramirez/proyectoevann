@@ -45,7 +45,7 @@ export default function Password(){
                 
             } else {
                 setError({...error, [name]: ''});
-                setEmail({...email, valid: true});                
+                setEmail({...email, valid: true});          
             }
         }
         
@@ -63,8 +63,6 @@ export default function Password(){
         }
     }
    
-    
-
     const save = (e) => {
         e.preventDefault();
         
@@ -93,7 +91,7 @@ export default function Password(){
         <Fade>
         <div>
             <div className={Style.containerRegister}>            
-                <img src={register} className={Style.registerOne}/>
+                {/* <img src={register} className={Style.registerOne}/> */}
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
@@ -106,12 +104,12 @@ export default function Password(){
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
-                                <h4 className={`col-1`}>Mail</h4>
-                                <input autoFocus className={`${Style.inpMail} mail col-10`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <h4 className={`col-sm-2 col-md-2 col-lg-2 text-md-center text-lg-center`}>Mail</h4>
+                                <input autoFocus className={`${Style.inpMail} mail col-sm-10 col-md-10 col-lg-10`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
                                 <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
+                                    <h5 className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}>Introduza un correo válido</h5>
                                 </div>
                                 : null 
                             }                            
@@ -119,9 +117,9 @@ export default function Password(){
                     </div>
                     <div className={Style.containerSave}>
                         <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
-                        <div className={`${Style.buttons} row w-75`}>
-                            <button className={`col-3 ${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`col-3 mx-auto ${Style.save} ${alldata.ready ? Style.disabled:Style.color} notActive`} onClick={(e)=>save(e)}>Aceptar</button>
+                        <div className={`${Style.buttons} w-100 d-flex justify-content-center`}>
+                            <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            <button className={`${Style.save}`} onClick={(e)=>save(e)}>Aceptar</button>
                         </div>
                     </div>
                 </div>                

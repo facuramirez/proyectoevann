@@ -144,7 +144,11 @@ export default function Login(){
         }
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
-        .then(async(response) => {
+        .then(async(response) => { // si los datos estan correctos
+            console.log(response.data, 'DATA LOGIN');
+            if(response.data['is_password_temp']) { // si es la primera vez que se loguea
+                alert('Falta cambiar contrasena');
+            } else { // si NO es la primera vez que se loguea (ya cambio el password la primera vez)
             await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
             .then(response => {
                 dispatch(dataUser(response.data));
@@ -159,8 +163,9 @@ export default function Login(){
             .catch(error => {
                 console.log(error);
             })
+            }
         })
-        .catch(error => {
+        .catch(error => { // si los datos NO estan correctos
             swal({
                 title: 'Datos Incorrectos!',
                 text: 'El correo y/o la contraseña no son válidos',

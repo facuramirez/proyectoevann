@@ -4,6 +4,7 @@ export const INITIAL_GET_CONDUCTORES = "INITIAL_GET_CONDUCTORES";
 export const GET_CONDUCTORES = "GET_CONDUCTORES";
 export const EDIT_ASSOCIATED = "EDIT_ASSOCIATED";
 export const GET_USER = "GET_USER";
+export const GET_OWNERS = "GET_OWNERS";
 
 export function initialGetCars(cars) {
     cars = cars.slice(0, 5);
@@ -29,4 +30,8 @@ export function editAssociated(dataAssociated) {
 
 export function dataUser(data) {
     return { type: GET_USER, payload: data}
+}
+
+export function getOwners(data) {
+    return { type: GET_OWNERS, payload: data}
 }

@@ -1,13 +1,12 @@
-.containerEditarMisDatosAdm{
-    position: relative;
+.containerEditarMisDatos{
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;   
 }
 
 .registerOne{
     width: 100%;
 }
-
 
 .formComplete{
     display: flex;
@@ -15,9 +14,7 @@
     flex-direction: column;
     width: 100%;
     margin: 0px auto;
-    height: fit-content;
-    top: 0vw;
-    left: 18vw;
+    height: 100%;
 }
 
 .title{
@@ -38,7 +35,7 @@
     border: 1px solid rgb(54, 232, 210); 
     align-self: center;
     width: 90%;
-    height: 49% !important;
+    /* height: 49% !important; */
     text-align: left;
     padding: 1rem;
     padding-top: 30px;
@@ -55,22 +52,24 @@
 
 
 .formRegister h4{
-    font-size: 1.3vw;
+    font-size: 1.2rem;
     margin: 0px;
-    display: inline;
-    margin-top: 3px;
+    min-width: fit-content;
+    /* margin-top: 3px; */
 }
 
 .formRegister h5{
-    font-size: 0.8vw;
+    font-size: 0.8rem;
     color: #ccc;
 }
 
 .formRegister .data{
     display: flex;
     flex-direction: column;
-    padding-left: 3%;
-    margin-top: 2%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* padding-left: 3%; */
+    /* margin-top: 2%; */
 }
 
 .formRegister .data div{
@@ -80,19 +79,18 @@
 
 .formRegister input{
     height: 2.1vw;
-    margin-left: 2%;
+    /* margin-left: 2%; */
     outline: none;
     background-color: rgb(60, 60, 58);
     border: 1px solid rgb(60, 60, 58);
     border-bottom: 1px solid rgb(54, 232, 210);
     color: white;
-    padding-bottom: 1%;
-    padding-top: 1%;
-    font-size: 1.1vw;
+    font-size: 1rem;
 }
 
 .inputFecha div div input{
     text-align: center;
+    height: 1rem !important;
 }
 
 
@@ -105,12 +103,19 @@
 }
 
 .containerSave h5{
-    font-size: 0.8vw;
+    font-size: 0.8rem;
     color: #ccc;
 }
 
 .buttons{
-    margin-left: 4.3vw;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0px auto;
+    justify-content: center;
+}
+
+.buttons div{
+    width: 30%;
 }
 
 .back{
@@ -170,58 +175,62 @@
     color: white;
 }
 
-.titleForm h4{
-    font-size: 1.2rem;
-}
-.titleForm h5{
-    font-size: 0.6rem;
-}
 
 @media (max-width: 992px) {
-    .formComplete{        
-        width: 100%;
+    .formComplete{
+        width: 90vw;
         margin: 0px auto;
     }
     .containerSave h5{
-        margin-top: 0.5rem !important;
+        margin-top: 0.5rem;
     }
     .buttons{
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row wrap;
         margin: 0px auto;
     }
     .buttons .save{
         order: 1;
-        margin-top: 1.3rem !important;
+        margin-top: 0.4rem;
         font-size: 1rem;
     }
     .buttons .back{
         order: 2;
         margin: 0px auto;
-        margin-top: 1.5rem !important;
+        margin-top: 0.4rem;
         font-size: 1rem;
     }
     .containerSave{
         margin-top: 3rem !important;
     }
     .containerSave h5{
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 }
 
 
 @media (max-width: 767px){
-    .containerEditarMisDatosAdm{
+    .containerEditarMisDatos{
         background-image: none;
+    }
+    .inputDir,
+    .celInp1,
+    .celInp2{
+        margin-top: 0.4rem;
     }
     .formRegister{
         width: 80%;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+    .formRegister .data{
+        padding-right: 0rem;
     }
     .titleForm h4{
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
     .titleForm h5{
-        font-size: 0.5rem;
+        font-size: 1rem;
     }
     .repeatMailLabel{
         margin-top: 0.7rem !important;
@@ -237,25 +246,22 @@
     }
     .buttons{
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row wrap;
         margin: 0px auto;
+    }
+    .buttons div{
+        width: 40%;
     }
     .buttons .save{
         order: 1;
-        margin-top: 0.6rem !important;
     }
     .buttons .back{
         order: 2;
         margin: 0px auto;
-        margin-top: 0.8rem !important;
-        margin-bottom: 1.2rem !important;
-    }
-    .formRegister{
-        margin-top: 2rem;
-        padding-top: 1rem;
+        margin-top: 0.4rem;
     }
     .data h4{
-        font-size: 0.8rem !important;
+        font-size: 1rem !important;
     }
     input[type="text"],
     input[type="password"]{
@@ -263,10 +269,22 @@
         font-size: 0.7rem;
     }
     .inputFecha div div input{
-        font-size: 0.6rem !important;
+        font-size: 1rem;
     }
 }
 
+@media (max-width: 576px){
+    .buttons{
+        display: flex;
+        flex-flow: column wrap;
+        margin: 0px auto;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    .buttons div{
+        width: 100%;
+    }
+}
 
 
 
