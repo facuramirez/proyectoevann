@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import Fade from 'react-reveal/Fade';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
+import axios from '../../axiosConfig';
 
 export default function PasswordFirst(){
     
@@ -18,66 +19,51 @@ export default function PasswordFirst(){
     });
     
     let [form, setForm] = useState({
-        mail: ''
+        clave: '',
+        repeatClave: ''
     });
  
     let [error, setError] = useState({
-        mail: ''
-      });
-    
-    let [email, setEmail] = useState({
-        valid: false
+        clave: '',
+        repeatClave: ''
     });
 
     let [alldata, setAlldata] = useState({
         ready: false
     });
     
-    const verifyMail = (e) => {
+    const verifyClave = (e) => {
+        e.preventDefault();
         let value = e.target.value;
         let name = e.target.name;
         
-        // ================ PROCESO EMAIL, REPEAT EMAIL =====================
-        if(name==='mail'){
-            if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,4})+$/.test(value)){
-                setError({...error, [name]: 'Error'});
-                setEmail({...email, valid: false});                
-                
-            } else {
-                setError({...error, [name]: ''});
-                setEmail({...email, valid: true});          
-            }
-        }
-        
-        // =========================================================================
-               
-        setForm({
-            ...form,
-            [name]: value,
-        });
-
-        if(!error.mail && form.mail) {
-            setAlldata({ready: true})
+        if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g.test(value)){ // al menos una letra y un numero
+            setError({...error, [name]:'Error'});
         } else {
-            setAlldata({ready: false})
-        }
+            setError({...error, [name]:''});
+        }        
+        setForm({...form, [name]:value});
     }
    
-    const save = (e) => {
+    const accept = async (e) => {
         e.preventDefault();
         
-        if(alldata.ready){
+        if(form.clave !== '' && form.repeatClave !== '' && error.clave === '' && error.repeatClave === ''
+        && form.clave === form.repeatClave){            
             swal({
                 title: 'Contraseña reestablecida',
-                text: 'Por favor revise su correo para visualizar su nueva contraseña',
+                text: 'Una vez que el administrador apruebe su cuenta podrá ingresar al sistema!',
                 icon: 'success'
-              })
+            })
+        
+            // await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, form);
+            
         } else {
             swal({
-                title: 'Correo incompleto!',
-                text: 'Debes colocar un correo válido para reestablecer tu contraseña',
+                title: 'Datos incorrectos!',
+                text: 'Por favor verifica que los datos estén correctos!',
                 icon: 'error'
-              })
+            })
         }
     }
 
@@ -95,51 +81,57 @@ export default function PasswordFirst(){
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Reestablecer contraseña</h1>
+                    <h1 className={Style.title}>Primera modificación de contraseña</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
-                            <h4>Recuperar contraseña</h4>
-                            <h5>Coloque su usuario para reestablecer su contraseña</h5>
+                            <h4>Modificar contraseña</h4>
+                            <h5>Por favor complete los siguientes campos</h5>
                         </div>
 
                         <div className={`${Style.data} row`}>
                             <div className={`col-lg-12`}>
                                 <div className="row">
-                                    <h4 className={`${Style.labels} col-12 col-lg-2 mt-2`}>Mail</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-10 mt-2`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                </div>
-                            </div>
-                            <div className={`col-lg-12`}>
-                                <div className="row">
-                                    <h4 className={`${Style.labels} col-12 col-lg-4 mt-2`}>Contraseña Actual</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-8 mt-2`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
-                                </div>
-                            </div>
-                            <div className={`col-lg-12`}>
-                                <div className="row">
                                     <h4 className={`${Style.labels} col-12 col-lg-4 mt-2`}>Nueva Contraseña</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-8 mt-2`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-8 mt-2`} type="text" name="clave" value={form.clave} onChange={(e)=> verifyClave(e)}/>
                                 </div>
                             </div>
+                            {error.clave && form.clave ?
+                                <div className={`col-lg-12`}>
+                                    <h5 className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}>Mínimo 8 caracteres, una letra y un número</h5>
+                                </div>
+                                : null 
+                            }
                             <div className={`col-lg-12`}>
                                 <div className="row">
                                     <h4 className={`${Style.labels} col-12 col-lg-5 mt-2`}>Repetir Nueva Contraseña</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-7 mt-2`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-7 mt-2`} type="text" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyClave(e)}/>
                                 </div>
                             </div>
-                            {error.mail && form.mail ?
+                            {error.repeatClave && form.repeatClave ?
                                 <div className={`col-lg-12`}>
-                                    <h5 className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}>Introduza un correo válido</h5>
+                                    <h5 className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}>Mínimo 8 caracteres, una letra y un número</h5>
                                 </div>
                                 : null 
-                            }                            
+                            }
+                            {!error.clave && form.clave && !error.repeatClave && form.repeatClave && (form.clave !== form.repeatClave) ?
+                                <div className={`col-lg-12`}>
+                                    <h5 className={`${Style.alertTextsC} border text-center mt-3 col-12 col-md-6 col-lg-12`}>Las contraseñas establecidas no coinciden!</h5>
+                                </div>
+                                : null 
+                            }
+                               {!error.clave && form.clave && !error.repeatClave && form.repeatClave && (form.clave === form.repeatClave) ?
+                                <div className={`col-lg-12`}>
+                                    <h5 className={`${Style.alertTextsSuccess} border text-center mt-3 col-12 col-md-6 col-lg-12`}>Correcto!</h5>
+                                </div>
+                                : null 
+                            }
                         </div>
                     </div>
                     <div className={Style.containerSave}>
                         <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
                         <div className={`${Style.buttons} w-100 d-flex justify-content-center`}>
                             <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
-                            <button className={`${Style.save}`} onClick={(e)=>save(e)}>Aceptar</button>
+                            <button className={`${Style.save}`} onClick={(e)=>accept(e)}>Aceptar</button>
                         </div>
                     </div>
                 </div>                

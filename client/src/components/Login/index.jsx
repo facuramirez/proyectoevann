@@ -145,10 +145,10 @@ export default function Login(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
-            console.log(response.data, 'DATA LOGIN');
-            if(response.data['is_password_temp']) { // si es la primera vez que se loguea
-                alert('Falta cambiar contrasena');
-            } else { // si NO es la primera vez que se loguea (ya cambio el password la primera vez)
+            if(response.data.is_password_temp) {
+                return history.push('/asociados/cambiar_contraseña')
+            }
+            else {
             await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
             .then(response => {
                 dispatch(dataUser(response.data));
@@ -202,7 +202,7 @@ export default function Login(){
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
-                                <h4 className={`col-2`}>Mail</h4>
+                                <h4 className={`col-2 text-center`}>Mail</h4>
                                 <input autoFocus className={`mail col-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {error.mail && form.mail ?
@@ -212,7 +212,7 @@ export default function Login(){
                                 : null 
                             }
                             <div className={`row mt-3`}>
-                                <h4 className={`col-2`}>Clave</h4>
+                                <h4 className={`col-2 text-center`}>Clave</h4>
                                 <input className={`col-9 pass`} type="password" name="clave" value={form.clave} onChange={(e)=> verifyMail(e)}/>
                             </div>
                             {/* {error.clave && form.clave ?

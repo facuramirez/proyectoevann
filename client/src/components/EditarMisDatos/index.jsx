@@ -348,7 +348,7 @@ export default function RegisterTwo(){
                                 : null 
                             }
                             
-                            <div className={`row`}>
+                            <div className={`row mt-0`}>
                                 <div className="col-md-8 col-lg-6">
                                     <div className="row">
                                         <h4 className={`${Style.dir} col-md-3 col-lg-3`}>Dirección</h4>
@@ -357,7 +357,7 @@ export default function RegisterTwo(){
                                 </div>
                             </div>
                             <div className={`row`}>
-                                <div className="col-md-12 col-lg-12">
+                                <div className="col-md-12 col-lg-12 mt-0">
                                     <div className="row">
                                         <h4 className={`${Style.fechaNac} col-4 col-md-3 col-lg-3 mt-2`}>Fecha de Nacimiento</h4>
                                         <form className={`${classes.container} ${Style.inputFecha} col-11 col-sm-11 col-md-5 col-lg-5 mt-sm-1 p-0 p-sm-0`} noValidate>
@@ -369,7 +369,7 @@ export default function RegisterTwo(){
                                                 value={form.fechaNac}
                                                 onChange={(e)=> verifyData(e)}
                                                 // defaultValue="2017-05-24"
-                                                className={`${Style.fechaNacField} ${classes.textField}`}
+                                                className={`${Style.fechaNacField} ${classes.textField} mt-0`}
                                                 InputLabelProps={{
                                                 shrink: true,
                                                 }}
@@ -404,7 +404,7 @@ export default function RegisterTwo(){
                                 : null                                
                             } */}
                             
-                            <div className={`${Style.cel} row`}>
+                            <div className={`${Style.cel} row mt-0`}>
                                 <div className="col-md-6 col-lg-6">
                                     <div className="row">
                                         <h4 className={`col-md-3 col-lg-3`}>Celular1</h4>

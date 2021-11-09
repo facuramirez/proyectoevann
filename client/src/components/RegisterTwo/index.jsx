@@ -26,8 +26,8 @@ export default function RegisterTwo(){
         rut: '',
         mail: '',
         repeatMail: '',
-        clave: '',
-        repeatClave: '',
+        // clave: '',
+        // repeatClave: '',
         admin: '',
         ape: '',
         direccion: '',
@@ -43,8 +43,8 @@ export default function RegisterTwo(){
         rut: '',
         mail: '',
         repeatMail: '',
-        clave: '',
-        repeatClave: '',
+        // clave: '',
+        // repeatClave: '',
         admin: '',
         ape: '',
         direccion: '',
@@ -145,7 +145,7 @@ export default function RegisterTwo(){
             // repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -158,7 +158,7 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        if(!form.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
+        if(!form.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})

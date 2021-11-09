@@ -38,7 +38,19 @@
 }
 
 .titleForm{
-    margin-left: 3%;
+    margin-left: 1rem;
+}
+
+.titleForm h4{
+    font-size: 1.3rem !important;
+}
+
+.titleForm h5{
+    font-size: 1rem !important;
+}
+
+.data h4{
+    font-size: 1rem !important;
 }
 
 .formRegister{
@@ -83,7 +95,7 @@
 }
 
 .formRegister .data div{
-    margin-top: 1%;
+    margin-top: 1rem;
 }
 
 .fechaNac{
