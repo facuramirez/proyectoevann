@@ -87,13 +87,11 @@ export default function ConductoresDetail() {
             // setTodos(true);
             checkUnit.forEach((element)=>{
                 element.checked = true;
-            })
-            console.log('HOLAA')
+            })            
         } else {
             checkUnit.forEach((element)=>{
                 element.checked = false;
-            })
-            console.log('CHAU')
+            })            
         }
     }
     
@@ -125,7 +123,7 @@ export default function ConductoresDetail() {
     
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office_administracion/usuarios');
+        history.push('/back_office/vehiculos');
     }
 
     // =============================================================    
@@ -165,7 +163,7 @@ export default function ConductoresDetail() {
                         </div>
                     </div>
                     
-                    <div className={`${Style.table} col-12 mt-3`}>     
+                    <div className={`${Style.table} col-12 mt-3`}>
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>

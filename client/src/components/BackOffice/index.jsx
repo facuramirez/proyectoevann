@@ -29,6 +29,34 @@ export default function BackOffice() {
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
 
+    // ===================== ESTO ES SOLO FRONTEND =======================
+    // const close = (e) => {
+    //     e.preventDefault();
+    //     swal({
+    //         title: '¿Cerrar sesión?',
+    //         text: 'Confirme si desea cerrar la sesión',
+    //         icon: 'warning',
+    //         buttons: ["NO", "SI"]
+    //     })
+    //     .then( async (response) => {
+    //         if(response){
+    //             await swal({
+    //                 title: 'Adiós, vuelve pronto!',
+    //                 text: 'Redireccionando a Evann...',
+    //                 icon: 'success',
+    //                 buttons: [''],
+    //                 timer: 2000
+    //             })                
+    //             history.push('/');
+    //         }
+    //     })
+    //     .catch(error => {
+    //         alert('Error al cerrar sesión!')
+    //     })
+    // }
+    // =====================================================================================
+
+    // ===================== ESTO ES CON BACKEND =======================
     const close = (e) => {
         e.preventDefault();
         swal({
@@ -55,6 +83,7 @@ export default function BackOffice() {
             }            
         });
     }
+    // =====================================================================================
 
     return(
         <div>

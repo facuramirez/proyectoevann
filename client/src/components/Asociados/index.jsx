@@ -185,7 +185,7 @@ export default function Asociados({alto}) {
                     :
                     <div>
                         <br/>   
-                        <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
+                        <h1 className={`${Style.noCars} mt-4`}>No hay asociados para mostrar</h1>
                     </div>
                     }
                 </div>

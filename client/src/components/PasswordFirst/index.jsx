@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import swal from 'sweetalert';
 import Fade from 'react-reveal/Fade';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaChevronCircleLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import axios from '../../axiosConfig';
 
@@ -14,9 +14,9 @@ export default function PasswordFirst(){
     
     let history = useHistory();
     
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
+    // useEffect( () => {
+    //     window.scrollTo(0, 0);
+    // });
     
     let [form, setForm] = useState({
         clave: '',
@@ -73,6 +73,26 @@ export default function PasswordFirst(){
         window.scrollTo(0, 0);
     }
 
+    const showPass = (e) => {
+        let input1 = document.getElementById('input1');
+
+        if(input1.type === 'password') {
+            input1.type = 'text';    
+        } else {
+            input1.type = 'password';
+        }
+    }
+
+    const showPass2 = (e) => {
+        let input2 = document.getElementById('input2');
+
+        if(input2.type === 'password') {
+            input2.type = 'text';    
+        } else {
+            input2.type = 'password';
+        }
+    }
+
     return(
         <Fade>
         <div>
@@ -91,8 +111,18 @@ export default function PasswordFirst(){
                         <div className={`${Style.data} row`}>
                             <div className={`col-lg-12`}>
                                 <div className="row">
-                                    <h4 className={`${Style.labels} col-12 col-lg-4 mt-2`}>Nueva Contraseña</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-8 mt-2`} type="text" name="clave" value={form.clave} onChange={(e)=> verifyClave(e)}/>
+                                    <h4 className={`${Style.labels} col-12 col-lg-12 mt-2`}>Nueva Contraseña</h4>
+                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-12 mt-2`} id="input1" type="password" name="clave" value={form.clave} onChange={(e)=> verifyClave(e)}/>
+                                    <div className="col-12 text-center">
+                                        <div className="row mt-1">
+                                            <div className={`${Style.divCheck1} col-1`}>
+                                                <input className={`${Style.check}`} onClick={(e)=>showPass(e)} type="checkbox" />
+                                            </div>
+                                            <div className={`${Style.divShow} col-10 text-start`}>
+                                                <label className={`${Style.lblShow}`}>Mostrar contraseña</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {error.clave && form.clave ?
@@ -103,8 +133,18 @@ export default function PasswordFirst(){
                             }
                             <div className={`col-lg-12`}>
                                 <div className="row">
-                                    <h4 className={`${Style.labels} col-12 col-lg-5 mt-2`}>Repetir Nueva Contraseña</h4>
-                                    <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-7 mt-2`} type="text" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyClave(e)}/>
+                                    <h4 className={`${Style.labels} col-12 col-lg-12 mt-3`}>Repetir Nueva Contraseña</h4>
+                                    <input id="input2" autoFocus className={`${Style.inpMail} mail col-12 col-lg-12 mt-2`} id="input2" type="password" name="repeatClave" value={form.repeatClave} onChange={(e)=> verifyClave(e)}/>
+                                    <div className="col-12">
+                                        <div className="row mt-1">
+                                            <div className={`${Style.divCheck2} col-1`}>
+                                                <input className={`${Style.check}`} onClick={(e)=>showPass2(e)} type="checkbox" />
+                                            </div>
+                                            <div className={`${Style.divShow} col-10 text-start`}>
+                                                <label className={`${Style.lblShow}`}>Mostrar contraseña</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {error.repeatClave && form.repeatClave ?
@@ -115,13 +155,13 @@ export default function PasswordFirst(){
                             }
                             {!error.clave && form.clave && !error.repeatClave && form.repeatClave && (form.clave !== form.repeatClave) ?
                                 <div className={`col-lg-12`}>
-                                    <h5 className={`${Style.alertTextsC} border text-center mt-3 col-12 col-md-6 col-lg-12`}>Las contraseñas establecidas no coinciden!</h5>
+                                    <h5 className={`${Style.alertTextsC} text-center mt-3 col-12 col-md-6 col-lg-12`}>Las contraseñas establecidas no coinciden!</h5>
                                 </div>
                                 : null 
                             }
                                {!error.clave && form.clave && !error.repeatClave && form.repeatClave && (form.clave === form.repeatClave) ?
                                 <div className={`col-lg-12`}>
-                                    <h5 className={`${Style.alertTextsSuccess} border text-center mt-3 col-12 col-md-6 col-lg-12`}>Correcto!</h5>
+                                    <h5 className={`${Style.alertTextsSuccess} text-center mt-3 col-12 col-md-6 col-lg-12`}>Correcto!</h5>
                                 </div>
                                 : null 
                             }
@@ -134,7 +174,7 @@ export default function PasswordFirst(){
                             <button className={`${Style.save}`} onClick={(e)=>accept(e)}>Aceptar</button>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
         </Fade>

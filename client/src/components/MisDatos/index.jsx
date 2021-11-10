@@ -99,11 +99,29 @@ export default function MisDatos() {
                     </div>
 
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
-                            
-                        {/* <label className={`${Style.lbl}`}>Mail:</label>
-                        <label className={`${Style.datos}`}>{user.email}</label> */}
-                    
+
                         <label className={`${Style.lbl}`}>Apellido:</label>
+                        <label className={`${Style.datos}`}>Gonzalez</label>
+                    
+                        <label className={`${Style.lbl}`}>Nombre:</label>
+                        <label className={`${Style.datos}`}>Pablo</label>
+                    
+                        <label className={`${Style.lbl}`}>Rut:</label>
+                        <label className={`${Style.datos}`}>7647897</label>
+                    
+                        <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                        <label className={`${Style.datos}`}>1980-07-12</label>
+
+                        <label className={`${Style.lbl}`}>Dirección:</label>
+                        <label className={`${Style.datos}`}>Av.San Martin 487</label>
+                    
+                        <label className={`${Style.lbl}`}>Celular1:</label>
+                        <label className={`${Style.datos}`}>984968375</label>
+                    
+                        <label className={`${Style.lbl}`}>Celular2:</label>
+                        <label className={`${Style.datos}`}>987573244</label>
+
+                        {/* <label className={`${Style.lbl}`}>Apellido:</label>
                         <label className={`${Style.datos}`}>{user.last_name}</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
@@ -122,7 +140,7 @@ export default function MisDatos() {
                         <label className={`${Style.datos}`}>{user.phone_number}</label>
                     
                         <label className={`${Style.lbl}`}>Celular2:</label>
-                        <label className={`${Style.datos}`}>{user.phone_number2 ? user.phone_number2:'-'}</label>
+                        <label className={`${Style.datos}`}>{user.phone_number2 ? user.phone_number2:'-'}</label> */}
                             
                     </div>
                 </div>

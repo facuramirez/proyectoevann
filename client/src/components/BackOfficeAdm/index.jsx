@@ -43,8 +43,11 @@ export default function BackOfficeAdm() {
     let user = useSelector(state => state['user']);
     
     // if(user === {}) history.push('/administracion');
-    if(Object.keys(user).length === 0) history.push('/administracion');
 
+    // ===== LA SIGUIENTE LINEA OBJECT KEYS ES PARA EL BACKEND ====
+    // if(Object.keys(user).length === 0) history.push('/administracion');
+    // ===============================================================
+    
     // let userData;
 
     // useEffect( () => {
@@ -57,8 +60,33 @@ export default function BackOfficeAdm() {
     //     })
     // }, [])
 
-    
-    
+    // // =========== ESTO ES CON FRONTEND ==================
+    // const close = (e) => {
+    //     e.preventDefault();
+    //     swal({
+    //         title: '¿Cerrar sesión?',
+    //         text: 'Confirme si desea cerrar la sesión',
+    //         icon: 'warning',
+    //         buttons: ["NO", "SI"]
+    //     })
+    //     .then( async (response) => {
+    //         if(response){
+    //             await swal({
+    //                 title: 'Adiós, vuelve pronto!',
+    //                 text: 'Redireccionando a Evann...',
+    //                 icon: 'success',
+    //                 buttons: [''],
+    //                 timer: 2000
+    //             })                
+    //             history.push('/');
+    //         }
+    //     })
+    //     .catch(error => {
+    //         alert('Error al cerrar sesión!')
+    //     })
+    // }
+
+    // =========== ESTO ES CON BACKEND ==================
     const close = (e) => {
         e.preventDefault();
         swal({
@@ -94,6 +122,7 @@ export default function BackOfficeAdm() {
     //         <a className="col-8" href="" onClick={(e)=>close(e)}>Cerrar Sesión</a>
     //     </div>
     // </div>
+    // ================================================================
     
     return(
         <div>

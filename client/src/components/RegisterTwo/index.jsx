@@ -301,7 +301,7 @@ export default function RegisterTwo(){
         };
         console.log(data);
 
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.tipo_cuenta !== '-' && form.banco && form.banco !== '-') {
             await swal({
                 title: '¿Seguro?',
                 text: '¿Confirmar registro de asociado?',
@@ -380,12 +380,12 @@ export default function RegisterTwo(){
                     <h1 className={`${Style.title} col-5`}>Registro Asociado</h1>
                     <div className={`${Style.formRegister} col-12`}>
                         <div className={Style.titleForm}>
-                            <h4>Registro Asociado</h4>
-                            <h5>Tu usuario es tu mail</h5>
+                            <h4 className={`${Style.titleReg}`}>Registro Asociado</h4>
+                            <h5 className={`${Style.descriptionReg}`}>Tu usuario es tu mail</h5>
                         </div>
                         <div className={`${Style.data}`}>
                             <div className={`row`}>                        
-                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut</h4>
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut (*)</h4>
                                 <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="rut" value={form.rut} onChange={(e)=> verifyCel(e)}/>
                                 {error.rut && form.rut ?
                                 <div className={`row`}>
@@ -395,7 +395,7 @@ export default function RegisterTwo(){
                                 }
                             </div>
                             <div className={`row`}>                        
-                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Mail</h4>
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Mail (*)</h4>
                                 <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                                 {error.mail && form.mail ?
                                 <div className={`row`}>
@@ -405,17 +405,17 @@ export default function RegisterTwo(){
                                 }
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.repeatMailLabel} col-sm-3 col-md-3 col-lg-2`}>Repetir Mail</h4>
+                                <h4 className={`${Style.repeatMailLabel} col-sm-3 col-md-3 col-lg-2`}>Repetir Mail (*)</h4>
                                 <input className={`${Style.repeatMail} repeatMail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" disabled name="repeatMail" value={form.repeatMail} onChange={(e)=> verifyMail(e)}/>
                             {!error.mail && !email.repeat && form.repeatMail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts2} col-9`}>Debe repetir exactamente el correo colocado</h5>
                                 </div>
-                                : null                                
+                                : null                   
                             }
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Nombre</h4>
+                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Nombre (*)</h4>
                                 <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.admin && form.admin ?
@@ -425,7 +425,7 @@ export default function RegisterTwo(){
                                 : null 
                             }
                             <div className={`row`}>
-                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Apellido</h4>
+                                <h4 className={`${Style.admLabel} col-sm-3 col-md-3 col-lg-2`}>Apellido (*)</h4>
                                 <input className={`${Style.inputLabel} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="ape" value={form.ape} onChange={(e)=> verifyAdmin(e)}/>
                             </div>
                             {error.ape && form.ape ?
@@ -435,11 +435,11 @@ export default function RegisterTwo(){
                                 : null 
                             }
                             <div className={`row`}>
-                                <h4 className={`col-11 col-sm-3 col-md-3 col-lg-2`}>Dirección</h4>
+                                <h4 className={`col-11 col-sm-3 col-md-3 col-lg-2`}>Dirección (*)</h4>
                                 <input className={`${Style.inputDir} col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
                             </div>
                             <div className={`row`}>
-                                <h4 className={`${Style.fechaNac} col-11 col-md-5 col-lg-4`}>Fecha de Nacimiento</h4>
+                                <h4 className={`${Style.fechaNac} col-11 col-md-5 col-lg-4`}>Fecha de Nacimiento (*)</h4>
                                 <form className={`${classes.container} ${Style.inputFecha} col-11 col-md-6 col-lg-7`} noValidate>
                                     <TextField
                                         id="date"
@@ -459,10 +459,10 @@ export default function RegisterTwo(){
                                 {/* <input className={`${Style.inputFecha} col-7`} type="text" /> */}
                             </div>                            
                             <div className={`${Style.cel} row`}>
-                                <h4 className={`col-11 col-sm-3 col-md-2 col-lg-2`}>Celular1</h4>
-                                <input className={`${Style.celInp1} col-11 col-sm-8 col-md-3 col-lg-3`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`col-11 col-sm-3 col-md-3 col-lg-2`}>Celular1 (*)</h4>
+                                <input className={`${Style.celInp1} col-11 col-sm-8 col-md-3 col-lg-3 mt-1`} type="text" name="cel1" value={form.cel1} onChange={(e)=> verifyCel(e)}/>
                                 <h4 className={`${Style.cel2} col-11 col-sm-3 col-md-2 col-lg-2 text-md-center text-lg-center`}>Celular2</h4>
-                                <input className={`${Style.celInp2} col-11 col-sm-8 col-md-4 col-lg-4`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
+                                <input className={`${Style.celInp2} col-11 col-sm-8 col-md-3 col-lg-4 mt-1`} type="text" name="cel2" value={form.cel2} onChange={(e)=> verifyCel(e)}/>
                             </div>
                             {(error.cel1 && form.cel1 && error.cel2 && form.cel2) ?
                                 <div className={`row`}>
@@ -479,8 +479,8 @@ export default function RegisterTwo(){
                                 </div>:null
                             }
                             <div className={`row`}>                        
-                                <h4 className={`col-sm-4 col-md-5 col-lg-3`}>Nro Cuenta Bancaria</h4>
-                                <input className={`mail col-11 col-sm-7 col-md-6 col-lg-8`} type="text" name="cuenta" value={form.cuenta} onChange={(e)=> verifyCel(e)}/>
+                                <h4 className={`col-sm-5 col-md-5 col-lg-3`}>Nro Cuenta Bancaria (*)</h4>
+                                <input className={`mail col-11 col-sm-6 col-md-6 col-lg-8`} type="text" name="cuenta" value={form.cuenta} onChange={(e)=> verifyCel(e)}/>
                                 {error.cuenta && form.cuenta ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
@@ -489,9 +489,10 @@ export default function RegisterTwo(){
                                 }
                             </div>
                             <div className={`row`}>                   
-                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Tipo Cuenta</h4>
-                                <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="tipo_cuenta" value={form.tipo_cuenta} onChange={(e)=> verifyData(e)}>
-                                    <option value="CC" selected onChange={(e)=> verifyData(e)}>CC</option>
+                                <h4 className={`col-sm-4 col-md-4 col-lg-2`}>Tipo Cuenta (*)</h4>
+                                <select className={`mail col-11 col-sm-7 col-md-7 col-lg-9`} name="tipo_cuenta" value={form.tipo_cuenta} onChange={(e)=> verifyData(e)}>
+                                    <option value="-" selected onChange={(e)=> verifyData(e)}>-</option>
+                                    <option value="CC" onChange={(e)=> verifyData(e)}>CC</option>
                                     <option value="CV" onChange={(e)=> verifyData(e)}>CV</option>
                                     <option value="CE" onChange={(e)=> verifyData(e)}>CE</option>    
                                 </select>
@@ -503,9 +504,10 @@ export default function RegisterTwo(){
                                 }
                             </div>
                             <div className={`row`}>                   
-                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Banco</h4>
+                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Banco (*)</h4>
                                 <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="banco" value={form.banco} onChange={(e)=> verifyData(e)}>
-                                    <option value="1" selected>Scotiabank</option>
+                                    <option value="-" selected>-</option>
+                                    <option value="1">Scotiabank</option>
                                     <option value="2">Banco de Chile</option>
                                     <option value="3">Banco del Estado</option>
                                     <option value="4">Banco EDW</option>

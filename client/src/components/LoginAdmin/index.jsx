@@ -136,6 +136,21 @@ export default function LoginAdmin(){
         ready: false
     });
 
+    // ===================== ESTO ES SOLO FRONTEND ========================================
+    // const login = async (e) => {
+    //     e.preventDefault();
+        
+    //     history.push('/back_office_administracion/mis_datos');
+    //     swal({
+    //         title: 'Bienvenido a Evann!',
+    //         text: 'Que disfrutes tu estadía en la página',
+    //         icon: 'success',
+    //         timer: 2000
+    //     })        
+    // }
+    // ==============================================================================
+
+    // =================== ESTO FUNCIONA CON BACKEND =========================
     const login = async (e) => {
         e.preventDefault();
         let data = {
@@ -169,6 +184,7 @@ export default function LoginAdmin(){
                 })
         })
     }
+    // ==================================================================================
   
 
     const back = (e) => {
