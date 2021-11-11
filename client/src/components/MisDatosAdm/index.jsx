@@ -102,7 +102,7 @@ export default function MisDatosAdm() {
 
                     <div className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}>                        
 
-                        <label className={`${Style.lbl}`}>Apellido:</label>
+                        {/* <label className={`${Style.lbl}`}>Apellido:</label>
                         <label className={`${Style.datos}`}>Gonzalez</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
@@ -121,9 +121,9 @@ export default function MisDatosAdm() {
                         <label className={`${Style.datos}`}>984968375</label>
                     
                         <label className={`${Style.lbl}`}>Celular2:</label>
-                        <label className={`${Style.datos}`}>987573244</label>
+                        <label className={`${Style.datos}`}>987573244</label> */}
 
-                        {/* <label className={`${Style.lbl}`}>Apellido:</label>
+                        <label className={`${Style.lbl}`}>Apellido:</label>
                         <label className={`${Style.datos}`}>{user.last_name}</label>
                     
                         <label className={`${Style.lbl}`}>Nombre:</label>
@@ -142,7 +142,7 @@ export default function MisDatosAdm() {
                         <label className={`${Style.datos}`}>{user.phone_number}</label>
                     
                         <label className={`${Style.lbl}`}>Celular2:</label>
-                        <label className={`${Style.datos}`}>{user.phone_number2 ? user.phone_number2:'-'}</label> */}
+                        <label className={`${Style.datos}`}>{user.phone_number2 ? user.phone_number2:'-'}</label>
                             
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 // import axios from '../../axiosConfig';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import { dataUser } from '../../globalState/Actions';
 import { useDispatch } from 'react-redux';
 
@@ -19,9 +19,9 @@ export default function Login(){
     let history = useHistory();
     let dispatch = useDispatch();
 
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
+    // useEffect( () => {
+    //     window.scrollTo(0, 0);
+    // });
     
     let [form, setForm] = useState({
         mail: '',
@@ -164,7 +164,7 @@ export default function Login(){
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
             if(response.data.is_password_temp) {
-                return history.push('/asociados/cambiar_contraseña')
+                history.push('/asociados/cambiar_contraseña');
             }
             else {
             await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)

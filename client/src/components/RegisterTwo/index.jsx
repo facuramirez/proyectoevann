@@ -335,6 +335,30 @@ export default function RegisterTwo(){
         }
     }
 
+    const verifyRut = (e) => {
+        e.preventDefault();
+        let rut1 = document.getElementById('rut1').value;
+        let rut2 = document.getElementById('rut2').value;
+        
+        if(/^\d*$/.test(rut1) && (rut1 >= 6000000 && rut1 < 99000000)){
+            setError({...error, rut: ''});
+        } else {
+            setError({...error, rut: 'Error'});
+        }
+    
+        if(/^\d*$/.test(rut2) || rut2.toUpperCase() === 'K'){
+            setError({...error, rut: ''});
+        } else {
+            setError({...error, rut: 'Error'});
+        }
+        
+        let rutComplete = `${rut1}-${rut2}`;
+
+        setForm({...form, rut: rutComplete});
+        console.log(error, 'error');
+        console.log(form, 'form');
+    }
+
     const verifyCel = (e) => {
         let number = e.target.value;
         let name = e.target.name;
@@ -349,7 +373,7 @@ export default function RegisterTwo(){
 
         let buttonSave = document.querySelector('.notActive');
 
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
             modifyAllData(true);
             let button = document.querySelector('.notActive');
             if(alldata.ready) button.disabled = false;
@@ -386,10 +410,12 @@ export default function RegisterTwo(){
                         <div className={`${Style.data}`}>
                             <div className={`row`}>                        
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut (*)</h4>
-                                <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="rut" value={form.rut} onChange={(e)=> verifyCel(e)}/>
+                                <input autoFocus className={`mail col-4 col-sm-3 col-md-3 col-lg-3 text-center`} type="text" name="rut1" id="rut1"  onChange={(e)=> verifyRut(e)}/>
+                                &nbsp;-&nbsp;
+                                <input autoFocus className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center`} type="text" name="rut2" id="rut2"  onChange={(e)=> verifyRut(e)}/>
                                 {error.rut && form.rut ?
                                 <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo números</h5>
+                                    <h5 className={`${Style.alertTexts} col-6`}>El formato permitido es 0000000-0 / 0000000-K</h5>
                                 </div>
                                 : null
                                 }
@@ -496,7 +522,7 @@ export default function RegisterTwo(){
                                     <option value="CV" onChange={(e)=> verifyData(e)}>CV</option>
                                     <option value="CE" onChange={(e)=> verifyData(e)}>CE</option>    
                                 </select>
-                                {error.tipo_cuenta && form.tipo_cuenta ?
+                                {form.tipo_cuenta === '-' ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Debe completar este campo</h5>
                                 </div>
@@ -513,7 +539,7 @@ export default function RegisterTwo(){
                                     <option value="4">Banco EDW</option>
                                     <option value="5">Banco BCI</option>
                                 </select>
-                                {error.banco && form.banco ?
+                                {form.banco === '-' ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Debe completar este campo</h5>
                                 </div>

@@ -2,9 +2,25 @@ import Style from './NavBar.module.css';
 import evann from '../../img/evannImage.png';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
+import axios from '../../axiosConfig';
+import { useHistory } from 'react-router-dom';
 
 export default function NavBar() {
+
+    let history = useHistory();
+
+    let refresh = (e) => {
+        e.preventDefault();
+        // axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
+        // .then(response => {
+        //     history.push('/');
+        // })
+        // .catch(error => {
+        //     console.log('');
+        // })
+        history.push('/');
+    }
+    
 
     const imgVariants = {
         hidden: {
@@ -17,9 +33,10 @@ export default function NavBar() {
                 type: 'spring',
                 stiffness: 500
             }
-        }
-        
+        }        
     }
+
+
 
     let url = window.location.href.includes('asociados');
     let url2 = window.location.href.includes('back_office');
@@ -29,13 +46,13 @@ export default function NavBar() {
             { !url2 ?
             <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                 <div className="container-fluid">
-                    <Link to="/" className={Style.linkImg}>
+                    <a href="" onClick={(e)=>refresh(e)} className={Style.linkImg}>
                         <motion.img src={evann} className={`${Style.imageEvann}`}
                             variants={imgVariants}
                             initial='hidden'
                             animate='visible'
                         />
-                    </Link>
+                    </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

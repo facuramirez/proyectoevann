@@ -47,17 +47,41 @@ export default function PasswordFirst(){
    
     const accept = async (e) => {
         e.preventDefault();
-        
+        let data = {
+            password: form.clave,
+            confirm_password: form.repeatClave
+        }
+        console.log(data, 'data');
+
         if(form.clave !== '' && form.repeatClave !== '' && error.clave === '' && error.repeatClave === ''
-        && form.clave === form.repeatClave){            
+        && form.clave === form.repeatClave){
             swal({
-                title: 'Contraseña reestablecida',
-                text: 'Una vez que el administrador apruebe su cuenta podrá ingresar al sistema!',
-                icon: 'success'
+                title: '¿Confirmar Operación?',
+                text: '¿Desea realizar el cambio de contraseña?',
+                icon: 'warning',
+                buttons: ['NO', 'SI']
             })
-        
-            // await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, form);
-            
+            .then(async(response) => {
+                if(response) { // Si respondo que "SI"
+                    await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
+                    .then(response => {
+                        console.log(response.data, 'dataaaaaa');
+                        swal({
+                            title: 'Cambio de contraseña exitoso!',
+                            text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
+                            icon: 'success'
+                        })
+                    .chatch(error => {
+                        console.log(error, 'error !!!!');
+                        swal({
+                            title: 'Error!',
+                            text: 'No se pudo completar la operación, vuelva a ingresar con su correo y contraseña para realizar el cambio',
+                            icon: 'warning'
+                        })
+                    })
+                    }) 
+                }
+            })
         } else {
             swal({
                 title: 'Datos incorrectos!',
