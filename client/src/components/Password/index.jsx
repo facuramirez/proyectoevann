@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import Fade from 'react-reveal/Fade';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
+import axios from '../../axiosConfig';
 
 export default function Password(){
     
@@ -63,18 +64,32 @@ export default function Password(){
         }
     }
    
-    const save = (e) => {
+    const save = async (e) => {
         e.preventDefault();
         
-        if(alldata.ready){
-            swal({
-                title: 'Contraseña reestablecida',
-                text: 'Por favor revise su correo para visualizar su nueva contraseña',
-                icon: 'success'
-              })
+        let data = {
+            email: form.mail
+        }
+
+        if(!error.mail && form.mail){
+            await axios.post(`${process.env.REACT_APP_BACKEND}/users/reset_password/`, data)
+            .then(response => {
+                console.log(response.data, 'dataaaa');
+                swal({
+                    title: 'Contraseña reestablecida',
+                    text: 'Por favor revise su correo para visualizar su nueva contraseña',
+                    icon: 'success',
+                    // timer: 3000,
+                    buttons: ['','OK']
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            
         } else {
             swal({
-                title: 'Correo incompleto!',
+                title: 'Dato inválido!',
                 text: 'Debes colocar un correo válido para reestablecer tu contraseña',
                 icon: 'error'
               })

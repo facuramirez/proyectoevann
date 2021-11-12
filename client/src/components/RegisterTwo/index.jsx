@@ -279,6 +279,7 @@ export default function RegisterTwo(){
 
     const save = async (e) => {
         e.preventDefault();
+
         let data = {
             user: {
                 rut: form.rut,
@@ -337,26 +338,38 @@ export default function RegisterTwo(){
 
     const verifyRut = (e) => {
         e.preventDefault();
+        let name = e.target.name;
         let rut1 = document.getElementById('rut1').value;
         let rut2 = document.getElementById('rut2').value;
         
-        if(/^\d*$/.test(rut1) && (rut1 >= 6000000 && rut1 < 99000000)){
-            setError({...error, rut: ''});
-        } else {
-            setError({...error, rut: 'Error'});
-        }
-    
-        if(/^\d*$/.test(rut2) || rut2.toUpperCase() === 'K'){
-            setError({...error, rut: ''});
-        } else {
-            setError({...error, rut: 'Error'});
+        if(name === 'rut1'){
+            if(/^\d*$/.test(parseInt(rut1)) && (rut1 >= 6000000 && rut1 < 99000000)){
+                setError({...error, rut: ''});
+            } else {
+                setError({...error, rut: 'Error'});
+            }
         }
         
+        if(name === 'rut2'){
+            if(/^\d*$/.test(parseInt(rut2)) || rut2.toUpperCase() === 'K'){
+                setError({...error, rut: ''});
+            } else {
+                setError({...error, rut: 'Error'});
+            }
+        }
+
+        if(!rut1 && !rut2){
+            setError({...error, rut: ''});
+        }
+        else if(!rut1 || !rut2 ){
+            setError({...error, rut: 'Error'});
+        }
+
         let rutComplete = `${rut1}-${rut2}`;
 
         setForm({...form, rut: rutComplete});
-        console.log(error, 'error');
-        console.log(form, 'form');
+        // console.log(error, 'error');
+        // console.log(form, 'form');
     }
 
     const verifyCel = (e) => {
@@ -412,7 +425,7 @@ export default function RegisterTwo(){
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut (*)</h4>
                                 <input autoFocus className={`mail col-4 col-sm-3 col-md-3 col-lg-3 text-center`} type="text" name="rut1" id="rut1"  onChange={(e)=> verifyRut(e)}/>
                                 &nbsp;-&nbsp;
-                                <input autoFocus className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center`} type="text" name="rut2" id="rut2"  onChange={(e)=> verifyRut(e)}/>
+                                <input className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center`} type="text" name="rut2" id="rut2"  onChange={(e)=> verifyRut(e)}/>
                                 {error.rut && form.rut ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>El formato permitido es 0000000-0 / 0000000-K</h5>
@@ -422,7 +435,7 @@ export default function RegisterTwo(){
                             </div>
                             <div className={`row`}>                        
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Mail (*)</h4>
-                                <input autoFocus className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
+                                <input className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} type="text" name="mail" value={form.mail} onChange={(e)=> verifyMail(e)}/>
                                 {error.mail && form.mail ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>

@@ -163,12 +163,14 @@ export default function Login(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
-            if(response.data.is_password_temp) {
+            console.log(response.data, 'ESTO ES EL LOGIN')
+            if(!response.data.is_password_temp) {
                 history.push('/asociados/cambiar_contraseña');
             }
             else {
             await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
             .then(response => {
+                console.log(response.data, 'ESTO ES USER INFO');
                 dispatch(dataUser(response.data));
                 history.push('/back_office/mis_datos');
                 swal({
@@ -179,7 +181,7 @@ export default function Login(){
                 })
             })
             .catch(error => {
-                console.log(error);
+                console.log(error, 'ERROR DE USER INFO');
             })
             }
         })

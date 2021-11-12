@@ -12,9 +12,16 @@ import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
+import { useSelector } from 'react-redux';
 
 
-export default function RegisterTwo(){
+export default function EditarMisDatos(){
+
+    let user = useSelector(state => state['user']);
+    console.log(user, 'ACA ESTA USER EN EDITAR MIS DATOS !!!!');
+    let [alldata, setAlldata] = useState({
+        ready: false
+    });
 
     let history = useHistory();
 
@@ -22,23 +29,37 @@ export default function RegisterTwo(){
     let inputRepeatPass;
 
     let [form, setForm] = useState({
-        mail: '',
-        repeatMail: '',
-        clave: '',
-        repeatClave: '',
+        // mail: '',
+        // repeatMail: '',
+        // clave: '',
+        // repeatClave: '',
         admin: '',
+        ape: '',
         direccion: '',
         fechaNac: '',
         cel1: '',
         cel2: ''
     });
- 
+    
+    useEffect( () => {
+        setForm({
+            admin: user.name,
+            ape: user.last_name,
+            direccion: user.address,
+            fechaNac: user.birth_date,
+            cel1: user.phone_number,
+            cel2: user.phone_number2
+        })
+    }, [])
+    
+    
     let [error, setError] = useState({
-        mail: '',
-        repeatMail: '',
-        clave: '',
-        repeatClave: '',
+        // mail: '',
+        // repeatMail: '',
+        // clave: '',
+        // repeatClave: '',
         admin: '',
+        ape: '',
         direccion: '',
         fechaNac: '',
         cel1: '',
@@ -96,43 +117,43 @@ export default function RegisterTwo(){
         
 
         // ================ PROCESO EMAIL, REPEAT EMAIL =====================
-        if(name==='mail'){
-            if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value)){
-                setError({...error, [name]: 'Error'});
-                setEmail({...email, valid: false});                
-                inputRepeatEmail.disabled = true;
-            } else {
-                setError({...error, [name]: ''});
-                setEmail({...email, valid: true});                
-                inputRepeatEmail.disabled = false;
-            }
-        }
+        // if(name==='mail'){
+        //     if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value)){
+        //         setError({...error, [name]: 'Error'});
+        //         setEmail({...email, valid: false});                
+        //         inputRepeatEmail.disabled = true;
+        //     } else {
+        //         setError({...error, [name]: ''});
+        //         setEmail({...email, valid: true});                
+        //         inputRepeatEmail.disabled = false;
+        //     }
+        // }
         
         // =========================================================================
         // ================ PROCESO PASSWORD, REPEAT PASSWORD ======================
-        if(name==='clave'){
-            let typedPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-            if(!typedPass.test(value)){
-                setError({...error, [name]: 'Error'});
-                setPass({...pass, valid: false});
-                console.log(error, 'invalido');                
-                inputRepeatPass.disabled = true;
-            } else {
-                setError({...error, [name]: ''});
-                setPass({...pass, valid: true});
-                console.log(error, 'VALIDO');                
-                inputRepeatPass.disabled = false;
-            }
-        }
+        // if(name==='clave'){
+        //     let typedPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        //     if(!typedPass.test(value)){
+        //         setError({...error, [name]: 'Error'});
+        //         setPass({...pass, valid: false});
+        //         console.log(error, 'invalido');                
+        //         inputRepeatPass.disabled = true;
+        //     } else {
+        //         setError({...error, [name]: ''});
+        //         setPass({...pass, valid: true});
+        //         console.log(error, 'VALIDO');                
+        //         inputRepeatPass.disabled = false;
+        //     }
+        // }
 
         setForm({
             ...form,
-            [name]: value,
-            repeatMail: inputRepeatEmail.disabled ? '':inputRepeatEmail.value,
-            repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
+            [name]: value
+            // repeatMail: inputRepeatEmail.disabled ? '':inputRepeatEmail.value,
+            // repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -145,7 +166,7 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -160,27 +181,27 @@ export default function RegisterTwo(){
         let mail = form.mail;
         let clave = form.clave;
         
-        if(name==='repeatMail'){
-            if(value === mail){
-                setEmail({...email, repeat:true});
-                setError({...error, [name]: ''});
-            }else{
-                setEmail({...email, repeat:false});
-                setError({...error, [name]: 'Error'});
-            }
-        }
+        // if(name==='repeatMail'){
+        //     if(value === mail){
+        //         setEmail({...email, repeat:true});
+        //         setError({...error, [name]: ''});
+        //     }else{
+        //         setEmail({...email, repeat:false});
+        //         setError({...error, [name]: 'Error'});
+        //     }
+        // }
 
-        if(name==='repeatClave'){
-            if(value === clave){
-                setPass({...pass, repeat:true});
-                setError({...error, [name]: ''});
-            }else{
-                setPass({...pass, repeat:false});
-                setError({...error, [name]: 'Error'});
-            }
-        }
+        // if(name==='repeatClave'){
+        //     if(value === clave){
+        //         setPass({...pass, repeat:true});
+        //         setError({...error, [name]: ''});
+        //     }else{
+        //         setPass({...pass, repeat:false});
+        //         setError({...error, [name]: 'Error'});
+        //     }
+        // }
 
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
@@ -211,11 +232,12 @@ export default function RegisterTwo(){
 
         setForm({...form, [name]: value});
         
-        if(!error.mail && !error.repeatMail && !error.clave && !error.repeatClave && !error.admin && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && form.mail && form.repeatMail && form.clave && form.repeatClave && form.admin && form.direccion && form.fechaNac && form.cel1) {
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1) {
             setAlldata({ready: true})
         } else {
             setAlldata({ready: false})
         }
+        console.log(form, 'form');
     }
     
     // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
@@ -234,14 +256,21 @@ export default function RegisterTwo(){
     const classes = useStyles();
     // ===========================================================
 
-    let [alldata, setAlldata] = useState({
-        ready: false
-    });
-
     const save = async (e) => {
         e.preventDefault();
-        
-        if(alldata.ready){
+        let data = {
+            name: form.admin,
+            last_name: form.ape,
+            address: form.direccion,
+            birth_date: form.fechaNac,
+            phone_number: form.cel1,
+            phone_number2: form.cel2
+        }
+
+        console.log(form, 'FORM');
+        console.log(error, 'Error');
+
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1){
             await swal({
                 title: 'Administrador registrado con éxito!',
                 text: 'Por favor verifica tu correo para validar la cuenta',
@@ -249,7 +278,7 @@ export default function RegisterTwo(){
                 timer: 2000,
                 buttons: ['']
               })
-            history.push('/asociados/iniciar_sesion');              
+            history.push('/back_office/mis_datos');              
         } else {
             swal({
                 title: 'Formulario incompleto!',
@@ -335,7 +364,7 @@ export default function RegisterTwo(){
                                 <div className="col-md-6 col-lg-6">
                                     <div className="row">
                                         <h4 className={`${Style.admLabel} mt-md-2 mt-lg-2 col-4 col-sm-4 col-md-3 col-lg-3`}>Apellido</h4>
-                                        <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-8 col-lg-8`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                        <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-8 col-lg-8`} type="text" name="ape" value={form.ape} onChange={(e)=> verifyAdmin(e)}/>
                                     </div>
                                 </div>
                                 {/* <h4 className={`${Style.dir} col-2 mt-md-2 mt-lg-2 text-end`}>Dirección</h4>
