@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Style from './PasswordFirst.module.css';
+import Style from './CambiarContraseña.module.css';
 import register from '../../img/register.jpg';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import { FaArrowAltCircleLeft, FaChevronCircleLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import axios from '../../axiosConfig';
 
-export default function PasswordFirst(){
+export default function CambiarContraseña(){
     
     let history = useHistory();
     
@@ -63,29 +63,24 @@ export default function PasswordFirst(){
             })
             .then(async(response) => {
                 if(response) { // Si respondo que "SI"
-                    swal({
-                        title: 'Cambio de contraseña exitoso!',
-                        text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
-                        icon: 'success'
+                    await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
+                    .then(async(response) => {
+                        await swal({
+                            title: 'Cambio de contraseña exitoso!',
+                            text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
+                            icon: 'success'
+                        })
+                        .then(response => {
+                            history.push('/back_office/mis_datos');
+                        })    
+                    .catch(error => {
+                        swal({
+                            title: 'Error!',
+                            text: 'No se pudo completar la operación, vuelva a ingresar con su correo y contraseña para realizar el cambio',
+                            icon: 'warning'
+                        })
                     })
-                    // LO SIGUIENTE ES PARA CUANDO FUNCIONE EL BACKEND
-                    // await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
-                    // .then(response => {
-                    //     console.log(response.data, 'dataaaaaa');
-                    //     swal({
-                    //         title: 'Cambio de contraseña exitoso!',
-                    //         text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
-                    //         icon: 'success'
-                    //     })
-                    // .chatch(error => {
-                    //     console.log(error, 'error !!!!');
-                    //     swal({
-                    //         title: 'Error!',
-                    //         text: 'No se pudo completar la operación, vuelva a ingresar con su correo y contraseña para realizar el cambio',
-                    //         icon: 'warning'
-                    //     })
-                    // })
-                    // }) 
+                    }) 
                 }
             })
         } else {
@@ -97,11 +92,11 @@ export default function PasswordFirst(){
         }
     }
 
-    const back = (e) => {
-        e.preventDefault();
-        history.push('/asociados');
-        window.scrollTo(0, 0);
-    }
+    // const back = (e) => {
+    //     e.preventDefault();
+    //     history.push('/back_office/');
+    //     window.scrollTo(0, 0);
+    // }
 
     const showPass = (e) => {
         let input1 = document.getElementById('input1');
@@ -126,22 +121,22 @@ export default function PasswordFirst(){
     return(
         <Fade>
         <div>
-            <div className={Style.containerRegister}>            
+            <div className={`${Style.containerCambiarContraseña} row`}>            
                 {/* <img src={register} className={Style.registerOne}/> */}
                 <div className={Style.form}>
                 </div>
                 <div className={`${Style.formComplete}`}>
-                    <h1 className={Style.title}>Primera modificación de contraseña</h1>
+                    <h1 className={Style.title}>Cambiar Contraseña</h1>
                     <div className={Style.formRegister}>
                         <div className={Style.titleForm}>
                             <h4>Modificar contraseña</h4>
-                            <h5>Por favor complete los siguientes campos</h5>
+                            <h5 className="p-0 m-0">Por favor complete los siguientes campos</h5>
                         </div>
 
                         <div className={`${Style.data} row`}>
                             <div className={`col-lg-12`}>
                                 <div className="row">
-                                    <h4 className={`${Style.labels} col-12 col-lg-12 mt-2`}>Nueva Contraseña</h4>
+                                    <h4 className={`${Style.labels} col-12 col-lg-12`}>Nueva Contraseña</h4>
                                     <input autoFocus className={`${Style.inpMail} mail col-12 col-lg-12 mt-2`} id="input1" type="password" name="clave" value={form.clave} onChange={(e)=> verifyClave(e)}/>
                                     <div className="col-12 text-center">
                                         <div className="row mt-1">
@@ -200,7 +195,7 @@ export default function PasswordFirst(){
                     <div className={Style.containerSave}>
                         <h5 className={`${alldata.ready ? "d-none":null} `}>Complete el formulario para habilitar el botón...</h5>
                         <div className={`${Style.buttons} w-100 d-flex justify-content-center`}>
-                            <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
+                            {/* <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button> */}
                             <button className={`${Style.save}`} onClick={(e)=>accept(e)}>Aceptar</button>
                         </div>
                     </div>

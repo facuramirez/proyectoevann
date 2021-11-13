@@ -13,9 +13,13 @@ import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
 import axios from '../../axiosConfig';
+import { useSelector } from 'react-redux';
 
 export default function EditarMisDatosAdm(){
     
+    let user = useSelector(state => state['user']);
+    let id = useSelector(state => state['id']);
+
     const prueba = async () => {
         await axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
         .then(response => {
@@ -54,6 +58,19 @@ export default function EditarMisDatosAdm(){
         cel1: '',
         cel2: ''
       });
+
+     // =========== ESTE USE EFFECT ES PARA CUANDO FUNCIONE EL BACKEND ==========
+     useEffect( () => {
+        setForm({
+            admin: user.name,
+            ape: user.last_name,
+            direccion: user.address,
+            fechaNac: user.birth_date,
+            cel1: user.phone_number,
+            cel2: user.phone_number2
+        })
+    }, [])
+    // ========================================================================
     
     let [email, setEmail] = useState({
         valid: false,
@@ -345,7 +362,7 @@ export default function EditarMisDatosAdm(){
                                 <div className="col-md-6 col-lg-6">
                                     <div className="row">
                                         <h4 className={`${Style.admLabel} mt-md-2 mt-lg-2 col-4 col-sm-4 col-md-3 col-lg-3`}>Apellido</h4>
-                                        <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-8 col-lg-8`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
+                                        <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-8 col-lg-8`} type="text" name="ape" value={form.ape} onChange={(e)=> verifyAdmin(e)}/>
                                     </div>
                                 </div>
                                 {/* <h4 className={`${Style.dir} col-2 mt-md-2 mt-lg-2 text-end`}>Dirección</h4>

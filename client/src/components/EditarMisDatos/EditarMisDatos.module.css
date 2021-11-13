@@ -1,7 +1,8 @@
 .containerEditarMisDatos{
     background-image: url('../../img/camionetaOscura.png');
     background-size: cover;
-    background-position: center;   
+    background-position: center;
+    min-height: 80vh;  
 }
 
 .registerOne{

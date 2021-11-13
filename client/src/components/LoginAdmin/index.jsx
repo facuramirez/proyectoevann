@@ -10,7 +10,7 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { dataUser } from '../../globalState/Actions';
+import { dataUser, getId } from '../../globalState/Actions';
 import { useDispatch } from 'react-redux';
 
 
@@ -160,7 +160,9 @@ export default function LoginAdmin(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/admins/login/`, data)
         .then(async(response) => {
-            await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
+            dispatch(getId(response.data.user.id));
+            axios.defaults.headers.common['Authorization'] = 'Token '+response['data']['token'];
+            await axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
             .then(response => {
                 dispatch(dataUser(response.data));
                 history.push('/back_office_administracion/mis_datos');

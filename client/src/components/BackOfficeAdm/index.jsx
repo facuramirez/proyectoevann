@@ -21,6 +21,7 @@ import AlertasAdm from '../AlertasAdm';
 import PendientesAprobacion from '../PendientesAprobacion';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
+import CambiarPassword from '../CambiarContraseña';
 import PasswordAdmin from '../PasswordAdmin';
 import { useSelector } from 'react-redux';
 
@@ -139,9 +140,9 @@ export default function BackOfficeAdm() {
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                                 </li>
-                                {/* <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office_administracion/conductores">Conductores</Link>
-                                </li> */}
+                                <li className={`nav-item active d-md-block d-lg-none`}>
+                                    <Link to="/back_office/cambiar_contraseña">Cambiar Contraseña</Link>
+                                </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/asociados">Asociados</Link>
                                 </li>
@@ -185,9 +186,9 @@ export default function BackOfficeAdm() {
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                             </div>
-                            {/* <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office_administracion/conductores">Conductores</Link>
-                            </div> */}
+                            <div className={`${Style.options} col-12`}>
+                                <Link to="/back_office/cambiar_contraseña">Cambiar contraseña</Link>
+                            </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/asociados">Asociados</Link>
                             </div>

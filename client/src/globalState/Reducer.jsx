@@ -4,7 +4,8 @@ import { GET_CARS,
          GET_CONDUCTORES,
          EDIT_ASSOCIATED,
          GET_USER,
-         GET_OWNERS
+         GET_OWNERS,
+         GET_ID
 } from './Actions';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     conductores: [],
     editAssociated: {},
     user: {},
-    owners: []
+    owners: [],
+    id: ''
 }
 
 export default function reducer(state = initialState, action){
@@ -45,6 +47,10 @@ export default function reducer(state = initialState, action){
         case GET_OWNERS: return {
             ...state,
             owners: action.payload
+        }
+        case GET_ID: return {
+            ...state,
+            id: action.payload
         }
         default: return state;
     }

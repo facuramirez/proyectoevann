@@ -10,7 +10,7 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 // import axios from '../../axiosConfig';
 import axios from '../../axiosConfig';
-import { dataUser } from '../../globalState/Actions';
+import { dataUser, getId } from '../../globalState/Actions';
 import { useDispatch } from 'react-redux';
 
 
@@ -163,27 +163,28 @@ export default function Login(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
-            console.log(response.data, 'ESTO ES EL LOGIN')
-            if(!response.data.is_password_temp) {
+            dispatch(getId(response.data.user.id));
+            axios.defaults.headers.common['Authorization'] = 'Token '+response['data']['token'];
+            if(response.data.user.is_password_temp) {
                 history.push('/asociados/cambiar_contraseña');
             }
             else {
-            await axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
-            .then(response => {
-                console.log(response.data, 'ESTO ES USER INFO');
-                dispatch(dataUser(response.data));
-                history.push('/back_office/mis_datos');
-                swal({
-                    title: 'Bienvenido a Evann!',
-                    text: 'Que disfrutes tu estadía en la página',
-                    icon: 'success',
-                    timer: 2000
+                await axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
+                .then(response => {
+                    console.log(response.data, 'RESRESRES');
+                    dispatch(dataUser(response.data));
+                    history.push('/back_office/mis_datos');
+                    swal({
+                        title: 'Bienvenido a Evann!',
+                        text: 'Que disfrutes tu estadía en la página',
+                        icon: 'success',
+                        timer: 2000
+                    })
                 })
-            })
-            .catch(error => {
-                console.log(error, 'ERROR DE USER INFO');
-            })
-            }
+                .catch(error => {
+                    console.log(error, 'ERROR DE USER INFO');
+                })
+            } // cierro el else
         })
         .catch(error => { // si los datos NO estan correctos
             swal({

@@ -27,6 +27,7 @@ function App() {
       <Route exact path="/asociados/iniciar_sesion" component={Login} />
       <Route exact path="/asociados/cambiar_contraseña" component={PasswordFirst} />
       <Route exact path="/back_office" component={BackOffice} />
+      <Route exact path="/back_office/cambiar_contraseña" component={BackOffice} />
       <Route exact path="/back_office/vehiculos" component={BackOffice} />
       <Route exact path="/back_office/vehiculos/nuevo_auto" component={BackOffice} />
       <Route exact path="/back_office/vehiculos/detalles" component={BackOffice} />
@@ -44,6 +45,7 @@ function App() {
       <Route exact path="/back_office_administracion" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/mis_datos" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/mis_datos/editar" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/cambiar_contraseña" component={BackOffice} />
       <Route exact path="/back_office_administracion/conductores" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/conductores/nuevo_conductor" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/asociados" component={BackOfficeAdm} />

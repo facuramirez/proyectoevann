@@ -13,12 +13,14 @@ import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
 import { useSelector } from 'react-redux';
+import axios from '../../axiosConfig';
 
 
 export default function EditarMisDatos(){
 
     let user = useSelector(state => state['user']);
-    console.log(user, 'ACA ESTA USER EN EDITAR MIS DATOS !!!!');
+    let id = useSelector(state => state['id']);
+    
     let [alldata, setAlldata] = useState({
         ready: false
     });
@@ -41,6 +43,7 @@ export default function EditarMisDatos(){
         cel2: ''
     });
     
+    // =========== ESTE USE EFFECT ES PARA CUANDO FUNCIONE EL BACKEND ==========
     useEffect( () => {
         setForm({
             admin: user.name,
@@ -51,7 +54,9 @@ export default function EditarMisDatos(){
             cel2: user.phone_number2
         })
     }, [])
+    // ========================================================================
     
+
     
     let [error, setError] = useState({
         // mail: '',
@@ -268,21 +273,35 @@ export default function EditarMisDatos(){
         }
 
         console.log(form, 'FORM');
-        console.log(error, 'Error');
+        console.log(data, 'data');
 
-        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1){
-            await swal({
-                title: 'Administrador registrado con éxito!',
-                text: 'Por favor verifica tu correo para validar la cuenta',
-                icon: 'success',
-                timer: 2000,
-                buttons: ['']
-              })
-            history.push('/back_office/mis_datos');              
+        if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1){     
+                await swal({
+                    title: '¿Continuar?',
+                    text: '¿Desea guardar los cambios?',
+                    icon: 'warning',
+                    buttons: ['NO', 'SI']
+                })
+                .then(async(response) => {
+                    if(response){
+                        await axios.put(`${process.env.REACT_APP_BACKEND}/users/${id}/`, data)
+                        .then(response => {
+                            swal({
+                                title: 'Operación exitosa!',
+                                text: 'El adminitrador fue editado correctamente!',
+                                icon: 'success'
+                            })
+                            history.push('/back_office/mis_datos')
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                    }                    
+                })            
         } else {
             swal({
                 title: 'Formulario incompleto!',
-                text: 'Debes completar el formulario para poder registrarte',
+                text: 'Por favor completa el formulario para poder editar los datos',
                 icon: 'error'
               })
         }

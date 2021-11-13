@@ -14,6 +14,7 @@ import Reclamos from '../Reclamos';
 import Alertas from '../Alertas';
 import MisDatos from '../MisDatos';
 import EditarMisDatos from '../EditarMisDatos';
+import CambiarPassword from '../CambiarContraseña';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';
@@ -24,7 +25,9 @@ import axios from '../../axiosConfig';
 export default function BackOffice() {
     
     let user = useSelector(state => state['user']);
+    let id = useSelector(state => state['id']);
 
+    console.log(id, 'ESTE ES EL id')
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
@@ -65,16 +68,16 @@ export default function BackOffice() {
             icon: 'warning',
             buttons: ["NO", "SI"]
         }).then( async (response) => {
-            if(response){
-                await swal({
-                    title: 'Adiós, vuelve pronto!',
-                    text: 'Redireccionando a Evann...',
-                    icon: 'success',
-                    buttons: [''],
-                    timer: 2000
-                })
+            if(response){                    
                 await axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
-                .then(response => {
+                .then(async(response) => {
+                    await swal({
+                        title: 'Adiós, vuelve pronto!',
+                        text: 'Redireccionando a Evann...',
+                        icon: 'success',
+                        buttons: [''],
+                        timer: 2000
+                    })
                     history.push('/');
                 })
                 .catch(error => {
@@ -90,7 +93,7 @@ export default function BackOffice() {
             <div className={`${Style.containerBackOffice} row m-0`}>                 
                 <nav className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}>
                     <div className={`${Style.menu} container-fluid`}>
-                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido {user.name}</a>
+                        <a className={`${Style.welcome} navbar-brand`} href="#">Bienvenido Facundo</a>
                         <button className={`${Style.buttonHamburguer} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -100,6 +103,9 @@ export default function BackOffice() {
                             <ul className="navbar-nav">
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office/mis_datos">Mis Datos</Link>
+                                </li>
+                                <li className={`nav-item active d-md-block d-lg-none`}>
+                                    <Link to="/back_office/cambiar_contraseña">Cambiar Contraseña</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office/conductores">Conductores</Link>
@@ -133,6 +139,9 @@ export default function BackOffice() {
                         <div className={`${Style.menuOptions} col-12`}>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office/mis_datos">Mis Datos</Link>
+                            </div>
+                            <div className={`${Style.options} col-12`}>
+                                <Link to="/back_office/cambiar_contraseña">Cambiar contraseña</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office/conductores">Conductores</Link>
@@ -202,6 +211,11 @@ export default function BackOffice() {
                                 ruta === '/back_office/vehiculos' ?
                                     <Fade>
                                         <Vehiculos alto='100'/>
+                                    </Fade>
+                                :
+                                ruta === '/back_office/cambiar_contraseña' ?
+                                    <Fade>
+                                        <CambiarPassword alto='100'/>
                                     </Fade>
                                 :
                                 ruta === '/back_office/vehiculos/nuevo_auto' ?
