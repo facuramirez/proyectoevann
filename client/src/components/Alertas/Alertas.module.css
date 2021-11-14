@@ -6,7 +6,9 @@
 
 .containerAlertas{
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    min-height: 86vh;
 }
 
 .title{
@@ -119,6 +121,7 @@
 
 .table{
     height: fit-content;
+    max-height: 44vh;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;

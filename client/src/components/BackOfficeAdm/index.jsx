@@ -21,7 +21,7 @@ import AlertasAdm from '../AlertasAdm';
 import PendientesAprobacion from '../PendientesAprobacion';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
-import CambiarPassword from '../CambiarContraseña';
+import CambiarPasswordAdm from '../CambiarContraseñaAdm';
 import PasswordAdmin from '../PasswordAdmin';
 import { useSelector } from 'react-redux';
 
@@ -31,7 +31,7 @@ import Bounce from 'react-reveal/Bounce';
 import Slide from 'react-reveal/Slide';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import { dataUser } from '../../globalState/Actions';
 
 
@@ -141,7 +141,7 @@ export default function BackOfficeAdm() {
                                     <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
-                                    <Link to="/back_office/cambiar_contraseña">Cambiar Contraseña</Link>
+                                    <Link to="/back_office_administracion/cambiar_contraseña">Cambiar Contraseña</Link>
                                 </li>
                                 <li className={`nav-item active d-md-block d-lg-none`}>
                                     <Link to="/back_office_administracion/asociados">Asociados</Link>
@@ -187,7 +187,7 @@ export default function BackOfficeAdm() {
                                 <Link to="/back_office_administracion/mis_datos">Mis Datos</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
-                                <Link to="/back_office/cambiar_contraseña">Cambiar contraseña</Link>
+                                <Link to="/back_office_administracion/cambiar_contraseña">Cambiar contraseña</Link>
                             </div>
                             <div className={`${Style.options} col-12`}>
                                 <Link to="/back_office_administracion/asociados">Asociados</Link>
@@ -274,6 +274,11 @@ export default function BackOfficeAdm() {
                                 ruta === '/back_office_administracion/asociados/editar' ?
                                     <Fade>
                                         <AsociadosEditar />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/cambiar_contraseña' ?
+                                    <Fade>
+                                        <CambiarPasswordAdm />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/pendientes_aprobacion/vehiculos' ?

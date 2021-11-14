@@ -90,7 +90,7 @@ export default function MisDatos() {
                     </div>
                     
                     <div>        
-                        <div className={`${Style.menu} col-12 mt-4`}>
+                        <div className={`${Style.menu} col-12 mt-0`}>
                             <div className={`row justify-content-between`}>
                                 <button className={`${Style.add} col-2`}><Link to="/back_office/mis_datos/editar"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Editar</Link></button>
                                 

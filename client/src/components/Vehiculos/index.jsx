@@ -83,7 +83,7 @@ export default function Vehiculos({alto}) {
                             <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                                 <div className="row">
                                     <h6 className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}>Registros por página</h6>
-                                    <select className={`${Style.regPag} dropBox col-3 col-sm-2 col-md-3 col-lg-3`} onChange={(e)=>dropBox(e)}>
+                                    <select className={`${Style.regPag} dropBox col-3 col-sm-2 col-md-3 col-lg-2`} onChange={(e)=>dropBox(e)}>
                                         <option value="5" defaultValue onChange={(e)=>dropBox(e)}>5</option>
                                         <option value="10" onChange={(e)=>dropBox(e)}>10</option>
                                         <option value="20" onChange={(e)=>dropBox(e)}>20</option>

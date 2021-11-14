@@ -14,9 +14,9 @@ export default function Password(){
     
     let history = useHistory();
     
-    useEffect( () => {
-        window.scrollTo(0, 0);
-    });
+    // useEffect( () => {
+    //     window.scrollTo(0, 0);
+    // });
     
     let [form, setForm] = useState({
         mail: ''
@@ -70,7 +70,7 @@ export default function Password(){
         let data = {
             email: form.mail
         }
-
+        console.log(data, 'email');
         if(!error.mail && form.mail){
             await axios.post(`${process.env.REACT_APP_BACKEND}/users/reset_password/`, data)
             .then(response => {

@@ -210,17 +210,17 @@ export default function BackOffice() {
                                 :
                                 ruta === '/back_office/vehiculos' ?
                                     <Fade>
-                                        <Vehiculos alto='100'/>
+                                        <Vehiculos />
                                     </Fade>
                                 :
                                 ruta === '/back_office/cambiar_contraseña' ?
                                     <Fade>
-                                        <CambiarPassword alto='100'/>
+                                        <CambiarPassword />
                                     </Fade>
                                 :
                                 ruta === '/back_office/vehiculos/nuevo_auto' ?
                                     <Fade>
-                                        <NewCarForm alto='135'/>
+                                        <NewCarForm />
                                     </Fade>
                                 :
                                 ruta === '/back_office/vehiculos/detalles' ?
