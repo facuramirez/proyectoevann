@@ -71,6 +71,7 @@ export default function BackOffice() {
             if(response){                    
                 await axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
                 .then(async(response) => {
+                    axios.defaults.headers.common['Authorization'] = '';
                     await swal({
                         title: 'Adiós, vuelve pronto!',
                         text: 'Redireccionando a Evann...',

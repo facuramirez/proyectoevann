@@ -10,11 +10,26 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import axios from '../../axiosConfig';
 
 export default function Conductores() {
 
     const dispatch = useDispatch();
-    let drivers = useSelector( state => state['drivers']);
+    let conductores = useSelector( state => state['drivers']);
+    let drivers;
+
+    useEffect(()=>{
+
+        axios.get(`${process.env.REACT_APP_BACKEND}/drivers/`)
+        
+        .then(response => {
+            dispatch(initialGetConductores(response.data));
+        })
+        .catch(error => {
+            console.log(error, 'error');
+        })
+    },[conductores])
+
 
     // ============== PAGINADO =============
     let [currentPage, setCurrentPage] = useState(1);
@@ -22,12 +37,14 @@ export default function Conductores() {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
-
     const pageNumbers = [];
+    
+    if(conductores.length > 0){
+        drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
 
-    for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
-        pageNumbers.push(i);
+        for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
+            pageNumbers.push(i);
+        }
     }
 
     const paginate = (e, pageNumber) => {
@@ -67,7 +84,7 @@ export default function Conductores() {
         dispatch(filterConductores(drivers));
     }
     
-
+    console.log(conductores, 'conductores');
     return(
         <div>
             <div className={`${Style.containerConductores} row containerVehiculos`}>
@@ -78,7 +95,7 @@ export default function Conductores() {
                     
                     <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
                     
-                    {drivers.length > 0 ?
+                    {conductores.length > 0 ?
                     <div className="col-12">                        
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
                             <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
@@ -100,7 +117,8 @@ export default function Conductores() {
                             </section>
                         </div>
                     
-                    <div className={`${Style.table} col-12`}>     
+                    <div className={`${Style.table} col-12`}>
+                    
                         <Table striped bordered hover variant="dark">
                             <thead className={`${Style.tableH}`}>
                                 <tr>
@@ -138,47 +156,9 @@ export default function Conductores() {
                                 }
                             </tbody>
                         </Table>
-
-                        {/* <table className={`${Style.table} table table-bordered mt-3`}>                                
-                                <thead className={`${Style.tableHead}`}>                                
-                                    <tr>
-                                        <th>PATENTE</th>
-                                        <th>MARCA</th>
-                                        <th>MODELO</th>
-                                        <th>TIPO VEHÍCULO</th>
-                                        <th>OBSERVACIONES</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
-                            
-                                <tbody className={`${Style.tableBody}`}>
-                                    {
-                                    cars.map( (reg, index) => 
-                                        <tr key={index}>
-                                            <td>{reg.patente}</td>
-                                            <td>{reg.marca}</td>
-                                            <td>{reg.modelo}</td>
-                                            <td>{reg.tipo_veh}</td>
-                                            <td>{reg.observaciones}</td>
-                                            <td>
-                                                <button className={`btn ${Style.button}`}>
-                                                    Edit
-                                                </button>
-                                                <Link to={`/user${reg.id}`}>
-                                                <button className={`btn ${Style.button} btn-warning`}>
-                                                    View
-                                                </button>
-                                                </Link>
-
-                                                <Link>
-                                                    <button className={`btn ${Style.button} btn-danger`}>Delete</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    )}                                    
-                                </tbody>
-                            </table> */}
+                       
                     </div>
+                    
                     <div className={`${Style.pagination} col-12`}>
                         <ul className={`${Style.ulPagination}`}>
                             {pageNumbers.map(number => (
@@ -187,11 +167,15 @@ export default function Conductores() {
                                 </li>
                             ))}
                         </ul>
-                    </div> 
-                    </div>:<div>
+                    </div>
+                    
+                    </div>
+                    :
+                    <div>
                         <br/>   
                         <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
-                        </div>}
+                    </div>
+                    }
                 </div>
             </div>            
         </div>

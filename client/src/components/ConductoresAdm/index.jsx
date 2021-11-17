@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImBackward, ImEye } from 'react-icons/im';
+import axios from '../../axiosConfig';
 
 export default function Conductores() {
     let history = useHistory();
@@ -41,6 +42,7 @@ export default function Conductores() {
     useEffect( () => {
         dispatch(initialGetConductores(conductores));
     }, [conductores])
+
 
     const editCar = (e, id) => {
         e.preventDefault();

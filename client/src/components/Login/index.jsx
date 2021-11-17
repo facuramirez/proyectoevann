@@ -163,8 +163,11 @@ export default function Login(){
 
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
+            console.log(response.data);
             dispatch(getId(response.data.user.id));
+
             axios.defaults.headers.common['Authorization'] = 'Token '+response['data']['token'];
+
             if(response.data.user.is_password_temp) {
                 history.push('/asociados/cambiar_contraseña');
             }
