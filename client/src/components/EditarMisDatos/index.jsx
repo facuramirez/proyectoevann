@@ -43,7 +43,7 @@ export default function EditarMisDatos(){
         cel2: ''
     });
     
-    // =========== ESTE USE EFFECT ES PARA CUANDO FUNCIONE EL BACKEND ==========
+    // =========== ESTE "USE EFFECT" ES PARA CUANDO FUNCIONE EL BACKEND ==========
     useEffect( () => {
         setForm({
             admin: user.name,
@@ -274,6 +274,7 @@ export default function EditarMisDatos(){
 
         console.log(form, 'FORM');
         console.log(data, 'data');
+        console.log(id, 'id');
 
         if(!error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1){     
                 await swal({
@@ -285,11 +286,12 @@ export default function EditarMisDatos(){
                 .then(async(response) => {
                     if(response){
                         await axios.put(`${process.env.REACT_APP_BACKEND}/users/${id}/`, data)
-                        .then(response => {
-                            swal({
+                        .then(async(response) => {
+                            await swal({
                                 title: 'Operación exitosa!',
                                 text: 'El adminitrador fue editado correctamente!',
-                                icon: 'success'
+                                icon: 'success',
+                                buttons: ['', 'OK']
                             })
                             history.push('/back_office/mis_datos')
                         })

@@ -1,30 +1,28 @@
 .containerRegister{
-    position: relative;
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;   
+    background-size: cover;
+    background-position: center;
+    min-height: 86vh;
 }
 
 .registerOne{
     width: 100%;
 }
 
-
 .formComplete{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-flow: column wrap;
     width: 100%;
-    height: fit-content;
-    top: 0vw;
-    left: 18vw;
+    margin: 0px auto;
+    height: 100%;
 }
 
 .title{
     font-size: 2rem;
     border-radius: 20px;
     padding: 0.5vw;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
     color: white;
     align-self: flex-start !important;
 }
@@ -37,11 +35,8 @@
     border: 1px solid rgb(54, 232, 210); 
     align-self: center;
     width: 90%;
-    height: 49% !important;
     text-align: left;
-    padding: 1rem;
-    padding-top: 30px;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem 0.5rem 2rem 0.5rem;
     color: white;
 }
 
@@ -54,14 +49,13 @@
 
 
 .formRegister h4{
-    font-size: 1.3vw;
+    font-size: 1rem;
     margin: 0px;
     display: inline;
     margin-top: 3px;
 }
 
 .formRegister h5{
-    font-size: 0.8vw;
     color: #ccc;
 }
 
@@ -94,6 +88,13 @@
     text-align: center;
 }
 
+.alertTexts,
+.alertTexts2{
+    color: red !important;
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+}
 
 .containerSave{
     margin-top: 2rem;
@@ -104,12 +105,24 @@
 }
 
 .containerSave h5{
-    font-size: 0.8vw;
+    font-size: 1rem;
     color: #ccc;
 }
 
-.buttons{
-    margin-left: 4.3vw;
+.containerSave .buttons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.containerSave .buttons > div {
+    width: 10rem;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    
 }
 
 .back{
@@ -117,15 +130,11 @@
     background-color: rgb(33, 37, 41);
     border-radius: 20px;    
     color: white;
-    font-size: 1.6vw;
-    padding-top: 0.6vh;
-    padding-bottom: 1.2vh;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    font-size: 1.3rem;
+    padding: 0.3rem 1.3rem 0.5rem 1.3rem;
     text-decoration: none;
     width: fit-content;
     transition: all 300ms;
-    margin-right: 2rem;
 }
 
 .back:hover{
@@ -142,11 +151,8 @@
     color: white;
     width: fit-content;
     align-self: center;
-    font-size: 1.6vw;
-    padding-top: 0.6vh;
-    padding-bottom: 1.2vh;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    font-size: 1.3rem;
+    padding: 0.3rem 1.3rem 0.5rem 1.3rem;
     border-radius: 20px;
     border: none;
 }
@@ -173,7 +179,7 @@
     font-size: 1.2rem;
 }
 .titleForm h5{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
 }
 
 /* .docs{
@@ -189,8 +195,13 @@
     margin-left: 1rem;
 }
 */
+
+.formRegister .data .fotos{
+    width: 45%;
+}
+
 .formRegister .data .fotos h4{
-    min-width: 6rem !important;
+    min-width: 7rem !important;
 }
 
 .formRegister .data .fotos .up{
@@ -207,11 +218,47 @@
     width: fit-content;
 }
 
+.nroLicLbl{
+    margin-left: 1.4vw !important;
+}
+
+.files{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.days{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.days section{
+    display: flex;
+    flex-flow: row wrap;
+    min-width: fit-content;
+}
+
+.days input[type="checkbox"]{
+    margin: 0px;
+    margin-left: 0.5rem;
+}
+
+/* h4{
+    font-weight: bold !important;
+} */
+.days label{
+    margin-left: 1.2rem;
+    border-bottom: 1px solid rgb(54, 232, 210);
+}
 
 @media (max-width: 992px) {
     .formComplete{        
         width: 100%;
         margin: 0px auto;
+    }
+    .formRegister h4{
+        font-size: 0.9rem;
     }
     .containerSave h5{
         margin-top: 0.5rem !important;
@@ -223,14 +270,9 @@
     }
     .buttons .save{
         order: 1;
-        font-size: 1rem;
     }
     .buttons .back{
         order: 2;
-        margin: 0px auto;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.8rem !important;
-        font-size: 1rem;
     }
     .containerSave{
         margin-top: 3rem !important;
@@ -251,14 +293,20 @@
     .titleForm h4{
         font-size: 1rem;
     }
-    .titleForm h5{
-        font-size: 0.5rem;
+    .formRegister .data .fotos{
+        width: 100%;
     }
-    .repeatMailLabel{
-        margin-top: 0.7rem !important;
+    .files{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
     }
-    .data div h4{
-        width: fit-content !important;
+    .days section{
+        justify-content: space-between;
+        min-width: 8rem;
+    }
+    .days label{
+        font-size: 0.9rem;
     }
     .containerSave{
         margin-top: 0.8rem !important;
@@ -266,28 +314,29 @@
     .containerSave h5{
         margin-top: 0.5rem !important;
     }
-    .buttons{
+    .containerSave .buttons{
         display: flex;
         flex-flow: column wrap;
-        margin: 0px auto;
+        align-items: center;
     }
     .buttons .save{
         order: 1;
-        margin-top: 0.6rem !important;
+        font-size: 1.2rem;
     }
     .buttons .back{
         order: 2;
         margin: 0px auto;
-        margin-top: 0.8rem !important;
-        margin-bottom: 1.2rem !important;
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
     }
     .formRegister{
         margin-top: 2rem;
         padding-top: 1rem;
     }
-    .data h4{
-        font-size: 0.8rem !important;
-    }
+    /* .data h4{
+        font-size: 0.8rem;
+    } */
     input[type="text"],
     input[type="password"]{
         height: 1.2rem;

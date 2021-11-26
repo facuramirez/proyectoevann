@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetConductores, filterConductores } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import axios from '../../axiosConfig';
+import swal from 'sweetalert';
 
 export default function Conductores() {
 
@@ -26,7 +27,12 @@ export default function Conductores() {
             dispatch(initialGetConductores(response.data));
         })
         .catch(error => {
-            console.log(error, 'error');
+            swal({
+                title: 'Error!',
+                text: 'No se pudieron obtener los conductores. Verifique su conexión o intente de nuevo mas tarde.',
+                icon: 'warning',
+                buttons: ['', 'OK']
+            })
         })
     },[conductores])
 
@@ -39,7 +45,7 @@ export default function Conductores() {
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
     const pageNumbers = [];
     
-    if(conductores.length > 0){
+    if(conductores.length === 0){
         drivers = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
 
         for(let i = 1; i <= Math.ceil(conductores.length / registerPerPage) ; i++) {
@@ -52,11 +58,13 @@ export default function Conductores() {
         setCurrentPage(pageNumber)
     }
 
+    console.log(drivers, 'drivers');
+    console.log(conductores, 'conductores');
     // =====================================
 
-    useEffect( () => {
-        dispatch(initialGetConductores(conductores));
-    }, [conductores])
+    // useEffect( () => {
+    //     dispatch(initialGetConductores(conductores));
+    // }, [conductores])
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -95,7 +103,7 @@ export default function Conductores() {
                     
                     <button className={`${Style.add} col-2 mt-1`}><Link to="/back_office/conductores/nuevo_conductor"><IoMdAddCircleOutline className={`${Style.iconAdd}`}/>Nuevo</Link></button>
                     
-                    {conductores.length > 0 ?
+                    {conductores.length === 0 ?
                     <div className="col-12">                        
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
                             <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
@@ -173,7 +181,7 @@ export default function Conductores() {
                     :
                     <div>
                         <br/>   
-                        <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
+                        <h1 className={`${Style.noCars} mt-4`}>No hay conductores para mostrar</h1>
                     </div>
                     }
                 </div>

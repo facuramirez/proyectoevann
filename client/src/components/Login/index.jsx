@@ -19,10 +19,6 @@ export default function Login(){
     let history = useHistory();
     let dispatch = useDispatch();
 
-    // useEffect( () => {
-    //     window.scrollTo(0, 0);
-    // });
-    
     let [form, setForm] = useState({
         mail: '',
         clave: ''
@@ -160,21 +156,19 @@ export default function Login(){
             username: form.mail,
             password: form.clave
         }
-
+        
         await axios.post(`${process.env.REACT_APP_BACKEND}/owners/login/`, data)
         .then(async(response) => { // si los datos estan correctos
             console.log(response.data);
-            dispatch(getId(response.data.user.id));
-
+            dispatch(getId(response.data.user.id));            
             axios.defaults.headers.common['Authorization'] = 'Token '+response['data']['token'];
-
             if(response.data.user.is_password_temp) {
                 history.push('/asociados/cambiar_contraseña');
             }
             else {
+                // axios.defaults.headers.common['Authorization'] = 'Token '+response['data']['token'];
                 await axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
                 .then(response => {
-                    console.log(response.data, 'RESRESRES');
                     dispatch(dataUser(response.data));
                     history.push('/back_office/mis_datos');
                     swal({

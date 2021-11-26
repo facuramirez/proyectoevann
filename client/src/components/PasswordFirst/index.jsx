@@ -62,30 +62,28 @@ export default function PasswordFirst(){
                 buttons: ['NO', 'SI']
             })
             .then(async(response) => {
-                if(response) { // Si respondo que "SI"
-                    swal({
-                        title: 'Cambio de contraseña exitoso!',
-                        text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
-                        icon: 'success'
+                if(response) { // Si respondo que "SI"              
+                    await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
+                    .then(response => {
+                        swal({
+                            title: 'Cambio de contraseña exitoso!',
+                            text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
+                            icon: 'success',
+                            buttons: ['','OK']
+                        })
+                        axios.defaults.headers.common['Authorization'] = '';
+                        history.push('/asociados/iniciar_sesion');
                     })
-                    // LO SIGUIENTE ES PARA CUANDO FUNCIONE EL BACKEND
-                    // await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
-                    // .then(response => {
-                    //     console.log(response.data, 'dataaaaaa');
-                    //     swal({
-                    //         title: 'Cambio de contraseña exitoso!',
-                    //         text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
-                    //         icon: 'success'
-                    //     })
-                    // .chatch(error => {
-                    //     console.log(error, 'error !!!!');
-                    //     swal({
-                    //         title: 'Error!',
-                    //         text: 'No se pudo completar la operación, vuelva a ingresar con su correo y contraseña para realizar el cambio',
-                    //         icon: 'warning'
-                    //     })
-                    // })
-                    // }) 
+                    .catch(error => {
+                        swal({
+                            title: 'Error!',
+                            text: 'No se pudo completar la operación, vuelva a ingresar con su correo y contraseña para realizar el cambio',
+                            icon: 'warning',
+                            buttons: ['','OK']
+                        })
+                        axios.defaults.headers.common['Authorization'] = '';
+                        history.push('/');
+                    }) 
                 }
             })
         } else {

@@ -27,7 +27,6 @@ export default function BackOffice() {
     let user = useSelector(state => state['user']);
     let id = useSelector(state => state['id']);
 
-    console.log(id, 'ESTE ES EL id')
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();

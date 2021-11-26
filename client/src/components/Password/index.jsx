@@ -70,24 +70,40 @@ export default function Password(){
         let data = {
             email: form.mail
         }
-        console.log(data, 'email');
+        
         if(!error.mail && form.mail){
-            await axios.post(`${process.env.REACT_APP_BACKEND}/users/reset_password/`, data)
-            .then(response => {
-                console.log(response.data, 'dataaaa');
+            swal({
+                title: 'Reestablecer contraseña',
+                text: '¿Continuar?',
+                icon: 'warning',
+                // timer: 3000,
+                buttons: ['NO','SI']
+            })
+            .then(async(response) => {
+                if(response) {
+                    await axios.post(`${process.env.REACT_APP_BACKEND}/users/reset_password/`, data)
+                    .then(async(response) => {                
+                        await swal({
+                            title: 'Contraseña reestablecida',
+                            text: 'Por favor revise su correo para visualizar su nueva contraseña',
+                            icon: 'success',
+                            // timer: 3000,
+                            buttons: ['','OK']
+                        })
+                        history.push('/asociados/iniciar_sesion');
+                    })
+                }
+            })            
+            .catch(error => {
                 swal({
-                    title: 'Contraseña reestablecida',
-                    text: 'Por favor revise su correo para visualizar su nueva contraseña',
-                    icon: 'success',
+                    title: 'Error!',
+                    text: 'No fue posible reestablecer la contraseña, vuelva a intentarlo mas tarde.',
+                    icon: 'warning',
                     // timer: 3000,
-                    buttons: ['','OK']
+                    buttons: ['','SI']
                 })
             })
-            .catch(error => {
-                console.log(error);
-            })
-            
-        } else {
+        } else { // si los datos son incorrectos...
             swal({
                 title: 'Dato inválido!',
                 text: 'Debes colocar un correo válido para reestablecer tu contraseña',

@@ -530,7 +530,7 @@ export default function RegisterTwo(){
                             <div className={`row`}>                   
                                 <h4 className={`col-sm-4 col-md-4 col-lg-2`}>Tipo Cuenta (*)</h4>
                                 <select className={`mail col-11 col-sm-7 col-md-7 col-lg-9`} name="tipo_cuenta" value={form.tipo_cuenta} onChange={(e)=> verifyData(e)}>
-                                    <option value="-" selected onChange={(e)=> verifyData(e)}>-</option>
+                                    <option value="-" defaultValue onChange={(e)=> verifyData(e)}>-</option>
                                     <option value="CC" onChange={(e)=> verifyData(e)}>CC</option>
                                     <option value="CV" onChange={(e)=> verifyData(e)}>CV</option>
                                     <option value="CE" onChange={(e)=> verifyData(e)}>CE</option>    
@@ -545,7 +545,7 @@ export default function RegisterTwo(){
                             <div className={`row`}>                   
                                 <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Banco (*)</h4>
                                 <select className={`mail col-11 col-sm-8 col-md-8 col-lg-9`} name="banco" value={form.banco} onChange={(e)=> verifyData(e)}>
-                                    <option value="-" selected>-</option>
+                                    <option value="-" defaultValue >-</option>
                                     <option value="1">Scotiabank</option>
                                     <option value="2">Banco de Chile</option>
                                     <option value="3">Banco del Estado</option>
