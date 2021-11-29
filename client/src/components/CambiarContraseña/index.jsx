@@ -62,36 +62,21 @@ export default function CambiarContraseña(){
             .then(async(response) => {
                 if(response) { // Si respondo que "SI"
                     await axios.post(`${process.env.REACT_APP_BACKEND}/users/change_password/`, data)
-                    .then(async(response) => {
-                        if(url.includes('asociados/cambiar_contraseña')){
-                            await swal({
-                                title: 'Cambio de contraseña exitoso!',
-                                text: 'Una vez aprobada la cuenta por el administrador podrá ingresar al sistema',
-                                icon: 'success',
-                                buttons: ['','OK']
-                            })                            
-                            axios.defaults.headers.common['Authorization'] = '';
-                            history.push('/');                            
-                        }
-                            
-                        if(url.includes('asociados/cambiar_contraseña')){
-                            await swal({
-                                title: 'Cambio de contraseña exitoso!',
-                                text: 'Ya puede ingresar al sistema con su nueva contraseña',
-                                icon: 'success',
-                                buttons: ['','OK']
-                            })
-                            .then(response => {
-                                history.push('/back_office/mis_datos');
-                            })                            
-                        }  
+                    .then(async(response) => {                        
+                        await swal({
+                            title: 'Cambio de contraseña exitoso!',
+                            text: 'Ya puede ingresar al sistema con su nueva contraseña',
+                            icon: 'success'
+                        })
+                        .then(response => {
+                            history.push('/back_office/mis_datos');
+                        })                          
                     })
                     .catch(error => {
                         swal({
                             title: 'Error!',
                             text: 'No se pudo completar la operación, por favor vuelva a ingresar con su correo y contraseña para realizar el cambio',
-                            icon: 'warning',
-                            buttons: ['','OK']
+                            icon: 'warning'
                         })
                         .then(response => {
                             axios.defaults.headers.common['Authorization'] = '';

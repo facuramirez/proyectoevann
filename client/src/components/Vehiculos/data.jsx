@@ -6,7 +6,7 @@ export const autos =
         marca: 'Ford',
         modelo: 'Fiesta',
         tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        asignado: 'N/A'
     },
     {
         id: 2,
@@ -14,7 +14,7 @@ export const autos =
         marca: 'Renault',
         modelo: 'Megane',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        asignado: 'Asignado'
     },
     {
         id: 3,
@@ -22,7 +22,7 @@ export const autos =
         marca: 'Peugeot',
         modelo: '308',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        asignado: 'Asignado'
     },
     {
         id: 4,
@@ -30,7 +30,7 @@ export const autos =
         marca: 'Ford',
         modelo: 'Fiesta',
         tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        asignado: 'N/A'
     },
     {
         id: 5,
@@ -38,7 +38,7 @@ export const autos =
         marca: 'Renault',
         modelo: 'Megane',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        asignado: 'Asignado'
     },
     {
         id: 6,
@@ -46,7 +46,7 @@ export const autos =
         marca: 'Peugeot',
         modelo: '308',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        asignado: 'N/A'
     },
     {
         id: 7,
@@ -54,7 +54,7 @@ export const autos =
         marca: 'Ford',
         modelo: 'Fiesta',
         tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        asignado: 'Asignado'
     },
     {
         id: 8,
@@ -62,7 +62,7 @@ export const autos =
         marca: 'Renault',
         modelo: 'Megane',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        asignado: 'N/A'
     },
     {
         id: 9,
@@ -70,7 +70,7 @@ export const autos =
         marca: 'Peugeot',
         modelo: '308',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        asignado: 'N/A'
     },
     {
         id: 10,
@@ -78,7 +78,7 @@ export const autos =
         marca: 'Ford',
         modelo: 'Fiesta',
         tipo_veh: 'Auto',
-        observaciones: 'Nuevo'
+        asignado: 'Asignado'
     },
     {
         id: 11,
@@ -86,7 +86,7 @@ export const autos =
         marca: 'Renault',
         modelo: 'Megane',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2019'
+        asignado: 'Asignado'
     },
     {
         id: 12,
@@ -94,6 +94,6 @@ export const autos =
         marca: 'Peugeot',
         modelo: '308',
         tipo_veh: 'Auto',
-        observaciones: 'Modelo 2020'
+        asignado: 'Asignado'
     }
 ];

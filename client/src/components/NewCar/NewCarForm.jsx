@@ -144,12 +144,12 @@ export default function NewCarForm(){
                             <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
                                     <label className={`col-sm-4 col-md-3 col-lg-3`}>Tipo Vehículo (*)</label>
-                                    <select className={`col-sm-8 col-md-3 col-lg-3 inpTipoVeh`} name="tipoVeh">
+                                    <select className={`col-sm-8 col-md-3 col-lg-3 mt-1 mt-md-0 mt-lg-0 inpTipoVeh`} name="tipoVeh">
                                         <option value="1">Sedan</option>
                                         <option value="2">Van</option>
                                     </select>
-                                    <label className={`${Style.cantPas} mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-4 col-md-3 col-lg-3 text-start text-md-start text-lg-start`}>Pasajeros (*)</label>
-                                    <select className={`mt-sm-2 mt-md-0 mt-lg-0 col-sm-8 col-md-3 col-lg-3 inpTipoVeh`} name="tipoVeh">
+                                    <label className={`${Style.cantPas} mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}>Pasajeros (*)</label>
+                                    <select className={`col-sm-9 col-md-4 col-lg-4 mt-2 mt-md-0 mt-lg-0 inpTipoVeh`} name="tipoVeh">
                                         <option value="1">1 pasajero</option>
                                         <option value="2">2 pasajeros</option>
                                         <option value="2">3 pasajeros</option>
@@ -172,8 +172,8 @@ export default function NewCarForm(){
                                 <div className={`row`}>
                                     <label className={`${Style.kilometrajeLabel} col-sm-4 col-md-2 col-lg-2 text-start`}>Kilometraje (*)</label>
                                     <input className={`col-sm-8 col-md-2 col-lg-3 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/>
-                                    <label className={`col-sm-6 col-md-4 col-lg-3 text-start mt-2 mt-sm-2 mt-md-0 mt-lg-0`}>Última revisión técnica (*)</label>
-                                    <form className={`${classes.container} ${Style.inputFecha} mt-sm-2 mt-md-0 mt-lg-0 col-12 col-sm-12 col-md-3 col-lg-3`} noValidate>
+                                    <label className={`col-sm-5 col-md-4 col-lg-3 text-start mt-2 mt-sm-2 mt-md-0 mt-lg-0`}>Última revisión técnica (*)</label>
+                                    <form className={`${classes.container} ${Style.inputFecha} mt-1 mt-sm-2 mt-md-0 mt-lg-0 col-6 col-sm-4 col-md-3 col-lg-3`} noValidate>
                                     <TextField
                                         id="date"
                                         label=""
@@ -192,29 +192,37 @@ export default function NewCarForm(){
                             </div>
                             <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                                 <div className={`row`}>
-                                    <label className={`${Style.lineaNegocio} col-12 col-sm-5 col-md-4 col-lg-4 text-start`}>Líneas de negocio (*)</label>
-                                    <div className={`${Style.radioButtons} row d-none d-sm-inline-flex d-md-inline-flex d-lg-inline-flex col-12 col-sm-7 col-md-8 col-lg-8`}>
-                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
-                                            <input className={`text-center`} type="radio" name="options" value="Empresa" />
-                                            <label className={`${Style.labelRadio}`}>Empresa</label>
-                                        </div>
-                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
-                                            <input className={`text-center`} type="radio" name="options" value="Familiar" />
-                                            <label className={`${Style.labelRadio}`}>Familiar</label>
-                                        </div>
-                                        <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
-                                            <input className={`text-center`} type="radio" name="options" value="Eventos" />
-                                            <label className={`${Style.labelRadio}`}>Eventos</label>
+                                    <label className={`${Style.lineaNegocio} col-12 col-sm-12 col-md-4 col-lg-4 text-start`}>Líneas de negocio (*)</label>
+                                    <div className={`col-12 col-sm-6 col-md-5 col-lg-5`}>
+                                        <div className={`${Style.checkBox} row d-none d-sm-flex d-md-flex d-lg-flex`}>
+                                            <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                                <input className={`text-center`} type="checkbox" name="empresa" value="Empresa" />
+                                                <label className={`${Style.labelRadio}`}>Empresa</label>
+                                            </div>
+                                            <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                                <input className={`text-center`} type="checkbox" name="familiar" value="Familiar" />
+                                                <label className={`${Style.labelRadio}`}>Familiar</label>
+                                            </div>
+                                            <div className={`${Style.lines} col-4 col-sm-4 col-md-4 col-lg-4`}>
+                                                <input className={`text-center`} type="checkbox" name="eventos" value="Eventos" />
+                                                <label className={`${Style.labelRadio}`}>Eventos</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className={`${Style.radioButtons} row d-inline-block d-sm-none d-md-none d-lg-none col-12 col-sm-7 col-md-8 col-lg-8`}>
-                                        <div className={`${Style.lines} col-12`}>
-                                            <input className={`${Style.inputRadio} text-center`} type="radio" name="options" value="Empresa" />
-                                            <label className={`${Style.labelRadio}`}>Empresa</label>
-                                            <input className={`${Style.inputRadio} text-center`} type="radio" name="options" value="Familiar" />
-                                            <label className={`${Style.labelRadio}`}>Familiar</label>
-                                            <input className={`${Style.inputRadio} text-center`} type="radio" name="options" value="Eventos" />
-                                            <label className={`${Style.labelRadio}`}>Eventos</label>
+                                    <div className={`col-12 col-sm-12 col-md-8 col-lg-8 mt-1`}>
+                                        <div className={`${Style.checkBox} row d-flex d-sm-none d-md-none d-lg-none`}>
+                                            <div className={`${Style.lines} col-4`}>
+                                                <input className={`${Style.inputRadio}`} type="checkbox" name="empresa" value="Empresa" />
+                                                <label className={`${Style.labelRadio}`}>Empresa</label>
+                                            </div>
+                                            <div className={`${Style.lines} col-4`}>
+                                                <input className={`${Style.inputRadio}`} type="checkbox" name="familiar" value="Familiar" />
+                                                <label className={`${Style.labelRadio}`}>Familiar</label>
+                                            </div>
+                                            <div className={`${Style.lines} col-4`}>
+                                                <input className={`${Style.inputRadio}`} type="checkbox" name="eventos" value="Eventos" />
+                                                <label className={`${Style.labelRadio}`}>Eventos</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -227,9 +235,11 @@ export default function NewCarForm(){
                                             <label className={`${Style.labelDocs} mt-3`}>Permiso de Circulación (*)</label>
                                             <label className={`${Style.labelDocs} mt-3`}>Seguro Responsabilidad Civil (*)</label>
                                             <label className={`${Style.labelDocs} mt-3`}>Seguro de terceros (*)</label>
-                                            <label className={`${Style.labelDocs} mt-3`}>Decreto 80 (*)</label>                                            
+                                            <label className={`${Style.labelDocs} mt-3`}>Decreto 80 (*)</label>
+                                            <label className={`${Style.labelDocs} mt-3`}>Revisión técnica (*)</label>                                         
                                         </div>
                                         <div className={`${Style.docsDivs} row`}>
+                                            <input type="file" className={`${Style.upButtons}`} />
                                             <input type="file" className={`${Style.upButtons}`} />
                                             <input type="file" className={`${Style.upButtons}`} />
                                             <input type="file" className={`${Style.upButtons}`} />
@@ -246,6 +256,8 @@ export default function NewCarForm(){
                                             <input type="file" className={`${Style.upButtons}`} />
                                             <label className={`${Style.labelDocs} mt-3`}>Decreto 80 (*)</label>
                                             <input type="file" className={`${Style.upButtons}`} />
+                                            <label className={`${Style.labelDocs} mt-3`}>Revisión técnica (*)</label>
+                                            <input type="file" className={`${Style.upButtons}`} />   
                                         </div>
                                     </div>
                                 </div>

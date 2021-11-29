@@ -268,8 +268,8 @@ export default function EditarMisDatos(){
             last_name: form.ape,
             address: form.direccion,
             birth_date: form.fechaNac,
-            phone_number: form.cel1,
-            phone_number2: form.cel2
+            phone_number: parseInt(form.cel1),
+            phone_number2: parseInt(form.cel2)
         }
 
         console.log(form, 'FORM');

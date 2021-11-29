@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Style from './Vehiculos.module.css';
 import Table from 'react-bootstrap/Table';
-import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
+import { TiEdit, TiDeleteOutline, TiArrowMaximiseOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
 import { autos } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
+import axios from '../../axiosConfig';
 
 export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
@@ -37,8 +38,20 @@ export default function Vehiculos({alto}) {
     // =====================================
 
     useEffect( () => {
-        dispatch(initialGetCars(autos));
+        dispatch(initialGetCars(autos));        
     }, [autos])
+
+    // useEffect( () => {
+    //     axios.get(`${process.env.REACT_APP_BACKOFFICE}/cars/`)
+    //     .then(response => {
+    //         dispatch(initialGetCars(response.data));
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     })
+    // }, []) 
+    // cada vez que se monta el componente []
+
 
     const editCar = (e, id) => {
         e.preventDefault();
@@ -108,7 +121,7 @@ export default function Vehiculos({alto}) {
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                     <th>Tipo vehículo</th>
-                                    <th>Observaciones</th>
+                                    <th>Conductor</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -121,7 +134,7 @@ export default function Vehiculos({alto}) {
                                     <td>{element.marca}</td>
                                     <td>{element.modelo}</td>
                                     <td>{element.tipo_veh}</td>
-                                    <td>{element.observaciones}</td>
+                                    <td>{element.asignado}</td>
                                     <td className={`${Style.buttons} d-flex justify-content-evenly`}>
                                         <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
                                         <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>

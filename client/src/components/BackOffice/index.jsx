@@ -15,6 +15,7 @@ import Alertas from '../Alertas';
 import MisDatos from '../MisDatos';
 import EditarMisDatos from '../EditarMisDatos';
 import CambiarPassword from '../CambiarContraseña';
+import AsociadosVehiculosDetalle from '../CambiarContraseña';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Bounce from 'react-reveal/Bounce';

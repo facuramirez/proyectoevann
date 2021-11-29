@@ -2,7 +2,9 @@
     /* margin: 0px auto;
     height: 110vh !important; */
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    min-height: 87.3vh;
 }
 
 .asterisk{
@@ -12,7 +14,6 @@
 
 .title{
     border-radius: 20px;
-    /* background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));  */
     color: white;
     width: fit-content;
     padding-top: 5px;
@@ -130,6 +131,10 @@ input, select{
     display: flex !important;
     flex-flow: row !important;
     justify-content: center !important;
+}
+
+.lines input[type="checkbox"]{
+    margin-right: 0.3rem;
 }
 
 .radioButtons .lines label{

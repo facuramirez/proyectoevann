@@ -12,6 +12,7 @@ import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Reveal from 'react-reveal/Reveal';
+import axios from 'axios';
 
 
 export default function NewConductor(){
@@ -49,15 +50,14 @@ export default function NewConductor(){
         carnet: '',
         licencia: '',
         antecedentes: '',
-        hoja: '',
-        seguro: '',        
-        monday: '',
-        tuesday: '',
-        wednesday: '',
-        thursday: '',
-        friday: '',
-        saturday: '',
-        sunday: ''
+        license_hoja: '',
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
     });
 
     let [error, setError] = useState({
@@ -75,8 +75,7 @@ export default function NewConductor(){
         carnet: '',
         licencia: '',
         antecedentes: '',
-        hoja: '',
-        seguro: '',        
+        license_hoja: '', 
         monday: '',
         tuesday: '',
         wednesday: '',
@@ -105,15 +104,14 @@ export default function NewConductor(){
             carnet: '',
             licencia: '',
             antecedentes: '',
-            hoja: '',
-            seguro: '',        
-            monday: '',
-            tuesday: '',
-            wednesday: '',
-            thursday: '',
-            friday: '',
-            saturday: '',
-            sunday: ''
+            license_hoja: '',
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false
         });
 
         setError({
@@ -131,8 +129,7 @@ export default function NewConductor(){
             carnet: '',
             licencia: '',
             antecedentes: '',
-            hoja: '',
-            seguro: '',        
+            license_hoja: '',
             monday: '',
             tuesday: '',
             wednesday: '',
@@ -167,6 +164,29 @@ export default function NewConductor(){
             })
         }
     }
+
+    const verifyDays = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+
+        setForm({
+            ...form,
+            [name]: form[name] ? false:true
+        })
+
+        if(value === '') {
+            setError({
+                ...error,
+                [name]: 'Error'
+            })
+        } else {
+            setError({
+                ...error,
+                [name]: ''
+            })
+        }
+    }
+
 
     const verifyRut = (e) => {
         e.preventDefault();
@@ -217,6 +237,46 @@ export default function NewConductor(){
         setForm({...form, [name]: value});
     }
 
+    const verifyMail = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
+        
+        let mail = document.querySelector('.mail');
+        // inputRepeatPass = document.querySelector('.repeatPass');
+
+        // let repeat = document.querySelector('.repeatMail');
+        // let repeat2 = document.querySelector('.repeatPass');
+        
+        mail.onpaste = (e) => {
+            e.preventDefault();
+            swal({
+                title: 'Acción inválida!',
+                text: 'Por favor coloque su correo manualmente',
+                icon: 'warning'
+            })
+        }
+        
+        // ================ PROCESO EMAIL, REPEAT EMAIL =====================
+        if(name==='email'){
+            if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value)){
+                setError({...error, [name]: 'Error'});
+            } else {
+                setError({...error, [name]: ''});
+            }
+        }
+
+        setForm({
+            ...form,
+            [name]: value
+        });
+
+        // if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
+        //     setAlldata({ready: true})
+        // } else {
+        //     setAlldata({ready: false})
+        // }
+    }
+
     const verifyCel = (e) => {
         let number = e.target.value;
         let name = e.target.name;
@@ -254,18 +314,131 @@ export default function NewConductor(){
         console.log(error, 'error');
     }
 
+    const uploadFiles = (e) => {
+        let name = e.target.name;
+        let file = e.target.files[0];
+
+        setForm({...form, [name]: file});   
+    }
+
+    let formData = new FormData();
+
+    const insertFiles = (e) => {
+        console.log(form, 'form');
+        console.log(form.foto, 'FOTO');
+        formData.append('foto', form.foto);
+        // formData.append('fileCarnet', form.carnet);
+        // formData.append('fileLicencia', form.licencia);
+        // formData.append('fileAntecedentes', form.antecedentes);
+        // formData.append('fileLicense_Hoja', form.license_hoja);
+        console.log(formData);
+    }
+
     const save = async (e) => {
         e.preventDefault();
-        console.log(form, 'asdas');
-        if(form.nombre && form.direccion && form.nacionalidad && form.fechaNac && form.email && form.cel && form.foto && form.carne && form.licencia && !error.nombre && !error.direccion && !error.nacionalidad && !error.fechaNac && !error.email && !error.cel && !error.foto && !error.carne && !error.licencia){
+        console.log(form, 'FORM');
+        console.log(error, 'ERROR');
+
+        formData.append("user_data['rut']", form.rut);
+        formData.append("user_data['name']", form.name);
+        formData.append("user_data['last_name']", form.last_name);
+        formData.append("user_data['address']", form.address);
+        formData.append("user_data['birth_date']", form.birth_date);
+        formData.append("user_data['phone_number']", form.phone_number);
+        formData.append("user_data['phone_number2']", form.phone_number2);
+        formData.append("user_data['email']", form.email);
+
+        formData.append("driver_data['nationality']", form.nationality);
+        formData.append("driver_data['inter_travels']", form.inter_travels);
+        formData.append("driver_data['license_number']", form.license_number);
+
+        formData.append("files['foto']", form.foto);
+        formData.append("files['carnet']", form.carnet);
+        formData.append("files['licencia']", form.licencia);
+        formData.append("files['antecedentes']", form.antecedentes);
+        formData.append("files['license_hoja']", form.license_hoja);
+
+        formData.append("work_days['monday']", form.monday);
+        formData.append("work_days['tuesday']", form.tuesday);
+        formData.append("work_days['wednesday']", form.wednesday);
+        formData.append("work_days['thursday']", form.thursday);
+        formData.append("work_days['friday']", form.friday);
+        formData.append("work_days['saturday']", form.saturday);
+        formData.append("work_days['sunday']", form.sunday);
+
+        // let data = {
+        //     user_data: {
+        //       rut: form.rut,
+        //       name: form.name,
+        //       last_name: form.last_name,
+        //       address: form.address,
+        //       birth_date: form.birth_date,
+        //       phone_number: form.phone_number,
+        //       phone_number2: form.phone_number2,
+        //       email: form.email
+        //     },
+        //     driver_data: {
+        //       nationality: form.nationality,
+        //       inter_travels: form.inter_travels,
+        //       license_number: form.license_number
+        //     },
+        //     files: {
+        //         foto: form.foto,
+        //         carnet: form.carnet,
+        //         licencia: form.licencia,
+        //         antecedentes: form.antecedentes,
+        //         license_hoja: form.license_hoja,
+        //         seguro: form.license_hoja
+        //     },
+        //     work_days: {
+        //       monday: form.monday,
+        //       tuesday: form.tuesday,
+        //       wednesday: form.wednesday,
+        //       thursday: form.thursday,
+        //       friday: form.friday,
+        //       saturday: form.saturday,
+        //       sunday: form.sunday
+        //     }
+        //   }
+        
+        console.log(formData, 'FORMMMM--DATAAAA');
+        if(form.rut && form.name && form.last_name && form.address && form.birth_date && form.phone_number && form.email && form.nationality && form.license_number && form.foto && form.carnet && form.licencia && form.antecedentes && form.license_hoja && !error.rut && !error.name && !error.last_name && !error.address && !error.birth_date && !error.phone_number && !error.email && !error.nationality && !error.license_number && !error.foto && !error.carnet && !error.licencia && !error.antecedentes && !error.license_hoja && (form.monday || form.tuesday || form.wednesday || form.thursday || form.friday || form.saturday || form.sunday) ){
             await swal({
-                title: 'Operación exitosa!',
-                text: 'El conductor fue registrado correctamente',
-                icon: 'success',
-                buttons: [''],
-                timer: 2000
+                title: '¿Continuar?',
+                text: '¿Confirmar registro de conductor?',
+                icon: 'warning',
+                buttons: ['NO', 'SI']
               })
-            history.push('/back_office_administracion/conductores');
+            .then(response => {
+                if(response){
+                    axios.post(`${process.env.REACT_APP_BACKEND}/drivers/`,
+                    formData,
+                    
+                      {headers:  {'content-type': 'multipart/form-data'}}
+                    )
+                    .then(async(response) => {
+                        if(response){
+                            await swal({
+                                title: 'Operación exitosa!',
+                                text: 'El conductor fue registrado correctamente',
+                                icon: 'success',
+                                buttons: ['', 'OK']
+                            })
+                            history.push('/back_office/conductores');
+                        }
+                    })
+                    .catch(error => {
+                        swal({
+                            title: 'Error!',
+                            text: 'No se pudo crear el conductor, por favor intentelo nuevamente mas tarde!',
+                            icon: 'warning',
+                            buttons: ['', 'OK'],
+                        })
+                        // history.push('/back_office/conductores');
+                    })
+                }
+            })
+            
         } else {
             await swal({
                 title: 'Advertencia!',
@@ -297,10 +470,10 @@ export default function NewConductor(){
 
                         <div className={`${Style.data}`}>
                             <div className={`row`}>
-                                <h4 className={`col-sm-3 col-md-3 col-lg-2`}>Rut (*)</h4>
-                                <input autoFocus className={`mail col-4 col-sm-3 col-md-3 col-lg-3 text-center`} type="text" name="rut1" id="rut1"  onChange={(e)=> verifyRut(e)}/>
+                                <h4 className={`col-12 col-md-3 col-lg-1`}>Rut (*)</h4>
+                                <input autoFocus className={`mail col-4 col-sm-3 col-md-3 col-lg-3 text-center mt-1 mt-md-0 mt-lg-0`} type="text" name="rut1" id="rut1"  onChange={(e)=> verifyRut(e)}/>
                                 &nbsp;&nbsp;&nbsp;-
-                                <input className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center`} type="text" name="rut2" id="rut2"  onChange={(e)=> verifyRut(e)}/>
+                                <input className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center mt-1 mt-md-0 mt-lg-0`} type="text" name="rut2" id="rut2" onChange={(e)=> verifyRut(e)} maxlength="1"/>
                                 {error.rut && form.rut ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>El formato permitido es 0000000-0 / 0000000-K</h5>
@@ -361,7 +534,7 @@ export default function NewConductor(){
                                         id="date"
                                         label=""
                                         type="date"
-                                        name="fechaNac"
+                                        name="birth_date"
                                         value={form.birth_date}
                                         onChange={(e)=> verifyData(e)}
                                         // defaultValue="2017-05-24"
@@ -425,9 +598,15 @@ export default function NewConductor(){
 
                             <div className={`row`}>
                                 <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email</h4>
-                                <input className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`} type="text" name="email" onChange={(e)=>inputs(e)} value={form.email}/>
+                                <input className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`} type="text" name="email" onChange={(e)=>verifyMail(e)} value={form.email}/>
                                 <h4 className={`${Style.clave} col-2 mt-2 mt-md-2 mt-lg-2`}>Nacionalidad</h4>
-                                <input className={`${Style.claveInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 fmt-md-1 mt-lg-1`} type="password" name="nacionalidad" onChange={(e)=>inputs(e)} value={form.nacionalidad}/>
+                                <input className={`${Style.claveInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 fmt-md-1 mt-lg-1`} type="text" name="nationality" onChange={(e)=>verifyAdmin(e)} value={form.nationality}/>
+                                {error.email && form.email ?
+                                <div className={`row`}>
+                                    <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
+                                </div>
+                                : null
+                                }
                             </div>
 
                             <div className={`row`}>
@@ -439,15 +618,44 @@ export default function NewConductor(){
                                         <option value="2">No</option>
                                     </select>
                                 </div>
-                                <h4 className={`${Style.nroLicLbl} col-12 col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Nro Licencia</h4>
-                                <input className={`${Style.nroLicInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`} type="password" name="nacionalidad" onChange={(e)=>inputs(e)} value={form.nacionalidad}/>
+                            </div>
+
+                            <div className={`row`}>
+                                <h4 className={`${Style.nroLicLbl} col-11 col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}>Nro Licencia</h4>
+                                <input className={`${Style.nroLicInp} col-11 col-md-3 col-lg-3 mt-1 mt-md-1 mt-lg-1`} type="text" name="license_number" onChange={(e)=>verifyCel(e)} value={form.license_number} />
+                                <h4 className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}>Expiración Licencia</h4>
+                                <form className={`${classes.container} ${Style.inputFecha} p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`} noValidate>
+                                    <TextField
+                                        id="date"
+                                        label=""
+                                        type="date"
+                                        name="birth_date"
+                                        value={form.birth_date}
+                                        onChange={(e)=> verifyData(e)}
+                                        // defaultValue="2017-05-24"
+                                        className={`${Style.fechaNacField} ${classes.textField}`}
+                                        InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </form>
+
+
+                                {
+                                    (error.license_number && form.license_number) ?
+                                    <div className={`row text-start text-md-center text-lg-center`}>
+                                        <h5 className={`${Style.alertTexts} col-12`}>Sólo números</h5>
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             
                             <div className={`${Style.files}`}>
                                 <div className={`${Style.fotos} row`}>
                                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Foto (*)</h4>
                                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="foto" onChange={(e)=>inputs(e)} value={form.foto}/>
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="foto" onChange={(e)=>uploadFiles(e)} />
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -457,7 +665,7 @@ export default function NewConductor(){
                                 <div className={`${Style.fotos} row`}>
                                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Carne (*)</h4>
                                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="carnet" onChange={(e)=>uploadFiles(e)} />
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -467,7 +675,7 @@ export default function NewConductor(){
                                 <div className={`${Style.fotos} row`}>
                                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Licencia (*)</h4>
                                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="licencia" onChange={(e)=>uploadFiles(e)} />
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -477,7 +685,7 @@ export default function NewConductor(){
                                 <div className={`${Style.fotos} row`}>
                                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Antecedentes (*)</h4>
                                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="antecedentes" onChange={(e)=>uploadFiles(e)} />
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
@@ -485,23 +693,18 @@ export default function NewConductor(){
                                 </div>
 
                                 <div className={`${Style.fotos} row`}>
-                                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Hoja (*)</h4>
+                                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Hoja de Vida (*)</h4>
                                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="license_hoja" onChange={(e)=>uploadFiles(e)} />
                                     {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
                                 </div>
 
-                                <div className={`${Style.fotos} row`}>
+                                <div className={`${Style.fotos} row d-none d-md-block d-lg-block invisible`}>
                                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>Seguro (*)</h4>
-                                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} />
-                                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
-                                        <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
-                                        :null
-                                    } */}
+                                    <input type="file" className={`${Style.up} col-2 mt-md-2 mt-lg-2`} name="seguro" onChange={(e)=>uploadFiles(e)} />
                                 </div>
                             </div>
                             <div className={`${Style.lastSection} row mt-3`}>
@@ -509,31 +712,31 @@ export default function NewConductor(){
                                 <div className={`${Style.days} col-11`} >
                                     <section>
                                         <label>Lunes</label>                               
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="monday" onChange={(e)=>verifyDays(e)} value={form.monday}/>
                                     </section>
                                     <section>
                                         <label>Martes</label>                                    
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="tuesday" onChange={(e)=>verifyDays(e)} value={form.tuesday}/>
                                     </section>
                                     <section>
                                         <label>Miércoles</label>
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="wednesday" onChange={(e)=>verifyDays(e)} value={form.wednesday}/>
                                     </section>
                                     <section>
                                         <label>Jueves</label>
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="thursday" onChange={(e)=>verifyDays(e)} value={form.thursday}/>
                                     </section>
                                     <section>
                                         <label>Viernes</label>
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="friday" onChange={(e)=>verifyDays(e)} value={form.friday}/>
                                     </section>
                                     <section>
                                         <label>Sábado</label>
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="saturday" onChange={(e)=>verifyDays(e)} value={form.saturday}/>
                                     </section>
                                     <section>
                                         <label>Domingo</label>
-                                        <input type='checkbox' />
+                                        <input type='checkbox' name="sunday" onChange={(e)=>verifyDays(e)} value={form.sunday}/>
                                     </section>
                                 </div>
                             </div>
@@ -547,6 +750,9 @@ export default function NewConductor(){
                             </div>
                             <div className={`col-3`}>
                                 <button className={`${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
+                            </div>
+                            <div className={`col-3`}>
+                                <button className={`${Style.save} notActive`} onClick={()=>insertFiles()}>PROBANDO</button>
                             </div>
                         </div>
                     </div>
