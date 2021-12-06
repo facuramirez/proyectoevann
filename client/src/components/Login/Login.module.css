@@ -1,8 +1,8 @@
 .containerRegister{
     background-image: url('../../img/camionetaOscura.png');
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
-    min-height: 86.7vh;
+    min-height: 86vh;
 }
 
 .form{

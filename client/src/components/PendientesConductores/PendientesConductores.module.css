@@ -1,10 +1,4 @@
-/* .containerVehiculos{
-    padding: 2.5vw;
-    background-image: linear-gradient(240deg, rgba(37,37,37,0.2) 0%,transparent 51%),linear-gradient(26deg, rgba(37,37,37,0.2) 0%,transparent 36%),linear-gradient(64deg, rgba(37,37,37,0.2) 0%,transparent 28%),linear-gradient(114deg, rgba(37,37,37,0.2) 0%,transparent 33%),repeating-linear-gradient(146deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(207deg, rgba(140,140,140,0.1) 0px,transparent 4px),repeating-linear-gradient(6deg, rgba(140,140,140,0.1) 0px,transparent 4px),linear-gradient(90deg, rgb(241,194,117),rgb(241,194,117));
-    height: 88vh;
-} */
-
-.containerAlertas{
+.containerPendientes{
     background-image: url('../../img/camionetaOscura.png');
     background-size: cover;
     background-position: center;
@@ -14,18 +8,12 @@
 .title{
     color: white;
     width: fit-content;
-    /* margin: 0px auto;
-    border-radius: 20px;
-    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
-    padding-top: 5px;
-    height: 7vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw; */
 }
 
 .title h3{
     font-size: 2rem;
 }
+
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
@@ -40,7 +28,7 @@
 
 .buttonsTwo .search{
     outline: none;
-    width: 15vw;
+    width: 2rem;
     margin-right: 0.5vw;
     border: none;
     border-radius: 20px;
@@ -68,9 +56,8 @@
     background-color: rgb(33, 37, 41);
     border-radius: 20px;
     font-weight: bold;
-    font-size: 1.3vw;
     color: white;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
     padding-top: 0.6vh;
     padding-bottom: 0.6vh;
     transition: all 300ms;
@@ -98,6 +85,7 @@
     width: 10rem;
 }
 
+
 .registers{
     width: fit-content;
     color: white;
@@ -121,7 +109,6 @@
 
 .table{
     height: fit-content;
-    max-height: 44vh;
     color: black;
     overflow-y: scroll;
     padding-top: 5px;
@@ -160,6 +147,10 @@
     color: white;
 }
 
+.buttons a:nth-child(n+2){
+    margin-left: 12px;
+}
+
 .buttons a svg{
     color: white;
     font-size: 1.5rem;
@@ -175,6 +166,18 @@
 
 .buttons a:hover .details{
     color:yellow;
+}
+
+.buttons a:hover .car{
+    color:blue;
+}
+
+.buttons a:hover .conductores{
+    color:green;
+}
+
+.buttons a:hover .viajes{
+    color:brown;
 }
 
 .noCars{
@@ -231,24 +234,23 @@
     .registers{
         width: fit-content;
         color: white;
-    }
+    }    
 }
 
-@media (max-width: 767px){
-    .containerAlertas{
+@media (max-width: 767px){   
+    .containerPendientes{
         background-image: none;
-    }
+    } 
     .search{
         height: 2rem !important;
+        
     }
-    .tableH tr th:nth-child(2){
-        min-width: 11rem;
+    .acciones{
+        min-width: 15rem !important;
     }
-    .tableH tr th:nth-child(3){
-        min-width: 11rem;
-    }
-    .tableH tr th:nth-child(4){
-        min-width: 7rem;
+    
+    .nombre{
+        min-width: 10rem !important;
     }
 }
 
@@ -273,3 +275,5 @@
         margin-top: 1.2rem !important;
     }
 }
+
+

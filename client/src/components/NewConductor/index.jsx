@@ -34,7 +34,7 @@ export default function NewConductor(){
 
     const classes = useStyles();
     // ===========================================================
-
+    
     let [form, setForm] = useState({        
         rut: '',
         name: '',
@@ -45,12 +45,14 @@ export default function NewConductor(){
         phone_number2: '',
         email: '',        
         nationality: '',
+        inter_travels: '-',
         license_number: '',        
         foto: '',
         carnet: '',
         licencia: '',
         antecedentes: '',
         license_hoja: '',
+        // licence_due_date AGREGAR ESTO DENTRO DE DRIVER DATA !!!!!!!!!!!!!!!!!!!!!
         monday: false,
         tuesday: false,
         wednesday: false,
@@ -70,6 +72,7 @@ export default function NewConductor(){
         phone_number2: '',
         email: '',        
         nationality: '',
+        inter_travels: '',
         license_number: '',        
         foto: '',
         carnet: '',
@@ -99,6 +102,7 @@ export default function NewConductor(){
             phone_number2: '',
             email: '',        
             nationality: '',
+            inter_travels: '-',
             license_number: '',        
             foto: '',
             carnet: '',
@@ -124,6 +128,7 @@ export default function NewConductor(){
             phone_number2: '',
             email: '',        
             nationality: '',
+            inter_travels: '',
             license_number: '',        
             foto: '',
             carnet: '',
@@ -326,7 +331,7 @@ export default function NewConductor(){
     const insertFiles = (e) => {
         console.log(form, 'form');
         console.log(form.foto, 'FOTO');
-        formData.append('foto', form.foto);
+        // formData.append('foto', form.foto);
         // formData.append('fileCarnet', form.carnet);
         // formData.append('fileLicencia', form.licencia);
         // formData.append('fileAntecedentes', form.antecedentes);
@@ -339,69 +344,79 @@ export default function NewConductor(){
         console.log(form, 'FORM');
         console.log(error, 'ERROR');
 
-        formData.append("user_data['rut']", form.rut);
-        formData.append("user_data['name']", form.name);
-        formData.append("user_data['last_name']", form.last_name);
-        formData.append("user_data['address']", form.address);
-        formData.append("user_data['birth_date']", form.birth_date);
-        formData.append("user_data['phone_number']", form.phone_number);
-        formData.append("user_data['phone_number2']", form.phone_number2);
-        formData.append("user_data['email']", form.email);
+        // formData.append("user_data['rut']", form.rut);
+        // formData.append("user_data['name']", form.name);
+        // formData.append("user_data['last_name']", form.last_name);
+        // formData.append("user_data['address']", form.address);
+        // formData.append("user_data['birth_date']", form.birth_date);
+        // formData.append("user_data['phone_number']", form.phone_number);
+        // formData.append("user_data['phone_number2']", form.phone_number2);
+        // formData.append("user_data['email']", form.email);
 
-        formData.append("driver_data['nationality']", form.nationality);
-        formData.append("driver_data['inter_travels']", form.inter_travels);
-        formData.append("driver_data['license_number']", form.license_number);
+        // formData.append("driver_data['nationality']", form.nationality);
+        // formData.append("driver_data['inter_travels']", form.inter_travels);
+        // formData.append("driver_data['license_number']", form.license_number);
 
-        formData.append("files['foto']", form.foto);
-        formData.append("files['carnet']", form.carnet);
-        formData.append("files['licencia']", form.licencia);
-        formData.append("files['antecedentes']", form.antecedentes);
-        formData.append("files['license_hoja']", form.license_hoja);
+        // formData.append("files['foto']", form.foto);
+        // formData.append("files['carnet']", form.carnet);
+        // formData.append("files['licencia']", form.licencia);
+        // formData.append("files['antecedentes']", form.antecedentes);
+        // formData.append("files['license_hoja']", form.license_hoja);
 
-        formData.append("work_days['monday']", form.monday);
-        formData.append("work_days['tuesday']", form.tuesday);
-        formData.append("work_days['wednesday']", form.wednesday);
-        formData.append("work_days['thursday']", form.thursday);
-        formData.append("work_days['friday']", form.friday);
-        formData.append("work_days['saturday']", form.saturday);
-        formData.append("work_days['sunday']", form.sunday);
+        // formData.append("work_days['monday']", form.monday);
+        // formData.append("work_days['tuesday']", form.tuesday);
+        // formData.append("work_days['wednesday']", form.wednesday);
+        // formData.append("work_days['thursday']", form.thursday);
+        // formData.append("work_days['friday']", form.friday);
+        // formData.append("work_days['saturday']", form.saturday);
+        // formData.append("work_days['sunday']", form.sunday);
 
-        // let data = {
-        //     user_data: {
-        //       rut: form.rut,
-        //       name: form.name,
-        //       last_name: form.last_name,
-        //       address: form.address,
-        //       birth_date: form.birth_date,
-        //       phone_number: form.phone_number,
-        //       phone_number2: form.phone_number2,
-        //       email: form.email
-        //     },
-        //     driver_data: {
-        //       nationality: form.nationality,
-        //       inter_travels: form.inter_travels,
-        //       license_number: form.license_number
-        //     },
-        //     files: {
-        //         foto: form.foto,
-        //         carnet: form.carnet,
-        //         licencia: form.licencia,
-        //         antecedentes: form.antecedentes,
-        //         license_hoja: form.license_hoja,
-        //         seguro: form.license_hoja
-        //     },
-        //     work_days: {
-        //       monday: form.monday,
-        //       tuesday: form.tuesday,
-        //       wednesday: form.wednesday,
-        //       thursday: form.thursday,
-        //       friday: form.friday,
-        //       saturday: form.saturday,
-        //       sunday: form.sunday
-        //     }
-        //   }
+        let data = {
+            user_data: {
+              rut: form.rut,
+              name: form.name,
+              last_name: form.last_name,
+              address: form.address,
+              birth_date: form.birth_date,
+              phone_number: form.phone_number,
+              phone_number2: form.phone_number2,
+              email: form.email
+            },
+            driver_data: {
+              nationality: form.nationality,
+              inter_travels: form.inter_travels === "true" ? true:false,
+              license_number: form.license_number
+            },
+            files: {
+                foto: form.foto,
+                carnet: form.carnet,
+                licencia: form.licencia,
+                antecedentes: form.antecedentes,
+                license_hoja: form.license_hoja,
+                seguro: form.license_hoja
+            },
+            work_days: {
+              monday: form.monday,
+              tuesday: form.tuesday,
+              wednesday: form.wednesday,
+              thursday: form.thursday,
+              friday: form.friday,
+              saturday: form.saturday,
+              sunday: form.sunday
+            }
+          }
+
+        formData.append('user_data', JSON.stringify(data.user_data))
+        formData.append('driver_data', JSON.stringify(data.driver_data))
+        formData.append('foto', form.foto)
+        formData.append('carnet', form.carnet )
+        formData.append('licencia', form.licencia )
+        formData.append('antecedentes', form.antecedentes )
+        formData.append('hoja', form.license_hoja )
+        formData.append('seguro', form.license_hoja )
+        formData.append('work_days', JSON.stringify(data.work_days))
         
-        console.log(formData, 'FORMMMM--DATAAAA');
+        console.log(data, 'DATAAAAAAAAAAAA');
         if(form.rut && form.name && form.last_name && form.address && form.birth_date && form.phone_number && form.email && form.nationality && form.license_number && form.foto && form.carnet && form.licencia && form.antecedentes && form.license_hoja && !error.rut && !error.name && !error.last_name && !error.address && !error.birth_date && !error.phone_number && !error.email && !error.nationality && !error.license_number && !error.foto && !error.carnet && !error.licencia && !error.antecedentes && !error.license_hoja && (form.monday || form.tuesday || form.wednesday || form.thursday || form.friday || form.saturday || form.sunday) ){
             await swal({
                 title: '¿Continuar?',
@@ -412,8 +427,7 @@ export default function NewConductor(){
             .then(response => {
                 if(response){
                     axios.post(`${process.env.REACT_APP_BACKEND}/drivers/`,
-                    formData,
-                    
+                    formData,                    
                       {headers:  {'content-type': 'multipart/form-data'}}
                     )
                     .then(async(response) => {
@@ -473,7 +487,7 @@ export default function NewConductor(){
                                 <h4 className={`col-12 col-md-3 col-lg-1`}>Rut (*)</h4>
                                 <input autoFocus className={`mail col-4 col-sm-3 col-md-3 col-lg-3 text-center mt-1 mt-md-0 mt-lg-0`} type="text" name="rut1" id="rut1"  onChange={(e)=> verifyRut(e)}/>
                                 &nbsp;&nbsp;&nbsp;-
-                                <input className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center mt-1 mt-md-0 mt-lg-0`} type="text" name="rut2" id="rut2" onChange={(e)=> verifyRut(e)} maxlength="1"/>
+                                <input className={`mail col-1 col-sm-1 col-md-1 col-lg-1 text-center mt-1 mt-md-0 mt-lg-0`} type="text" name="rut2" id="rut2" onChange={(e)=> verifyRut(e)} maxLength="1"/>
                                 {error.rut && form.rut ?
                                 <div className={`row`}>
                                     <h5 className={`${Style.alertTexts} col-6`}>El formato permitido es 0000000-0 / 0000000-K</h5>
@@ -614,8 +628,8 @@ export default function NewConductor(){
                                 <div className={`col-5 col-sm-4 col-md-2 col-lg-2 mt-1 mt-md-1 mt-lg-1`}>
                                     <select className={`w-100`} name="inter_travels" value={form.inter_travels} onChange={(e)=> inputs(e)}>
                                         <option value="-" defaultValue>-</option>
-                                        <option value="1">Sí</option>
-                                        <option value="2">No</option>
+                                        <option value={true}>Sí</option>
+                                        <option value={false}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -751,9 +765,9 @@ export default function NewConductor(){
                             <div className={`col-3`}>
                                 <button className={`${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>
                             </div>
-                            <div className={`col-3`}>
+                            {/* <div className={`col-3`}>
                                 <button className={`${Style.save} notActive`} onClick={()=>insertFiles()}>PROBANDO</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

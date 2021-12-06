@@ -1,5 +1,5 @@
 import Style from './BackOfficeAdm.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useHistory, useLocation } from 'react-router-dom';
 import image from '../../img/regBack.jpg';
@@ -19,6 +19,9 @@ import AdmUsuarios from '../AdmUsuarios';
 import ReclamosAdm from '../ReclamosAdm';
 import AlertasAdm from '../AlertasAdm';
 import PendientesAprobacion from '../PendientesAprobacion';
+import PendientesAsociados from '../PendientesAsociados';
+import PendientesConductores from '../PendientesConductores';
+import PendientesConductoresId from '../PendientesConductoresId';
 import MisDatosAdm from '../MisDatosAdm';
 import EditarMisDatosAdm from '../EditarMisDatosAdm';
 import CambiarPasswordAdm from '../CambiarContraseñaAdm';
@@ -37,6 +40,7 @@ import { dataUser } from '../../globalState/Actions';
 
 export default function BackOfficeAdm() {
     let dispatch = useDispatch();
+    const { id } = useParams();
     let history = useHistory();
     let url = window.location.href;
     let {pathname:ruta} = useLocation();
@@ -96,21 +100,22 @@ export default function BackOfficeAdm() {
             icon: 'warning',
             buttons: ["NO", "SI"]
         }).then( async (response) => {
-            if(response){
-                await swal({
-                    title: 'Adiós, vuelve pronto!',
-                    text: 'Redireccionando a Evann...',
-                    icon: 'success',
-                    buttons: [''],
-                    timer: 2000
-                })
+            if(response){                    
                 await axios.get(`${process.env.REACT_APP_BACKEND}/users/logout/`)
-                .then(response => {
+                .then(async(response) => {
+                    axios.defaults.headers.common['Authorization'] = '';
+                    await swal({
+                        title: 'Adiós, vuelve pronto!',
+                        text: 'Redireccionando a Evann...',
+                        icon: 'success',
+                        buttons: [''],
+                        timer: 2000
+                    })
                     history.push('/');
                 })
                 .catch(error => {
                     alert('Error al cerrar sesión!')
-                })                
+                })
             }            
         });
     }
@@ -296,9 +301,24 @@ export default function BackOfficeAdm() {
                                         <AsociadosVehiculosDetalle />
                                     </Fade>
                                 :
+                                ruta === '/back_office_administracion/pendientes_aprobacion' ?
+                                    <Fade>
+                                        <PendientesAprobacion />
+                                    </Fade>
+                                :
+                                ruta === `/back_office_administracion/pendientes_aprobacion/conductores/${id}` ?
+                                    <Fade>
+                                        <PendientesConductoresId />
+                                    </Fade>
+                                :
                                 ruta === '/back_office_administracion/pendientes_aprobacion/conductores' ?
                                     <Fade>
-                                        <ConductoresAdm />
+                                        <PendientesConductores />
+                                    </Fade>
+                                :
+                                ruta === '/back_office_administracion/pendientes_aprobacion/asociados' ?
+                                    <Fade>
+                                        <PendientesAsociados />
                                     </Fade>
                                 :
                                 ruta === '/back_office_administracion/pendientes_aprobacion/conductores/detalles' ?
@@ -346,11 +366,6 @@ export default function BackOfficeAdm() {
                                         <AlertasAdm />
                                     </Fade>
                                 :
-                                ruta === '/back_office_administracion/pendientes_aprobacion' ?
-                                <Fade>
-                                    <PendientesAprobacion />
-                                </Fade>
-                            :
                                 ruta === '/back_office_administracion/mis_datos' ?
                                     <Fade>
                                         <MisDatosAdm />

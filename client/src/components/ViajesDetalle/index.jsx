@@ -37,9 +37,9 @@ export default function ViajesDetalle() {
 
     // =====================================
 
-    useEffect( () => {
-        dispatch(initialGetConductores(conductores));
-    }, [conductores])
+    // useEffect( () => {
+    //     dispatch(initialGetConductores(conductores));
+    // }, [conductores])
 
     const editCar = (e, id) => {
         e.preventDefault();

@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action){
         }
         case INITIAL_GET_CONDUCTORES: return {
             ...state,
-            cars: action.payload
+            conductores: action.payload
         }
         case GET_CONDUCTORES: return {
             ...state,

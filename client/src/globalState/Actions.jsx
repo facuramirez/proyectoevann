@@ -8,7 +8,7 @@ export const GET_OWNERS = "GET_OWNERS";
 export const GET_ID = "GET_ID";
 
 export function initialGetCars(cars) {
-    cars = cars.slice(0, 5);
+    // cars = cars.slice(0, 5);
     return { type: INITIAL_GET_CARS, payload: cars }
 }
 
@@ -17,7 +17,7 @@ export function filterCars(cars) {
 }
 
 export function initialGetConductores(conductores) {
-    conductores = conductores.slice(0, 5);
+    // conductores = conductores.slice(0, 5);
     return { type: INITIAL_GET_CONDUCTORES, payload: conductores}
 }
 

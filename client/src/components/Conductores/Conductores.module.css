@@ -217,7 +217,7 @@
 }
 
 .tableH tr th:nth-child(3){
-    min-width: 12rem;
+    min-width: 6rem;
 }
 
 @media (min-width: 767px){

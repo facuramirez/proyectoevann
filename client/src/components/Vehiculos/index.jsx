@@ -3,7 +3,6 @@ import Style from './Vehiculos.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline, TiArrowMaximiseOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
-import { autos } from './data';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialGetCars, filterCars } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import axios from '../../axiosConfig';
+import swal from 'sweetalert';
 
 export default function Vehiculos({alto}) {
     const dispatch = useDispatch();
@@ -22,11 +22,11 @@ export default function Vehiculos({alto}) {
 
     let indexOfLastRegister = currentPage * registerPerPage;
     let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-    cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
+    cars = cars.slice(indexOfFirstRegister, indexOfLastRegister);
 
     const pageNumbers = [];
 
-    for(let i = 1; i <= Math.ceil(autos.length / registerPerPage) ; i++) {
+    for(let i = 1; i <= Math.ceil(cars.length / registerPerPage) ; i++) {
         pageNumbers.push(i);
     }
 
@@ -36,10 +36,25 @@ export default function Vehiculos({alto}) {
     }
 
     // =====================================
+    useEffect(()=>{
+        axios.get(`${process.env.REACT_APP_BACKOFFICE}/cars/`)
+        .then(response => {
+            dispatch(initialGetCars(response.data));
+            console.log(response.data);
+        })
+        .catch(error => {
+            swal({
+                title: 'Error!',
+                text: 'No se pudieron obtener los vehículos. Verifique su conexión o intente de nuevo mas tarde.',
+                icon: 'warning',
+                buttons: ['', 'OK']
+            })
+        })
+    },[])
 
-    useEffect( () => {
-        dispatch(initialGetCars(autos));        
-    }, [autos])
+    // useEffect( () => {
+    //     dispatch(initialGetCars(autos));        
+    // }, [autos])
 
     // useEffect( () => {
     //     axios.get(`${process.env.REACT_APP_BACKOFFICE}/cars/`)
@@ -73,7 +88,7 @@ export default function Vehiculos({alto}) {
 
         let selectValue = parseInt(e.target.value);
         
-        cars = autos.slice(0, selectValue);
+        cars = cars.slice(0, selectValue);
         setRegisterPerPage(selectValue);
         setCurrentPage(1);
         dispatch(filterCars(cars));
@@ -198,7 +213,7 @@ export default function Vehiculos({alto}) {
                     </div> 
                     </div>:<div>
                         <br/>   
-                        <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
+                        <h1 className={`${Style.noCars} mt-4`}>No hay vehículos para mostrar</h1>
                         </div>}
                 </div>
             </div>            

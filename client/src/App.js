@@ -60,12 +60,15 @@ function App() {
       <Route exact path="/back_office_administracion/alertas" component={BackOfficeAdm} />
       
       <Route exact path="/back_office_administracion/pendientes_aprobacion" component={BackOfficeAdm} />
-      <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
+      <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores/:id" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/pendientes_aprobacion/asociados" component={BackOfficeAdm} />
+      {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/pendientes_aprobacion/viajes" component={BackOfficeAdm} />
-      <Route exact path="/back_office_administracion/pendientes_aprobacion/viajes/detalles" component={BackOfficeAdm} />
+      <Route exact path="/back_office_administracion/pendientes_aprobacion/viajes/detalles" component={BackOfficeAdm} /> */}
          
     </div>
   );

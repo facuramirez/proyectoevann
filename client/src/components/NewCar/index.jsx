@@ -39,8 +39,7 @@ export default function NewCar() {
         });
     }
 
-    return(
-        
+    return(        
         <div>
             <div className={`${Style.containerBackOffice} row m-0`}>
                 <section className={`${Style.menuBar} col-lg-2`}>

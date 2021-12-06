@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import Style from './MisDatosAdm.module.css';
+import { Link, useParams } from 'react-router-dom';
+import Style from './PendientesConductoresId.module.css';
 import Table from 'react-bootstrap/Table';
 import { TiEdit, TiDeleteOutline } from 'react-icons/ti';
 import { FiUsers } from 'react-icons/fi';
@@ -13,23 +13,23 @@ import { FcSearch } from 'react-icons/fc';
 import axios from '../../axiosConfig';
 import { dataUser } from '../../globalState/Actions';
 
-
-export default function MisDatosAdm() {
+export default function PendientesConductoresId() {
 
     let user = useSelector(state => state['user']);
-    
+    const { id }  = useParams();
+    console.log(id, 'ESTE ES EL ID');
     const dispatch = useDispatch();
     let drivers = useSelector( state => state['drivers']);
 
-    // useEffect( () => {
-    //     axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
-    //     .then(response => {
-    //         console.log(response.data, 'MIS DATOS ADM INFO USER');
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
-    // }, [])
+    useEffect( () => {
+        axios.get(`${process.env.REACT_APP_BACKEND}/drivers/${id}/`)
+        .then(response => {
+            console.log(response.data, 'DATOS DEL CONDUCTOR');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }, [])
     
         
     // ============== PAGINADO =============

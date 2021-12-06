@@ -39,9 +39,9 @@ export default function Conductores() {
 
     // =====================================
 
-    useEffect( () => {
-        dispatch(initialGetConductores(conductores));
-    }, [conductores])
+    // useEffect( () => {
+    //     dispatch(initialGetConductores(conductores));
+    // }, [conductores])
 
 
     const editCar = (e, id) => {
