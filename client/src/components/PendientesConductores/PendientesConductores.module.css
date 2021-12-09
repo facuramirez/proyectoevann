@@ -8,12 +8,12 @@
 .title{
     color: white;
     width: fit-content;
+    height: fit-content;
 }
 
 .title h3{
     font-size: 2rem;
 }
-
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
@@ -48,8 +48,6 @@
     cursor: pointer;
 }
 
-
-
 .buttonsTwo .inactives,
 .add{
     border: none;
@@ -64,13 +62,15 @@
     padding-bottom: 0.8vh;
 }
 
-.add a{
+.add{
     color: white;
     text-decoration: none;
+    margin-top: 3rem;
+    width: 6rem;
 }
 
 .buttonsTwo .inactives:hover,
-.add a:hover{
+.add:hover{
     color: #ccc;
 }
 

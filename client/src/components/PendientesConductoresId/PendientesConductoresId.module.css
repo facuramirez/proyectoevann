@@ -16,6 +16,8 @@
     height: fit-content;
     padding: 0px;
     padding: 1rem;
+    overflow-y: scroll;
+    max-height: 58vh;
 }
 
 .misDatos label{
@@ -36,6 +38,15 @@
 .datos{
     /* margin-left: 1rem; */
     background-color: rgb(52, 58, 65) !important;
+}
+
+.datos a{
+    color: white;
+    text-decoration: none;
+}
+
+.datos a:hover{
+    color: #ccc;
 }
 
 .title{
@@ -105,13 +116,12 @@
     width: fit-content;
 }
 
-.add a{
+.add{
     color: white;
     text-decoration: none;
 }
 
-.buttonsTwo .inactives:hover,
-.add a:hover{
+.add:hover{
     color: #ccc;
 }
 

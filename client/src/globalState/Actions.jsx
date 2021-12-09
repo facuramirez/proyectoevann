@@ -6,37 +6,42 @@ export const EDIT_ASSOCIATED = "EDIT_ASSOCIATED";
 export const GET_USER = "GET_USER";
 export const GET_OWNERS = "GET_OWNERS";
 export const GET_ID = "GET_ID";
+export const GET_DRIVER = "GET_DRIVER";
 
 export function initialGetCars(cars) {
-    // cars = cars.slice(0, 5);
-    return { type: INITIAL_GET_CARS, payload: cars }
+  // cars = cars.slice(0, 5);
+  return { type: INITIAL_GET_CARS, payload: cars };
 }
 
 export function filterCars(cars) {
-    return { type: GET_CARS, payload: cars }
+  return { type: GET_CARS, payload: cars };
 }
 
 export function initialGetConductores(conductores) {
-    // conductores = conductores.slice(0, 5);
-    return { type: INITIAL_GET_CONDUCTORES, payload: conductores}
+  // conductores = conductores.slice(0, 5);
+  return { type: INITIAL_GET_CONDUCTORES, payload: conductores };
 }
 
 export function filterConductores(conductores) {
-    return { type: GET_CONDUCTORES, payload: conductores }
+  return { type: GET_CONDUCTORES, payload: conductores };
 }
 
 export function editAssociated(dataAssociated) {
-    return { type: EDIT_ASSOCIATED, payload: dataAssociated }
+  return { type: EDIT_ASSOCIATED, payload: dataAssociated };
 }
 
 export function dataUser(data) {
-    return { type: GET_USER, payload: data}
+  return { type: GET_USER, payload: data };
 }
 
 export function getOwners(data) {
-    return { type: GET_OWNERS, payload: data}
+  return { type: GET_OWNERS, payload: data };
 }
 
 export function getId(id) {
-    return { type: GET_ID, payload: id }
+  return { type: GET_ID, payload: id };
+}
+
+export function getDriver(driver) {
+  return { type: GET_DRIVER, payload: driver };
 }
