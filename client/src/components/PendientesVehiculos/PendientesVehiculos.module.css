@@ -8,12 +8,12 @@
 .title{
     color: white;
     width: fit-content;
+    height: fit-content;
 }
 
 .title h3{
     font-size: 2rem;
 }
-
 
 .buttonsTwo .search,
 .buttonsTwo .inactives{
@@ -48,8 +48,6 @@
     cursor: pointer;
 }
 
-
-
 .buttonsTwo .inactives,
 .add{
     border: none;
@@ -67,7 +65,7 @@
 .add{
     color: white;
     text-decoration: none;
-    margin-top: 2rem;
+    margin-top: 3rem;
     width: 6rem;
 }
 
@@ -183,7 +181,7 @@
 }
 
 .noCars{
-    background-color: red;
+    background-color: rgb(54, 232, 210);
     color: white;
     width: fit-content;
     margin: 0px auto;

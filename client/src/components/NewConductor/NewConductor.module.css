@@ -84,6 +84,10 @@
     font-size: 1.1vw;
 }
 
+.inputFecha{
+    margin-top: -4px !important;
+}
+
 .inputFecha div div input{
     text-align: center;
 }

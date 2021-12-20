@@ -65,7 +65,7 @@
 .add{
     color: white;
     text-decoration: none;
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 6rem;
 }
 
@@ -180,8 +180,8 @@
     color:brown;
 }
 
-.noCars{
-    background-color: red;
+.noConductores{
+    background-color: rgb(54, 232, 210);;
     color: white;
     width: fit-content;
     margin: 0px auto;

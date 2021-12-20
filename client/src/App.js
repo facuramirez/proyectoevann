@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/NavBar/index";
 import RegisterOne from "./components/RegisterOne/index";
@@ -170,7 +169,22 @@ function App() {
       />
       <Route
         exact
+        path="/back_office_administracion/pendientes_aprobacion/vehiculos"
+        component={BackOfficeAdm}
+      />
+      <Route
+        exact
+        path="/back_office_administracion/pendientes_aprobacion/vehiculos/:id"
+        component={BackOfficeAdm}
+      />
+      <Route
+        exact
         path="/back_office_administracion/pendientes_aprobacion/asociados"
+        component={BackOfficeAdm}
+      />
+      <Route
+        exact
+        path="/back_office_administracion/pendientes_aprobacion/asociados/:id"
         component={BackOfficeAdm}
       />
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 

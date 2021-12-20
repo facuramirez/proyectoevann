@@ -1,5 +1,5 @@
 import { Link, useParams, useHistory } from "react-router-dom";
-import Style from "./PendientesConductoresId.module.css";
+import Style from "./PendientesVehiculosId.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
 import { FiUsers } from "react-icons/fi";
@@ -11,17 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   initialGetConductores,
   filterConductores,
-  getDriver,
+  getCar,
 } from "../../globalState/Actions";
 import { FcSearch } from "react-icons/fc";
 import axios from "../../axiosConfig";
 import { dataUser } from "../../globalState/Actions";
 import swal from "sweetalert";
+import { CardActions } from "@material-ui/core";
 
-export default function PendientesConductoresId() {
+export default function PendientesVehiculosId() {
   let history = useHistory();
 
-  let driver = useSelector((state) => state["driver"]);
+  let car = useSelector((state) => state["car"]);
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -29,16 +30,17 @@ export default function PendientesConductoresId() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/drivers/${id}/`)
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/${id}/`)
       .then((response) => {
-        dispatch(getDriver(response.data));
+        console.log(response.data, "ASDASDASDASDA");
+        dispatch(getCar(response.data));
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  console.log(driver, "DRIVERRRRRRRRRRRR");
+  console.log(car, "CARRRRRR");
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -69,18 +71,18 @@ export default function PendientesConductoresId() {
     e.preventDefault();
     await swal({
       title: "¿Seguro?",
-      text: `¿Desea aprobar a ${driver.user.name} ${driver.user.last_name} como conductor`,
+      text: `¿Desea aprobar al vehículo ${car.patent}?`,
       icon: "warning",
       buttons: ["NO", "SI"],
     })
       .then((response) => {
         if (response) {
           axios
-            .post(`${process.env.REACT_APP_BACKEND}/drivers/${id}/approve/`)
+            .post(`${process.env.REACT_APP_BACKEND}/cars/${id}/approve/`)
             .then((response) => {
               swal({
                 title: "Operación exitosa!",
-                text: `Acabas de aprobar a ${driver.user.name} ${driver.user.last_name} como conductor.`,
+                text: `Acabas de aprobar a ${car.patent}`,
                 icon: "success",
               });
             })
@@ -91,11 +93,11 @@ export default function PendientesConductoresId() {
                 icon: "warning",
               });
             });
-          alert("Aprovando car " + driver.id);
+          alert("Aprovando vehículo " + car.id);
         }
       })
       .catch((error) => {
-        alert("Error al aprobar car " + driver.id);
+        alert("Error al aprobar vehículo " + car.id);
       });
   };
 
@@ -128,14 +130,11 @@ export default function PendientesConductoresId() {
 
   return (
     <div>
-      {Object.keys(driver).length > 0 ? (
+      {Object.keys(car).length > 0 ? (
         <div className={`${Style.containerMisDatosAdm} row containerVehiculos`}>
           <div className={`${Style.fondo} row m-0`}>
             <div className={`${Style.title} col-12 mt-2`}>
-              <h3>
-                Pendientes de Aprobación - Conductores - {driver.user.name}{" "}
-                {driver.user.last_name}
-              </h3>
+              <h3>Pendientes de Aprobación - Conductores - {car.patent}</h3>
             </div>
 
             <div>
@@ -181,60 +180,61 @@ export default function PendientesConductoresId() {
                         <label className={`${Style.lbl}`}>Celular2:</label>
                         <label className={`${Style.datos}`}>987573244</label> */}
 
-              <label className={`${Style.lbl}`}>Apellido:</label>
+              <label className={`${Style.lbl}`}>Patente:</label>
+              <label className={`${Style.datos}`}>{car.patent}</label>
+
+              <label className={`${Style.lbl}`}>Equipaje:</label>
+              <label className={`${Style.datos}`}>{car.baggage}</label>
+
+              <label className={`${Style.lbl}`}>Empresa:</label>
               <label className={`${Style.datos}`}>
-                {driver.user.last_name}
+                {car.bussines ? "SI" : "NO"}
               </label>
 
-              <label className={`${Style.lbl}`}>Nombre:</label>
-              <label className={`${Style.datos}`}>{driver.user.name}</label>
-
-              <label className={`${Style.lbl}`}>Rut:</label>
-              <label className={`${Style.datos}`}>{driver.user.rut}</label>
-
-              <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+              <label className={`${Style.lbl}`}>Eventos:</label>
               <label className={`${Style.datos}`}>
-                {driver.user.birth_date}
+                {car.events ? "SI" : "NO"}
               </label>
 
-              <label className={`${Style.lbl}`}>Dirección:</label>
-              <label className={`${Style.datos}`}>{driver.user.address}</label>
-
-              <label className={`${Style.lbl}`}>Celular1:</label>
+              <label className={`${Style.lbl}`}>Familia:</label>
               <label className={`${Style.datos}`}>
-                {driver.user.phone_number}
+                {car.family ? "SI" : "NO"}
               </label>
 
-              <label className={`${Style.lbl}`}>Celular2:</label>
+              <label className={`${Style.lbl}`}>Kilometraje:</label>
+              <label className={`${Style.datos}`}>{car.mileage}</label>
+
+              <label className={`${Style.lbl}`}>Asientos:</label>
+              <label className={`${Style.datos}`}>{car.seating}</label>
+
+              <label className={`${Style.lbl}`}>Tipo:</label>
               <label className={`${Style.datos}`}>
-                {driver.user.phone_number2 ? driver.user.phone_number2 : "-"}
+                {car.type === "SD" ? "Sedan" : "Van"}
               </label>
 
-              <label className={`${Style.lbl}`}>Nacionalidad:</label>
-              <label className={`${Style.datos}`}>
-                {driver.driver_data.nationality}
-              </label>
+              <label className={`${Style.lbl}`}>Año:</label>
+              <label className={`${Style.datos}`}>{car.year}</label>
 
-              <label className={`${Style.lbl}`}>
+              {/* <label className={`${Style.lbl}`}>
                 Viajes Interprovinciales:
               </label>
               <label className={`${Style.datos}`}>
-                {driver.driver_data.inter_travels ? "Sí" : "No"}
+                {car.driver_data.inter_travels ? "Sí" : "No"}
               </label>
 
               <label className={`${Style.lbl}`}>N° Licencia:</label>
               <label className={`${Style.datos}`}>
-                {driver.driver_data.license_number}
-              </label>
+                {car.driver_data.license_number}
+              </label> */}
 
-              <label className={`${Style.lbl}`}>Nacionalidad:</label>
+              {/* <label className={`${Style.lbl}`}>Nacionalidad:</label>
               <label className={`${Style.datos}`}>
-                {driver.driver_data.nationality}
-              </label>
+                {CardActions.driver_data.nationality}
+              </label> */}
 
-              <label className={`${Style.lbl}`}>Foto:</label>
+              {/* <label className={`${Style.lbl}`}>Foto:</label>
               <label className={`${Style.datos}`}>
-                <a href={`${driver.files[0].foto}`}>
+                <a href={`${car.files[0].foto}`}>
                   <i>Ver/Descargar imagen</i>
                 </a>
               </label>
@@ -265,7 +265,7 @@ export default function PendientesConductoresId() {
                 <a href={`${driver.files[4].hoja}`}>
                   <i>Ver/Descargar imagen</i>
                 </a>
-              </label>
+              </label> */}
 
               {/* <label className={`${Style.lbl}`}>Seguro:</label>
               <label className={`${Style.datos}`}>

@@ -21,9 +21,9 @@ import { editAssociated } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
 
-export default function PendientesConductores({ alto }) {
+export default function PendientesConductores() {
   const dispatch = useDispatch();
-  let cars = useSelector((state) => state["conductores"]);
+  let conductores = useSelector((state) => state["conductores"]);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -31,11 +31,11 @@ export default function PendientesConductores({ alto }) {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  cars = cars.slice(indexOfFirstRegister, indexOfLastRegister);
+  conductores = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(cars.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(conductores.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -71,7 +71,7 @@ export default function PendientesConductores({ alto }) {
 
   const editCar = (e, id) => {
     e.preventDefault();
-    let asociado = cars.find((e) => e.id === id);
+    let asociado = conductores.find((e) => e.id === id);
     dispatch(editAssociated(asociado));
     history.push("/back_office_administracion/asociados/editar");
   };
@@ -107,10 +107,10 @@ export default function PendientesConductores({ alto }) {
 
     let selectValue = parseInt(e.target.value);
 
-    cars = cars.slice(0, selectValue);
+    conductores = conductores.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(cars));
+    dispatch(filterCars(conductores));
   };
 
   const back = (e) => {
@@ -124,7 +124,7 @@ export default function PendientesConductores({ alto }) {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Pendientes de Aprobación - Conductores</h3>
           </div>
-          {cars.length > 0 ? (
+          {conductores.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mb-3 justify-content-between`}
@@ -189,7 +189,7 @@ export default function PendientesConductores({ alto }) {
                     </tr>
                   </thead>
                   <tbody className={`${Style.tableB} col-12`}>
-                    {cars.map((element, index) => (
+                    {conductores.map((element, index) => (
                       <tr key={index}>
                         <td>{++index}</td>
                         <td>{element.user.name}</td>
@@ -239,8 +239,8 @@ export default function PendientesConductores({ alto }) {
           ) : (
             <div>
               <br />
-              <h1 className={`${Style.noCars} mt-4`}>
-                No hay usuarios para mostrar
+              <h1 className={`${Style.noConductores} mt-4`}>
+                No hay conductores para aprobar
               </h1>
             </div>
           )}
