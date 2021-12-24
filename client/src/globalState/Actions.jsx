@@ -12,6 +12,7 @@ export const INITIAL_GET_ASOCIADOS = "INITIAL_GET_ASOCIADOS";
 export const GET_OWNER = "GET_OWNER";
 export const GET_EARRINGS_CARS = "GET_EARRINGS_CARS";
 export const GET_CAR = "GET_CAR";
+export const GET_ADMINS = "GET_ADMINS";
 
 export function initialGetCars(cars) {
   // cars = cars.slice(0, 5);
@@ -51,6 +52,10 @@ export function dataUser(data) {
 
 export function getOwners(data) {
   return { type: GET_OWNERS, payload: data };
+}
+
+export function getAdmins(data) {
+  return { type: GET_ADMINS, payload: data };
 }
 
 export function getOwner(owner) {

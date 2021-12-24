@@ -13,6 +13,7 @@ import {
   GET_OWNER,
   GET_EARRINGS_CARS,
   GET_CAR,
+  GET_ADMINS
 } from "./Actions";
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   driver: {},
   earring_cars: [],
   car: {},
+  admins: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -82,6 +84,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         owner: action.payload,
+      };
+    case GET_ADMINS:
+      return {
+        ...state,
+        admins: action.payload,
       };
     case GET_ID:
       return {

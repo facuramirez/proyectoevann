@@ -126,7 +126,7 @@ export default function PendientesAprobacion() {
                             <Link to="/back_office_administracion/pendientes_aprobacion/asociados">ASOCIADOS</Link>
                             <Link to="/back_office_administracion/pendientes_aprobacion/conductores">CONDUCTORES</Link>
                             <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos">VEHÍCULOS</Link>
-                            <Link to="/back_office_administracion/pendientes_aprobacion/varios">VARIOS</Link>
+                            <Link to="/back_office_administracion/pendientes_aprobacion/varios">ACTUALIZACIONES</Link>
 
                             {/* <label className={`${Style.lbl}`}>Apellido:</label>
                             <label className={`${Style.datos}`}>{user.last_name}</label>

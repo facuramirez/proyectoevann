@@ -8,13 +8,29 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialGetCars, filterCars } from '../../globalState/Actions';
+import { initialGetCars, filterCars, getAdmins } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import { ImEye } from 'react-icons/im';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { getOwners } from "../../globalState/Actions";
+import axios from 'axios';
 
 
 export default function Viajes() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        axios
+        .get(`${process.env.REACT_APP_BACKEND}/admins/`)
+        .then((response) => {
+            dispatch(getAdmins(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+
+    let admins = useSelector((state) => state["admins"]);
 
     let [form, setForm] = useState({
         nroViaje: '',
@@ -30,7 +46,6 @@ export default function Viajes() {
         distancia: 'Error'
     });
 
-    const dispatch = useDispatch();
     let cars = useSelector( state => state['cars']);
 
     // ============== PAGINADO =============
@@ -116,7 +131,7 @@ export default function Viajes() {
                     <div className={`${Style.title} col-12 mt-2`}>
                         <h3>Administración de Usuarios</h3>
                     </div>
-                    {cars.length > 0 ?
+                    {admins.length > 0 ?
                     <div className="col-12">                        
                         <div className={`${Style.select} row mt-4 mb-3 justify-content-between`}>
                             <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
@@ -138,53 +153,55 @@ export default function Viajes() {
                             </section>
                         </div>
                     
-                    <div className={`${Style.table} col-12`}>     
-                        <Table striped bordered hover variant="dark">
-                            <thead className={`${Style.tableH}`}>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nro Viaje</th>
-                                    <th className={`${Style.cliente}`}>Cliente</th>
-                                    <th>Fecha</th>
-                                    <th>Distancia</th>
-                                    <th className={`${Style.acciones}`}>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody className={`${Style.tableB}`}>
-                                {cars.map( (element, index) =>
-                               
-                                <tr key={index}>
-                                    <td>{element.id}</td>
-                                    <td>{element.nroViaje}</td>
-                                    <td>{element.cliente}</td>
-                                    <td>{element.fecha}</td>
-                                    <td>{element.distancia}</td>
-                                    <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                                        <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
-                                        <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <Link to="/back_office_administracion/usuarios/roles"><RiLockPasswordLine className={Style.edit}/></Link>
-                                        {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
-                                        <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
-                                    </td>
-                                </tr>
-                                )
-                                }
-                            </tbody>
-                        </Table>
+                        <div className={`${Style.table} col-12`}>     
+                            <Table striped bordered hover variant="dark">
+                                <thead className={`${Style.tableH}`}>
+                                    <tr>
+                                        <th>#</th>
+                                        <th className={`${Style.nombreCompleto}`}>Nombre Completo</th>
+                                        <th className={`${Style.email}`}>Email</th>
+                                        <th className={`${Style.cliente}`}>Rut</th>
+                                        <th>Teléfono</th>
+                                        <th className={`${Style.acciones}`}>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody className={`${Style.tableB}`}>
+                                    {admins.map( (element, index) =>
+                                
+                                    <tr key={index}>
+                                        <td>{element.id}</td>
+                                        <td>{element.name}</td>
+                                        <td>{element.email}</td>
+                                        <td>{element.rut}</td>
+                                        <td>{element.phone_number}</td>
+                                        <td className={`${Style.buttons} d-flex justify-content-evenly`}>
+                                            <a href="" onClick={(e)=>editCar(e, element.id)}><TiEdit className={Style.edit}/></a>
+                                            <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                            <Link to="/back_office_administracion/usuarios/roles"><RiLockPasswordLine className={Style.edit}/></Link>
+                                            {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
+                                            <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
+                                        </td>
+                                    </tr>
+                                    )
+                                    }
+                                </tbody>
+                            </Table>
+                        </div>
+                        <div className={`${Style.pagination} col-12`}>
+                            <ul className={`${Style.ulPagination}`}>
+                                {pageNumbers.map(number => (
+                                    <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
+                                        <a href="">{number}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div> 
                     </div>
-                    <div className={`${Style.pagination} col-12`}>
-                        <ul className={`${Style.ulPagination}`}>
-                            {pageNumbers.map(number => (
-                                <li key={number} className={`${Style.liElements}`} onClick={ (e) => paginate(e, number)}>
-                                    <a href="">{number}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div> 
-                    </div>:<div>
+                    :
+                    <div>
                         <br/>   
                         <h1 className={`${Style.noCars} mt-4`}>No hay autos para mostrar</h1>
-                        </div>}
+                    </div>}
                 </div>
             </div>            
         </div>

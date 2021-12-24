@@ -8,7 +8,7 @@
     background-image: url('../../img/camionetaOscura.png');
     background-size: cover;
     background-position: center;
-    min-height: 86vh;
+    min-height: 86.7vh;
 }
 
 .title{
@@ -239,12 +239,14 @@
         height: 2rem !important;
         
     }
+    .tableH tr th:nth-child(1) {
+        min-width: 3rem !important;
+    }
+    .tableH tr th:nth-child(n+2) {
+        min-width: 10rem !important;
+    }
     .acciones{
         min-width: 8rem !important;
-    }
-
-    .cliente{
-        min-width: 10rem !important;
     }
 }
 

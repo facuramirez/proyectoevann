@@ -13,11 +13,16 @@ import { FcSearch } from "react-icons/fc";
 import { ImEye } from "react-icons/im";
 import { FaRoute } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import { editAssociated, getOwners } from "../../globalState/Actions";
+import { getOwners } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
+// import ReactExport  from 'react-data-export';
+import { CSVLink } from 'react-csv';
 
 export default function Asociados() {
   const dispatch = useDispatch();
+  // const ExcelFile = ReactExport.ExcelFile;
+  // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+  // const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   useEffect(() => {
     axios
@@ -30,7 +35,7 @@ export default function Asociados() {
       });
   }, []);
 
-  let cars = useSelector((state) => state["cars"]);
+  let ownersFilter;
   let owners = useSelector((state) => state["owners"]);
 
   // ============== PAGINADO =============
@@ -56,7 +61,7 @@ export default function Asociados() {
 
   useEffect(() => {
     dispatch(initialGetCars(owners));
-  }, [owners]);
+  }, []);
 
   let history = useHistory();
 
@@ -98,12 +103,31 @@ export default function Asociados() {
 
     let selectValue = parseInt(e.target.value);
 
-    cars = autos.slice(0, selectValue);
+    ownersFilter = owners.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(cars));
+    dispatch(filterCars(ownersFilter));
   };
 
+  const headers = [
+    {label: 'Nombre', key:'user.name'},
+    {label: 'Apellido', key:'user.last_name'},
+    {label: 'Dirección', key:'user.address'},
+    {label: 'Fecha_de_Nacimiento', key:'user.birth_date'},
+    {label: 'Teléfono1', key:'user.phone_number'},
+    {label: 'Teléfono1', key:'user.phone_number2'},
+    {label: 'Banco', key:'bank_account.bank'},
+    {label: 'Tipo_Cuenta', key:'bank_account.type'},
+  ];
+
+  const csvReport = {
+    filename: 'Asociados.csv',
+    headers: headers,
+    data: owners
+  };
+
+  console.log(owners, 'OWNERS');
+  
   return (
     <div>
       <div className={`${Style.containerAsociados} row containerVehiculos`}>
@@ -111,11 +135,14 @@ export default function Asociados() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Asociados</h3>
           </div>
-          {cars.length > 0 ? (
+          {owners.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
               >
+                <div className={`${Style.export}`}>
+                  <CSVLink {...csvReport}>Exportar a Excel</CSVLink>          
+                </div>
                 <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                   <div className="row">
                     <h6
@@ -162,7 +189,6 @@ export default function Asociados() {
                   </div>
                 </section>
               </div>
-
               <div className={`${Style.table} col-12`}>
                 {owners ? (
                   <Table striped bordered hover variant="dark">
