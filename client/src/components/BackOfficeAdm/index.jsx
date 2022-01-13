@@ -24,6 +24,8 @@ import PendientesAsociados from "../PendientesAsociados";
 import PendientesAsociadosId from "../PendientesAsociadosId";
 import PendientesConductores from "../PendientesConductores";
 import PendientesConductoresId from "../PendientesConductoresId";
+import PendientesActualizaciones from "../PendientesActualizaciones";
+import Convenios from "../Convenios";
 import MisDatosAdm from "../MisDatosAdm";
 import EditarMisDatosAdm from "../EditarMisDatosAdm";
 import CambiarPasswordAdm from "../CambiarContraseñaAdm";
@@ -199,6 +201,12 @@ export default function BackOfficeAdm() {
                       Pendientes de aprobación
                     </Link>
                   </li>
+                  <li className={`nav-item active d-md-block d-lg-none`}>
+                    <Link to="/back_office_administracion/convenios">
+                      Convenios
+                    </Link>
+          
+                  </li>
                   <li className="nav-item active">
                     <a
                       className="nav-link"
@@ -263,6 +271,11 @@ export default function BackOfficeAdm() {
                 <div className={`${Style.options} col-12`}>
                   <Link to="/back_office_administracion/pendientes_aprobacion">
                     Pendientes de aprobación
+                  </Link>
+                </div>
+                <div className={`${Style.options} col-12`}>
+                  <Link to="/back_office_administracion/convenios">
+                    Convenios
                   </Link>
                 </div>
               </div>
@@ -382,10 +395,20 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <PendientesAsociadosId />
                   </Fade>
+                  ) : ruta ===
+                  `/back_office_administracion/pendientes_aprobacion/actualizaciones` ? (
+                  <Fade>
+                    <PendientesActualizaciones />
+                  </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/conductores/detalles" ? (
                   <Fade>
                     <ConductoresDetailAdm />
+                  </Fade>
+                ) : ruta ===
+                  "/back_office_administracion/convenios" ? (
+                  <Fade>
+                    <Convenios />
                   </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/viajes" ? (

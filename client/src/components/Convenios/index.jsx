@@ -1,5 +1,6 @@
+// @ts-nocheck
 import { Link } from "react-router-dom";
-import Style from "./PendientesAsociados.module.css";
+import Style from "./Convenios.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
 import { FiUsers } from "react-icons/fi";
@@ -16,13 +17,13 @@ import { FcSearch } from "react-icons/fc";
 import { ImEye } from "react-icons/im";
 import { FaRoute } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import { editAssociated, initialGetAsociados } from "../../globalState/Actions";
+import { editAssociated, pendings } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
 
-export default function PendientesAsociados() {
+export default function PendientesConductores() {
   const dispatch = useDispatch();
-  let asociados = useSelector((state) => state["asociados"]);
+  let pending = useSelector((state) => state["pending"]);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -30,11 +31,11 @@ export default function PendientesAsociados() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  asociados = asociados.slice(indexOfFirstRegister, indexOfLastRegister);
+  pending = pending.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(asociados.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(pending.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -47,18 +48,19 @@ export default function PendientesAsociados() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/owners?is_approved=false`)
+      .get(`${process.env.REACT_APP_BACKOFFICE}/pendings/`)
       .then((response) => {
-        dispatch(initialGetAsociados(response.data));
+        dispatch(pendings(response.data));
+        console.log(response.data, "PENDING");
       })
-      .catch((error) => {
-        swal({
-          title: "Error!",
-          text: "No se pudieron obtener los conductores. Verifique su conexión o intente de nuevo mas tarde.",
-          icon: "warning",
-          buttons: ["", "OK"],
-        });
-      });
+      // .catch((error) => {
+      //   swal({
+      //     title: "Error!",
+      //     text: "No se pudieron obtener los datos pendientes. Verifique su conexión o intente de nuevo mas tarde.",
+      //     icon: "warning",
+      //     buttons: ["", "OK"],
+      //   });
+      // });
   }, []);
 
   // useEffect( () => {
@@ -67,12 +69,12 @@ export default function PendientesAsociados() {
 
   let history = useHistory();
 
-  const editCar = (e, id) => {
-    e.preventDefault();
-    let asociado = asociados.find((e) => e.id === id);
-    dispatch(editAssociated(asociado));
-    history.push("/back_office_administracion/asociados/editar");
-  };
+  // const editCar = (e, id) => {
+  //   e.preventDefault();
+  //   let asociado = conductores.find((e) => e.id === id);
+  //   dispatch(editAssociated(asociado));
+  //   history.push("/back_office_administracion/asociados/editar");
+  // };
 
   const deleteCar = (e, id) => {
     e.preventDefault();
@@ -97,7 +99,7 @@ export default function PendientesAsociados() {
   const detailTravel = (e, id) => {
     e.preventDefault();
     // alert('Detalles Viaje ' +id);
-    history.push("/back_office_administracion/pendientes_aprobacion/viajes");
+    history.push("/back_office_administracion/pendientes_aprobacion/");
   };
 
   const dropBox = (e) => {
@@ -105,10 +107,10 @@ export default function PendientesAsociados() {
 
     let selectValue = parseInt(e.target.value);
 
-    asociados = asociados.slice(0, selectValue);
+    pending = pending.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(asociados));
+    dispatch(filterCars(pending));
   };
 
   const back = (e) => {
@@ -120,12 +122,12 @@ export default function PendientesAsociados() {
       <div className={`${Style.containerPendientes} row containerVehiculos`}>
         <div className={`${Style.fondo} row m-0`}>
           <div className={`${Style.title} col-12 mt-2`}>
-            <h3>Pendientes de Aprobación - Asociados</h3>
+            <h3>Convenios</h3>
           </div>
-          {asociados.length > 0 ? (
+          {pending.length === 0 ? (
             <div className="col-12">
               <div
-                className={`${Style.select} row mt-4 mb-3 justify-content-between`}
+                className={`${Style.select} row mb-3 justify-content-between`}
               >
                 <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                   <div className="row">
@@ -187,31 +189,24 @@ export default function PendientesAsociados() {
                     </tr>
                   </thead>
                   <tbody className={`${Style.tableB} col-12`}>
-                    {asociados.map((element, index) => (
+                    {pending.map((element, index) => (
                       <tr key={index}>
                         <td>{++index}</td>
-                        <td>{element.user.name}</td>
-                        <td>{element.user.last_name}</td>
+                        <td>{element.name}</td>
+                        <td>{element.email}</td>
                         {/* <td>{element.direccion}</td>
                                         <td>{element.fechaNac}</td> */}
                         <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
                         >
                           <div>
-                            {/* <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos">
-                              <AiFillCar className={Style.car} />
-                            </Link> */}
+                            {/* <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos"><AiFillCar className={Style.car}/></Link> */}
                             <Link
-                              to={`/back_office_administracion/pendientes_aprobacion/asociados/${element.id}`}
+                              to={`/back_office_administracion/pendientes_aprobacion/conductores/${element.id}`}
                             >
                               <FiUsers className={Style.conductores} />
                             </Link>
-                            {/* <a
-                              href=""
-                              onClick={(e) => detailTravel(e, element.id)}
-                            >
-                              <FaRoute className={Style.viajes} />
-                            </a> */}
+                            {/* <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
                           </div>
                         </td>
                       </tr>
@@ -232,15 +227,12 @@ export default function PendientesAsociados() {
                   ))}
                 </ul>
               </div>
-              <button onClick={(e) => back(e)} className={`${Style.add} col-2`}>
-                Volver
-              </button>
             </div>
           ) : (
             <div>
               <br />
-              <h1 className={`${Style.noCars} mt-4`}>
-                No hay asociados para aprobar
+              <h1 className={`${Style.noConductores} mt-4`}>
+                 Sección en construcción...
               </h1>
             </div>
           )}

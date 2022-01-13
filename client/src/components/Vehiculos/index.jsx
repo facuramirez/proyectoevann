@@ -195,7 +195,7 @@ export default function Vehiculos({ alto }) {
                       <th>Marca</th>
                       <th>Modelo</th>
                       <th>Tipo vehículo</th>
-                      <th>Conductor</th>
+                      <th>Aprobado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -203,11 +203,11 @@ export default function Vehiculos({ alto }) {
                     {cars.map((element, index) => (
                       <tr key={index}>
                         <td>{element.id}</td>
-                        <td>{element.patente}</td>
-                        <td>{element.marca}</td>
-                        <td>{element.modelo}</td>
-                        <td>{element.tipo_veh}</td>
-                        <td>{element.asignado}</td>
+                        <td>{element.patent}</td>
+                        <td>{element.make}</td>
+                        <td>{element.model}</td>
+                        <td>{element.type}</td>
+                        <td>{element.is_approved ? "SI" : "NO"}</td>
                         <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
                         >

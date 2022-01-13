@@ -250,7 +250,7 @@ export default function NewCarForm() {
             .catch((error) => {
               swal({
                 title: "Error!",
-                text: "No se pudo crear el conductor, por favor intentelo nuevamente mas tarde!",
+                text: "No se pudo crear el vehículo, por favor intentelo nuevamente mas tarde!",
                 icon: "warning",
                 buttons: ["", "OK"],
               });

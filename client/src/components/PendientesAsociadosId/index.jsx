@@ -38,8 +38,6 @@ export default function PendientesAsociadosId() {
       });
   }, []);
 
-  console.log(asociado, "asociado");
-
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
   let [registerPerPage, setRegisterPerPage] = useState(5);

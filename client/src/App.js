@@ -187,6 +187,19 @@ function App() {
         path="/back_office_administracion/pendientes_aprobacion/asociados/:id"
         component={BackOfficeAdm}
       />
+      <Route
+        exact
+        path="/back_office_administracion/pendientes_aprobacion/actualizaciones"
+        component={BackOfficeAdm}
+      />
+
+
+
+      <Route
+        exact
+        path="/back_office_administracion/convenios"
+        component={BackOfficeAdm}
+      />
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores" component={BackOfficeAdm} /> 

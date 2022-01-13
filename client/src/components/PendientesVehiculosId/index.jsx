@@ -32,7 +32,6 @@ export default function PendientesVehiculosId() {
     axios
       .get(`${process.env.REACT_APP_BACKOFFICE}/cars/${id}/`)
       .then((response) => {
-        console.log(response.data, "ASDASDASDASDA");
         dispatch(getCar(response.data));
       })
       .catch((error) => {
@@ -78,7 +77,7 @@ export default function PendientesVehiculosId() {
       .then((response) => {
         if (response) {
           axios
-            .post(`${process.env.REACT_APP_BACKEND}/cars/${id}/approve/`)
+            .post(`${process.env.REACT_APP_BACKOFFICE}/cars/${id}/approve/`)
             .then((response) => {
               swal({
                 title: "Operación exitosa!",
@@ -93,7 +92,7 @@ export default function PendientesVehiculosId() {
                 icon: "warning",
               });
             });
-          alert("Aprovando vehículo " + car.id);
+          alert("Aprobando vehículo " + car.id);
         }
       })
       .catch((error) => {
@@ -103,7 +102,7 @@ export default function PendientesVehiculosId() {
 
   const back = (e) => {
     history.push(
-      "/back_office_administracion/pendientes_aprobacion/conductores"
+      "/back_office_administracion/pendientes_aprobacion/vehiculos"
     );
   };
 

@@ -8,25 +8,26 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiFillCar } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialGetConductores, filterConductores } from '../../globalState/Actions';
+import { initialGetConductores, filterConductores, dataUser } from '../../globalState/Actions';
 import { FcSearch } from 'react-icons/fc';
 import axios from '../../axiosConfig';
 
 export default function MisDatos() {
     
     let user = useSelector(state => state['user']);
-    
-    // useEffect( () => {
-    //     axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
-    //     .then(response => {
-    //         console.log(response.data, 'MIS DATOS ADM INFO USER');
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
-    // }, [])
-
     const dispatch = useDispatch();
+    
+    useEffect( () => {
+        axios.get(`${process.env.REACT_APP_BACKEND}/users/info/`)
+        .then(response => {
+            dispatch(dataUser(response.data));
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }, [])
+
+    
     let drivers = useSelector( state => state['drivers']);
 
     // ============== PAGINADO =============

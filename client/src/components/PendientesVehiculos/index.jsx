@@ -56,8 +56,10 @@ export default function PendientesVehiculos() {
           buttons: ["", "OK"],
         });
       });
+      return () => {
+        dispatch(earringCars([]));
+      }
   }, []);
-
   // useEffect( () => {
   //     dispatch(initialGetCars(autos));
   // }, [autos])
@@ -112,12 +114,14 @@ export default function PendientesVehiculos() {
     history.push("/back_office_administracion/pendientes_aprobacion");
   };
 
+  console.log(cars, 'CARS');
+
   return (
     <div>
       <div className={`${Style.containerPendientes} row containerVehiculos`}>
         <div className={`${Style.fondo} row m-0`}>
           <div className={`${Style.title} col-12 mt-2`}>
-            <h3>Pendientes de Aprobación - Conductores</h3>
+            <h3>Pendientes de Aprobación - Vehículos</h3>
           </div>
           {cars.length > 0 ? (
             <div className="col-12">
@@ -231,14 +235,15 @@ export default function PendientesVehiculos() {
                 </button>
               </div>
             </div>
-          ) : (
+          ) : cars.length === 0 ? (
             <div>
               <br />
               <h1 className={`${Style.noCars}`}>
                 No hay vehículos para aprobar
               </h1>
             </div>
-          )}
+          ):
+          <div>CARGANDO</div>}
         </div>
       </div>
     </div>

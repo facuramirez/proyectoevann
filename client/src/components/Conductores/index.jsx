@@ -167,8 +167,8 @@ export default function Conductores() {
                                         <th>Nacionalidad</th>
                                         <th>Fecha de Nacimiento</th> */}
                         {/* <th>Email</th> */}
-                        <th>Estado</th>
                         <th>Celular</th>
+                        <th>Aprobado</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -182,8 +182,8 @@ export default function Conductores() {
                                         <td>{element.fechaNac}</td> */}
                           {/* <td>{element.email}</td> */}
                           {/* <td>{element.estado}</td> */}
-                          <td>{element.is_approved ? "Aprobado" : "N/A"}</td>
                           <td>{element.user.phone_number}</td>
+                          <td>{element.is_approved ? "SI" : "NO"}</td>
                           <td
                             className={`${Style.buttons} d-flex justify-content-evenly`}
                           >

@@ -13,6 +13,7 @@ export const GET_OWNER = "GET_OWNER";
 export const GET_EARRINGS_CARS = "GET_EARRINGS_CARS";
 export const GET_CAR = "GET_CAR";
 export const GET_ADMINS = "GET_ADMINS";
+export const GET_PENDING = "GET_PENDING";
 
 export function initialGetCars(cars) {
   // cars = cars.slice(0, 5);
@@ -76,4 +77,8 @@ export function earringCars(cars) {
 
 export function getCar(car) {
   return { type: GET_CAR, payload: car };
+}
+
+export function pendings(pending) {
+  return { type: GET_PENDING, payload: pending };
 }

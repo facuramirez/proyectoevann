@@ -285,7 +285,7 @@ export default function EditarMisDatos(){
                 })
                 .then(async(response) => {
                     if(response){
-                        await axios.put(`${process.env.REACT_APP_BACKEND}/users/${id}/`, data)
+                        await axios.patch(`${process.env.REACT_APP_BACKEND}/users/change_personal_data/`, data)
                         .then(async(response) => {
                             await swal({
                                 title: 'Operación exitosa!',
