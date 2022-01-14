@@ -20,10 +20,12 @@ import { useHistory } from "react-router-dom";
 import { editAssociated } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function PendientesConductores() {
   const dispatch = useDispatch();
   let conductores = useSelector((state) => state["conductores"]);
+  let [loading, setLoading] = useState(true);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -50,6 +52,7 @@ export default function PendientesConductores() {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/drivers?is_approved=false`)
       .then((response) => {
+        setLoading(false);
         dispatch(initialGetConductores(response.data));
         console.log(response.data, "Drivers Not Approved");
       })
@@ -124,7 +127,11 @@ export default function PendientesConductores() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Pendientes de Aprobación - Conductores</h3>
           </div>
-          {conductores.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : conductores.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mb-3 justify-content-between`}

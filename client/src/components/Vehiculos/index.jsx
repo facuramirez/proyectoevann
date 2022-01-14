@@ -15,10 +15,12 @@ import { initialGetCars, filterCars } from "../../globalState/Actions";
 import { FcSearch } from "react-icons/fc";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function Vehiculos({ alto }) {
   const dispatch = useDispatch();
   let cars = useSelector((state) => state["cars"]);
+  let [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   axios
@@ -61,6 +63,7 @@ export default function Vehiculos({ alto }) {
     axios
       .get(`${process.env.REACT_APP_BACKOFFICE}/cars/`)
       .then((response) => {
+        setLoading(false);
         dispatch(initialGetCars(response.data));
         console.log(response.data);
       })
@@ -129,8 +132,11 @@ export default function Vehiculos({ alto }) {
               Nuevo
             </Link>
           </button>
-
-          {cars.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : cars.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
@@ -217,9 +223,9 @@ export default function Vehiculos({ alto }) {
                           <a href="" onClick={(e) => deleteCar(e, element.id)}>
                             <TiDeleteOutline className={Style.delete} />
                           </a>
-                          <Link to="/back_office/vehiculos/detalles">
+                          {/* <Link to="/back_office/vehiculos/detalles">
                             <FiUsers className={Style.details} />
-                          </Link>
+                          </Link> */}
                         </td>
                       </tr>
                     ))}

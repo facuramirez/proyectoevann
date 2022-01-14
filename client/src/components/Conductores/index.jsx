@@ -14,15 +14,18 @@ import {
 import { FcSearch } from "react-icons/fc";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function Conductores() {
   const dispatch = useDispatch();
   let conductores = useSelector((state) => state["conductores"]);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/drivers/`)
       .then((response) => {
+        setLoading(false);
         dispatch(initialGetConductores(response.data));
         console.log(response.data, "conductores");
       })
@@ -103,8 +106,11 @@ export default function Conductores() {
               Nuevo
             </Link>
           </button>
-
-          {conductores.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : conductores.length > 0 ? (
             <div>
               <div className="col-12">
                 <div

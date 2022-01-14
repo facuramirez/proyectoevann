@@ -19,10 +19,12 @@ import { useHistory } from "react-router-dom";
 import { editAssociated, initialGetAsociados } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function PendientesAsociados() {
   const dispatch = useDispatch();
   let asociados = useSelector((state) => state["asociados"]);
+  let [loading, setLoading] = useState(true);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +51,7 @@ export default function PendientesAsociados() {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/owners?is_approved=false`)
       .then((response) => {
+        setLoading(false);
         dispatch(initialGetAsociados(response.data));
       })
       .catch((error) => {
@@ -122,7 +125,11 @@ export default function PendientesAsociados() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Pendientes de Aprobación - Asociados</h3>
           </div>
-          {asociados.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : asociados.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}

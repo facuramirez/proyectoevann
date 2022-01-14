@@ -16,10 +16,12 @@ import { useHistory } from "react-router-dom";
 import { getOwners } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 // import ReactExport  from 'react-data-export';
-import { CSVLink } from 'react-csv';
+import { CSVLink } from "react-csv";
+import Loader from "../Loader";
 
 export default function Asociados() {
   const dispatch = useDispatch();
+  let [loading, setLoading] = useState(true);
   // const ExcelFile = ReactExport.ExcelFile;
   // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   // const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
@@ -28,6 +30,7 @@ export default function Asociados() {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/owners/`)
       .then((response) => {
+        setLoading(false);
         dispatch(getOwners(response.data));
       })
       .catch((error) => {
@@ -110,24 +113,24 @@ export default function Asociados() {
   };
 
   const headers = [
-    {label: 'Nombre', key:'user.name'},
-    {label: 'Apellido', key:'user.last_name'},
-    {label: 'Dirección', key:'user.address'},
-    {label: 'Fecha_de_Nacimiento', key:'user.birth_date'},
-    {label: 'Teléfono1', key:'user.phone_number'},
-    {label: 'Teléfono1', key:'user.phone_number2'},
-    {label: 'Banco', key:'bank_account.bank'},
-    {label: 'Tipo_Cuenta', key:'bank_account.type'},
+    { label: "Nombre", key: "user.name" },
+    { label: "Apellido", key: "user.last_name" },
+    { label: "Dirección", key: "user.address" },
+    { label: "Fecha_de_Nacimiento", key: "user.birth_date" },
+    { label: "Teléfono1", key: "user.phone_number" },
+    { label: "Teléfono1", key: "user.phone_number2" },
+    { label: "Banco", key: "bank_account.bank" },
+    { label: "Tipo_Cuenta", key: "bank_account.type" },
   ];
 
   const csvReport = {
-    filename: 'Asociados.csv',
+    filename: "Asociados.csv",
     headers: headers,
-    data: owners
+    data: owners,
   };
 
-  console.log(owners, 'OWNERS');
-  
+  console.log(owners, "OWNERS");
+
   return (
     <div>
       <div className={`${Style.containerAsociados} row containerVehiculos`}>
@@ -135,13 +138,17 @@ export default function Asociados() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Asociados</h3>
           </div>
-          {owners.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : owners.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
               >
                 <div className={`${Style.export}`}>
-                  <CSVLink {...csvReport}>Exportar a Excel</CSVLink>          
+                  <CSVLink {...csvReport}>Exportar a Excel</CSVLink>
                 </div>
                 <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                   <div className="row">

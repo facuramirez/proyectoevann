@@ -14,10 +14,12 @@ import {
 } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function PendientesVehiculos() {
   const dispatch = useDispatch();
   let cars = useSelector((state) => state["earring_cars"]);
+  let [loading, setLoading] = useState(true);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -45,6 +47,7 @@ export default function PendientesVehiculos() {
     axios
       .get(`${process.env.REACT_APP_BACKOFFICE}/cars?is_approved=false`)
       .then((response) => {
+        setLoading(false);
         dispatch(earringCars(response.data));
         console.log(response.data, "Cars Not Approved");
       })
@@ -56,9 +59,9 @@ export default function PendientesVehiculos() {
           buttons: ["", "OK"],
         });
       });
-      return () => {
-        dispatch(earringCars([]));
-      }
+    return () => {
+      dispatch(earringCars([]));
+    };
   }, []);
   // useEffect( () => {
   //     dispatch(initialGetCars(autos));
@@ -114,7 +117,7 @@ export default function PendientesVehiculos() {
     history.push("/back_office_administracion/pendientes_aprobacion");
   };
 
-  console.log(cars, 'CARS');
+  console.log(cars, "CARS");
 
   return (
     <div>
@@ -123,7 +126,11 @@ export default function PendientesVehiculos() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Pendientes de Aprobación - Vehículos</h3>
           </div>
-          {cars.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : cars.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mb-3 justify-content-between`}
@@ -242,8 +249,9 @@ export default function PendientesVehiculos() {
                 No hay vehículos para aprobar
               </h1>
             </div>
-          ):
-          <div>CARGANDO</div>}
+          ) : (
+            <div>CARGANDO</div>
+          )}
         </div>
       </div>
     </div>

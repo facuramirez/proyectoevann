@@ -80,5 +80,40 @@ export function getCar(car) {
 }
 
 export function pendings(pending) {
-  return { type: GET_PENDING, payload: pending };
+  let data = [];
+  let pendingData = [];
+
+  if(!pending) return { type: GET_PENDING, payload: null };
+  
+  pendingData = pending.map((change) => {
+    return {
+      id: change.id,
+      name: change.name,
+      rut: change.rut,
+      model: change.model,
+      changeName: change.changes.map((changeOne) => Object.keys(changeOne)[0]),
+      old: change.changes.map(
+        (changeTwo, index) => changeTwo[Object.keys(changeTwo)[0]]["old"]
+      ),
+      new: change.changes.map(
+        (changeThree, index) => changeThree[Object.keys(changeThree)[0]]["new"]
+      ),
+    };
+  });
+
+  pendingData.forEach((key1, index) => {
+    key1["changeName"].forEach((key2, index2) => {
+      data.push({
+        id: key1.id,
+        name: key1.name,
+        rut: key1.rut,
+        model: key1.model,
+        changeName: key2,
+        old: key1["old"][index2],
+        new: key1["new"][index2],
+      });
+    });
+  });
+
+  return { type: GET_PENDING, payload: data };
 }

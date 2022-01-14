@@ -20,11 +20,13 @@ import { useHistory } from "react-router-dom";
 import { editAssociated, pendings } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
+import Loader from "../Loader";
 
 export default function PendientesConductores() {
   const dispatch = useDispatch();
   let pending = useSelector((state) => state["pending"]);
   let history = useHistory();
+  let [loading, setLoading] = useState(true);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -51,6 +53,7 @@ export default function PendientesConductores() {
     axios
       .get(`${process.env.REACT_APP_BACKOFFICE}/pendings/`)
       .then((response) => {
+        setLoading(false);
         dispatch(pendings(response.data));
       })
       .catch((error) => {
@@ -63,44 +66,10 @@ export default function PendientesConductores() {
       });
   }, []);
 
-  let pendingData = pending.map((change) => {
-    return {
-      id: change.id,
-      name: change.name,
-      rut: change.rut,
-      model: change.model,
-      changeName: change.changes.map((changeOne) => Object.keys(changeOne)[0]),
-      old: change.changes.map(
-        (changeTwo, index) => changeTwo[Object.keys(changeTwo)[0]]["old"]
-      ),
-      new: change.changes.map(
-        (changeThree, index) => changeThree[Object.keys(changeThree)[0]]["new"]
-      ),
-    };
-  });
-
-  let data = [];
-
-  pendingData.forEach((key1, index) => {
-    key1["changeName"].forEach((key2, index2) => {
-      data.push({
-        id: key1.id,
-        name: key1.name,
-        rut: key1.rut,
-        model: key1.model,
-        changeName: key2,
-        old: key1["old"][index2],
-        new: key1["new"][index2],
-      });
-    });
-  });
-
-  console.log(data, "pendingData");
   // useEffect( () => {
   //     dispatch(initialGetCars(autos));
   // }, [autos])
 
-  
   // const editCar = (e, id) => {
   //   e.preventDefault();
   //   let asociado = conductores.find((e) => e.id === id);
@@ -165,7 +134,7 @@ export default function PendientesConductores() {
               text: `Actualización de datos realizada correctamente`,
               icon: "success",
             });
-            history.push('/back_office_administracion/pendientes_aprobacion');
+            history.push("/back_office_administracion/pendientes_aprobacion");
           })
           .catch((error) => {
             swal({
@@ -176,7 +145,7 @@ export default function PendientesConductores() {
           });
       }
     });
-  }
+  };
 
   const back = (e) => {
     history.push("/back_office_administracion/pendientes_aprobacion");
@@ -189,7 +158,11 @@ export default function PendientesConductores() {
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Pendientes de Aprobación - Actualizaciones</h3>
           </div>
-          {data.length > 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : pending.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mb-3 justify-content-between`}
@@ -256,7 +229,7 @@ export default function PendientesConductores() {
                     </tr>
                   </thead>
                   <tbody className={`${Style.tableB} col-12`}>
-                    {data.map((element, index) => (
+                    {pending.map((element, index) => (
                       <tr key={index}>
                         <td>{++index}</td>
                         <td>{element.name}</td>
@@ -265,8 +238,12 @@ export default function PendientesConductores() {
                         <td>{element.changeName}</td>
                         <td>{element.old}</td>
                         <td>{element.new}</td>
-                        <td className={`${Style.buttons} d-flex justify-content-evenly`}>
-                          <a onClick={(e)=>approve(e, element)}><FiUsers className={Style.conductores} /></a>
+                        <td
+                          className={`${Style.buttons} d-flex justify-content-evenly`}
+                        >
+                          <a onClick={(e) => approve(e, element)}>
+                            <FiUsers className={Style.conductores} />
+                          </a>
                         </td>
                         {/* <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
@@ -307,12 +284,14 @@ export default function PendientesConductores() {
               </div>
             </div>
           ) : (
-            <div>
-              <br />
-              <h1 className={`${Style.noConductores} mt-4`}>
-                No hay actualizaciones pendientes
-              </h1>
-            </div>
+            pending.length === 0 && (
+              <div>
+                <br />
+                <h1 className={`${Style.noConductores} mt-4`}>
+                  No hay actualizaciones pendientes
+                </h1>
+              </div>
+            )
           )}
         </div>
       </div>
