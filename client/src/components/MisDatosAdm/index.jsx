@@ -18,10 +18,9 @@ import { dataUser } from "../../globalState/Actions";
 
 export default function MisDatosAdm() {
   let user = useSelector((state) => state["user"]);
-
+  console.log(user, 'USER');
   const dispatch = useDispatch();
   let drivers = useSelector((state) => state["drivers"]);
-
   // useEffect( () => {
   //     axios.get(`${process.env.REACT_APP_BACKEND}/users/info`)
   //     .then(response => {

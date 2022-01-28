@@ -14,6 +14,7 @@ export const GET_EARRINGS_CARS = "GET_EARRINGS_CARS";
 export const GET_CAR = "GET_CAR";
 export const GET_ADMINS = "GET_ADMINS";
 export const GET_PENDING = "GET_PENDING";
+export const GET_PENDING_DATA = "GET_PENDING_DATA";
 
 export function initialGetCars(cars) {
   // cars = cars.slice(0, 5);
@@ -83,14 +84,22 @@ export function pendings(pending) {
   let data = [];
   let pendingData = [];
 
-  if(!pending) return { type: GET_PENDING, payload: null };
-  
+  if (!pending) return { type: GET_PENDING, payload: null };
+
+  return { type: GET_PENDING, payload: pending };
+}
+
+export function pendingData(pending) {
+  let data = [];
+  let pendingData = [];
+  console.log(pending, "ACTIONS PENDING");
+  if (!pending) return { type: GET_PENDING, payload: null };
+
   pendingData = pending.map((change) => {
     return {
-      id: change.id,
-      name: change.name,
-      rut: change.rut,
-      model: change.model,
+      id: change['id'],
+      name: change['name'],
+      rut: change['rut'],
       changeName: change.changes.map((changeOne) => Object.keys(changeOne)[0]),
       old: change.changes.map(
         (changeTwo, index) => changeTwo[Object.keys(changeTwo)[0]]["old"]
@@ -100,20 +109,20 @@ export function pendings(pending) {
       ),
     };
   });
+  
 
   pendingData.forEach((key1, index) => {
+    data.push(key1['id']);
+    data.push(key1['name']);
+    data.push(key1['rut']);
     key1["changeName"].forEach((key2, index2) => {
       data.push({
-        id: key1.id,
-        name: key1.name,
-        rut: key1.rut,
-        model: key1.model,
         changeName: key2,
         old: key1["old"][index2],
         new: key1["new"][index2],
       });
     });
   });
-
-  return { type: GET_PENDING, payload: data };
+  console.log(data, 'DATAA');
+  return { type: GET_PENDING_DATA, payload: data };
 }

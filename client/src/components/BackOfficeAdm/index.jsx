@@ -25,6 +25,7 @@ import PendientesAsociadosId from "../PendientesAsociadosId";
 import PendientesConductores from "../PendientesConductores";
 import PendientesConductoresId from "../PendientesConductoresId";
 import PendientesActualizaciones from "../PendientesActualizaciones";
+import PendientesActualizacionesData from "../PendientesActualizacionesData";
 import Convenios from "../Convenios";
 import MisDatosAdm from "../MisDatosAdm";
 import EditarMisDatosAdm from "../EditarMisDatosAdm";
@@ -205,7 +206,6 @@ export default function BackOfficeAdm() {
                     <Link to="/back_office_administracion/convenios">
                       Convenios
                     </Link>
-          
                   </li>
                   <li className="nav-item active">
                     <a
@@ -395,18 +395,22 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <PendientesAsociadosId />
                   </Fade>
-                  ) : ruta ===
+                ) : ruta ===
                   `/back_office_administracion/pendientes_aprobacion/actualizaciones` ? (
                   <Fade>
                     <PendientesActualizaciones />
+                  </Fade>
+                ) : ruta ===
+                  `/back_office_administracion/pendientes_aprobacion/actualizaciones/detalle` ? (
+                  <Fade>
+                    <PendientesActualizacionesData />
                   </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/conductores/detalles" ? (
                   <Fade>
                     <ConductoresDetailAdm />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/convenios" ? (
+                ) : ruta === "/back_office_administracion/convenios" ? (
                   <Fade>
                     <Convenios />
                   </Fade>

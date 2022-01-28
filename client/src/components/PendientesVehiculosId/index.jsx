@@ -32,14 +32,16 @@ export default function PendientesVehiculosId() {
     axios
       .get(`${process.env.REACT_APP_BACKOFFICE}/cars/${id}/`)
       .then((response) => {
+        console.log(response.data, 'VEH');
         dispatch(getCar(response.data));
+        
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  console.log(car, "CARRRRRR");
+  console.log(car, "CARRRRRRa");
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -133,7 +135,7 @@ export default function PendientesVehiculosId() {
         <div className={`${Style.containerMisDatosAdm} row containerVehiculos`}>
           <div className={`${Style.fondo} row m-0`}>
             <div className={`${Style.title} col-12 mt-2`}>
-              <h3>Pendientes de Aprobación - Conductores - {car.patent}</h3>
+              <h3>Pendientes de Aprobación - Vehículos - {car.patent}</h3>
             </div>
 
             <div>
@@ -213,6 +215,41 @@ export default function PendientesVehiculosId() {
 
               <label className={`${Style.lbl}`}>Año:</label>
               <label className={`${Style.datos}`}>{car.year}</label>
+
+              <label className={`${Style.lbl}`}>Decreto 80:</label>
+              <label className={`${Style.datos}`}>
+                <a href={`${car.files[0].decreto_80}`}>
+                  <i>Ver/Descargar imagen</i>
+                </a>
+              </label>
+
+              <label className={`${Style.lbl}`}>Permiso:</label>
+              <label className={`${Style.datos}`}>
+                <a href={`${car.files[1].permiso}`}>
+                  <i>Ver/Descargar imagen</i>
+                </a>
+              </label>
+
+              <label className={`${Style.lbl}`}>Revisión:</label>
+              <label className={`${Style.datos}`}>
+                <a href={`${car.files[2].revision}`}>
+                  <i>Ver/Descargar imagen</i>
+                </a>
+              </label>
+
+              <label className={`${Style.lbl}`}>Seguro responsabilidad:</label>
+              <label className={`${Style.datos}`}>
+                <a href={`${car.files[3].seguro_responsabilidad}`}>
+                  <i>Ver/Descargar imagen</i>
+                </a>
+              </label>
+
+              <label className={`${Style.lbl}`}>Seguro 3eros:</label>
+              <label className={`${Style.datos}`}>
+                <a href={`${car.files[4].seguro_terceros}`}>
+                  <i>Ver/Descargar imagen</i>
+                </a>
+              </label>
 
               {/* <label className={`${Style.lbl}`}>
                 Viajes Interprovinciales:

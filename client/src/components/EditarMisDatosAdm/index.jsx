@@ -343,7 +343,7 @@ export default function EditarMisDatosAdm() {
       phone_number: parseInt(form.cel1),
       phone_number2: parseInt(form.cel2),
     };
-    
+    console.log(data, 'DATAAA');
     if (
       !error.admin &&
       !error.ape &&

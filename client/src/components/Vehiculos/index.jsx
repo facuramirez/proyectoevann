@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Style from "./Vehiculos.module.css";
 import Table from "react-bootstrap/Table";
 import {
@@ -6,6 +6,7 @@ import {
   TiDeleteOutline,
   TiArrowMaximiseOutline,
 } from "react-icons/ti";
+import { FaUser } from 'react-icons/fa';
 import { FiUsers } from "react-icons/fi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
@@ -21,6 +22,7 @@ export default function Vehiculos({ alto }) {
   const dispatch = useDispatch();
   let cars = useSelector((state) => state["cars"]);
   let [loading, setLoading] = useState(true);
+  let history = useHistory();
 
   // useEffect(() => {
   //   axios
@@ -65,7 +67,7 @@ export default function Vehiculos({ alto }) {
       .then((response) => {
         setLoading(false);
         dispatch(initialGetCars(response.data));
-        console.log(response.data);
+        console.log(response.data, 'CARS');
       })
       .catch((error) => {
         swal({
@@ -97,9 +99,9 @@ export default function Vehiculos({ alto }) {
     alert("Editando car " + id);
   };
 
-  const deleteCar = (e, id) => {
+  const assignCar = (e, id) => {
     e.preventDefault();
-    alert("Eliminando car " + id);
+    history.push(`/back_office/vehiculos/asignacion/${id}`)
   };
 
   const detailCar = (e, id) => {
@@ -183,11 +185,11 @@ export default function Vehiculos({ alto }) {
                     <FcSearch
                       className={`${Style.searchIcon} col-5 col-sm-5 col-md-1 col-lg-1`}
                     />
-                    <button
+                    {/* <button
                       className={`${Style.inactives} col-5 col-sm-5 col-md-2 col-lg-2 mt-0 mt-sm-0 mt-md-0 mt-lg-0`}
                     >
                       Ver inactivos
-                    </button>
+                    </button> */}
                   </div>
                 </section>
               </div>
@@ -198,9 +200,9 @@ export default function Vehiculos({ alto }) {
                     <tr>
                       <th>#</th>
                       <th>Patente</th>
-                      <th>Marca</th>
-                      <th>Modelo</th>
+                      <th>Vehículo</th>
                       <th>Tipo vehículo</th>
+                      <th>Asignado</th>
                       <th>Aprobado</th>
                       <th>Acciones</th>
                     </tr>
@@ -208,11 +210,11 @@ export default function Vehiculos({ alto }) {
                   <tbody>
                     {cars.map((element, index) => (
                       <tr key={index}>
-                        <td>{element.id}</td>
+                        <td>{++index}</td>
                         <td>{element.patent}</td>
-                        <td>{element.make}</td>
-                        <td>{element.model}</td>
+                        <td>{`${element.make} - ${element.model}`}</td>
                         <td>{element.type}</td>
+                        <td>{element.assigned_driver ?? 'NO'}</td>
                         <td>{element.is_approved ? "SI" : "NO"}</td>
                         <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
@@ -220,9 +222,9 @@ export default function Vehiculos({ alto }) {
                           <a href="" onClick={(e) => editCar(e, element.id)}>
                             <TiEdit className={Style.edit} />
                           </a>
-                          <a href="" onClick={(e) => deleteCar(e, element.id)}>
-                            <TiDeleteOutline className={Style.delete} />
-                          </a>
+                          <Link to={`/back_office/vehiculos/asignacion/${element.id}`}>
+                            <FaUser className={Style.assign} />
+                          </Link>
                           {/* <Link to="/back_office/vehiculos/detalles">
                             <FiUsers className={Style.details} />
                           </Link> */}

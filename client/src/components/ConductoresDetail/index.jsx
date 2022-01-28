@@ -123,7 +123,7 @@ export default function ConductoresDetail() {
     
     const back = (e) => {
         e.preventDefault();
-        history.push('/back_office/vehiculos');
+        history.push('/back_office_administracion/usuarios');
     }
 
     // =============================================================    

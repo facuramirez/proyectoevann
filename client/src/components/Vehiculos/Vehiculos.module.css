@@ -168,8 +168,8 @@
     color: lightblue;
 }
 
-.buttons a:hover .delete{
-    color: red;
+.buttons a:hover .assign{
+    color: orange;
 }
 
 .buttons a:hover .details{

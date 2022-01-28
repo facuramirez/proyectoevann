@@ -32,6 +32,7 @@ export default function PendientesConductoresId() {
       .get(`${process.env.REACT_APP_BACKEND}/drivers/${id}/`)
       .then((response) => {
         dispatch(getDriver(response.data));
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

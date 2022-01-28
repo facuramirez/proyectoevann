@@ -32,6 +32,7 @@ export default function PendientesAsociadosId() {
       .get(`${process.env.REACT_APP_BACKEND}/owners/${id}/`)
       .then((response) => {
         dispatch(getOwner(response.data));
+        console.log(response.data)
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +125,7 @@ export default function PendientesAsociadosId() {
           <div className={`${Style.fondo} row m-0`}>
             <div className={`${Style.title} col-12 mt-2`}>
               <h3>
-                Pendientes de Aprobación - Conductores - {asociado.user.name}{" "}
+                Pendientes de Aprobación - Asociados - {asociado.user.name}{" "}
                 {asociado.user.last_name}
               </h3>
             </div>

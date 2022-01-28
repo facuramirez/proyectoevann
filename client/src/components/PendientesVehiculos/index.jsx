@@ -117,8 +117,6 @@ export default function PendientesVehiculos() {
     history.push("/back_office_administracion/pendientes_aprobacion");
   };
 
-  console.log(cars, "CARS");
-
   return (
     <div>
       <div className={`${Style.containerPendientes} row containerVehiculos`}>

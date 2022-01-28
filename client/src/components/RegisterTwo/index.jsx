@@ -61,6 +61,10 @@ export default function RegisterTwo(){
         repeat: false
     });
     
+    let [alldata, setAlldata] = useState({
+        ready: false
+    });
+
     let prueba = Object.keys(form);
     
     // window.onload = function() {
@@ -145,10 +149,12 @@ export default function RegisterTwo(){
             // repeatClave: inputRepeatPass.disabled ? '':inputRepeatPass.value
         });
 
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
-            setAlldata({ready: true})
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
         } else {
-            setAlldata({ready: false})
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
         }
 
         if(name==='repeatMail' || name==='repeatClave') validMail(e);
@@ -158,13 +164,15 @@ export default function RegisterTwo(){
         let value = e.target.value;
         let name = e.target.name;
         
-        if(!form.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
-            setAlldata({ready: true})
-        } else {
-            setAlldata({ready: false})
-        }
-
         setForm({...form, [name]: value});
+
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
+        } else {
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
+        }
     }
 
     const validMail = (e) => {
@@ -193,12 +201,13 @@ export default function RegisterTwo(){
         //     }
         // }
 
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
-            setAlldata({ready: true})
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
         } else {
-            setAlldata({ready: false})
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
         }
-
     }
 
     let [pass, setPass] = useState({
@@ -224,10 +233,12 @@ export default function RegisterTwo(){
 
         setForm({...form, [name]: value});
         
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && !error.tipo_cuenta && !error.banco) {
-            setAlldata({ready: true})
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
         } else {
-            setAlldata({ready: false})
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
         }
     }
     
@@ -246,10 +257,6 @@ export default function RegisterTwo(){
 
     const classes = useStyles();
     // ===========================================================
-
-    let [alldata, setAlldata] = useState({
-        ready: false
-    });
 
     let loginUser = {
         username: process.env.REACT_APP_USER_BACKEND,
@@ -368,8 +375,14 @@ export default function RegisterTwo(){
         let rutComplete = `${rut1}-${rut2}`;
 
         setForm({...form, rut: rutComplete});
-        // console.log(error, 'error');
-        // console.log(form, 'form');
+
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
+        } else {
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
+        }
     }
 
     const verifyCel = (e) => {
@@ -384,14 +397,12 @@ export default function RegisterTwo(){
         
         setForm({...form, [name]:number})
 
-        let buttonSave = document.querySelector('.notActive');
-
-        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cel2 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.tipo_cuenta && form.banco) {
-            modifyAllData(true);
-            let button = document.querySelector('.notActive');
-            if(alldata.ready) button.disabled = false;
+        if(!error.rut && !error.mail && !error.repeatMail && !error.admin && !error.ape && !error.direccion && !error.fechaNac && !error.cel1 && !error.cuenta && !error.tipo_cuenta && !error.banco && form.rut && form.mail && form.repeatMail && form.admin && form.ape && form.direccion && form.fechaNac && form.cel1 && form.cuenta && form.cuenta && form.tipo_cuenta !== '-' && form.banco !== '-') {
+            setAlldata({ready: true});
+            document.querySelector('.formComplete').style.display = 'none';
         } else {
-            modifyAllData(false);           
+            setAlldata({ready: false});
+            document.querySelector('.formComplete').style.display = 'block';
         }
     }
 
@@ -562,7 +573,7 @@ export default function RegisterTwo(){
                         </div>
                     </div>
                     <div className={Style.containerSave}>
-                        <h5 className={`${alldata.ready ? "d-none":null} text-center`}>Complete el formulario para habilitar el botón...</h5>
+                        <h5 className={`${alldata.ready && "d-none"} text-center formComplete`}></h5>
                         <div className={`${Style.buttons} row d-flex justify-content-center`}>
                             <button className={`${Style.back}`} onClick={(e)=>back(e)}><FaArrowAltCircleLeft className={Style.iconBack} />Volver</button>
                             <button className={`${Style.save} notActive`} onClick={(e)=>save(e)}>Guardar</button>

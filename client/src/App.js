@@ -38,6 +38,7 @@ function App() {
         component={BackOffice}
       />
       <Route exact path="/back_office/vehiculos" component={BackOffice} />
+      <Route exact path="/back_office/vehiculos/asignacion/:id" component={BackOffice} />
       <Route
         exact
         path="/back_office/vehiculos/nuevo_auto"
@@ -192,8 +193,11 @@ function App() {
         path="/back_office_administracion/pendientes_aprobacion/actualizaciones"
         component={BackOfficeAdm}
       />
-
-
+      <Route
+        exact
+        path="/back_office_administracion/pendientes_aprobacion/actualizaciones/detalle"
+        component={BackOfficeAdm}
+      />
 
       <Route
         exact

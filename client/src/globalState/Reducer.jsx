@@ -14,7 +14,8 @@ import {
   GET_EARRINGS_CARS,
   GET_CAR,
   GET_ADMINS,
-  GET_PENDING
+  GET_PENDING,
+  GET_PENDING_DATA,
 } from "./Actions";
 
 const initialState = {
@@ -32,7 +33,8 @@ const initialState = {
   earring_cars: [],
   car: {},
   admins: [],
-  pending: []
+  pending: [],
+  pendingData: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -115,8 +117,13 @@ export default function reducer(state = initialState, action) {
     case GET_PENDING:
       return {
         ...state,
-        pending: action.payload
-      }
+        pending: action.payload,
+      };
+    case GET_PENDING_DATA:
+      return {
+        ...state,
+        pendingData: action.payload,
+      };
     default:
       return state;
   }

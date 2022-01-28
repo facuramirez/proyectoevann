@@ -37,8 +37,6 @@ export default function Viajes() {
       });
   }, []);
 
-  
-
   let [form, setForm] = useState({
     nroViaje: "",
     cliente: "",
