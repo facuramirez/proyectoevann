@@ -95,7 +95,7 @@ export default function MisDatosAdm() {
               <div className={`row justify-content-between`}>
                 <button className={`${Style.add} col-2`}>
                   <Link to="/back_office_administracion/mis_datos/editar">
-                    <IoMdAddCircleOutline className={`${Style.iconAdd}`} />
+                    {/* <IoMdAddCircleOutline className={`${Style.iconAdd}`} /> */}
                     Editar
                   </Link>
                 </button>

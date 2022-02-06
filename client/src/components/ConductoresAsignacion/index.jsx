@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import Style from "./ConductoresAsignacion.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
@@ -19,20 +19,19 @@ import Loader from "../Loader";
 
 export default function ConductoresAsignacion() {
   const dispatch = useDispatch();
+  const history = useHistory();
   let conductores = useSelector((state) => state["conductores"]);
   let [loading, setLoading] = useState(true);
   let params = useParams();
 
   useEffect(() => {
     axios
-    .get(`${process.env.REACT_APP_BACKOFFICE}/cars/${params.id}`)
-    .then((response) => {
-      
-      
-      console.log(response.data, "ID CARS");
-    })
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/${params.id}`)
+      .then((response) => {
+        console.log(response.data, "ID CARS");
+      });
   }, []);
-  
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/drivers/`)
@@ -96,14 +95,14 @@ export default function ConductoresAsignacion() {
       if (response) {
         await axios
           .post(`${process.env.REACT_APP_BACKOFFICE}/cars-drivers/`, data)
-          .then((response) => {
-            swal({
+          .then(async (response) => {
+            await swal({
               title: "Conductor asignado correctamente!",
               text: "",
               icon: "success",
               timer: 2000,
-            }).catch((error) => {
-              swal({
+            }).catch(async (error) => {
+              await swal({
                 title:
                   "No se pudo realizar la asignación. Compruebe su conexión a internet o intentelo mas tarde nuevamente.",
                 text: "",
@@ -112,6 +111,7 @@ export default function ConductoresAsignacion() {
               });
             });
           });
+        history.push("/back_office/vehiculos");
       }
     });
   };
@@ -145,12 +145,12 @@ export default function ConductoresAsignacion() {
             <h3>Vehículos - Patente "XXX" - Asignar Conductor</h3>
           </div>
 
-          <button className={`${Style.add} col-2 mt-1`}>
+          {/* <button className={`${Style.add} col-2 mt-1`}>
             <Link to="/back_office/conductores/nuevo_conductor">
               <IoMdAddCircleOutline className={`${Style.iconAdd}`} />
               Nuevo
             </Link>
-          </button>
+          </button> */}
           {loading ? (
             <div>
               <Loader />
@@ -273,6 +273,11 @@ export default function ConductoresAsignacion() {
                     ))}
                   </ul>
                 </div>
+                <button className={`${Style.add} col-2 mt-5`}>
+                  <Link to="/back_office/conductores/nuevo_conductor">
+                    Volver
+                  </Link>
+                </button>
               </div>
             </div>
           ) : (

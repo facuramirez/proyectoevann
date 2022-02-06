@@ -1,29 +1,45 @@
-// @ts-nocheck
 import { Link } from "react-router-dom";
 import Style from "./Convenios.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
 import { FiUsers } from "react-icons/fi";
+import { autos } from "./data";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  initialGetCars,
-  filterCars,
-  initialGetConductores,
-} from "../../globalState/Actions";
+import { initialGetCars, filterCars } from "../../globalState/Actions";
 import { FcSearch } from "react-icons/fc";
 import { ImEye } from "react-icons/im";
 import { FaRoute } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import { editAssociated, pendings } from "../../globalState/Actions";
+import { getOwners } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
-import swal from "sweetalert";
+// import ReactExport  from 'react-data-export';
+import { CSVLink } from "react-csv";
+import Loader from "../Loader";
 
-export default function PendientesConductores() {
+export default function Convenio() {
   const dispatch = useDispatch();
-  let pending = useSelector((state) => state["pending"]);
+  let [loading, setLoading] = useState(true);
+  // const ExcelFile = ReactExport.ExcelFile;
+  // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+  // const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/owners/`)
+      .then((response) => {
+        setLoading(false);
+        dispatch(getOwners(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  let ownersFilter;
+  let owners = useSelector((state) => state["owners"]);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -31,11 +47,11 @@ export default function PendientesConductores() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  pending = pending.slice(indexOfFirstRegister, indexOfLastRegister);
+  owners = owners.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(pending.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(owners.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -47,34 +63,17 @@ export default function PendientesConductores() {
   // =====================================
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKOFFICE}/pendings/`)
-      .then((response) => {
-        dispatch(pendings(response.data));
-        console.log(response.data, "PENDING");
-      })
-      // .catch((error) => {
-      //   swal({
-      //     title: "Error!",
-      //     text: "No se pudieron obtener los datos pendientes. Verifique su conexión o intente de nuevo mas tarde.",
-      //     icon: "warning",
-      //     buttons: ["", "OK"],
-      //   });
-      // });
+    dispatch(initialGetCars(owners));
   }, []);
-
-  // useEffect( () => {
-  //     dispatch(initialGetCars(autos));
-  // }, [autos])
 
   let history = useHistory();
 
-  // const editCar = (e, id) => {
-  //   e.preventDefault();
-  //   let asociado = conductores.find((e) => e.id === id);
-  //   dispatch(editAssociated(asociado));
-  //   history.push("/back_office_administracion/asociados/editar");
-  // };
+  const editCar = (e, id) => {
+    e.preventDefault();
+    //    let asociado = cars.find((e) => e.id === id);
+    //    dispatch(editAssociated(asociado));
+    history.push("/back_office_administracion/asociados/editar");
+  };
 
   const deleteCar = (e, id) => {
     e.preventDefault();
@@ -99,7 +98,7 @@ export default function PendientesConductores() {
   const detailTravel = (e, id) => {
     e.preventDefault();
     // alert('Detalles Viaje ' +id);
-    history.push("/back_office_administracion/pendientes_aprobacion/");
+    history.push("/back_office_administracion/asociados/viajes");
   };
 
   const dropBox = (e) => {
@@ -107,28 +106,59 @@ export default function PendientesConductores() {
 
     let selectValue = parseInt(e.target.value);
 
-    pending = pending.slice(0, selectValue);
+    ownersFilter = owners.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(pending));
+    dispatch(filterCars(ownersFilter));
   };
 
-  const back = (e) => {
-    history.push("/back_office_administracion/pendientes_aprobacion");
+  let data = owners.map((owner) => {
+    if (owner.is_approved) return { ...owner, is_approved: "SI" };
+    else return { ...owner, is_approved: "NO" };
+  });
+
+  const headers = [
+    { label: "Nombre", key: "user.name" },
+    { label: "Apellido", key: "user.last_name" },
+    { label: "¿Aprobado?", key: "is_approved" },
+    { label: "Dirección", key: "user.address" },
+    { label: "Fecha_de_Nacimiento", key: "user.birth_date" },
+    { label: "Teléfono1", key: "user.phone_number" },
+    { label: "Teléfono1", key: "user.phone_number2" },
+    { label: "Banco", key: "bank_account.bank" },
+    { label: "Tipo_Cuenta", key: "bank_account.type" },
+  ];
+
+  const csvReport = {
+    filename: "Asociados.csv",
+    headers: headers,
+    data,
   };
+
+  const nuevoConvenio = (e) => {
+    e.preventDefault();
+    history.push('/back_office_administracion/convenios/nuevo_convenio');
+  }
 
   return (
     <div>
-      <div className={`${Style.containerPendientes} row containerVehiculos`}>
+      <div className={`${Style.containerConvenios} row containerVehiculos`}>
         <div className={`${Style.fondo} row m-0`}>
           <div className={`${Style.title} col-12 mt-2`}>
             <h3>Convenios</h3>
           </div>
-          {pending.length === 0 ? (
+          {loading ? (
+            <div>
+              <Loader />
+            </div>
+          ) : owners.length > 0 ? (
             <div className="col-12">
               <div
-                className={`${Style.select} row mb-3 justify-content-between`}
+                className={`${Style.select} row mt-4 mb-3 justify-content-between`}
               >
+                <div className={`${Style.export}`}>
+                  <button onClick={(e) => nuevoConvenio(e)}>Nuevo</button>
+                </div>
                 <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                   <div className="row">
                     <h6
@@ -175,44 +205,61 @@ export default function PendientesConductores() {
                   </div>
                 </section>
               </div>
-
               <div className={`${Style.table} col-12`}>
-                <Table striped bordered hover variant="dark">
-                  <thead>
-                    <tr className={`${Style.tableH} col-12`}>
-                      <th>#</th>
-                      <th>Nombre</th>
-                      <th className={`${Style.nombre}`}>Apellido</th>
-                      {/* <th>Direccion</th>
+                {owners ? (
+                  <Table striped bordered hover variant="dark">
+                    <thead>
+                      <tr className={`${Style.tableH} col-12`}>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th className={`${Style.nombre}`}>Apellido</th>
+                        {/* <th>Direccion</th>
                                         <th>Fecha de Nacimiento</th> */}
-                      <th className={`${Style.acciones}`}>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody className={`${Style.tableB} col-12`}>
-                    {pending.map((element, index) => (
-                      <tr key={index}>
-                        <td>{++index}</td>
-                        <td>{element.name}</td>
-                        <td>{element.email}</td>
-                        {/* <td>{element.direccion}</td>
-                                        <td>{element.fechaNac}</td> */}
-                        <td
-                          className={`${Style.buttons} d-flex justify-content-evenly`}
-                        >
-                          <div>
-                            {/* <Link to="/back_office_administracion/pendientes_aprobacion/vehiculos"><AiFillCar className={Style.car}/></Link> */}
-                            <Link
-                              to={`/back_office_administracion/pendientes_aprobacion/conductores/${element.id}`}
-                            >
-                              <FiUsers className={Style.conductores} />
-                            </Link>
-                            {/* <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
-                          </div>
-                        </td>
+                        <th>¿Aprobado?</th>
+                        <th className={`${Style.acciones}`}>Acciones</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </Table>
+                    </thead>
+                    <tbody className={`${Style.tableB} col-12`}>
+                      {owners.map((owner, index) => (
+                        <tr key={index}>
+                          <td>{owner.user.rut}</td>
+                          <td>{owner.user.name}</td>
+                          <td>{owner.user.last_name}</td>
+                          <td>{owner.is_approved ? "SI" : "NO"}</td>
+                          {/* <td>{element.direccion}</td>
+                                        <td>{element.fechaNac}</td> */}
+                          <td
+                            className={`${Style.buttons} d-flex justify-content-evenly`}
+                          >
+                            <div>
+                              <a
+                                href=""
+                                onClick={(e) => editCar(e, owner.user.rut)}
+                              >
+                                <TiEdit className={Style.edit} />
+                              </a>
+                              <a
+                                href=""
+                                onClick={(e) => deleteCar(e, owner.user.rut)}
+                              >
+                                <TiDeleteOutline className={Style.delete} />
+                              </a>
+                              <a
+                                href=""
+                                onClick={(e) => detailAsoc(e, owner.user.rut)}
+                              >
+                                <ImEye className={Style.details} />
+                              </a>
+                              {/* <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
+                                                <Link to="/back_office_administracion/asociados/conductores"><FiUsers className={Style.conductores}/></Link>
+                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                ) : null}
               </div>
               <div className={`${Style.pagination} col-12`}>
                 <ul className={`${Style.ulPagination}`}>
@@ -231,8 +278,8 @@ export default function PendientesConductores() {
           ) : (
             <div>
               <br />
-              <h1 className={`${Style.noConductores} mt-4`}>
-                 Sección en construcción...
+              <h1 className={`${Style.noCars} mt-4`}>
+                No hay asociados para mostrar
               </h1>
             </div>
           )}

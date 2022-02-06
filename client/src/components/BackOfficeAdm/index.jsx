@@ -27,6 +27,7 @@ import PendientesConductoresId from "../PendientesConductoresId";
 import PendientesActualizaciones from "../PendientesActualizaciones";
 import PendientesActualizacionesData from "../PendientesActualizacionesData";
 import Convenios from "../Convenios";
+import NuevoConvenio from "../ConveniosNuevo";
 import MisDatosAdm from "../MisDatosAdm";
 import EditarMisDatosAdm from "../EditarMisDatosAdm";
 import CambiarPasswordAdm from "../CambiarContraseñaAdm";
@@ -413,6 +414,10 @@ export default function BackOfficeAdm() {
                 ) : ruta === "/back_office_administracion/convenios" ? (
                   <Fade>
                     <Convenios />
+                  </Fade>
+                ) : ruta === "/back_office_administracion/convenios/nuevo_convenio" ? (
+                  <Fade>
+                    <NuevoConvenio />
                   </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/viajes" ? (

@@ -112,9 +112,15 @@ export default function Asociados() {
     dispatch(filterCars(ownersFilter));
   };
 
+  let data = owners.map(owner => {
+    if(owner.is_approved) return {...owner, is_approved:'SI'};
+    else return {...owner, is_approved:'NO'};
+  })
+
   const headers = [
     { label: "Nombre", key: "user.name" },
     { label: "Apellido", key: "user.last_name" },
+    { label: "¿Aprobado?", key: "is_approved"},
     { label: "Dirección", key: "user.address" },
     { label: "Fecha_de_Nacimiento", key: "user.birth_date" },
     { label: "Teléfono1", key: "user.phone_number" },
@@ -126,7 +132,7 @@ export default function Asociados() {
   const csvReport = {
     filename: "Asociados.csv",
     headers: headers,
-    data: owners,
+    data,
   };
 
   console.log(owners, "OWNERS");
@@ -206,6 +212,7 @@ export default function Asociados() {
                         <th className={`${Style.nombre}`}>Apellido</th>
                         {/* <th>Direccion</th>
                                         <th>Fecha de Nacimiento</th> */}
+                        <th>¿Aprobado?</th>
                         <th className={`${Style.acciones}`}>Acciones</th>
                       </tr>
                     </thead>
@@ -215,6 +222,7 @@ export default function Asociados() {
                           <td>{owner.user.rut}</td>
                           <td>{owner.user.name}</td>
                           <td>{owner.user.last_name}</td>
+                          <td>{owner.is_approved ? 'SI':'NO'}</td>
                           {/* <td>{element.direccion}</td>
                                         <td>{element.fechaNac}</td> */}
                           <td

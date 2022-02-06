@@ -23,11 +23,11 @@ export default function Conductores() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/drivers/`)
+      .get(`${process.env.REACT_APP_BACKEND}/drivers?is_approved=false`)
       .then((response) => {
         setLoading(false);
+        console.log(response.data, 'conductores');
         dispatch(initialGetConductores(response.data));
-        console.log(response.data, "conductores");
       })
       .catch((error) => {
         swal({

@@ -38,7 +38,11 @@ function App() {
         component={BackOffice}
       />
       <Route exact path="/back_office/vehiculos" component={BackOffice} />
-      <Route exact path="/back_office/vehiculos/asignacion/:id" component={BackOffice} />
+      <Route
+        exact
+        path="/back_office/vehiculos/asignacion/:id"
+        component={BackOffice}
+      />
       <Route
         exact
         path="/back_office/vehiculos/nuevo_auto"
@@ -202,6 +206,12 @@ function App() {
       <Route
         exact
         path="/back_office_administracion/convenios"
+        component={BackOfficeAdm}
+      />
+
+      <Route
+        exact
+        path="/back_office_administracion/convenios/nuevo_convenio"
         component={BackOfficeAdm}
       />
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
