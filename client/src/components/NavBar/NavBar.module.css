@@ -1,60 +1,68 @@
-.linkImg{
-    margin-left: 20%;
+.linkImg {
+  margin-left: 20%;
 }
 
-.linkImg .imageEvann{
-    width: 20vw;
+.linkImg .imageEvann {
+  width: 20vw;
 }
 
-.navBar{
-    background-color: rgb(60, 60, 59) !important;
-    
+.navBar {
+  background-color: rgb(60, 60, 59) !important;
 }
 
-.options{
-    width: 50% !important;
+.options {
+  width: 50% !important;
 }
 
-.options ul{
-    margin-left: 25%;
+.options ul {
+  margin-left: 25%;
 }
 
-.options ul li a{
-    color: white !important;
+.options ul li a {
+  color: white !important;
 }
 
-.link{
-    text-decoration: none;
-    color: white !important;
+.link {
+  text-decoration: none;
+  color: white !important;
 }
 
-.linkLogin{
-    text-decoration: none;
-    color: white !important;
-    background-color: rgb(54, 232, 210);
-    border-radius: 20px;
-    padding: 0.1rem 1rem 0.1rem 1rem !important;
-    font-size: 1rem !important;
-    width: fit-content !important;
+.linkLogin {
+  text-decoration: none;
+  color: white !important;
+  background-color: rgb(54, 232, 210);
+  border-radius: 20px;
+  padding: 0.1rem 1rem 0.1rem 1rem !important;
+  font-size: 1rem !important;
+  width: fit-content !important;
 }
 
-.linkLogin:hover{
-    color: black !important;
+.linkLogin:hover {
+  color: black !important;
+}
+
+.empresas span {
+  font-weight: bold;
+  font-style: italic;
+  background-color: #ccc;
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem 0.2rem 0.5rem;
+  color: black;
 }
 
 @media (max-width: 991px) {
-    .imageEvann{
-        width: 35vw;
-        margin-left: 0%;
-    }
-    .options ul{
-        margin-left: 0%;
-    }
-    .linkLogin{
-        margin: 0px auto;
-        margin-top: 0.7rem;
-    }
-    .linkImg{
-        margin-left: 40vw;
-    }
+  .imageEvann {
+    width: 35vw;
+    margin-left: 0%;
+  }
+  .options ul {
+    margin-left: 0%;
+  }
+  .linkLogin {
+    margin: 0px auto;
+    margin-top: 0.7rem;
+  }
+  .linkImg {
+    margin-left: 40vw;
+  }
 }

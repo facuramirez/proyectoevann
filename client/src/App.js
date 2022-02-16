@@ -8,6 +8,8 @@ import BackOffice from "./components/BackOffice/index";
 import LoginAdmin from "./components/LoginAdmin/index";
 import ContraseñaAdmin from "./components/PasswordAdmin/index";
 import BackOfficeAdm from "./components/BackOfficeAdm/index";
+import LoginEmpresa from "./components/LoginEmpresa/index";
+import BackOfficeEmpresas from "./components/BackOfficeAdm/index";
 import NewCar from "./components/NewCar/index";
 import Vehiculos from "./components/Vehiculos/index";
 import PasswordAdmin from "./components/PasswordAdmin/index";
@@ -213,6 +215,12 @@ function App() {
         exact
         path="/back_office_administracion/convenios/nuevo_convenio"
         component={BackOfficeAdm}
+      />
+      
+      <Route
+        exact
+        path="/iniciar_sesion_empresas"
+        component={LoginEmpresa}
       />
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" component={BackOfficeAdm} />
