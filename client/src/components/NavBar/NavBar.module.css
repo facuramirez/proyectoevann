@@ -42,12 +42,15 @@
 }
 
 .empresas span {
-  font-weight: bold;
   font-style: italic;
   background-color: #ccc;
   border-radius: 1rem;
   padding: 0.1rem 0.5rem 0.2rem 0.5rem;
   color: black;
+}
+
+.empresas span:hover {
+  color: #fff;
 }
 
 @media (max-width: 991px) {

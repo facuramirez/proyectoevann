@@ -15,6 +15,7 @@ export const GET_CAR = "GET_CAR";
 export const GET_ADMINS = "GET_ADMINS";
 export const GET_PENDING = "GET_PENDING";
 export const GET_PENDING_DATA = "GET_PENDING_DATA";
+export const GET_CONVENIOS = "GET_CONVENIOS";
 
 export function initialGetCars(cars) {
   // cars = cars.slice(0, 5);
@@ -54,6 +55,10 @@ export function dataUser(data) {
 
 export function getOwners(data) {
   return { type: GET_OWNERS, payload: data };
+}
+
+export function getConvenios(data) {
+  return { type: GET_CONVENIOS, payload: data };
 }
 
 export function getAdmins(data) {

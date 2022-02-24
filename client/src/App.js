@@ -9,7 +9,7 @@ import LoginAdmin from "./components/LoginAdmin/index";
 import ContraseñaAdmin from "./components/PasswordAdmin/index";
 import BackOfficeAdm from "./components/BackOfficeAdm/index";
 import LoginEmpresa from "./components/LoginEmpresa/index";
-import BackOfficeEmpresas from "./components/BackOfficeAdm/index";
+import BackOfficeEmpresas from "./components/BackOfficeEmpresa/index";
 import NewCar from "./components/NewCar/index";
 import Vehiculos from "./components/Vehiculos/index";
 import PasswordAdmin from "./components/PasswordAdmin/index";
@@ -216,12 +216,18 @@ function App() {
         path="/back_office_administracion/convenios/nuevo_convenio"
         component={BackOfficeAdm}
       />
+
+      <Route exact path="/iniciar_sesion_empresas" component={LoginEmpresa} />
+
+      <Route exact path="/back_office_empresas" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/mis_datos" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/mis_datos/editar" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/cambiar_contraseña" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/usuarios" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/usuarios/nuevo_usuario" component={BackOfficeEmpresas} />
+      <Route exact path="/back_office_empresas/agendar_viaje" component={BackOfficeEmpresas} />
+
       
-      <Route
-        exact
-        path="/iniciar_sesion_empresas"
-        component={LoginEmpresa}
-      />
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores" component={BackOfficeAdm} /> 

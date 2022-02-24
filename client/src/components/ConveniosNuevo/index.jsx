@@ -729,7 +729,7 @@ export default function NewConductor() {
                 </div>
 
                 <div className={`row`}>
-                  <h4 className={`col-11 mt-1`}>Día de pago (*)</h4>
+                  <h4 className={`col-11 mt-1`}>Plazo de pago (*)</h4>
                   <div className={`col-5 mt-1`}>
                     <select
                       className={`w-100`}
@@ -746,7 +746,7 @@ export default function NewConductor() {
                   </div>
                 </div>
 
-                <div className={`row`}>
+                {/* <div className={`row`}>
                   <h4 className={`col-12 mt-1`}>Método de pago (*)</h4>
                   <div className={`col-5 mt-1`}>
                     <select
@@ -759,10 +759,9 @@ export default function NewConductor() {
                         -
                       </option>
                       <option value="1">1</option>
-                      {/* <option value={false}>60</option> */}
                     </select>
                   </div>
-                </div>
+                </div> */}
 
                 <div className={`row`}>
                   <h3
@@ -980,7 +979,7 @@ export default function NewConductor() {
 
                 <div className="row">
                   <h4 className={`${Style.fechaNac} col-12 mt-2`}>
-                    Fecha de Finalización: (*)
+                    Fecha de Vigencia: (*)
                   </h4>
                   <form
                     className={`${classes.container} ${Style.inputFecha} mt-2 p-0 p-sm-0 col-3`}

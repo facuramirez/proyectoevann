@@ -28,8 +28,8 @@ import PendientesActualizaciones from "../PendientesActualizaciones";
 import PendientesActualizacionesData from "../PendientesActualizacionesData";
 import Convenios from "../Convenios";
 import NuevoConvenio from "../ConveniosNuevo";
-import MisDatosAdm from "../MisDatosAdm";
-import EditarMisDatosAdm from "../EditarMisDatosAdm";
+import MisDatosEmpresas from "../MisDatosEmpresas";
+import EditarMisDatosEmpresas from "../EditarMisDatosEmpresas";
 import CambiarPasswordAdm from "../CambiarContraseñaAdm";
 import PasswordAdmin from "../PasswordAdmin";
 import { useSelector } from "react-redux";
@@ -42,6 +42,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "../../axiosConfig";
 import { dataUser } from "../../globalState/Actions";
+import UsuariosEmpresas from "../UsuariosEmpresas";
+import UsuariosEmpresasNuevo from "../UsuariosEmpresasNuevo";
 
 export default function BackOfficeEmpresa() {
   let dispatch = useDispatch();
@@ -139,13 +141,15 @@ export default function BackOfficeEmpresa() {
   return (
     <div>
       {user ? (
-        <div className={`${Style.containerBackOffice} row m-0`}>
+        <div className={`${Style.containerBackOfficeEmpresa} row m-0`}>
           <nav
             className={`${Style.navBar} navbar navbar-expand-lg navbar-light bg-light`}
           >
             <div className={`${Style.menu} container-fluid`}>
               <a className={`${Style.welcome} navbar-brand`} href="#">
-                Bienvenido {user.name}
+                {window.location.pathname.includes('/back_office_empresas/mis_datos') ?
+                `Bienvenido ${user.name}` : 'Bienvenido Juan'  
+              }
               </a>
               <button
                 className={`${Style.buttonHamburguer} navbar-toggler`}
@@ -164,48 +168,19 @@ export default function BackOfficeEmpresa() {
               >
                 <ul className="navbar-nav">
                   <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/mis_datos">
-                      Mis Datos
-                    </Link>
+                    <Link to="/back_office_empresas/mis_datos">Mis Datos</Link>
                   </li>
                   <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/cambiar_contraseña">
+                    <Link to="/back_office_empresas/cambiar_contraseña">
                       Cambiar Contraseña
                     </Link>
                   </li>
                   <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/asociados">
-                      Asociados
-                    </Link>
+                    <Link to="/back_office_empresas/usuarios">Usuarios</Link>
                   </li>
                   <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/usuarios">
-                      Administración de Usuarios
-                    </Link>
-                  </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/facturas_y_pagos">
-                      Facturas y Pagos
-                    </Link>
-                  </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/reclamos">
-                      Reclamos
-                    </Link>
-                  </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/alertas">
-                      Alertas
-                    </Link>
-                  </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/pendientes_aprobacion">
-                      Pendientes de aprobación
-                    </Link>
-                  </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
-                    <Link to="/back_office_administracion/convenios">
-                      Convenios
+                    <Link to="/back_office_empresas/agendar_viaje">
+                      Agendar Viajes
                     </Link>
                   </li>
                   <li className="nav-item active">
@@ -237,46 +212,19 @@ export default function BackOfficeEmpresa() {
             <div className="row">
               <div className={`${Style.menuOptions} col-12`}>
                 <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/mis_datos">
-                    Mis Datos
-                  </Link>
+                  <Link to="/back_office_empresas/mis_datos">Mis Datos</Link>
                 </div>
                 <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/cambiar_contraseña">
+                  <Link to="/back_office_empresas/cambiar_contraseña">
                     Cambiar contraseña
                   </Link>
                 </div>
                 <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/asociados">
-                    Asociados
-                  </Link>
+                  <Link to="/back_office_empresas/usuarios">Usuarios</Link>
                 </div>
                 <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/usuarios">
-                    Administración de Usuarios
-                  </Link>
-                </div>
-                <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/facturas_y_pagos">
-                    Facturación y Pagos
-                  </Link>
-                </div>
-                <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/reclamos">
-                    Reclamos
-                  </Link>
-                </div>
-                <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/alertas">Alertas</Link>
-                </div>
-                <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/pendientes_aprobacion">
-                    Pendientes de aprobación
-                  </Link>
-                </div>
-                <div className={`${Style.options} col-12`}>
-                  <Link to="/back_office_administracion/convenios">
-                    Convenios
+                  <Link to="/back_office_empresas/agendar_viaje">
+                    Agendar Viaje
                   </Link>
                 </div>
               </div>
@@ -330,139 +278,32 @@ export default function BackOfficeEmpresa() {
                                  }
                             ></div> */}
               <div className={`${Style.divOffice} `}>
-                {ruta === "/back_office_administracion" ? (
-                  <div>
-                    {history.push("back_office_administracion/mis_datos")}
-                  </div>
-                ) : ruta === "/administracion/recuperar_contraseña" ? (
-                  <Fade>
-                    <PasswordAdmin />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/asociados" ? (
-                  <Fade>
-                    <Asociados />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/asociados/editar" ? (
-                  <Fade>
-                    <AsociadosEditar />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/cambiar_contraseña" ? (
+                {ruta === "/back_office_empresas" ? (
+                  <div>{history.push("/back_office_empresas/mis_datos")}</div>
+                ) : ruta === "/back_office_empresas/cambiar_contraseña" ? (
                   <Fade>
                     <CambiarPasswordAdm />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/vehiculos" ? (
+                ) : ruta === "/back_office_empresas/mis_datos" ? (
                   <Fade>
-                    <AsociadosVehiculos />
+                    <MisDatosEmpresas />
                   </Fade>
-                ) : ruta ===
-                  `/back_office_administracion/pendientes_aprobacion/vehiculos/${id}` ? (
+                ) : ruta === "/back_office_empresas/mis_datos/editar" ? (
                   <Fade>
-                    <AsociadosVehiculosId />
+                    <EditarMisDatosEmpresas />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/vehiculos/nuevo_auto" ? (
+                ) : ruta === "/back_office_empresas/usuarios" ? (
                   <Fade>
-                    <NewCarFormAdm />
+                    <UsuariosEmpresas />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" ? (
+                )
+                : ruta === "/back_office_empresas/usuarios/nuevo_usuario" ? (
                   <Fade>
-                    <AsociadosVehiculosDetalle />
+                    <UsuariosEmpresasNuevo />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion" ? (
-                  <Fade>
-                    <PendientesAprobacion />
-                  </Fade>
-                ) : ruta ===
-                  `/back_office_administracion/pendientes_aprobacion/conductores/${id}` ? (
-                  <Fade>
-                    <PendientesConductoresId />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/conductores" ? (
-                  <Fade>
-                    <PendientesConductores />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/asociados" ? (
-                  <Fade>
-                    <PendientesAsociados />
-                  </Fade>
-                ) : ruta ===
-                  `/back_office_administracion/pendientes_aprobacion/asociados/${id}` ? (
-                  <Fade>
-                    <PendientesAsociadosId />
-                  </Fade>
-                ) : ruta ===
-                  `/back_office_administracion/pendientes_aprobacion/actualizaciones` ? (
-                  <Fade>
-                    <PendientesActualizaciones />
-                  </Fade>
-                ) : ruta ===
-                  `/back_office_administracion/pendientes_aprobacion/actualizaciones/detalle` ? (
-                  <Fade>
-                    <PendientesActualizacionesData />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/conductores/detalles" ? (
-                  <Fade>
-                    <ConductoresDetailAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/convenios" ? (
-                  <Fade>
-                    <Convenios />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/convenios/nuevo_convenio" ? (
-                  <Fade>
-                    <NuevoConvenio />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/viajes" ? (
-                  <Fade>
-                    <AsociadosViajes />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/pendientes_aprobacion/viajes/detalles" ? (
-                  <Fade>
-                    <AsociadosViajesDetalle />
-                  </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/conductores/nuevo_conductor" ? (
-                  <Fade>
-                    <NewConductorFormAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/facturas_y_pagos" ? (
-                  <Fade>
-                    <FacturasAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/usuarios" ? (
-                  <Fade>
-                    <AdmUsuarios />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/usuarios/roles" ? (
-                  <Fade>
-                    <ConductoresDetail />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/reclamos" ? (
-                  <Fade>
-                    <ReclamosAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/alertas" ? (
-                  <Fade>
-                    <AlertasAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/mis_datos" ? (
-                  <Fade>
-                    <MisDatosAdm />
-                  </Fade>
-                ) : ruta === "/back_office_administracion/mis_datos/editar" ? (
-                  <Fade>
-                    <EditarMisDatosAdm />
-                  </Fade>
-                ) : null}
+                )
+                
+                : null}
               </div>
             </div>
           </section>

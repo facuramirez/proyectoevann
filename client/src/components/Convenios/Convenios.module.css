@@ -207,6 +207,12 @@
   text-shadow: 0px 0px 10px black;
 }
 
+.noConvenios{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
 .iconAdd {
   margin-right: 0.8vw;
 }

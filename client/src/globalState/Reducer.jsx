@@ -16,6 +16,7 @@ import {
   GET_ADMINS,
   GET_PENDING,
   GET_PENDING_DATA,
+  GET_CONVENIOS
 } from "./Actions";
 
 const initialState = {
@@ -34,11 +35,17 @@ const initialState = {
   car: {},
   admins: [],
   pending: [],
-  pendingData: []
+  pendingData: [],
+  convenios: []
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case GET_CONVENIOS:
+      return {
+        ...state,
+        convenios: action.payload,
+      };
     case INITIAL_GET_CARS:
       return {
         ...state,

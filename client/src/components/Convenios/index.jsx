@@ -13,7 +13,7 @@ import { FcSearch } from "react-icons/fc";
 import { ImEye } from "react-icons/im";
 import { FaRoute } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import { getOwners } from "../../globalState/Actions";
+import { getConvenios } from "../../globalState/Actions";
 import axios from "../../axiosConfig";
 // import ReactExport  from 'react-data-export';
 import { CSVLink } from "react-csv";
@@ -28,10 +28,11 @@ export default function Convenio() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/owners/`)
+      .get(`${process.env.REACT_APP_BACKEND}/companies/`)
       .then((response) => {
         setLoading(false);
-        dispatch(getOwners(response.data));
+        dispatch(getConvenios(response.data));
+        console.log(response.data, "CONVENIOS");
       })
       .catch((error) => {
         console.log(error);
@@ -39,7 +40,7 @@ export default function Convenio() {
   }, []);
 
   let ownersFilter;
-  let owners = useSelector((state) => state["owners"]);
+  let convenios = useSelector((state) => state["convenios"]);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -47,11 +48,11 @@ export default function Convenio() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  owners = owners.slice(indexOfFirstRegister, indexOfLastRegister);
+  convenios = convenios.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(owners.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(convenios.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -63,7 +64,7 @@ export default function Convenio() {
   // =====================================
 
   useEffect(() => {
-    dispatch(initialGetCars(owners));
+    dispatch(initialGetCars(convenios));
   }, []);
 
   let history = useHistory();
@@ -106,39 +107,39 @@ export default function Convenio() {
 
     let selectValue = parseInt(e.target.value);
 
-    ownersFilter = owners.slice(0, selectValue);
+    ownersFilter = convenios.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
     dispatch(filterCars(ownersFilter));
   };
 
-  let data = owners.map((owner) => {
-    if (owner.is_approved) return { ...owner, is_approved: "SI" };
-    else return { ...owner, is_approved: "NO" };
-  });
+  // let data = convenios.map((owner) => {
+  //   if (convenios.is_approved) return { ...convenios, is_approved: "SI" };
+  //   else return { ...owner, is_approved: "NO" };
+  // });
 
-  const headers = [
-    { label: "Nombre", key: "user.name" },
-    { label: "Apellido", key: "user.last_name" },
-    { label: "¿Aprobado?", key: "is_approved" },
-    { label: "Dirección", key: "user.address" },
-    { label: "Fecha_de_Nacimiento", key: "user.birth_date" },
-    { label: "Teléfono1", key: "user.phone_number" },
-    { label: "Teléfono1", key: "user.phone_number2" },
-    { label: "Banco", key: "bank_account.bank" },
-    { label: "Tipo_Cuenta", key: "bank_account.type" },
-  ];
+  // const headers = [
+  //   { label: "Nombre", key: "user.name" },
+  //   { label: "Apellido", key: "user.last_name" },
+  //   { label: "¿Aprobado?", key: "is_approved" },
+  //   { label: "Dirección", key: "user.address" },
+  //   { label: "Fecha_de_Nacimiento", key: "user.birth_date" },
+  //   { label: "Teléfono1", key: "user.phone_number" },
+  //   { label: "Teléfono1", key: "user.phone_number2" },
+  //   { label: "Banco", key: "bank_account.bank" },
+  //   { label: "Tipo_Cuenta", key: "bank_account.type" },
+  // ];
 
-  const csvReport = {
-    filename: "Asociados.csv",
-    headers: headers,
-    data,
-  };
+  // const csvReport = {
+  //   filename: "Convenios.csv",
+  //   headers: headers,
+  //   data,
+  // };
 
   const nuevoConvenio = (e) => {
     e.preventDefault();
-    history.push('/back_office_administracion/convenios/nuevo_convenio');
-  }
+    history.push("/back_office_administracion/convenios/nuevo_convenio");
+  };
 
   return (
     <div>
@@ -151,7 +152,7 @@ export default function Convenio() {
             <div>
               <Loader />
             </div>
-          ) : owners.length > 0 ? (
+          ) : convenios.length === 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
@@ -206,29 +207,30 @@ export default function Convenio() {
                 </section>
               </div>
               <div className={`${Style.table} col-12`}>
-                {owners ? (
+                {convenios ? (
                   <Table striped bordered hover variant="dark">
                     <thead>
                       <tr className={`${Style.tableH} col-12`}>
-                        <th>Rut</th>
-                        <th>Nombre</th>
-                        <th className={`${Style.nombre}`}>Apellido</th>
-                        {/* <th>Direccion</th>
-                                        <th>Fecha de Nacimiento</th> */}
-                        <th>¿Aprobado?</th>
-                        <th className={`${Style.acciones}`}>Acciones</th>
+                        <th>Código de Convenio</th>
+                        <th>Nombre de Fantasía</th>
+                        <th className={`${Style.nombre}`}>Descripción de la Empresa</th>
+                        {/* <th>Representante Legal</th> */}
+                        {/* <th className={`${Style.acciones}`}>Repreentante Legal</th> */}
                       </tr>
                     </thead>
                     <tbody className={`${Style.tableB} col-12`}>
-                      {owners.map((owner, index) => (
-                        <tr key={index}>
-                          <td>{owner.user.rut}</td>
+                      <tr>
+                        {/* <td>{owner.user.rut}</td>
                           <td>{owner.user.name}</td>
                           <td>{owner.user.last_name}</td>
-                          <td>{owner.is_approved ? "SI" : "NO"}</td>
-                          {/* <td>{element.direccion}</td>
-                                        <td>{element.fechaNac}</td> */}
-                          <td
+                          <td>{owner.is_approved ? "SI" : "NO"}</td> */}
+
+                        <td>Código 123</td>
+                        <td>Benitez Viajes S.R.L.</td>
+                        <td>Empresa de Viajes</td>
+                        
+
+                        {/* <td
                             className={`${Style.buttons} d-flex justify-content-evenly`}
                           >
                             <div>
@@ -250,13 +252,10 @@ export default function Convenio() {
                               >
                                 <ImEye className={Style.details} />
                               </a>
-                              {/* <Link to="/back_office_administracion/asociados/vehiculos"><AiFillCar className={Style.car}/></Link>
-                                                <Link to="/back_office_administracion/asociados/conductores"><FiUsers className={Style.conductores}/></Link>
-                                                <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
+                              
                             </div>
-                          </td>
-                        </tr>
-                      ))}
+                          </td> */}
+                      </tr>
                     </tbody>
                   </Table>
                 ) : null}
@@ -276,11 +275,13 @@ export default function Convenio() {
               </div>
             </div>
           ) : (
-            <div>
-              <br />
+            <div className={`${Style.noConvenios}`}>
               <h1 className={`${Style.noCars} mt-4`}>
-                No hay asociados para mostrar
+                No hay convenios dados de alta <br/> <h6>Haga click en "Nuevo" para dar de alta un nuevo convenio</h6>
               </h1>
+              <div className={`${Style.export} mt-3`}>
+                <button onClick={(e) => nuevoConvenio(e)}>Nuevo</button>
+              </div>
             </div>
           )}
         </div>
