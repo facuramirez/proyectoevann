@@ -457,7 +457,8 @@ export default function NewConductor() {
         legal_representative_rut: form.company_legal_r_rut,
         address: form.company_address,
         payment_day: form.company_dia,
-        payment_method: form.company_metodo,
+        payment_method: 0,
+        // payment_method: form.company_metodo,
       },
       user_data: {
         rut: form.user_rut,
@@ -470,8 +471,8 @@ export default function NewConductor() {
         email: form.user_email,
       },
       agreement: {
-        convenio_inicio: form.convenio_inicio,
-        convenio_fin: form.convenio_fin,
+        from_date: form.convenio_inicio,
+        to_date: form.convenio_fin,
       },
     };
 

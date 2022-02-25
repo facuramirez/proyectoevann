@@ -152,7 +152,7 @@ export default function Convenio() {
             <div>
               <Loader />
             </div>
-          ) : convenios.length === 0 ? (
+          ) : convenios.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
