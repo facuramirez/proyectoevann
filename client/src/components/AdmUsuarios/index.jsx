@@ -59,11 +59,11 @@ export default function Viajes() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
+  admins = admins.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(autos.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(admins.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -74,9 +74,9 @@ export default function Viajes() {
 
   // =====================================
 
-  useEffect(() => {
-    dispatch(initialGetCars(autos));
-  }, [autos]);
+  // useEffect(() => {
+  //   dispatch(initialGetCars(autos));
+  // }, [autos]);
 
   const editCar = (e, id) => {
     e.preventDefault();
@@ -98,10 +98,10 @@ export default function Viajes() {
 
     let selectValue = parseInt(e.target.value);
 
-    cars = autos.slice(0, selectValue);
+    admins = admins.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(cars));
+    // dispatch(filterCars(cars));
   };
 
   const inputs = (e) => {
@@ -186,11 +186,11 @@ export default function Viajes() {
                     <FcSearch
                       className={`${Style.searchIcon} col-5 col-sm-5 col-md-1 col-lg-1`}
                     />
-                    <button
+                    {/* <button
                       className={`${Style.inactives} col-5 col-sm-5 col-md-2 col-lg-2 mt-0 mt-sm-0 mt-md-0 mt-lg-0`}
                     >
                       Ver inactivos
-                    </button>
+                    </button> */}
                   </div>
                 </section>
               </div>
@@ -226,9 +226,9 @@ export default function Viajes() {
                           <a href="" onClick={(e) => deleteCar(e, element.id)}>
                             <TiDeleteOutline className={Style.delete} />
                           </a>
-                          <Link to="/back_office_administracion/usuarios/roles">
+                          {/* <Link to="/back_office_administracion/usuarios/roles">
                             <RiLockPasswordLine className={Style.edit} />
-                          </Link>
+                          </Link> */}
                           {/* <a href="" onClick={(e)=>deleteCar(e, element.id)}><TiDeleteOutline className={Style.delete}/></a>
                                             <a href="" onClick={(e)=>detailCar(e, element.id)}><FiUsers className={Style.details}/></a> */}
                         </td>

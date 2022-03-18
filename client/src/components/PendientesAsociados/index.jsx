@@ -211,7 +211,7 @@ export default function PendientesAsociados() {
                             <Link
                               to={`/back_office_administracion/pendientes_aprobacion/asociados/${element.id}`}
                             >
-                              <FiUsers className={Style.conductores} />
+                              <ImEye className={Style.conductores} />
                             </Link>
                             {/* <a
                               href=""

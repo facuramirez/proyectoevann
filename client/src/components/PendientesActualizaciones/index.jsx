@@ -246,7 +246,7 @@ export default function PendientesActualizaciones() {
                           className={`${Style.buttons} d-flex justify-content-evenly`}
                         >
                           <a onClick={(e) => approve(e, element)}>
-                            <FiUsers className={Style.conductores} />
+                            <ImEye className={Style.conductores} />
                           </a>
                         </td>
                         {/* <td

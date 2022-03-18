@@ -438,9 +438,9 @@ export default function NewConductor() {
     }
 
     // console.log(data, "DATAAAAAAAAAAAA");
-    // console.log(form, "FORMM");
-    // console.log(error, "ERROR");
-
+    console.log(form, "FORMM");
+    console.log(error, "ERROR");
+    
     if (
       form.rut &&
       form.name &&
@@ -480,7 +480,8 @@ export default function NewConductor() {
         form.friday ||
         form.saturday ||
         form.sunday)
-    ) {
+    ) 
+    {
       await swal({
         title: "¿Continuar?",
         text: "¿Confirmar registro de conductor?",
@@ -575,7 +576,7 @@ export default function NewConductor() {
                     className={`${Style.lblname} col-1 mt-md-2 mt-lg-2`}
                     id="nombreLabel"
                   >
-                    Nombre
+                    Nombre (*)
                   </h4>
                   <input
                     className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
@@ -588,7 +589,7 @@ export default function NewConductor() {
                     className={`${Style.lbl_last_name} col-1 mt-md-2 mt-lg-2`}
                     id="nombreLabel"
                   >
-                    Apellido
+                    Apellido (*)
                   </h4>
                   <input
                     className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5`}
@@ -648,7 +649,7 @@ export default function NewConductor() {
                             } */}
                 <div className={`row`}>
                   <h4 className={`${Style.lblDireccion} col-1 mt-md-2 mt-lg-2`}>
-                    Dirección
+                    Dirección (*)
                   </h4>
                   <input
                     className={`${Style.inpDireccion} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
@@ -660,7 +661,7 @@ export default function NewConductor() {
                   <h4
                     className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
                   >
-                    Fecha de Nacimiento
+                    Fecha de Nacimiento (*)
                   </h4>
                   <form
                     className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
@@ -710,7 +711,7 @@ export default function NewConductor() {
                   <h4
                     className={`${Style.lbl_cel1} col-1 mt-md-2 mt-lg-2 text-sm-start`}
                   >
-                    Celular1
+                    Celular1 (*)
                   </h4>
                   <input
                     className={`${Style.inpt_cel1} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
@@ -718,7 +719,7 @@ export default function NewConductor() {
                     name="phone_number"
                     value={form.phone_number}
                     onChange={(e) => verifyCel(e)}
-                    value={form.phone_number}
+                    maxLength="9"
                   />
                   <h4
                     className={`${Style.lbl_cel2} col-1 mt-md-2 mt-lg-2 text-sm-start`}
@@ -731,7 +732,7 @@ export default function NewConductor() {
                     name="phone_number2"
                     value={form.phone_number2}
                     onChange={(e) => verifyCel2(e)}
-                    value={form.phone_number2}
+                    maxLength="9"
                   />
                 </div>
 
@@ -753,7 +754,7 @@ export default function NewConductor() {
                 </div>
 
                 <div className={`row`}>
-                  <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email</h4>
+                  <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email (*)</h4>
                   <input
                     className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
                     type="text"
@@ -762,7 +763,7 @@ export default function NewConductor() {
                     value={form.email}
                   />
                   <h4 className={`${Style.clave} col-2 mt-2 mt-md-2 mt-lg-2`}>
-                    Nacionalidad
+                    Nacionalidad (*)
                   </h4>
                   <input
                     className={`${Style.claveInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 fmt-md-1 mt-lg-1`}
@@ -784,7 +785,7 @@ export default function NewConductor() {
                   <h4
                     className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
                   >
-                    Viajes Internacionales
+                    Viajes Internacionales (*)
                   </h4>
                   <div
                     className={`col-5 col-sm-4 col-md-2 col-lg-2 mt-1 mt-md-1 mt-lg-1`}
@@ -808,7 +809,7 @@ export default function NewConductor() {
                   <h4
                     className={`${Style.nroLicLbl} col-11 col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}
                   >
-                    Nro Licencia
+                    Nro Licencia (*)
                   </h4>
                   <input
                     className={`${Style.nroLicInp} col-11 col-md-3 col-lg-3 mt-1 mt-md-1 mt-lg-1`}
@@ -820,7 +821,7 @@ export default function NewConductor() {
                   <h4
                     className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
                   >
-                    Expiración Licencia
+                    Expiración Licencia (*)
                   </h4>
                   <form
                     className={`${classes.container} ${Style.inputFecha} p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
@@ -872,7 +873,7 @@ export default function NewConductor() {
 
                   <div className={`${Style.fotos} row`}>
                     <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Carne (*)
+                      Carnet (*)
                     </h4>
                     {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
                     <input
@@ -956,7 +957,7 @@ export default function NewConductor() {
                   <h4
                     className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
                   >
-                    Días Laborales
+                    Días Laborales (*)
                   </h4>
                   <div className={`${Style.days} col-11`}>
                     <section>

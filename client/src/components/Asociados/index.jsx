@@ -39,7 +39,7 @@ export default function Asociados() {
   }, []);
 
   let ownersFilter;
-  let owners = useSelector((state) => state["owners"]);
+  let owners = useSelector((state) => state["owners"]);  
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -82,23 +82,7 @@ export default function Asociados() {
 
   const detailAsoc = (e, id) => {
     e.preventDefault();
-    alert("Detalles Asociado " + id);
-  };
-
-  const detailCar = (e, id) => {
-    e.preventDefault();
-    alert("Detalles Car " + id);
-  };
-
-  const detailConductores = (e, id) => {
-    e.preventDefault();
-    alert("Detalles Conductores " + id);
-  };
-
-  const detailTravel = (e, id) => {
-    e.preventDefault();
-    // alert('Detalles Viaje ' +id);
-    history.push("/back_office_administracion/asociados/viajes");
+    history.push(`/back_office_administracion/asociados/${id}`);
   };
 
   const dropBox = (e) => {
@@ -229,12 +213,12 @@ export default function Asociados() {
                             className={`${Style.buttons} d-flex justify-content-evenly`}
                           >
                             <div>
-                              <a
+                              {/* <a
                                 href=""
                                 onClick={(e) => editCar(e, owner.user.rut)}
                               >
                                 <TiEdit className={Style.edit} />
-                              </a>
+                              </a> */}
                               <a
                                 href=""
                                 onClick={(e) => deleteCar(e, owner.user.rut)}
@@ -243,7 +227,7 @@ export default function Asociados() {
                               </a>
                               <a
                                 href=""
-                                onClick={(e) => detailAsoc(e, owner.user.rut)}
+                                onClick={(e) => detailAsoc(e, owner.id)}
                               >
                                 <ImEye className={Style.details} />
                               </a>

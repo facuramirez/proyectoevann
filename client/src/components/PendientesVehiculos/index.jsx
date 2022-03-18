@@ -15,6 +15,7 @@ import {
 import axios from "../../axiosConfig";
 import swal from "sweetalert";
 import Loader from "../Loader";
+import { ImEye } from "react-icons/im";
 
 export default function PendientesVehiculos() {
   const dispatch = useDispatch();
@@ -208,7 +209,7 @@ export default function PendientesVehiculos() {
                             <Link
                               to={`/back_office_administracion/pendientes_aprobacion/vehiculos/${element.id}`}
                             >
-                              <FiUsers className={Style.conductores} />
+                              <ImEye className={Style.conductores} />
                             </Link>
                             {/* <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
                           </div>

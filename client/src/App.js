@@ -119,6 +119,11 @@ function App() {
       />
       <Route
         exact
+        path="/back_office_administracion/asociados/:id"
+        component={BackOfficeAdm}
+      />
+      <Route
+        exact
         path="/back_office_administracion/asociados/editar"
         component={BackOfficeAdm}
       />

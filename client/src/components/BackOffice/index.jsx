@@ -181,7 +181,7 @@ export default function BackOffice() {
               <div className={`${Style.options} col-12`}>
                 <Link to="/back_office/viajes">Viajes</Link>
               </div>
-              <div className={`${Style.options} col-12`}>
+              {/* <div className={`${Style.options} col-12`}>
                 <Link to="/back_office/facturas_y_pagos">
                   Facturación y Pagos
                 </Link>
@@ -191,7 +191,7 @@ export default function BackOffice() {
               </div>
               <div className={`${Style.options} col-12`}>
                 <Link to="/back_office/alertas">Alertas</Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

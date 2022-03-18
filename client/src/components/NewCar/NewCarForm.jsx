@@ -206,6 +206,8 @@ export default function NewCarForm() {
     // formData.append("hoja", form.license_hoja);
     // formData.append("work_days", JSON.stringify(data.work_days));
 
+    console.log(form, 'FORMMMMMMMM');
+    console.log(error, 'ERRORRRRRRR');
     if (
       form.circulacion &&
       form.responsabilidad &&
@@ -305,12 +307,25 @@ export default function NewCarForm() {
     let file = e.target.files[0];
 
     setForm({ ...form, [name]: file });
+
+    if(!file) {
+      setError({...error, [name]: 'Error'})
+    } else {
+      setError({...error, [name]: ''})
+    }
   };
 
   const checkLines = (e) => {
     const value = e.target.checked;
     const name = e.target.name;
+    
     setForm({ ...form, [name]: value });
+
+    if(!value) {
+      setError({...error, [name]: 'Error'})
+    } else {
+      setError({...error, [name]: ''})
+    }
   };
 
   return (
@@ -346,7 +361,7 @@ export default function NewCarForm() {
                   />
                 </div>
               </div>
-              <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
+              {/* <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                 <div className={`row`}>
                   <label
                     className={`col-sm-3 col-md-2 col-lg-2 text-start`}
@@ -374,7 +389,45 @@ export default function NewCarForm() {
                     name="model"
                   />
                 </div>
+              </div> */}
+
+              <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
+                <div className={`row`}>
+                  <label className={`col-sm-4 col-md-3 col-lg-3`}>
+                    Marca (*)
+                  </label>
+                  <select
+                    className={`col-sm-8 col-md-3 col-lg-3 mt-1 mt-md-0 mt-lg-0 inpTipoVeh`}
+                    name="make"
+                    onChange={(e) => inputs(e)}
+                    value={form.make}
+                  >
+                    <option value="-">-</option>
+                    <option value="SD">Marca 1</option>
+                    <option value="VA">Marca 2</option>
+                  </select>
+                  <label
+                    className={`${Style.cantPas} mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}
+                  >
+                    Modelo (*)
+                  </label>
+                  <select
+                    className={`col-sm-9 col-md-4 col-lg-4 mt-2 mt-md-0 mt-lg-0 inpTipoVeh`}
+                    name="model"
+                    onChange={(e) => inputs(e)}
+                    value={form.model}
+                  >
+                    <option value="-">-</option>
+                    <option value="1">Modelo 1</option>
+                    <option value="2">Modelo 2</option>
+                    <option value="3">Modelo 3</option>
+                    <option value="4">Modelo 4</option>
+                    <option value="5">Modelo 5</option>
+                  </select>
+                  {/* <input className={`col-lg-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/> */}
+                </div>
               </div>
+
               <div className={`col-sm-12 col-md-12 col-lg-12 mt-2`}>
                 <div className={`row`}>
                   <label className={`col-sm-4 col-md-3 col-lg-3`}>
@@ -465,7 +518,6 @@ export default function NewCarForm() {
                       id="date"
                       label=""
                       type="date"
-                      name="fechaNac"
                       onChange={(e) => inputs(e)}
                       value={form.technical_review}
                       name="technical_review"

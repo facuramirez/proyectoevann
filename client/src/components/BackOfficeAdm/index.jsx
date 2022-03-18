@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import { useHistory, useLocation } from "react-router-dom";
 // import image from '../../img/regBack.jpg';
 import Asociados from "../Asociados";
+import AsociadosDetail from "../AsociadosDetail";
 import AsociadosEditar from "../AsociadosEditar";
 import AsociadosVehiculos from "../PendientesVehiculos";
 import AsociadosVehiculosId from "../PendientesVehiculosId";
@@ -52,49 +53,6 @@ export default function BackOfficeAdm() {
 
   let user = useSelector((state) => state["user"]);
 
-  // if(user === {}) history.push('/administracion');
-
-  // ===== LA SIGUIENTE LINEA OBJECT KEYS ES PARA EL BACKEND ====
-  // if(Object.keys(user).length === 0) history.push('/administracion');
-  // ===============================================================
-
-  // let userData;
-
-  // useEffect( () => {
-  //     axios.get(`${process.env.REACT_APP_BACKEND}/admins/`)
-  //     .then(response => {
-  //         userData = response.data.find( usuario => usuario.rut === user.rut)
-  //         console.log(user, 'USER');
-  //         dispatch(dataUser(userData));
-
-  //     })
-  // }, [])
-
-  // // =========== ESTO ES CON FRONTEND ==================
-  // const close = (e) => {
-  //     e.preventDefault();
-  //     swal({
-  //         title: '¿Cerrar sesión?',
-  //         text: 'Confirme si desea cerrar la sesión',
-  //         icon: 'warning',
-  //         buttons: ["NO", "SI"]
-  //     })
-  //     .then( async (response) => {
-  //         if(response){
-  //             await swal({
-  //                 title: 'Adiós, vuelve pronto!',
-  //                 text: 'Redireccionando a Evann...',
-  //                 icon: 'success',
-  //                 buttons: [''],
-  //                 timer: 2000
-  //             })
-  //             history.push('/');
-  //         }
-  //     })
-  //     .catch(error => {
-  //         alert('Error al cerrar sesión!')
-  //     })
-  // }
 
   // =========== ESTO ES CON BACKEND ==================
   const close = (e) => {
@@ -183,7 +141,7 @@ export default function BackOfficeAdm() {
                       Administración de Usuarios
                     </Link>
                   </li>
-                  <li className={`nav-item active d-md-block d-lg-none`}>
+                  {/* <li className={`nav-item active d-md-block d-lg-none`}>
                     <Link to="/back_office_administracion/facturas_y_pagos">
                       Facturas y Pagos
                     </Link>
@@ -197,7 +155,7 @@ export default function BackOfficeAdm() {
                     <Link to="/back_office_administracion/alertas">
                       Alertas
                     </Link>
-                  </li>
+                  </li> */}
                   <li className={`nav-item active d-md-block d-lg-none`}>
                     <Link to="/back_office_administracion/pendientes_aprobacion">
                       Pendientes de aprobación
@@ -256,7 +214,7 @@ export default function BackOfficeAdm() {
                     Administración de Usuarios
                   </Link>
                 </div>
-                <div className={`${Style.options} col-12`}>
+                {/* <div className={`${Style.options} col-12`}>
                   <Link to="/back_office_administracion/facturas_y_pagos">
                     Facturación y Pagos
                   </Link>
@@ -268,7 +226,7 @@ export default function BackOfficeAdm() {
                 </div>
                 <div className={`${Style.options} col-12`}>
                   <Link to="/back_office_administracion/alertas">Alertas</Link>
-                </div>
+                </div> */}
                 <div className={`${Style.options} col-12`}>
                   <Link to="/back_office_administracion/pendientes_aprobacion">
                     Pendientes de aprobación
@@ -342,6 +300,10 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <Asociados />
                   </Fade>
+                  ) : ruta === `/back_office_administracion/asociados/${id}` ? (
+                    <Fade>
+                      <AsociadosDetail />
+                    </Fade>
                 ) : ruta === "/back_office_administracion/asociados/editar" ? (
                   <Fade>
                     <AsociadosEditar />

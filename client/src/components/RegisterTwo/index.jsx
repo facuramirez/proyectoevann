@@ -825,7 +825,7 @@ export default function RegisterTwo() {
                       -
                     </option>
                     <option value="CC" onChange={(e) => verifyData(e)}>
-                      CC
+                      CC (Cuenta Corriente)
                     </option>
                     <option value="CV" onChange={(e) => verifyData(e)}>
                       CV
