@@ -457,7 +457,7 @@ export default function NewConductor() {
         legal_representative_rut: form.company_legal_r_rut,
         address: form.company_address,
         payment_day: form.company_dia,
-        payment_method: 0,
+        payment_method: 1,
         // payment_method: form.company_metodo,
       },
       user_data: {

@@ -53,7 +53,6 @@ export default function BackOfficeAdm() {
 
   let user = useSelector((state) => state["user"]);
 
-
   // =========== ESTO ES CON BACKEND ==================
   const close = (e) => {
     e.preventDefault();
@@ -300,10 +299,10 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <Asociados />
                   </Fade>
-                  ) : ruta === `/back_office_administracion/asociados/${id}` ? (
-                    <Fade>
-                      <AsociadosDetail />
-                    </Fade>
+                ) : ruta === `/back_office_administracion/asociados/${id}` ? (
+                  <Fade>
+                    <AsociadosDetail />
+                  </Fade>
                 ) : ruta === "/back_office_administracion/asociados/editar" ? (
                   <Fade>
                     <AsociadosEditar />
@@ -377,7 +376,8 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <Convenios />
                   </Fade>
-                ) : ruta === "/back_office_administracion/convenios/nuevo_convenio" ? (
+                ) : ruta ===
+                  "/back_office_administracion/convenios/nuevo_convenio" ? (
                   <Fade>
                     <NuevoConvenio />
                   </Fade>
@@ -401,6 +401,10 @@ export default function BackOfficeAdm() {
                     <FacturasAdm />
                   </Fade>
                 ) : ruta === "/back_office_administracion/usuarios" ? (
+                  <Fade>
+                    <AdmUsuarios />
+                  </Fade>
+                ) : ruta === `/back_office_administracion/usuarios/${id}` ? (
                   <Fade>
                     <AdmUsuarios />
                   </Fade>

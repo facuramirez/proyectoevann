@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Style from "./AdmUsuarios.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
@@ -24,6 +24,7 @@ export default function Viajes() {
   const dispatch = useDispatch();
   let [loading, setLoading] = useState(true);
   let admins = useSelector((state) => state["admins"]);
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -80,7 +81,7 @@ export default function Viajes() {
 
   const editCar = (e, id) => {
     e.preventDefault();
-    alert("Viaje cliente " + id);
+    history.push(`/back_office_administracion/usuarios/${id}`);
   };
 
   const deleteCar = (e, id) => {

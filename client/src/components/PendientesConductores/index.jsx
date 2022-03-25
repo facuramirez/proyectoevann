@@ -211,7 +211,7 @@ export default function PendientesConductores() {
                             <Link
                               to={`/back_office_administracion/pendientes_aprobacion/conductores/${element.id}`}
                             >
-                              <FiUsers className={Style.conductores} />
+                              <ImEye className={Style.conductores} />
                             </Link>
                             {/* <a href="" onClick={(e)=>detailTravel(e, element.id)}><FaRoute className={Style.viajes}/></a> */}
                           </div>

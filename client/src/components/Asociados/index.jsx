@@ -119,8 +119,6 @@ export default function Asociados() {
     data,
   };
 
-  console.log(owners, "OWNERS");
-
   return (
     <div>
       <div className={`${Style.containerAsociados} row containerVehiculos`}>

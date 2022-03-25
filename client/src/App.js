@@ -145,6 +145,11 @@ function App() {
       />
       <Route
         exact
+        path="/back_office_administracion/usuarios/:id"
+        component={BackOfficeAdm}
+      />
+      <Route
+        exact
         path="/back_office_administracion/usuarios/roles"
         component={BackOfficeAdm}
       />
