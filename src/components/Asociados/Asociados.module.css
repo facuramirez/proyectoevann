@@ -1,0 +1,296 @@
+.containerAsociados{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 86.7vh;
+}
+
+.title{
+    color: white;
+    width: fit-content;
+}
+
+.title h3{
+    font-size: 2rem;
+}
+
+
+.buttonsTwo .search,
+.buttonsTwo .inactives{
+    width: 2rem;
+}
+
+.fondo{
+    /* background-image: repeating-linear-gradient(332deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(100deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(0deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),repeating-linear-gradient(90deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),linear-gradient(90deg, rgb(58,58,58),rgb(58,58,58)); */
+    border-radius: 20px;
+    padding: 3vh;
+}
+
+.buttonsTwo .search{
+    outline: none;
+    width: 2rem;
+    margin-right: 0.5vw;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 1px solid rgb(54, 232, 210);
+}
+
+.searchIcon{
+    font-size: 2.5rem;
+    margin: 0px;
+    margin-right: 2vw;
+    height: 1.9rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    background-color: #ccc;
+    box-shadow: 0px 0px 20px black inset;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+
+
+.buttonsTwo .inactives,
+.add{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    padding-top: 0.6vh;
+    padding-bottom: 0.6vh;
+    transition: all 300ms;
+    padding-bottom: 0.8vh;
+}
+
+.add a{
+    color: white;
+    text-decoration: none;
+}
+
+.buttonsTwo .inactives:hover,
+.add a:hover{
+    color: #ccc;
+}
+
+.buttonsTwo .search,
+.buttonsTwo .searchIcon,
+.buttonsTwo .inactives{
+    width: fit-content;
+    font-size: 1rem;
+}
+
+.buttonsTwo .search{
+    width: 10rem;
+}
+
+
+.registers{
+    width: fit-content;
+    color: white;
+}
+
+.select select{
+    margin-left: 1vw;
+    border-radius: 20px;
+    outline: none;
+    transition: all 300ms;
+}
+
+.select select:hover{
+    /* background-color: #ccc; */
+    cursor: pointer;
+}
+/* 
+.select select:focus{
+    background-color: #ccc;
+} */
+.export{
+    text-align: left;
+}
+
+.export a{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding: 0.2rem 0.7rem 0.3rem 0.7rem;
+    border-color: rgb(33, 37, 41);
+    border-radius: 1rem;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.export a:hover{
+    color: #ccc;
+}
+
+.table{
+    height: fit-content;
+    color: black;
+    overflow-y: scroll;
+    padding-top: 5px;
+}
+
+.table::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+    background-color: rgb(33, 37, 41);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.table::-webkit-scrollbar-thumb{
+    background-color: rgb(54, 232, 210);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.select,
+.pagination{
+    color: white;
+}
+
+.table{
+    color: white;
+}
+
+.tableHead{
+    color: white;
+    background-color: black;
+}
+
+.tableBody{
+    background-color: black;
+    color: white;
+}
+
+.buttons a:nth-child(n+2){
+    margin-left: 12px;
+}
+
+.buttons a svg{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.buttons a:hover .edit{
+    color: lightblue;
+}
+
+.buttons a:hover .delete{
+    color: red;
+}
+
+.buttons a:hover .details{
+    color:yellow;
+}
+
+.buttons a:hover .car{
+    color:blue;
+}
+
+.buttons a:hover .conductores{
+    color:green;
+}
+
+.buttons a:hover .viajes{
+    color:brown;
+}
+
+.noCars{
+    background-color: red;
+    color: white;
+    width: fit-content;
+    margin: 0px auto;
+    padding: 0.5vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-shadow: 0px 0px 10px black;
+}
+
+.iconAdd{
+    margin-right: 0.8vw;
+}
+
+.ulPagination{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 1.8vh;
+    width: 100%;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.liElements a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: white;
+    margin-right: 10px;
+    background-color: rgb(33, 37, 41);
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 20px;
+}
+
+.liElements a:focus{
+    color: rgb(54, 232, 210);
+}
+
+.liElements a:hover{
+    color: rgb(54, 232, 210);
+}
+
+.search{
+    height: 2rem !important;
+}
+
+@media (min-width: 767px){
+    .registers{
+        width: fit-content;
+        color: white;
+    }    
+}
+
+@media (max-width: 767px){   
+    .containerAsociados{
+        background-image: none;
+    } 
+    .search{
+        height: 2rem !important;
+        
+    }
+    .acciones{
+        min-width: 15rem !important;
+    }
+    
+    .nombre{
+        min-width: 10rem !important;
+    }
+}
+
+@media (max-width: 578px){
+    .buttons a:nth-child(n+2){
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 576px){
+    .searchIcon{
+        width: 5rem !important;
+        margin-left: 1rem;
+    }
+    .search{
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 450px){
+    .inactives{
+        margin-top: 1.2rem !important;
+    }
+}
+
+

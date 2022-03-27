@@ -1,0 +1,224 @@
+.containerRegister{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 86.7vh;
+}
+
+.form{
+    background-color: rgb(60, 60, 58);
+    opacity: 0.8;
+    width: 64vw;
+    height: 100%;
+    top: 0vw;
+    left: 17vw;
+}
+
+.formComplete{
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    padding-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+.title{
+    font-size: 2rem;
+    border-radius: 20px;
+    color: white;
+}
+
+.titleForm{
+    margin-left: 3%;
+}
+
+.iniciar{
+    font-size: 1.4rem !important;
+}
+
+.parragraph{
+    font-size: 0.8rem !important;
+}
+
+.formRegister{
+    border: 1px solid rgb(54, 232, 210);
+    align-self: center;
+    width: 90%;
+    text-align: left;
+    color: white;
+}
+
+.alertTexts,
+.alertTexts2{
+    color: red !important;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+
+.formRegister h4{
+    font-size: 1rem;
+    margin: 0px;
+    display: inline;
+    margin-top: 0.2rem;
+    
+}
+
+.formRegister h5{
+    font-size: 0.8vw;
+    color: #ccc;
+}
+
+.formRegister .data{
+    display: flex;
+    flex-direction: column;
+    padding-left: 3%;
+    margin-top: 2%;
+}
+
+.formRegister .data div{
+    margin-top: 1%;
+}
+
+.formRegister input{
+    height: 2.1vw;
+    margin-left: 2%;
+    outline: none;
+    background-color: rgb(60, 60, 58);
+    border: 1px solid rgb(60, 60, 58);
+    border-bottom: 1px solid rgb(54, 232, 210);
+    color: white;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    font-size: 1.1vw;
+}
+
+.repeatPass{
+    width: 23%;
+    padding-left: 5%;
+}
+
+.inputFecha div div input{
+    text-align: center;
+}
+
+.cel2{
+    width: 15%;
+}
+
+.fechaNac{
+    width: 27%;
+    padding-right: 0px;
+}
+
+.celInp1{
+    width: 30%;
+    margin-left: 5% !important;
+}
+
+.buttons{
+    margin-left: 4.3vw;
+}
+
+.back{
+    border: none;
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;    
+    color: white;
+    padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    width: fit-content;
+    text-decoration: none;
+    transition: all 300ms;
+    margin-right: 0.5rem;
+}
+
+.back:hover{
+    color: #ccc;
+}
+
+.iconBack{
+    margin-right: 0.8vw;
+}
+
+.save{
+    text-decoration: none;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    width: fit-content;
+    align-self: center;
+    border-radius: 20px;
+    border: none;
+    padding-top: 0.;
+    margin-left: 0.5rem;
+}
+
+.save:hover{
+    color: #ccc;
+}
+
+.disabled{
+    cursor: pointer;
+    background-color: rgb(54, 232, 210) !important;
+}
+
+.color{
+    background-color: red !important;
+    cursor: not-allowed !important;
+}
+
+.color:hover{
+    color: white;
+}
+
+.here{
+    margin-top: 2%;
+    font-size: 1rem;
+    color: white;
+    align-self: center;
+}
+
+.here a{
+    color: white;
+    text-decoration: none;
+}
+
+.here a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 1220px){    
+    .containerRegister{
+        min-height: 90vh;
+    }
+}
+
+@media (max-width: 992px){    
+    .containerRegister{
+        min-height: 90vh;
+    }
+}
+
+@media (max-width: 767px){    
+    .containerRegister{
+        background-image: none;
+    }
+    .formComplete{
+        width: 80%;
+        padding-top: 0rem;
+    }
+}
+
+@media (max-width: 580px){
+    .containerRegister .formRegister{
+        padding-left: 1.5rem;
+    }
+}
+

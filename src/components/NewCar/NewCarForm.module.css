@@ -1,0 +1,243 @@
+.containerVehiculos {
+  /* margin: 0px auto;
+    height: 110vh !important; */
+  background-image: url("../../img/camionetaOscura.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 87.6vh;
+}
+
+.asterisk {
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.title {
+  border-radius: 20px;
+  color: white;
+  width: fit-content;
+  padding-top: 5px;
+  height: 7vh;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+}
+
+.title h3 {
+  font-size: 2rem;
+}
+
+.formCar {
+  display: flex;
+  flex-wrap: wrap !important;
+  border: 1px solid rgb(54, 232, 210);
+  margin-top: 3%;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 1rem;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: white;
+}
+
+.titleForm {
+  margin-left: 3%;
+}
+
+input,
+select {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(54, 232, 210);
+  background-color: rgb(60, 60, 58);
+  color: white;
+  height: 1.7rem !important;
+}
+
+.inputFecha {
+  outline: none;
+  background-color: rgb(60, 60, 58);
+  border: 1px solid rgb(60, 60, 58);
+  border-bottom: 1px solid rgb(54, 232, 210);
+  height: 1.8rem;
+}
+
+.inputFecha input {
+  color: white !important;
+  text-align: center !important;
+  height: 0.9rem !important;
+  font-size: 0.9rem !important;
+}
+
+.buttons {
+  margin-bottom: 1rem;
+}
+
+.buttons a {
+  border: none;
+  background-color: rgb(33, 37, 41);
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
+  padding-top: 0.6vh;
+  padding-bottom: 1.5vh;
+  transition: all 300ms;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.buttons a:hover {
+  color: #ccc;
+}
+
+.buttons .first {
+  margin-right: 4%;
+}
+
+.buttons .third {
+  margin-left: 4%;
+}
+
+.iconBack,
+.iconSave,
+.iconClear {
+  margin-right: 0.8vw;
+}
+
+.alerts {
+  color: red;
+  font-size: 0.8vw;
+}
+
+.lineaNegocio {
+  width: fit-content;
+  margin-right: 2rem;
+}
+
+.radioButtons {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0px;
+  width: fit-content;
+}
+
+.radioButtons .labelRadio {
+  margin-left: 0.5rem;
+}
+
+.lines {
+  display: flex !important;
+  flex-flow: row !important;
+  justify-content: center !important;
+}
+
+.lines input[type="checkbox"] {
+  margin-right: 0.3rem;
+}
+
+.radioButtons .lines label {
+  border-bottom: 1px solid rgb(54, 232, 210);
+}
+
+.docs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: fit-content;
+}
+
+.titleDoc {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.docsDivs {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 1rem;
+}
+
+.docsDivs .upButtons {
+  font-size: 0.8rem;
+  border-radius: 20px;
+  color: white;
+  background-color: rgb(60, 60, 58);
+  border: 1px solid rgb(54, 232, 210);
+}
+
+.docsDivs .upButtons {
+  padding-top: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1.8rem;
+}
+
+.docsDivs .upButtons:nth-child(1) {
+  margin-top: 0.5rem;
+}
+
+.docsDivs .upButtons:nth-child(n + 2) {
+  margin-top: 0.3rem;
+}
+
+.titleVeh {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+select {
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .kilometrajeLabel {
+    min-width: 8rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .containerVehiculos {
+    background-image: none;
+  }
+  input {
+    height: 1.4rem !important;
+  }
+  select {
+    height: 1.4rem !important;
+  }
+}
+
+@media (max-width: 470px) {
+  wid input,
+  select,
+  .inputFecha,
+  .docsDivs .upButtons {
+    max-width: 75vw !important;
+  }
+  .docsDivs {
+    margin-left: 0px;
+  }
+  .inputsFile {
+    max-width: 75vw !important;
+    padding: 0px;
+  }
+  .inputRadio:nth-child(n + 2) {
+    margin-left: 1rem;
+  }
+  .buttons {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttons a {
+    margin: 0px !important;
+  }
+  .buttons a:nth-child(n + 2) {
+    margin-top: 0.7rem !important;
+  }
+  .buttons .third {
+    margin-bottom: 1rem !important;
+  }
+}

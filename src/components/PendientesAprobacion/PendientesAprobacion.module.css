@@ -1,0 +1,142 @@
+.containerMisDatosAdm{
+    background-image: url('../../img/camionetaOscura.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 86.7vh;
+}
+
+.misDatos{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+    justify-content: space-evenly;
+    border: 1px solid rgb(54, 232, 210);
+    width: 80%;
+    margin: 0px auto;
+    height: fit-content;
+    padding: 0px;
+    padding: 1rem;
+}
+
+.misDatos a{
+    background-color: rgb(33, 37, 41);
+    border-radius: 20px;
+    padding: 0.3rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    color: white;
+    margin-top: 0.5rem;
+    width: 40%;
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+.misDatos a:nth-child(n+3){
+    margin-top: 2rem;
+}
+
+.misDatos a:hover{
+    color: #ccc;
+}
+
+/* .misDatos .lbl{
+    font-weight: bold;
+} */
+
+.datos{
+    /* margin-left: 1rem; */
+    background-color: rgb(52, 58, 65) !important;
+}
+
+.title{
+    color: white;
+    width: fit-content;
+    /* margin: 0px auto;
+    border-radius: 20px;
+    background-image: radial-gradient(circle at center center, rgba(33,33,33,0),rgb(33,33,33)),repeating-linear-gradient(135deg, rgb(33,33,33) 0px, rgb(33,33,33) 1px,transparent 1px, transparent 4px),repeating-linear-gradient(45deg, rgb(56,56,56) 0px, rgb(56,56,56) 5px,transparent 5px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+    padding-top: 5px;
+    height: 7vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw; */
+}
+
+.title h3{
+    font-size: 2rem;
+    width:fit-content;
+}
+
+.buttonsTwo .search,
+.buttonsTwo .inactives{
+    width: 12vw;
+}
+
+.fondo{
+    /* background-image: repeating-linear-gradient(332deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(100deg, hsla(266,0%,30%,0.12) 0px,transparent 2px,hsla(266,0%,30%,0.12) 7px,transparent 9px,hsla(266,0%,30%,0.12) 14px),repeating-linear-gradient(0deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),repeating-linear-gradient(90deg, hsla(266,0%,30%,0.15) 0px, hsla(266,0%,30%,0.15) 0px,transparent 0px, transparent 1px,hsla(266,0%,30%,0.15) 1px, hsla(266,0%,30%,0.15) 4px,transparent 4px, transparent 5px,hsla(266,0%,30%,0.15) 5px, hsla(266,0%,30%,0.15) 8px),linear-gradient(90deg, rgb(58,58,58),rgb(58,58,58)); */
+    padding: 3vh;
+}
+
+.buttonsTwo .search{
+    outline: none;
+    width: 15vw;
+    margin-right: 0.5vw;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 1px solid rgb(54, 232, 210);
+}
+
+
+.add a{
+    color: white;
+    text-decoration: none;
+}
+
+.buttonsTwo .inactives:hover,
+.add a:hover{
+    color: #ccc;
+}
+
+.registers{
+    width: fit-content;
+    color: white;
+}
+
+
+.noCars{
+    background-color: red;
+    color: white;
+    width: fit-content;
+    margin: 0px auto;
+    padding: 0.5vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-shadow: 0px 0px 10px black;
+}
+
+.iconAdd{
+    margin-right: 0.8vw;
+}
+
+
+@media (max-width: 776px){
+    .containerMisDatosAdm{
+        background-image: none;
+    }
+    .misDatos a{
+        font-size: 1.1rem;
+    }
+}
+
+
+@media (max-width: 615px){
+    .misDatos{
+        flex-flow: column wrap;
+        align-items: center;
+        height: fit-content;
+    }
+    .misDatos a{
+        margin-top: 1rem !important;
+        width: 100%;
+    }
+}
