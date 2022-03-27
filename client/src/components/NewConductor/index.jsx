@@ -291,7 +291,7 @@ export default function NewConductor() {
     let number = e.target.value;
     let name = e.target.name;
 
-    if (/^\d*$/.test(number)) {
+    if (/^\d*$/.test(number) && number.length >= 9) {
       setError({ ...error, [name]: "" });
     } else {
       setError({ ...error, [name]: "Error" });
@@ -304,7 +304,7 @@ export default function NewConductor() {
     let number = e.target.value;
     let name = e.target.name;
 
-    if (/^\d*$/.test(number)) {
+    if (/^\d*$/.test(number) && number.length > 9) {
       setError({ ...error, [name]: "" });
     } else {
       setError({ ...error, [name]: "Error" });
@@ -384,6 +384,8 @@ export default function NewConductor() {
     // formData.append("work_days['friday']", form.friday);
     // formData.append("work_days['saturday']", form.saturday);
     // formData.append("work_days['sunday']", form.sunday);
+
+    let btnSave = document.getElementsByClassName('buttonSave');
 
     let data = {
       user_data: {
@@ -489,6 +491,7 @@ export default function NewConductor() {
         buttons: ["NO", "SI"],
       }).then((response) => {
         if (response) {
+          btnSave[0].disabled = true;
           axios
             .post(`${process.env.REACT_APP_BACKEND}/drivers/`, formData, {
               headers: { "content-type": "multipart/form-data" },
@@ -501,6 +504,7 @@ export default function NewConductor() {
                   icon: "success",
                   buttons: ["", "OK"],
                 });
+                btnSave[0].disabled = false;
                 history.push("/back_office/conductores");
               }
             })
@@ -511,7 +515,8 @@ export default function NewConductor() {
                 icon: "warning",
                 buttons: ["", "OK"],
               });
-              // history.push('/back_office/conductores');
+              btnSave[0].disabled = false;
+              history.push('/back_office/conductores');
             });
         }
       });
@@ -719,7 +724,7 @@ export default function NewConductor() {
                     name="phone_number"
                     value={form.phone_number}
                     onChange={(e) => verifyCel(e)}
-                    maxLength="9"
+                    minLength="9"
                   />
                   <h4
                     className={`${Style.lbl_cel2} col-1 mt-md-2 mt-lg-2 text-sm-start`}
@@ -732,7 +737,7 @@ export default function NewConductor() {
                     name="phone_number2"
                     value={form.phone_number2}
                     onChange={(e) => verifyCel2(e)}
-                    maxLength="9"
+                    minLength="9"
                   />
                 </div>
 
@@ -740,7 +745,7 @@ export default function NewConductor() {
                   {form.phone_number && error.phone_number ? (
                     <div className={`row`}>
                       <h5 className={`${Style.alertTexts} col-3`}>
-                        Sólo números
+                        Sólo números (mínimo 9 dígitos)
                       </h5>
                     </div>
                   ) : null}
@@ -1040,7 +1045,7 @@ export default function NewConductor() {
                 </div>
                 <div className={`col-3`}>
                   <button
-                    className={`${Style.save} notActive`}
+                    className={`${Style.save} notActive buttonSave`}
                     onClick={(e) => save(e)}
                   >
                     Guardar

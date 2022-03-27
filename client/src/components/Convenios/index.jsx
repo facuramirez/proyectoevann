@@ -31,6 +31,7 @@ export default function Convenio() {
       .get(`${process.env.REACT_APP_BACKEND}/companies/`)
       .then((response) => {
         setLoading(false);
+        console.log(response.data);
         dispatch(getConvenios(response.data));
         console.log(response.data, "CONVENIOS");
       })
@@ -212,25 +213,27 @@ export default function Convenio() {
                     <thead>
                       <tr className={`${Style.tableH} col-12`}>
                         <th>Código de Convenio</th>
+                        <th className={`${Style.nombre}`}>
+                          Nombre de la Empresa
+                        </th>
                         <th>Nombre de Fantasía</th>
-                        <th className={`${Style.nombre}`}>Descripción de la Empresa</th>
                         {/* <th>Representante Legal</th> */}
                         {/* <th className={`${Style.acciones}`}>Repreentante Legal</th> */}
                       </tr>
                     </thead>
                     <tbody className={`${Style.tableB} col-12`}>
-                      <tr>
-                        {/* <td>{owner.user.rut}</td>
+                      {convenios.map(({agreement, company}) => (
+                        <tr>
+                          {/* <td>{owner.user.rut}</td>
                           <td>{owner.user.name}</td>
                           <td>{owner.user.last_name}</td>
                           <td>{owner.is_approved ? "SI" : "NO"}</td> */}
 
-                        <td>Código 123</td>
-                        <td>Benitez Viajes S.R.L.</td>
-                        <td>Empresa de Viajes</td>
-                        
+                          <td>{agreement.code}</td>
+                          <td>{company.business_name}</td>
+                          <td>{company.name}</td>
 
-                        {/* <td
+                          {/* <td
                             className={`${Style.buttons} d-flex justify-content-evenly`}
                           >
                             <div>
@@ -255,7 +258,8 @@ export default function Convenio() {
                               
                             </div>
                           </td> */}
-                      </tr>
+                        </tr>
+                      ))}
                     </tbody>
                   </Table>
                 ) : null}
@@ -277,7 +281,10 @@ export default function Convenio() {
           ) : (
             <div className={`${Style.noConvenios}`}>
               <h1 className={`${Style.noCars} mt-4`}>
-                No hay convenios dados de alta <br/> <h6>Haga click en "Nuevo" para dar de alta un nuevo convenio</h6>
+                No hay convenios dados de alta <br />{" "}
+                <h6>
+                  Haga click en "Nuevo" para dar de alta un nuevo convenio
+                </h6>
               </h1>
               <div className={`${Style.export} mt-3`}>
                 <button onClick={(e) => nuevoConvenio(e)}>Nuevo</button>

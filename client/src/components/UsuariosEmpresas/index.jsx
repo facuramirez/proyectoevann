@@ -23,7 +23,7 @@ export default function UsuariosEmpresas() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/drivers?is_approved=false`)
+      .get(`${process.env.REACT_APP_BACKEND}/companies/users/`)
       .then((response) => {
         setLoading(false);
         console.log(response.data, "conductores");
