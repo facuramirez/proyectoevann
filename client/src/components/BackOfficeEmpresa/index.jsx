@@ -44,6 +44,7 @@ import axios from "../../axiosConfig";
 import { dataUser } from "../../globalState/Actions";
 import UsuariosEmpresas from "../UsuariosEmpresas";
 import UsuariosEmpresasNuevo from "../UsuariosEmpresasNuevo";
+import ViajesEmpresas from "../ViajesEmpresas";
 
 export default function BackOfficeEmpresa() {
   let dispatch = useDispatch();
@@ -300,6 +301,11 @@ export default function BackOfficeEmpresa() {
                 : ruta === "/back_office_empresas/usuarios/nuevo_usuario" ? (
                   <Fade>
                     <UsuariosEmpresasNuevo />
+                  </Fade>
+                )
+                : ruta === "/back_office_empresas/agendar_viaje" ? (
+                  <Fade>
+                    <ViajesEmpresas />
                   </Fade>
                 )
                 

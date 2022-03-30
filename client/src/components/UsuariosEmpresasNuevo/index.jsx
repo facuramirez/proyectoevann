@@ -718,7 +718,6 @@ export default function UsuariosEmpresasNuevo() {
                     name="phone_number"
                     value={form.phone_number}
                     onChange={(e) => verifyCel(e)}
-                    value={form.phone_number}
                   />
                   <h4
                     className={`${Style.lbl_cel2} col-1 mt-md-2 mt-lg-2 text-sm-start`}
@@ -731,7 +730,6 @@ export default function UsuariosEmpresasNuevo() {
                     name="phone_number2"
                     value={form.phone_number2}
                     onChange={(e) => verifyCel2(e)}
-                    value={form.phone_number2}
                   />
                 </div>
 
