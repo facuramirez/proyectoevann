@@ -133,17 +133,16 @@
   font-size: 1rem;
 }
 
-.fechaNac {
+/* .fechaNac {
   margin-right: 0px !important;
   padding-right: 0px !important;
-  width: fit-content;
-}
+} */
 
-.fechaNacField {
+/* .fechaNacField {
   min-width: 9rem;
   width: 11vw;
   max-width: 10rem;
-}
+} */
 
 .time {
   min-width: 13rem;
@@ -337,7 +336,8 @@
   }
   .formRegister {
     width: 80%;
-    min-height: 320px;
+    height: fit-content !important;
+    min-height: 510px;
   }
   .titleForm h4 {
     font-size: 1rem;
@@ -388,6 +388,9 @@
     height: 1.2rem;
     font-size: 0.7rem;
   }
+  .inputFecha {
+    padding: 0px;
+  }
   .inputFecha div div input {
     font-size: 0.8rem !important;
   }
@@ -408,6 +411,7 @@
     margin-top: 1rem;
   }
   .formRegister {
-    min-height: 400px;
+    height: fit-content;
+    min-height: 600px;
   }
 }

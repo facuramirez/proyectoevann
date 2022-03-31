@@ -35,57 +35,17 @@ export default function ViajesEmpresas() {
   // ===========================================================
 
   let [form, setForm] = useState({
-    rut: "",
-    name: "",
-    last_name: "",
-    address: "",
-    birth_date: "",
-    phone_number: "",
-    phone_number2: "",
-    email: "",
-    nationality: "",
-    inter_travels: "-",
-    license_number: "",
-    foto: "",
-    carnet: "",
-    licencia: "",
-    antecedentes: "",
-    license_hoja: "",
-    license_due_date: "",
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    friday: false,
-    saturday: false,
-    sunday: false,
+    origen: "",
+    fecha: "",
+    hora: "",
+    destino: "",
   });
 
   let [error, setError] = useState({
-    rut: "Error",
-    name: "Error",
-    last_name: "Error",
-    address: "Error",
-    birth_date: "Error",
-    phone_number: "Error",
-    phone_number2: "Error",
-    email: "Error",
-    nationality: "Error",
-    inter_travels: "Error",
-    license_number: "Error",
-    foto: "Error",
-    carnet: "Error",
-    licencia: "Error",
-    antecedentes: "Error",
-    license_hoja: "Error",
-    license_due_date: "Error",
-    monday: "",
-    tuesday: "",
-    wednesday: "",
-    thursday: "",
-    friday: "",
-    saturday: "",
-    sunday: "",
+    origen: "Error",
+    fecha: "Error",
+    hora: "Error",
+    destino: "Error",
   });
 
   const clear = (e) => {
@@ -417,126 +377,404 @@ export default function ViajesEmpresas() {
                   Resumen
                 </h4>
               </div>
-              
-              {step === 1 ?
-              <div className={`${Style.data}`}>
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.lblname} col-1 mt-md-2 mt-lg-2`}
-                    id="nombreLabel"
-                  >
-                    Origen:
-                  </h4>
-                  <input
-                    className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={(e) => verifyAdmin(e)}
-                  />
 
-                  {(error.name && form.name) ||
-                  (error.last_name && form.last_name) ? (
-                    <div className={`row d-none d-md-block d-lg-block`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Nombre y Apellido admiten sólo letras (y espacios) sin
-                        números
-                      </h5>
-                    </div>
-                  ) : null}
-
-                  {error.name && form.name ? (
-                    <div className={`row d-block d-md-none d-lg-none`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Sólo letras (y espacios) sin números
-                      </h5>
-                    </div>
-                  ) : null}
-                  {error.last_name && form.last_name ? (
-                    <div className={`row d-block d-md-none d-lg-none`}>
-                      <h5
-                        className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
-                      >
-                        Sólo letras (y espacios) sin números
-                      </h5>
-                    </div>
-                  ) : null}
-                </div>
-
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Fecha de Nacimiento
-                  </h4>
-                  <form
-                    className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
-                    noValidate
-                  >
-                    <TextField
-                      id="date"
-                      label=""
-                      type="date"
-                      name="birth_date"
-                      value={form.birth_date}
-                      onChange={(e) => verifyData(e)}
-                      // defaultValue="2017-05-24"
-                      className={`${Style.fechaNacField} ${classes.textField}`}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
+              {step === 1 ? (
+                <div className={`${Style.data}`}>
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.lblname} col-1 mt-md-2 mt-lg-2`}
+                      id="nombreLabel"
+                    >
+                      Origen:
+                    </h4>
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
+                      type="text"
+                      name="origen"
+                      value={form.origen}
+                      onChange={(e) => verifyAdmin(e)}
                     />
-                  </form>
-                </div>
 
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.lbl_cel1} col-md-1 col-lg-1 mt-md-2 mt-lg-2 text-sm-start`}
-                  >
-                    Hora:
-                  </h4>
-                  <input
-                    className={`${Style.time} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
-                    type="time"
-                    name="phone_number"
-                    value={form.phone_number}
-                    onChange={(e) => verifyCel(e)}
-                  />
-                </div>
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
 
-                <div className="d-none d-md-block d-lg-block">
-                  {form.phone_number && error.phone_number ? (
-                    <div className={`row`}>
-                      <h5 className={`${Style.alertTexts} col-3`}>
-                        Sólo números
-                      </h5>
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.fechaNac} col-10 col-md-1 col-lg-1 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Fecha:
+                    </h4>
+                    <form
+                      className={`${classes.container} ${Style.inputFecha} mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5`}
+                      noValidate
+                    >
+                      <TextField
+                        id="date"
+                        label=""
+                        type="date"
+                        name="fecha"
+                        value={form.fecha}
+                        onChange={(e) => verifyData(e)}
+                        // defaultValue="2017-05-24"
+                        className={`${Style.fechaNacField} ${classes.textField}`}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </form>
+                  </div>
+
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.hora} col-10 col-md-1 col-lg-1 mt-md-2 mt-lg-2 text-sm-start`}
+                    >
+                      Hora:
+                    </h4>
+                    <input
+                      className={`${Style.time} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
+                      type="time"
+                      name="hora"
+                      value={form.hora}
+                      onChange={(e) => verifyCel(e)}
+                    />
+                  </div>
+
+                  <div className="d-none d-md-block d-lg-block">
+                    {form.phone_number && error.phone_number ? (
+                      <div className={`row`}>
+                        <h5 className={`${Style.alertTexts} col-3`}>
+                          Sólo números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className={`row`}>
+                    <h4 className={`col-1 mt-md-2 mt-lg-2`}>Destino:</h4>
+                    <input
+                      className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
+                      type="text"
+                      name="destino"
+                      onChange={(e) => verifyMail(e)}
+                      value={form.destino}
+                    />
+
+                    {error.email && form.email ? (
+                      <div className={`row`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Introduza un correo válido
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              ) : step === 2 ? (
+                <div className={`${Style.data}`}>
+                  <div className={`row mt-3 mt-sm-3 mt-md-1 mt-lg-1`}>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
+                    >
+                      <select
+                        className={`w-100 text-center`}
+                        name="inter_travels"
+                        value={form.inter_travels}
+                        onChange={(e) => inputs(e)}
+                      >
+                        <option value="-" defaultValue>
+                          Seleccionar persona
+                        </option>
+                        <option value={true}>Persona 1</option>
+                        <option value={false}>Persona 2</option>
+                      </select>
                     </div>
-                  ) : null}
-                </div>
-
-                <div className={`row`}>
-                  <h4 className={`col-1 mt-md-2 mt-lg-2`}>Destino:</h4>
-                  <input
-                    className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
-                    type="text"
-                    name="email"
-                    onChange={(e) => verifyMail(e)}
-                    value={form.email}
-                  />
-
-                  {error.email && form.email ? (
-                    <div className={`row`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Introduza un correo válido
-                      </h5>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
+                    >
+                      <section className="d-flex justify-content-center">
+                        <input
+                          type="checkbox"
+                          name="monday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.monday}
+                        />
+                        <label style={{ marginLeft: "0.5rem" }}>
+                          Aborda en origen
+                        </label>
+                      </section>
                     </div>
-                  ) : null}
+
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
+                      type="text"
+                      name="origen"
+                      value={form.origen}
+                      onChange={(e) => verifyAdmin(e)}
+                      placeholder="Dirección..."
+                    />
+
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
+
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
+                    >
+                      <select
+                        className={`w-100 text-center`}
+                        name="inter_travels"
+                        value={form.inter_travels}
+                        onChange={(e) => inputs(e)}
+                      >
+                        <option value="-" defaultValue>
+                          Seleccionar persona
+                        </option>
+                        <option value={true}>Persona 1</option>
+                        <option value={false}>Persona 2</option>
+                      </select>
+                    </div>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
+                    >
+                      <section className="d-flex justify-content-center">
+                        <input
+                          type="checkbox"
+                          name="monday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.monday}
+                        />
+                        <label style={{ marginLeft: "0.5rem" }}>
+                          Aborda en origen
+                        </label>
+                      </section>
+                    </div>
+
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
+                      type="text"
+                      name="origen"
+                      value={form.origen}
+                      onChange={(e) => verifyAdmin(e)}
+                      placeholder="Dirección..."
+                    />
+
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
+
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
+                    >
+                      <select
+                        className={`w-100 text-center`}
+                        name="inter_travels"
+                        value={form.inter_travels}
+                        onChange={(e) => inputs(e)}
+                      >
+                        <option value="-" defaultValue>
+                          Seleccionar persona
+                        </option>
+                        <option value={true}>Persona 1</option>
+                        <option value={false}>Persona 2</option>
+                      </select>
+                    </div>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
+                    >
+                      <section className="d-flex justify-content-center">
+                        <input
+                          type="checkbox"
+                          name="monday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.monday}
+                        />
+                        <label style={{ marginLeft: "0.5rem" }}>
+                          Aborda en origen
+                        </label>
+                      </section>
+                    </div>
+
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
+                      type="text"
+                      name="origen"
+                      value={form.origen}
+                      onChange={(e) => verifyAdmin(e)}
+                      placeholder="Dirección..."
+                    />
+
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
+
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
+                    >
+                      <select
+                        className={`w-100 text-center`}
+                        name="inter_travels"
+                        value={form.inter_travels}
+                        onChange={(e) => inputs(e)}
+                      >
+                        <option value="-" defaultValue>
+                          Seleccionar persona
+                        </option>
+                        <option value={true}>Persona 1</option>
+                        <option value={false}>Persona 2</option>
+                      </select>
+                    </div>
+                    <div
+                      className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
+                    >
+                      <section className="d-flex justify-content-center">
+                        <input
+                          type="checkbox"
+                          name="monday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.monday}
+                        />
+                        <label style={{ marginLeft: "0.5rem" }}>
+                          Aborda en origen
+                        </label>
+                      </section>
+                    </div>
+
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
+                      type="text"
+                      name="origen"
+                      value={form.origen}
+                      onChange={(e) => verifyAdmin(e)}
+                      placeholder="Dirección..."
+                    />
+
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
+
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-              : step === 2 ?
-              <h1>step 2</h1>
-              : <h1>step3</h1>
-            }
+              ) : (
+                <h1>step3</h1>
+              )}
             </div>
             <div className={Style.containerSave}>
               {/* <h5 className={`${Style.habilitar}`}>
@@ -546,8 +784,11 @@ export default function ViajesEmpresas() {
                 <div className={`col-3`}>
                   <button
                     style={
-                      step !== 1 ? { display: "block" } : { display: "none" }
+                      step === 1
+                        ? { backgroundColor: "darkRed", cursor: "not-allowed" }
+                        : null
                     }
+                    disabled={step === 1 ? true : false}
                     className={`${Style.back}`}
                     onClick={(e) => back(e)}
                   >
