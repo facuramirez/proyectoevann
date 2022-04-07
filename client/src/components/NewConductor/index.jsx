@@ -13,6 +13,7 @@ import Fade from "react-reveal/Fade";
 import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "axios";
+import { helperDriver } from "./helperDriver";
 
 export default function NewConductor() {
   let history = useHistory();
@@ -193,6 +194,9 @@ export default function NewConductor() {
     // }
   };
 
+  let [vr, setVr] = useState({ rut1: "Error", rut2: "Error" });
+  let [loadvr, setLoadvr] = useState(false);
+
   const verifyRut = (e) => {
     e.preventDefault();
     let name = e.target.name;
@@ -200,7 +204,7 @@ export default function NewConductor() {
     let rut2 = document.getElementById("rut2").value;
 
     if (name === "rut1") {
-      if (/^\d*$/.test(parseInt(rut1)) && rut1 >= 6000000 && rut1 < 99000000) {
+      if ((/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") && ((/^\d*$/.test(Number(rut1)) && rut1 >= 6000000 && rut1 < 99000000)) && rut1 && rut2) {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
@@ -208,7 +212,7 @@ export default function NewConductor() {
     }
 
     if (name === "rut2") {
-      if (/^\d*$/.test(parseInt(rut2)) || rut2.toUpperCase() === "K") {
+      if ((/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") && ((/^\d*$/.test(Number(rut1)) && rut1 >= 6000000 && rut1 < 99000000)) && rut1 && rut2) {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
@@ -227,6 +231,28 @@ export default function NewConductor() {
     // console.log(error, 'error');
     // console.log(form, 'form');
   };
+
+  let [partial, setPartial] = useState({ exists: true, user: {} });
+
+  useEffect(() => {
+    // let rut1 = document.getElementById('rut1').value;
+    // let rut2 = document.getElementById('rut2').value;
+    // console.log(rut1, rut2)
+    // if(!rut1 && !rut2) return;
+    
+    if (!error.rut) {
+      setLoadvr(true);
+      helperDriver(form.rut).then((response) => {
+        console.log(response.data);
+        setPartial(response.data);
+        setLoadvr(false);
+      });
+    }
+  }, [form.rut]);
+
+  // useEffect(() => {
+  //   console.log(partial, "partial");
+  // }, [partial.exists]);
 
   const verifyData = (e) => {
     let value = e.target.value;
@@ -385,7 +411,7 @@ export default function NewConductor() {
     // formData.append("work_days['saturday']", form.saturday);
     // formData.append("work_days['sunday']", form.sunday);
 
-    let btnSave = document.getElementsByClassName('buttonSave');
+    let btnSave = document.getElementsByClassName("buttonSave");
 
     let data = {
       user_data: {
@@ -442,7 +468,7 @@ export default function NewConductor() {
     // console.log(data, "DATAAAAAAAAAAAA");
     console.log(form, "FORMM");
     console.log(error, "ERROR");
-    
+
     if (
       form.rut &&
       form.name &&
@@ -482,8 +508,7 @@ export default function NewConductor() {
         form.friday ||
         form.saturday ||
         form.sunday)
-    ) 
-    {
+    ) {
       await swal({
         title: "¿Continuar?",
         text: "¿Confirmar registro de conductor?",
@@ -516,7 +541,7 @@ export default function NewConductor() {
                 buttons: ["", "OK"],
               });
               btnSave[0].disabled = false;
-              history.push('/back_office/conductores');
+              history.push("/back_office/conductores");
             });
         }
       });
@@ -534,6 +559,8 @@ export default function NewConductor() {
     e.preventDefault();
     history.push("/back_office/conductores");
   };
+
+  
 
   return (
     <Fade>
@@ -557,6 +584,7 @@ export default function NewConductor() {
                     type="text"
                     name="rut1"
                     id="rut1"
+                    autoComplete="off"
                     onChange={(e) => verifyRut(e)}
                   />
                   &nbsp;&nbsp;&nbsp;-
@@ -565,9 +593,11 @@ export default function NewConductor() {
                     type="text"
                     name="rut2"
                     id="rut2"
+                    autoComplete="off"
                     onChange={(e) => verifyRut(e)}
                     maxLength="1"
                   />
+                  {loadvr && form.rut.length > 1 && <span>Cargando...</span>}
                   {error.rut && form.rut ? (
                     <div className={`row`}>
                       <h5 className={`${Style.alertTexts} col-6`}>
@@ -576,458 +606,444 @@ export default function NewConductor() {
                     </div>
                   ) : null}
                 </div>
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.lblname} col-1 mt-md-2 mt-lg-2`}
-                    id="nombreLabel"
-                  >
-                    Nombre (*)
-                  </h4>
-                  <input
-                    className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={(e) => verifyAdmin(e)}
-                  />
-                  <h4
-                    className={`${Style.lbl_last_name} col-1 mt-md-2 mt-lg-2`}
-                    id="nombreLabel"
-                  >
-                    Apellido (*)
-                  </h4>
-                  <input
-                    className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5`}
-                    type="text"
-                    name="last_name"
-                    value={form.last_name}
-                    onChange={(e) => verifyAdmin(e)}
-                  />
-
-                  {(error.name && form.name) ||
-                  (error.last_name && form.last_name) ? (
-                    <div className={`row d-none d-md-block d-lg-block`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Nombre y Apellido admiten sólo letras (y espacios) sin
-                        números
-                      </h5>
-                    </div>
-                  ) : null}
-                  {error.last_name && form.last_name ? (
-                    <div className={`row d-block d-md-none d-lg-none`}>
-                      <h5
-                        className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
-                      >
-                        Sólo letras (y espacios) sin números
-                      </h5>
-                    </div>
-                  ) : null}
-
-                  {error.name && form.name ? (
-                    <div className={`row d-block d-md-none d-lg-none`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Sólo letras (y espacios) sin números
-                      </h5>
-                    </div>
-                  ) : null}
-                  {error.last_name && form.last_name ? (
-                    <div className={`row d-block d-md-none d-lg-none`}>
-                      <h5
-                        className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
-                      >
-                        Sólo letras (y espacios) sin números
-                      </h5>
-                    </div>
-                  ) : null}
-                </div>
-                {/* {error.mail && form.mail ?
-                                <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Introduza un correo válido</h5>
-                                </div>
-                                : null 
-                            }
-                            {!error.mail && !email.repeat && form.repeatMail ?
-                                <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts2} col-9`}>Debe repetir exactamente el correo colocado</h5>
-                                </div>
-                                : null                      
-                            } */}
-                <div className={`row`}>
-                  <h4 className={`${Style.lblDireccion} col-1 mt-md-2 mt-lg-2`}>
-                    Dirección (*)
-                  </h4>
-                  <input
-                    className={`${Style.inpDireccion} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
-                    type="text"
-                    name="address"
-                    onChange={(e) => verifyData(e)}
-                    value={form.address}
-                  />
-                  <h4
-                    className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Fecha de Nacimiento (*)
-                  </h4>
-                  <form
-                    className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
-                    noValidate
-                  >
-                    <TextField
-                      id="date"
-                      label=""
-                      type="date"
-                      name="birth_date"
-                      value={form.birth_date}
-                      onChange={(e) => verifyData(e)}
-                      // defaultValue="2017-05-24"
-                      className={`${Style.fechaNacField} ${classes.textField}`}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
+                <div
+                  className={Style.containerForm}
+                  style={
+                    !error.rut && form.rut.length !== 1 && partial && !partial.exists && !loadvr
+                      ? { display: "block" }
+                      : { display: "none" }
+                  }
+                >
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.lblname} col-1 mt-md-2 mt-lg-2`}
+                      id="nombreLabel"
+                    >
+                      Nombre (*)
+                    </h4>
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={(e) => verifyAdmin(e)}
                     />
-                  </form>
-                </div>
-                {/* {error.clave && form.clave ?
-                                <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Mínimo 8 caracteres, una letra y un número</h5>
-                                </div>
-                                : null 
-                            }
-                            {!error.clave && !pass.repeat && form.repeatClave ?
-                                <div className={`row justify-content-center`}>
-                                    <h5 className={`${Style.alertTexts2} col-5`}>Debe repetir exactamente la clave colocada</h5>
-                                </div>
-                                : null                                
-                            } */}
-                {/* <div className={`row`}>
-                                <h4 className={`${Style.admLabel} mt-md-2 mt-lg-2 col-4 col-sm-4 col-md-3 col-lg-3`}>Nombre Administrador</h4>
-                                <input className={`${Style.inputLabel} mt-2 mt-sm-2 col-11 col-sm-11 col-md-3 col-lg-3`} type="text" name="admin" value={form.admin} onChange={(e)=> verifyAdmin(e)}/>
-                                <h4 className={`${Style.dir} col-2 mt-md-2 mt-lg-2 text-end`}>Dirección</h4>
-                                <input className={`${Style.inputDir} mt-2 mt-sm-2 col-11 col-sm-11 col-md-3 col-lg-3`} type="text" name="direccion" value={form.direccion} onChange={ (e)=> verifyData(e)}/>
-                            </div>
-                            {error.admin && form.admin ?
-                                <div className={`row`}>
-                                    <h5 className={`${Style.alertTexts} col-6`}>Sólo letras (y espacios) sin números</h5>
-                                </div>
-                                : null 
-                            } */}
+                    <h4
+                      className={`${Style.lbl_last_name} col-1 mt-md-2 mt-lg-2`}
+                      id="nombreLabel"
+                    >
+                      Apellido (*)
+                    </h4>
+                    <input
+                      className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5`}
+                      type="text"
+                      name="last_name"
+                      value={form.last_name}
+                      onChange={(e) => verifyAdmin(e)}
+                    />
 
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.lbl_cel1} col-1 mt-md-2 mt-lg-2 text-sm-start`}
-                  >
-                    Celular1 (*)
-                  </h4>
-                  <input
-                    className={`${Style.inpt_cel1} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
-                    type="text"
-                    name="phone_number"
-                    value={form.phone_number}
-                    onChange={(e) => verifyCel(e)}
-                    minLength="9"
-                  />
-                  <h4
-                    className={`${Style.lbl_cel2} col-1 mt-md-2 mt-lg-2 text-sm-start`}
-                  >
-                    Celular2
-                  </h4>
-                  <input
-                    className={`${Style.inpt_cel2} mt-1 mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5 repeatMail `}
-                    type="text"
-                    name="phone_number2"
-                    value={form.phone_number2}
-                    onChange={(e) => verifyCel2(e)}
-                    minLength="9"
-                  />
-                </div>
+                    {(error.name && form.name) ||
+                    (error.last_name && form.last_name) ? (
+                      <div className={`row d-none d-md-block d-lg-block`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Nombre y Apellido admiten sólo letras (y espacios) sin
+                          números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
 
-                <div className="d-none d-md-block d-lg-block">
-                  {form.phone_number && error.phone_number ? (
-                    <div className={`row`}>
-                      <h5 className={`${Style.alertTexts} col-3`}>
-                        Sólo números (mínimo 9 dígitos)
-                      </h5>
-                    </div>
-                  ) : null}
-                  {/* {form.phone_number2 && error.phone_number2 ? (
+                    {error.name && form.name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                    {error.last_name && form.last_name ? (
+                      <div className={`row d-block d-md-none d-lg-none`}>
+                        <h5
+                          className={`${Style.alertTexts} col-12 col-md-6 col-lg-6`}
+                        >
+                          Sólo letras (y espacios) sin números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.lblDireccion} col-1 mt-md-2 mt-lg-2`}
+                    >
+                      Dirección (*)
+                    </h4>
+                    <input
+                      className={`${Style.inpDireccion} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
+                      type="text"
+                      name="address"
+                      onChange={(e) => verifyData(e)}
+                      value={form.address}
+                    />
+                    <h4
+                      className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Fecha de Nacimiento (*)
+                    </h4>
+                    <form
+                      className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
+                      noValidate
+                    >
+                      <TextField
+                        id="date"
+                        label=""
+                        type="date"
+                        name="birth_date"
+                        value={form.birth_date}
+                        onChange={(e) => verifyData(e)}
+                        // defaultValue="2017-05-24"
+                        className={`${Style.fechaNacField} ${classes.textField}`}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </form>
+                  </div>
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.lbl_cel1} col-1 mt-md-2 mt-lg-2 text-sm-start`}
+                    >
+                      Celular1 (*)
+                    </h4>
+                    <input
+                      className={`${Style.inpt_cel1} mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 repeatMail `}
+                      type="text"
+                      name="phone_number"
+                      value={form.phone_number}
+                      onChange={(e) => verifyCel(e)}
+                      minLength="9"
+                    />
+                    <h4
+                      className={`${Style.lbl_cel2} col-1 mt-md-2 mt-lg-2 text-sm-start`}
+                    >
+                      Celular2
+                    </h4>
+                    <input
+                      className={`${Style.inpt_cel2} mt-1 mt-sm-1 col-11 col-sm-11 col-md-5 col-lg-5 repeatMail `}
+                      type="text"
+                      name="phone_number2"
+                      value={form.phone_number2}
+                      onChange={(e) => verifyCel2(e)}
+                      minLength="9"
+                    />
+                  </div>
+
+                  <div className="d-none d-md-block d-lg-block">
+                    {form.phone_number && error.phone_number ? (
+                      <div className={`row`}>
+                        <h5 className={`${Style.alertTexts} col-3`}>
+                          Sólo números (mínimo 9 dígitos)
+                        </h5>
+                      </div>
+                    ) : null}
+                    {/* {form.phone_number2 && error.phone_number2 ? (
                     <div className={`row justify-content-center`}>
                       <h5 className={`${Style.alertTexts} col-3 text-center`}>
                         Sólo números
                       </h5>
                     </div>
                   ) : null} */}
-                </div>
-
-                <div className={`row`}>
-                  <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email (*)</h4>
-                  <input
-                    className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
-                    type="text"
-                    name="email"
-                    onChange={(e) => verifyMail(e)}
-                    value={form.email}
-                  />
-                  <h4 className={`${Style.clave} col-2 mt-2 mt-md-2 mt-lg-2`}>
-                    Nacionalidad (*)
-                  </h4>
-                  <input
-                    className={`${Style.claveInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 fmt-md-1 mt-lg-1`}
-                    type="text"
-                    name="nationality"
-                    onChange={(e) => verifyAdmin(e)}
-                    value={form.nationality}
-                  />
-                  {error.email && form.email ? (
-                    <div className={`row`}>
-                      <h5 className={`${Style.alertTexts} col-6`}>
-                        Introduza un correo válido
-                      </h5>
-                    </div>
-                  ) : null}
-                </div>
-
-                <div className={`row`}>
-                  <h4
-                    className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Viajes Internacionales (*)
-                  </h4>
-                  <div
-                    className={`col-5 col-sm-4 col-md-2 col-lg-2 mt-1 mt-md-1 mt-lg-1`}
-                  >
-                    <select
-                      className={`w-100`}
-                      name="inter_travels"
-                      value={form.inter_travels}
-                      onChange={(e) => inputs(e)}
-                    >
-                      <option value="-" defaultValue>
-                        -
-                      </option>
-                      <option value={true}>Sí</option>
-                      <option value={false}>No</option>
-                    </select>
                   </div>
-                </div>
 
-                <div className={`row`}>
-                  <h4
-                    className={`${Style.nroLicLbl} col-11 col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Nro Licencia (*)
-                  </h4>
-                  <input
-                    className={`${Style.nroLicInp} col-11 col-md-3 col-lg-3 mt-1 mt-md-1 mt-lg-1`}
-                    type="text"
-                    name="license_number"
-                    onChange={(e) => verifyCel(e)}
-                    value={form.license_number}
-                  />
-                  <h4
-                    className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Expiración Licencia (*)
-                  </h4>
-                  <form
-                    className={`${classes.container} ${Style.inputFecha} p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
-                    noValidate
-                  >
-                    <TextField
-                      id="license_due_date"
-                      label=""
-                      type="date"
-                      name="license_due_date"
-                      value={form.license_due_date}
-                      onChange={(e) => verifyData(e)}
-                      // defaultValue="2017-05-24"
-                      className={`${Style.fechaNacField} ${classes.textField}`}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
+                  <div className={`row`}>
+                    <h4 className={`col-1 mt-md-2 mt-lg-2`}>Email (*)</h4>
+                    <input
+                      className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
+                      type="text"
+                      name="email"
+                      onChange={(e) => verifyMail(e)}
+                      value={form.email}
                     />
-                  </form>
+                    <h4 className={`${Style.clave} col-2 mt-2 mt-md-2 mt-lg-2`}>
+                      Nacionalidad (*)
+                    </h4>
+                    <input
+                      className={`${Style.claveInp} col-11 col-sm-11 col-md-4 col-lg-4 mt-1 fmt-md-1 mt-lg-1`}
+                      type="text"
+                      name="nationality"
+                      onChange={(e) => verifyAdmin(e)}
+                      value={form.nationality}
+                    />
+                    {error.email && form.email ? (
+                      <div className={`row`}>
+                        <h5 className={`${Style.alertTexts} col-6`}>
+                          Introduza un correo válido
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
 
-                  {error.license_number && form.license_number ? (
+                  <div className={`row`}>
+                    <h4
+                      className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Viajes Internacionales (*)
+                    </h4>
                     <div
-                      className={`row text-start text-md-center text-lg-center`}
+                      className={`col-5 col-sm-4 col-md-2 col-lg-2 mt-1 mt-md-1 mt-lg-1`}
                     >
-                      <h5 className={`${Style.alertTexts} col-12`}>
-                        Sólo números
-                      </h5>
+                      <select
+                        className={`w-100`}
+                        name="inter_travels"
+                        value={form.inter_travels}
+                        onChange={(e) => inputs(e)}
+                      >
+                        <option value="-" defaultValue>
+                          -
+                        </option>
+                        <option value={true}>Sí</option>
+                        <option value={false}>No</option>
+                      </select>
                     </div>
-                  ) : null}
-                </div>
+                  </div>
 
-                <div className={`${Style.files}`}>
-                  <div className={`${Style.fotos} row`}>
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Foto (*)
+                  <div className={`row`}>
+                    <h4
+                      className={`${Style.nroLicLbl} col-11 col-md-2 col-lg-2 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Nro Licencia (*)
                     </h4>
-                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
                     <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="foto"
-                      onChange={(e) => uploadFiles(e)}
+                      className={`${Style.nroLicInp} col-11 col-md-3 col-lg-3 mt-1 mt-md-1 mt-lg-1`}
+                      type="text"
+                      name="license_number"
+                      onChange={(e) => verifyCel(e)}
+                      value={form.license_number}
                     />
-                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                    <h4
+                      className={`${Style.fechaNac} col-10 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Expiración Licencia (*)
+                    </h4>
+                    <form
+                      className={`${classes.container} ${Style.inputFecha} p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
+                      noValidate
+                    >
+                      <TextField
+                        id="license_due_date"
+                        label=""
+                        type="date"
+                        name="license_due_date"
+                        value={form.license_due_date}
+                        onChange={(e) => verifyData(e)}
+                        // defaultValue="2017-05-24"
+                        className={`${Style.fechaNacField} ${classes.textField}`}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </form>
+
+                    {error.license_number && form.license_number ? (
+                      <div
+                        className={`row text-start text-md-center text-lg-center`}
+                      >
+                        <h5 className={`${Style.alertTexts} col-12`}>
+                          Sólo números
+                        </h5>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className={`${Style.files}`}>
+                    <div className={`${Style.fotos} row`}>
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Foto (*)
+                      </h4>
+                      {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.foto} name="foto"/> */}
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="foto"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                      {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
-                  </div>
+                    </div>
 
-                  <div className={`${Style.fotos} row`}>
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Carnet (*)
-                    </h4>
-                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
-                    <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="carnet"
-                      onChange={(e) => uploadFiles(e)}
-                    />
-                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                    <div className={`${Style.fotos} row`}>
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Carnet (*)
+                      </h4>
+                      {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.carne} name="carne"/> */}
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="carnet"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                      {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
-                  </div>
+                    </div>
 
-                  <div className={`${Style.fotos} row`}>
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Licencia (*)
-                    </h4>
-                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                    <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="licencia"
-                      onChange={(e) => uploadFiles(e)}
-                    />
-                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                    <div className={`${Style.fotos} row`}>
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Licencia (*)
+                      </h4>
+                      {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="licencia"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                      {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
-                  </div>
+                    </div>
 
-                  <div className={`${Style.fotos} row`}>
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Antecedentes (*)
-                    </h4>
-                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                    <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="antecedentes"
-                      onChange={(e) => uploadFiles(e)}
-                    />
-                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                    <div className={`${Style.fotos} row`}>
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Antecedentes (*)
+                      </h4>
+                      {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="antecedentes"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                      {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
-                  </div>
+                    </div>
 
-                  <div className={`${Style.fotos} row`}>
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Hoja de Vida (*)
-                    </h4>
-                    {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
-                    <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="license_hoja"
-                      onChange={(e) => uploadFiles(e)}
-                    />
-                    {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
+                    <div className={`${Style.fotos} row`}>
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Hoja de Vida (*)
+                      </h4>
+                      {/* <input className={`col-8 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.licencia} name="licencia"/> */}
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="license_hoja"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                      {/* {!form.observaciones && error.observaciones && document.querySelector('.inpObs')? 
                                         <h5 className={`${Style.alerts}`}>Campo obligatorio</h5>
                                         :null
                                     } */}
-                  </div>
+                    </div>
 
-                  <div
-                    className={`${Style.fotos} row d-none d-md-block d-lg-block invisible`}
-                  >
-                    <h4 className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}>
-                      Seguro (*)
-                    </h4>
-                    <input
-                      type="file"
-                      className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
-                      name="seguro"
-                      onChange={(e) => uploadFiles(e)}
-                    />
+                    <div
+                      className={`${Style.fotos} row d-none d-md-block d-lg-block invisible`}
+                    >
+                      <h4
+                        className={`col-10 col-md-1 col-lg-1 mt-md-3 mt-lg-3`}
+                      >
+                        Seguro (*)
+                      </h4>
+                      <input
+                        type="file"
+                        className={`${Style.up} col-2 mt-md-2 mt-lg-2`}
+                        name="seguro"
+                        onChange={(e) => uploadFiles(e)}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className={`${Style.lastSection} row mt-3`}>
-                  <h4
-                    className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
-                  >
-                    Días Laborales (*)
-                  </h4>
-                  <div className={`${Style.days} col-11`}>
-                    <section>
-                      <label>Lunes</label>
-                      <input
-                        type="checkbox"
-                        name="monday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.monday}
-                      />
-                    </section>
-                    <section>
-                      <label>Martes</label>
-                      <input
-                        type="checkbox"
-                        name="tuesday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.tuesday}
-                      />
-                    </section>
-                    <section>
-                      <label>Miércoles</label>
-                      <input
-                        type="checkbox"
-                        name="wednesday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.wednesday}
-                      />
-                    </section>
-                    <section>
-                      <label>Jueves</label>
-                      <input
-                        type="checkbox"
-                        name="thursday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.thursday}
-                      />
-                    </section>
-                    <section>
-                      <label>Viernes</label>
-                      <input
-                        type="checkbox"
-                        name="friday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.friday}
-                      />
-                    </section>
-                    <section>
-                      <label>Sábado</label>
-                      <input
-                        type="checkbox"
-                        name="saturday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.saturday}
-                      />
-                    </section>
-                    <section>
-                      <label>Domingo</label>
-                      <input
-                        type="checkbox"
-                        name="sunday"
-                        onChange={(e) => verifyDays(e)}
-                        value={form.sunday}
-                      />
-                    </section>
+                  <div className={`${Style.lastSection} row mt-3`}>
+                    <h4
+                      className={`col-12 col-md-3 col-lg-3 mt-2 mt-md-2 mt-lg-2`}
+                    >
+                      Días Laborales (*)
+                    </h4>
+                    <div className={`${Style.days} col-11`}>
+                      <section>
+                        <label>Lunes</label>
+                        <input
+                          type="checkbox"
+                          name="monday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.monday}
+                        />
+                      </section>
+                      <section>
+                        <label>Martes</label>
+                        <input
+                          type="checkbox"
+                          name="tuesday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.tuesday}
+                        />
+                      </section>
+                      <section>
+                        <label>Miércoles</label>
+                        <input
+                          type="checkbox"
+                          name="wednesday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.wednesday}
+                        />
+                      </section>
+                      <section>
+                        <label>Jueves</label>
+                        <input
+                          type="checkbox"
+                          name="thursday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.thursday}
+                        />
+                      </section>
+                      <section>
+                        <label>Viernes</label>
+                        <input
+                          type="checkbox"
+                          name="friday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.friday}
+                        />
+                      </section>
+                      <section>
+                        <label>Sábado</label>
+                        <input
+                          type="checkbox"
+                          name="saturday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.saturday}
+                        />
+                      </section>
+                      <section>
+                        <label>Domingo</label>
+                        <input
+                          type="checkbox"
+                          name="sunday"
+                          onChange={(e) => verifyDays(e)}
+                          value={form.sunday}
+                        />
+                      </section>
+                    </div>
                   </div>
                 </div>
               </div>

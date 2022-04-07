@@ -330,8 +330,8 @@ export default function ViajesEmpresas() {
         <div className={`${Style.containerRegister} row`}>
           <div className={Style.form}></div>
           <div className={`${Style.formComplete}`}>
-            <h1 className={`${Style.title}`}>Agendar Viaje</h1>
-            <div className={Style.formRegister}>
+            <h1 className={`${Style.title}`} style={step === 3 ? {marginTop: '3.2rem'}:null}>Agendar Viaje</h1>
+            <div className={`${Style.formRegister}`} style={step === 3 ? {minHeight: '400px'}:null}>
               <div className={Style.titleForm}>
                 <h4
                   className={Style.titleEdit}
@@ -355,6 +355,7 @@ export default function ViajesEmpresas() {
                       ? {
                           backgroundColor: "rgb(54, 232, 210)",
                           color: "black",
+                          boxShadow: "0px 0px 3px white",
                           textDecoration: "underline",
                         }
                       : null
@@ -369,6 +370,7 @@ export default function ViajesEmpresas() {
                       ? {
                           backgroundColor: "rgb(54, 232, 210)",
                           color: "black",
+                          boxShadow: "0px 0px 3px white",
                           textDecoration: "underline",
                         }
                       : null
@@ -773,7 +775,55 @@ export default function ViajesEmpresas() {
                   </div>
                 </div>
               ) : (
-                <h1>step3</h1>
+                <div
+                  className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}
+                >
+                  <label className={`${Style.lbl}`}>Origen:</label>
+                  <label className={`${Style.datos}`}>Calle Córdoba 123</label>
+
+                  <label className={`${Style.lbl}`}>Fecha:</label>
+                  <label className={`${Style.datos}`}>15-04-2022</label>
+
+                  <label className={`${Style.lbl}`}>Destino:</label>
+                  <label className={`${Style.datos}`}>Calle San Jose 395</label>
+
+                  <label className={`${Style.lbl}`}>Persona1:</label>
+                  <label className={`${Style.datos}`}>......</label>
+
+                  <label className={`${Style.lbl}`}>Persona2:</label>
+                  <label className={`${Style.datos}`}>......</label>
+
+                  <label className={`${Style.lbl}`}>Persona3:</label>
+                  <label className={`${Style.datos}`}>....</label>
+
+                  <label className={`${Style.lbl}`}>Persona4:</label>
+                  <label className={`${Style.datos}`}>....</label>
+
+                  {/* <label className={`${Style.lbl}`}>Apellido:</label>
+                  <label className={`${Style.datos}`}>{user.last_name}</label>
+
+                  <label className={`${Style.lbl}`}>Nombre:</label>
+                  <label className={`${Style.datos}`}>{user.name}</label>
+
+                  <label className={`${Style.lbl}`}>Rut:</label>
+                  <label className={`${Style.datos}`}>{user.rut}</label>
+
+                  <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
+                  <label className={`${Style.datos}`}>{user.birth_date}</label>
+
+                  <label className={`${Style.lbl}`}>Dirección:</label>
+                  <label className={`${Style.datos}`}>{user.address}</label>
+
+                  <label className={`${Style.lbl}`}>Celular1:</label>
+                  <label className={`${Style.datos}`}>
+                    {user.phone_number}
+                  </label>
+
+                  <label className={`${Style.lbl}`}>Celular2:</label>
+                  <label className={`${Style.datos}`}>
+                    {user.phone_number2 ? user.phone_number2 : "-"}
+                  </label> */}
+                </div>
               )}
             </div>
             <div className={Style.containerSave}>

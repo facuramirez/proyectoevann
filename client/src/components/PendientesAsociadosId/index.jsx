@@ -94,6 +94,7 @@ export default function PendientesAsociadosId() {
   };
 
   const back = (e) => {
+    dispatch(getOwner({}));
     history.push("/back_office_administracion/pendientes_aprobacion/asociados");
   };
 

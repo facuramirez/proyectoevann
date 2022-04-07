@@ -40,7 +40,7 @@
   color: white;
   min-height: 200px;
   height: 280px;
-  max-height: 300px;
+  /* max-height: 300px; */
 }
 
 .alertTexts,
@@ -296,6 +296,34 @@
   border-bottom: 1px solid rgb(54, 232, 210);
 }
 
+.misDatos{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: space-evenly;
+  /* border: 1px solid rgb(54, 232, 210); */
+  width: 80%;
+  margin: 0px auto;
+  height: fit-content;
+  
+}
+
+.misDatos label{
+  background-color: rgb(33, 37, 41);
+  border-radius: 20px;
+  padding: 0.3rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  color: white;
+  margin-top: 0.5rem;
+  width: 40%;
+}
+
+.misDatos .lbl{
+  font-weight: bold;
+}
+
+
 @media (max-width: 992px) {
   .formComplete {
     width: 100%;
@@ -336,7 +364,7 @@
   }
   .formRegister {
     width: 80%;
-    height: fit-content !important;
+    /* height: fit-content !important; */
     min-height: 510px;
   }
   .titleForm h4 {
@@ -412,6 +440,6 @@
   }
   .formRegister {
     height: fit-content;
-    min-height: 600px;
+    min-height: fit-content !important;
   }
 }

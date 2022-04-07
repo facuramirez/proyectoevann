@@ -118,6 +118,12 @@ export default function PendientesAsociados() {
     history.push("/back_office_administracion/pendientes_aprobacion");
   };
 
+  useEffect(() => {
+    console.log(asociados, 'asociados')
+  
+
+  }, [asociados])
+  
   return (
     <div>
       <div className={`${Style.containerPendientes} row containerVehiculos`}>
