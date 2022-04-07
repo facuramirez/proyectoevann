@@ -2,7 +2,7 @@
     background-image: url('../../img/camionetaOscura.png');
     background-size: cover;
     background-position: center;
-    min-height: 86vh;
+    min-height: 86.7vh;
 }
 
 .registerOne{
@@ -257,6 +257,20 @@
 .containerForm {
     padding: 0px;
     margin: 0px;
+}
+
+.loading {
+    text-align: center;
+}
+
+.alreadyExists {
+    font-size: 1rem;
+    /* background-color: rgb(54, 232, 210); */
+    background-color: red;
+    padding: 0.1rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 1rem;
+    width: fit-content;
+    margin-left: 1rem;
 }
 
 @media (max-width: 992px) {

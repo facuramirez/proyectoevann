@@ -14,6 +14,7 @@ import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "axios";
 import { helperDriver } from "./helperDriver";
+import Loader from '../Loader';
 
 export default function NewConductor() {
   let history = useHistory();
@@ -194,6 +195,7 @@ export default function NewConductor() {
     // }
   };
 
+  let [partial, setPartial] = useState(false);
   let [vr, setVr] = useState({ rut1: "Error", rut2: "Error" });
   let [loadvr, setLoadvr] = useState(false);
 
@@ -208,6 +210,7 @@ export default function NewConductor() {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
+        setPartial(false);
       }
     }
 
@@ -216,6 +219,7 @@ export default function NewConductor() {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
+        setPartial(false);
       }
     }
 
@@ -223,6 +227,7 @@ export default function NewConductor() {
       setError({ ...error, rut: "" });
     } else if (!rut1 || !rut2) {
       setError({ ...error, rut: "Error" });
+      setPartial(false);
     }
 
     let rutComplete = `${rut1}-${rut2}`;
@@ -232,27 +237,20 @@ export default function NewConductor() {
     // console.log(form, 'form');
   };
 
-  let [partial, setPartial] = useState({ exists: true, user: {} });
-
-  useEffect(() => {
-    // let rut1 = document.getElementById('rut1').value;
-    // let rut2 = document.getElementById('rut2').value;
-    // console.log(rut1, rut2)
-    // if(!rut1 && !rut2) return;
-    
+  useEffect(() => {    
     if (!error.rut) {
       setLoadvr(true);
       helperDriver(form.rut).then((response) => {
-        console.log(response.data);
+        console.log(response.data, 'DATAA');
         setPartial(response.data);
         setLoadvr(false);
       });
     }
   }, [form.rut]);
 
-  // useEffect(() => {
-  //   console.log(partial, "partial");
-  // }, [partial.exists]);
+  useEffect(() => {
+    console.log(partial, "partial");
+  }, [partial]);
 
   const verifyData = (e) => {
     let value = e.target.value;
@@ -597,7 +595,8 @@ export default function NewConductor() {
                     onChange={(e) => verifyRut(e)}
                     maxLength="1"
                   />
-                  {loadvr && form.rut.length > 1 && <span>Cargando...</span>}
+                  {loadvr && form.rut.length > 1 && <div className={Style.loading}><Loader width='1rem'/></div>}
+                  {!loadvr && form.rut.length > 1 && !partial.exists && partial.user?.rut && <h1 className={Style.alreadyExists}>El Rut tipeado ya existe!</h1>}
                   {error.rut && form.rut ? (
                     <div className={`row`}>
                       <h5 className={`${Style.alertTexts} col-6`}>
@@ -609,7 +608,7 @@ export default function NewConductor() {
                 <div
                   className={Style.containerForm}
                   style={
-                    !error.rut && form.rut.length !== 1 && partial && !partial.exists && !loadvr
+                    !error.rut && form.rut.length !== 1 && partial && !partial.exists && !partial.user?.rut && !loadvr
                       ? { display: "block" }
                       : { display: "none" }
                   }
