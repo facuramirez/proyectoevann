@@ -1,5 +1,5 @@
 import Style from "./NewCarForm.module.css";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { VscSave } from "react-icons/vsc";
@@ -32,7 +32,7 @@ export default function NewCarForm() {
     business: false,
     family: false,
     events: false,
-    make: "",
+    make: "-",
     model: "",
   });
 
@@ -58,6 +58,19 @@ export default function NewCarForm() {
     make: "Error",
     model: "Error",
   });
+
+  let [makes, setMakes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/makes/`)
+      .then((response) => {
+        setMakes(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const clear = (e) => {
     e.preventDefault();
@@ -117,10 +130,31 @@ export default function NewCarForm() {
     inputs[0].focus();
   };
 
+  let [models, setModels] = useState([]);
+  let [idMake, setIdMake] = useState(0);
+
+  useEffect(() => {
+     axios
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/models/?make=${idMake}`)
+      .then((response) => {
+        console.log(response.data, 'models');
+        setModels(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [idMake])
+  
   const inputs = (e) => {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
+
+    if ((name = "make")) {
+      let make = makes.filter((make) => make.name === value);
+      let { id } = make?.[0];
+      setIdMake(id);
+    }
 
     setForm({
       ...form,
@@ -138,7 +172,6 @@ export default function NewCarForm() {
         [name]: "",
       });
     }
-    console.log(form, "form");
   };
 
   let formData = new FormData();
@@ -206,8 +239,8 @@ export default function NewCarForm() {
     // formData.append("hoja", form.license_hoja);
     // formData.append("work_days", JSON.stringify(data.work_days));
 
-    console.log(form, 'FORMMMMMMMM');
-    console.log(error, 'ERRORRRRRRR');
+    console.log(form, "FORMMMMMMMM");
+    console.log(error, "ERRORRRRRRR");
     if (
       form.circulacion &&
       form.responsabilidad &&
@@ -224,7 +257,7 @@ export default function NewCarForm() {
       form.year &&
       form.technical_review &&
       (form.business || form.family || form.events) &&
-      form.make &&
+      form.make !== '-' &&
       form.model
     ) {
       await swal({
@@ -308,25 +341,30 @@ export default function NewCarForm() {
 
     setForm({ ...form, [name]: file });
 
-    if(!file) {
-      setError({...error, [name]: 'Error'})
+    if (!file) {
+      setError({ ...error, [name]: "Error" });
     } else {
-      setError({...error, [name]: ''})
+      setError({ ...error, [name]: "" });
     }
   };
 
   const checkLines = (e) => {
     const value = e.target.checked;
     const name = e.target.name;
-    
+
     setForm({ ...form, [name]: value });
 
-    if(!value) {
-      setError({...error, [name]: 'Error'})
+    if (!value) {
+      setError({ ...error, [name]: "Error" });
     } else {
-      setError({...error, [name]: ''})
+      setError({ ...error, [name]: "" });
     }
   };
+
+  useEffect(() => {
+    console.log(form, 'form');
+  }, [form])
+  
 
   return (
     <div>
@@ -403,8 +441,11 @@ export default function NewCarForm() {
                     value={form.make}
                   >
                     <option value="-">-</option>
-                    <option value="SD">Marca 1</option>
-                    <option value="VA">Marca 2</option>
+                    {makes.map((make, i) => (
+                      <option value={make.name}>{make.name}</option>
+                    ))}
+                    {/* <option value="SD">Marca 1</option>
+                    <option value="VA">Marca 2</option> */}
                   </select>
                   <label
                     className={`${Style.cantPas} mt-2 mt-sm-2 mt-md-0 mt-lg-0 col-sm-3 col-md-2 col-lg-2 text-start text-md-start text-lg-start`}
@@ -418,11 +459,16 @@ export default function NewCarForm() {
                     value={form.model}
                   >
                     <option value="-">-</option>
-                    <option value="1">Modelo 1</option>
-                    <option value="2">Modelo 2</option>
-                    <option value="3">Modelo 3</option>
-                    <option value="4">Modelo 4</option>
-                    <option value="5">Modelo 5</option>
+                    {makes.length > 0 && form.make !== '-' &&
+                    models.map(model => (
+                      <option value={model.name}>{model.name}</option>
+                    ))
+                    // <option value="1">Modelo 1</option>
+                    // <option value="2">Modelo 2</option>
+                    // <option value="3">Modelo 3</option>
+                    // <option value="4">Modelo 4</option>
+                    // <option value="5">Modelo 5</option>
+                  }
                   </select>
                   {/* <input className={`col-lg-4 inpObs`} type="text" onChange={(e)=>inputs(e)} value={form.observaciones} name="observaciones"/> */}
                 </div>

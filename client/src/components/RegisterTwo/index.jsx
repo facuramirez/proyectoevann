@@ -828,10 +828,10 @@ export default function RegisterTwo() {
                       CC (Cuenta Corriente)
                     </option>
                     <option value="CV" onChange={(e) => verifyData(e)}>
-                      CV
+                      CV (Cuenta Vista)
                     </option>
                     <option value="CE" onChange={(e) => verifyData(e)}>
-                      CE
+                      CE (Cuena Electrónica)
                     </option>
                   </select>
                   {form.tipo_cuenta === "-" ? (

@@ -172,7 +172,7 @@ export default function Viajes() {
                     </select>
                   </div>
                 </section>
-                <section
+                {/* <section
                   className={`${Style.divButtons} col-12 col-sm-12 col-md-7 col-lg-7 mt-3 mt-sm-3`}
                 >
                   <div
@@ -187,13 +187,8 @@ export default function Viajes() {
                     <FcSearch
                       className={`${Style.searchIcon} col-5 col-sm-5 col-md-1 col-lg-1`}
                     />
-                    {/* <button
-                      className={`${Style.inactives} col-5 col-sm-5 col-md-2 col-lg-2 mt-0 mt-sm-0 mt-md-0 mt-lg-0`}
-                    >
-                      Ver inactivos
-                    </button> */}
                   </div>
-                </section>
+                </section> */}
               </div>
 
               <div className={`${Style.table} col-12`}>
