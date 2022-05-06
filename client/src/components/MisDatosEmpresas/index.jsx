@@ -128,34 +128,34 @@ export default function MisDatosEmpresas() {
                         <label className={`${Style.datos}`}>987573244</label> */}
 
             <label className={`${Style.lbl}`}>Apellido:</label>
-            <label className={`${Style.datos}`}>Gonzalez</label>
+            <label className={`${Style.datos}`}>{user.last_name}</label>
             {/* <label className={`${Style.datos}`}>{user.last_name}</label> */}
 
             <label className={`${Style.lbl}`}>Nombre:</label>
-            <label className={`${Style.datos}`}>Juan</label>
+            <label className={`${Style.datos}`}>{user.name}</label>
             {/* <label className={`${Style.datos}`}>{user.name}</label> */}
 
             <label className={`${Style.lbl}`}>Rut:</label>
-            <label className={`${Style.datos}`}>6747463-5</label>
+            <label className={`${Style.datos}`}>{user.rut}</label>
             {/* <label className={`${Style.datos}`}>{user.rut}</label> */}
 
             <label className={`${Style.lbl}`}>Fecha de Nacimiento:</label>
-            <label className={`${Style.datos}`}>20/05/1976</label>
+            <label className={`${Style.datos}`}>{user.birth_date}</label>
             {/* <label className={`${Style.datos}`}>{user.birth_date}</label> */}
 
             <label className={`${Style.lbl}`}>Dirección:</label>
-            <label className={`${Style.datos}`}>Av. Corrientes 123</label>
+            <label className={`${Style.datos}`}>{user.address}</label>
             {/* <label className={`${Style.datos}`}>{user.address}</label> */}
 
             <label className={`${Style.lbl}`}>Celular1:</label>
-            <label className={`${Style.datos}`}>09375637</label>
+            <label className={`${Style.datos}`}>{user.phone_number}</label>
             {/* <label className={`${Style.datos}`}>{user.phone_number}</label> */}
 
             <label className={`${Style.lbl}`}>Celular2:</label>
-            <label className={`${Style.datos}`}>-</label>
-            {/* <label className={`${Style.datos}`}>
+            {/* <label className={`${Style.datos}`}>-</label> */}
+            <label className={`${Style.datos}`}>
               {user.phone_number2 ? user.phone_number2 : "-"}
-            </label> */}
+            </label>
           </div>
         </div>
       </div>

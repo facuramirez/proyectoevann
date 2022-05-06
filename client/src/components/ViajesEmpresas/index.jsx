@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Style from "./ViajesEmpresas.module.css";
 import register from "../../img/register.jpg";
 import React from "react";
@@ -13,6 +13,9 @@ import Fade from "react-reveal/Fade";
 import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "axios";
+import PlacesAutocomplete from 'react-places-autocomplete';
+
+
 
 export default function ViajesEmpresas() {
   const history = useHistory();
@@ -39,6 +42,18 @@ export default function ViajesEmpresas() {
     fecha: "",
     hora: "",
     destino: "",
+    persona1: "",
+    persona2: "",
+    persona3: "",
+    persona4: "",
+    aborda1: false,
+    aborda2: false,
+    aborda3: false,
+    aborda4: false,
+    dir1: "",
+    dir2: "",
+    dir3: "",
+    dir4: "",
   });
 
   let [error, setError] = useState({
@@ -46,68 +61,80 @@ export default function ViajesEmpresas() {
     fecha: "Error",
     hora: "Error",
     destino: "Error",
+    persona1: "Error",
+    persona2: "Error",
+    persona3: "Error",
+    persona4: "Error",
+    aborda1: "Error",
+    aborda2: "Error",
+    aborda3: "Error",
+    aborda4: "Error",
+    dir1: "Error",
+    dir2: "Error",
+    dir3: "Error",
+    dir4: "Error",
   });
 
-  const clear = (e) => {
-    e.preventDefault();
-    let inputs = document.querySelectorAll("input");
+  // const clear = (e) => {
+  //   e.preventDefault();
+  //   let inputs = document.querySelectorAll("input");
 
-    setForm({
-      rut: "",
-      name: "",
-      last_name: "",
-      address: "",
-      birth_date: "",
-      phone_number: "",
-      phone_number2: "",
-      email: "",
-      nationality: "",
-      inter_travels: "-",
-      license_number: "",
-      foto: "",
-      carnet: "",
-      licencia: "",
-      antecedentes: "",
-      license_hoja: "",
-      license_due_date: "",
-      monday: false,
-      tuesday: false,
-      wednesday: false,
-      thursday: false,
-      friday: false,
-      saturday: false,
-      sunday: false,
-    });
+  //   setForm({
+  //     rut: "",
+  //     name: "",
+  //     last_name: "",
+  //     address: "",
+  //     birth_date: "",
+  //     phone_number: "",
+  //     phone_number2: "",
+  //     email: "",
+  //     nationality: "",
+  //     inter_travels: "-",
+  //     license_number: "",
+  //     foto: "",
+  //     carnet: "",
+  //     licencia: "",
+  //     antecedentes: "",
+  //     license_hoja: "",
+  //     license_due_date: "",
+  //     monday: false,
+  //     tuesday: false,
+  //     wednesday: false,
+  //     thursday: false,
+  //     friday: false,
+  //     saturday: false,
+  //     sunday: false,
+  //   });
 
-    setError({
-      rut: "",
-      name: "",
-      last_name: "",
-      address: "",
-      birth_date: "",
-      phone_number: "",
-      phone_number2: "",
-      email: "",
-      nationality: "",
-      inter_travels: "",
-      license_number: "",
-      foto: "",
-      carnet: "",
-      licencia: "",
-      antecedentes: "",
-      license_hoja: "",
-      license_due_date: "",
-      monday: "",
-      tuesday: "",
-      wednesday: "",
-      thursday: "",
-      friday: "",
-      saturday: "",
-      sunday: "",
-    });
+  //   setError({
+  //     rut: "",
+  //     name: "",
+  //     last_name: "",
+  //     address: "",
+  //     birth_date: "",
+  //     phone_number: "",
+  //     phone_number2: "",
+  //     email: "",
+  //     nationality: "",
+  //     inter_travels: "",
+  //     license_number: "",
+  //     foto: "",
+  //     carnet: "",
+  //     licencia: "",
+  //     antecedentes: "",
+  //     license_hoja: "",
+  //     license_due_date: "",
+  //     monday: "",
+  //     tuesday: "",
+  //     wednesday: "",
+  //     thursday: "",
+  //     friday: "",
+  //     saturday: "",
+  //     sunday: "",
+  //   });
 
-    inputs[0].focus();
-  };
+  //   inputs[0].focus();
+  // };
 
   const inputs = (e) => {
     e.preventDefault();
@@ -274,6 +301,7 @@ export default function ViajesEmpresas() {
     setForm({ ...form, [name]: number });
   };
 
+
   const verifyAdmin = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -317,6 +345,9 @@ export default function ViajesEmpresas() {
   const next_save = async (e) => {
     e.preventDefault();
     setStep(step + 1);
+    if(step === 3) {
+      console.log(form, 'form');
+    }
   };
 
   const back = (e) => {
@@ -503,8 +534,8 @@ export default function ViajesEmpresas() {
                     >
                       <select
                         className={`w-100 text-center`}
-                        name="inter_travels"
-                        value={form.inter_travels}
+                        name="persona1"
+                        value={form.persona1}
                         onChange={(e) => inputs(e)}
                       >
                         <option value="-" defaultValue>
@@ -520,9 +551,9 @@ export default function ViajesEmpresas() {
                       <section className="d-flex justify-content-center">
                         <input
                           type="checkbox"
-                          name="monday"
+                          name="aborda1"
                           onChange={(e) => verifyDays(e)}
-                          value={form.monday}
+                          value={form.aborda1}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -533,8 +564,8 @@ export default function ViajesEmpresas() {
                     <input
                       className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
                       type="text"
-                      name="origen"
-                      value={form.origen}
+                      name="dir1"
+                      value={form.dir1}
                       onChange={(e) => verifyAdmin(e)}
                       placeholder="Dirección..."
                     />
@@ -572,8 +603,8 @@ export default function ViajesEmpresas() {
                     >
                       <select
                         className={`w-100 text-center`}
-                        name="inter_travels"
-                        value={form.inter_travels}
+                        name="persona2"
+                        value={form.persona2}
                         onChange={(e) => inputs(e)}
                       >
                         <option value="-" defaultValue>
@@ -589,9 +620,9 @@ export default function ViajesEmpresas() {
                       <section className="d-flex justify-content-center">
                         <input
                           type="checkbox"
-                          name="monday"
+                          name="aborda2"
                           onChange={(e) => verifyDays(e)}
-                          value={form.monday}
+                          value={form.aborda2}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -602,8 +633,8 @@ export default function ViajesEmpresas() {
                     <input
                       className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
                       type="text"
-                      name="origen"
-                      value={form.origen}
+                      name="dir2"
+                      value={form.dir2}
                       onChange={(e) => verifyAdmin(e)}
                       placeholder="Dirección..."
                     />
@@ -641,8 +672,8 @@ export default function ViajesEmpresas() {
                     >
                       <select
                         className={`w-100 text-center`}
-                        name="inter_travels"
-                        value={form.inter_travels}
+                        name="persona3"
+                        value={form.persona3}
                         onChange={(e) => inputs(e)}
                       >
                         <option value="-" defaultValue>
@@ -658,9 +689,9 @@ export default function ViajesEmpresas() {
                       <section className="d-flex justify-content-center">
                         <input
                           type="checkbox"
-                          name="monday"
+                          name="aborda3"
                           onChange={(e) => verifyDays(e)}
-                          value={form.monday}
+                          value={form.aborda3}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -671,8 +702,8 @@ export default function ViajesEmpresas() {
                     <input
                       className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
                       type="text"
-                      name="origen"
-                      value={form.origen}
+                      name="dir3"
+                      value={form.dir3}
                       onChange={(e) => verifyAdmin(e)}
                       placeholder="Dirección..."
                     />
@@ -710,8 +741,8 @@ export default function ViajesEmpresas() {
                     >
                       <select
                         className={`w-100 text-center`}
-                        name="inter_travels"
-                        value={form.inter_travels}
+                        name="persona4"
+                        value={form.persona4}
                         onChange={(e) => inputs(e)}
                       >
                         <option value="-" defaultValue>
@@ -727,9 +758,9 @@ export default function ViajesEmpresas() {
                       <section className="d-flex justify-content-center">
                         <input
                           type="checkbox"
-                          name="monday"
+                          name="aborda4"
                           onChange={(e) => verifyDays(e)}
-                          value={form.monday}
+                          value={form.aborda4}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -740,8 +771,8 @@ export default function ViajesEmpresas() {
                     <input
                       className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
                       type="text"
-                      name="origen"
-                      value={form.origen}
+                      name="dir4"
+                      value={form.dir4}
                       onChange={(e) => verifyAdmin(e)}
                       placeholder="Dirección..."
                     />

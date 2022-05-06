@@ -5,11 +5,12 @@ import { TiEdit, TiDeleteOutline } from "react-icons/ti";
 import { FiUsers } from "react-icons/fi";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   initialGetConductores,
   filterConductores,
+  getUsersBusiness,
 } from "../../globalState/Actions";
 import { FcSearch } from "react-icons/fc";
 import axios from "../../axiosConfig";
@@ -18,7 +19,7 @@ import Loader from "../Loader";
 
 export default function UsuariosEmpresas() {
   const dispatch = useDispatch();
-  let conductores = useSelector((state) => state["conductores"]);
+  let { usersBusiness } = useSelector((state) => state);
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,8 +27,7 @@ export default function UsuariosEmpresas() {
       .get(`${process.env.REACT_APP_BACKEND}/companies/users/`)
       .then((response) => {
         setLoading(false);
-        console.log(response.data, "conductores");
-        dispatch(initialGetConductores(response.data));
+        dispatch(getUsersBusiness(response.data));
       })
       .catch((error) => {
         swal({
@@ -39,6 +39,10 @@ export default function UsuariosEmpresas() {
       });
   }, []);
 
+  useEffect(() => {
+    console.log(usersBusiness, "usersBusiness");
+  }, [usersBusiness]);
+
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
   let [registerPerPage, setRegisterPerPage] = useState(5);
@@ -47,10 +51,17 @@ export default function UsuariosEmpresas() {
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
   const pageNumbers = [];
 
-  if (conductores.length > 0) {
-    conductores = conductores.slice(indexOfFirstRegister, indexOfLastRegister);
+  if (usersBusiness.length > 0) {
+    usersBusiness = usersBusiness.slice(
+      indexOfFirstRegister,
+      indexOfLastRegister
+    );
 
-    for (let i = 1; i <= Math.ceil(conductores.length / registerPerPage); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(usersBusiness.length / registerPerPage);
+      i++
+    ) {
       pageNumbers.push(i);
     }
   }
@@ -86,10 +97,10 @@ export default function UsuariosEmpresas() {
 
     let selectValue = parseInt(e.target.value);
 
-    conductores = conductores.slice(0, selectValue);
+    usersBusiness = usersBusiness.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterConductores(conductores));
+    dispatch(filterConductores(usersBusiness));
   };
 
   return (
@@ -110,7 +121,7 @@ export default function UsuariosEmpresas() {
             <div>
               <Loader />
             </div>
-          ) : conductores.length > 0 ? (
+          ) : usersBusiness.length > 0 ? (
             <div>
               <div className="col-12">
                 <div
@@ -175,7 +186,7 @@ export default function UsuariosEmpresas() {
                       </tr>
                     </thead>
                     <tbody className={Style.tableB}>
-                      {conductores.map((element, index) => (
+                      {usersBusiness.map((element, index) => (
                         <tr key={index}>
                           <td>{++index}</td>
                           {/* <td>{element.user.name}</td>

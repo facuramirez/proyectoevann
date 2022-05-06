@@ -163,44 +163,44 @@ export default function LoginEmpresa() {
   // =================== ESTO FUNCIONA CON BACKEND =========================
   const login = async (e) => {
     e.preventDefault();
-    history.push("/back_office_empresas/mis_datos");
+    // history.push("/back_office_empresas/mis_datos");
     
     // TODO: lo siguiente es para ingresar al BackOffice una vez que esten las rutas
-    // let data = {
-    //   username: form.mail,
-    //   password: form.clave,
-    // };
+    let data = {
+      username: form.mail,
+      password: form.clave,
+    };
 
-    // await axios
-    //   .post(`${process.env.REACT_APP_BACKEND}/admins/login/`, data)
-    //   .then(async (response) => {
-    //     dispatch(getId(response.data.user.id));
-    //     axios.defaults.headers.common["Authorization"] =
-    //       "Token " + response["data"]["token"];
-    //     await axios
-    //       .get(`${process.env.REACT_APP_BACKEND}/users/info/`)
-    //       .then((response) => {
-    //         dispatch(dataUser(response.data));
-    //         history.push("/back_office_administracion/mis_datos");
-    //         swal({
-    //           title: "Bienvenido a Evann!",
-    //           text: "Puedes administrar la página como desees!",
-    //           icon: "success",
-    //           timer: 2000,
-    //         });
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     swal({
-    //       title: "Datos Incorrectos!",
-    //       text: "El correo y/o la contraseña no son válidos",
-    //       icon: "warning",
-    //       timer: 2500,
-    //     });
-    //   });
+    await axios
+      .post(`${process.env.REACT_APP_BACKEND}/companies/login/`, data)
+      .then(async (response) => {
+        dispatch(getId(response.data.user.id));
+        axios.defaults.headers.common["Authorization"] =
+          "Token " + response["data"]["token"];
+        await axios
+          .get(`${process.env.REACT_APP_BACKEND}/users/info/`)
+          .then((response) => {
+            dispatch(dataUser(response.data));
+            history.push("/back_office_empresas/mis_datos");
+            swal({
+              title: "Bienvenido a Evann-Empresas!",
+              text: "Que disfrutes tu recorrido por aquí!",
+              icon: "success",
+              timer: 2000,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        swal({
+          title: "Datos Incorrectos!",
+          text: "El correo y/o la contraseña no son válidos",
+          icon: "warning",
+          timer: 2500,
+        });
+      });
   };
   // ==================================================================================
 

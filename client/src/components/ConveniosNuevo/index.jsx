@@ -338,18 +338,28 @@ export default function NewConductor() {
   };
 
   let user_mail;
+  const [exists, setExists] = useState(false);
 
   const verifyMail = (e) => {
     let value = e.target.value;
     let name = e.target.name;
 
-    user_mail = document.querySelector(".user_email");
-    console.log(user_mail);
-    console.log(value);
-    // inputRepeatPass = document.querySelector('.repeatPass');
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/users/?email=${value}`)
+      .then((response) => {
+        if (response.data.length === 1) {
+          // setError({ ...error, [name]: "Error" });
+          return setExists(true);
+        } else {
+          // setError({ ...error, [name]: "" });
+          return setExists(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    // let repeat = document.querySelector('.repeatMail');
-    // let repeat2 = document.querySelector('.repeatPass');
+    user_mail = document.querySelector(".user_email");
 
     user_mail.onpaste = (e) => {
       e.preventDefault();
@@ -380,6 +390,12 @@ export default function NewConductor() {
     //     setAlldata({ready: false})
     // }
   };
+
+  useEffect(() => {
+    console.log(form);
+    console.log(error);
+  }, [form])
+  
 
   const verifyCel = (e) => {
     let number = e.target.value;
@@ -481,6 +497,7 @@ export default function NewConductor() {
     console.log(data, "DATA CONVENIO");
 
     if (
+      !exists &&
       form.company_name &&
       form.company_rut &&
       form.company_businessName &&
@@ -931,13 +948,16 @@ export default function NewConductor() {
                     value={form.user_email}
                     onChange={(e) => verifyMail(e)}
                   />
-                  {error.user_email && form.user_email ? (
+                  {error.user_email && form.user_email && (
                     <div className={`row`}>
                       <h5 className={`${Style.alertTexts} col-6`}>
                         Introduza un correo válido
                       </h5>
                     </div>
-                  ) : null}
+                  )} 
+                  {exists && (
+                    <h5 className={Style.yaExiste}>El correo ya existe!</h5>
+                  )}
                 </div>
 
                 <div className={`row`}>

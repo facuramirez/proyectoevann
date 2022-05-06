@@ -16,6 +16,13 @@ export const GET_ADMINS = "GET_ADMINS";
 export const GET_PENDING = "GET_PENDING";
 export const GET_PENDING_DATA = "GET_PENDING_DATA";
 export const GET_CONVENIOS = "GET_CONVENIOS";
+export const GET_USERS_BUSINESS = "GET_USERS_BUSINESS";
+export const GET_TRIPS = "GET_TRIPS";
+
+export function getTrips(trips) {
+  // cars = cars.slice(0, 5);
+  return { type: GET_TRIPS, payload: trips };
+}
 
 export function initialGetCars(cars) {
   // cars = cars.slice(0, 5);
@@ -24,6 +31,10 @@ export function initialGetCars(cars) {
 
 export function filterCars(cars) {
   return { type: GET_CARS, payload: cars };
+}
+
+export function getUsersBusiness(users) {
+  return { type: GET_USERS_BUSINESS, payload: users };
 }
 
 export function initialGetConductores(conductores) {

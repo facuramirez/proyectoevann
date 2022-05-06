@@ -150,10 +150,13 @@ export default function NewCarForm() {
     let name = e.target.name;
     let value = e.target.value;
 
-    if ((name = "make")) {
+    console.log(idMake, 'make');
+
+    if ((name === "make")) {
       let make = makes.filter((make) => make.name === value);
-      let { id } = make?.[0];
+      let { id } = make && make?.[0];
       setIdMake(id);
+      // setMakes(makes.filter(make =>))
     }
 
     setForm({
@@ -230,7 +233,7 @@ export default function NewCarForm() {
     formData.append("files.permiso", data.files.permiso);
     formData.append("files.revision", data.files.revision);
     formData.append("files.seguro_responsabilidad", data.files.seguro_res);
-    formData.append("files.seguro_terceros", data.files.seguro_ter);
+    formData.append("files.seguro_teceros", data.files.seguro_ter);
 
     // formData.append("foto", form.foto);
     // formData.append("carnet", form.carnet);
@@ -567,7 +570,7 @@ export default function NewCarForm() {
                       onChange={(e) => inputs(e)}
                       value={form.technical_review}
                       name="technical_review"
-                      // defaultValue="2017-05-24"
+                      // defaultValue="2017-05-24"-
                       className={`${classes.textField} text-center`}
                       InputLabelProps={{
                         shrink: true,

@@ -243,6 +243,13 @@
     border-bottom: 1px solid rgb(54, 232, 210);
 }
 
+.yaExiste {
+    color: red !important;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    margin-left: 5px;
+}
+
 @media (max-width: 992px) {
     .formComplete{        
         width: 100%;

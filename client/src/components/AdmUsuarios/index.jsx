@@ -1,22 +1,11 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Style from "./AdmUsuarios.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
-import { FiUsers } from "react-icons/fi";
 import { autos } from "./data";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { AiFillCar } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  initialGetCars,
-  filterCars,
-  getAdmins,
-} from "../../globalState/Actions";
-import { FcSearch } from "react-icons/fc";
-import { ImEye } from "react-icons/im";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { getOwners } from "../../globalState/Actions";
+import { getAdmins } from "../../globalState/Actions";
 import axios from "axios";
 import Loader from "../Loader";
 

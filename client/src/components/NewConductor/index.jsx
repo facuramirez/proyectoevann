@@ -14,7 +14,8 @@ import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "axios";
 import { helperDriver } from "./helperDriver";
-import Loader from '../Loader';
+import Loader from "../Loader";
+import { StylesContext } from "@material-ui/styles";
 
 export default function NewConductor() {
   let history = useHistory();
@@ -206,7 +207,14 @@ export default function NewConductor() {
     let rut2 = document.getElementById("rut2").value;
 
     if (name === "rut1") {
-      if ((/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") && ((/^\d*$/.test(Number(rut1)) && rut1 >= 6000000 && rut1 < 99000000)) && rut1 && rut2) {
+      if (
+        (/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") &&
+        /^\d*$/.test(Number(rut1)) &&
+        rut1 >= 6000000 &&
+        rut1 < 99000000 &&
+        rut1 &&
+        rut2
+      ) {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
@@ -215,7 +223,14 @@ export default function NewConductor() {
     }
 
     if (name === "rut2") {
-      if ((/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") && ((/^\d*$/.test(Number(rut1)) && rut1 >= 6000000 && rut1 < 99000000)) && rut1 && rut2) {
+      if (
+        (/^\d*$/.test(Number(rut2)) || rut2.toUpperCase() === "K") &&
+        /^\d*$/.test(Number(rut1)) &&
+        rut1 >= 6000000 &&
+        rut1 < 99000000 &&
+        rut1 &&
+        rut2
+      ) {
         setError({ ...error, rut: "" });
       } else {
         setError({ ...error, rut: "Error" });
@@ -237,11 +252,11 @@ export default function NewConductor() {
     // console.log(form, 'form');
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!error.rut) {
       setLoadvr(true);
       helperDriver(form.rut).then((response) => {
-        console.log(response.data, 'DATAA');
+        console.log(response.data, "DATAA");
         setPartial(response.data);
         setLoadvr(false);
       });
@@ -271,9 +286,26 @@ export default function NewConductor() {
     setForm({ ...form, [name]: value });
   };
 
-  const verifyMail = (e) => {
+  const [exists, setExists] = useState(false);
+
+  const verifyMail = async (e) => {
     let value = e.target.value;
     let name = e.target.name;
+
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/users/?email=${value}`)
+      .then((response) => {
+        if (response.data.length === 1) {
+          setError({ ...error, [name]: "Error" });
+          return setExists(true);
+        } else {
+          setError({ ...error, [name]: "" });
+          return setExists(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     let mail = document.querySelector(".mail");
     // inputRepeatPass = document.querySelector('.repeatPass');
@@ -558,8 +590,6 @@ export default function NewConductor() {
     history.push("/back_office/conductores");
   };
 
-  
-
   return (
     <Fade>
       <div>
@@ -595,8 +625,19 @@ export default function NewConductor() {
                     onChange={(e) => verifyRut(e)}
                     maxLength="1"
                   />
-                  {loadvr && form.rut.length > 1 && <div className={Style.loading}><Loader width='1rem'/></div>}
-                  {!loadvr && form.rut.length > 1 && !partial.exists && partial.user?.rut && <h1 className={Style.alreadyExists}>El Rut tipeado ya existe!</h1>}
+                  {loadvr && form.rut.length > 1 && (
+                    <div className={Style.loading}>
+                      <Loader width="1rem" />
+                    </div>
+                  )}
+                  {!loadvr &&
+                    form.rut.length > 1 &&
+                    !partial.exists &&
+                    partial.user?.rut && (
+                      <h1 className={Style.alreadyExists}>
+                        El Rut tipeado ya existe!
+                      </h1>
+                    )}
                   {error.rut && form.rut ? (
                     <div className={`row`}>
                       <h5 className={`${Style.alertTexts} col-6`}>
@@ -608,7 +649,12 @@ export default function NewConductor() {
                 <div
                   className={Style.containerForm}
                   style={
-                    !error.rut && form.rut.length !== 1 && partial && !partial.exists && !partial.user?.rut && !loadvr
+                    !error.rut &&
+                    form.rut.length !== 1 &&
+                    partial &&
+                    !partial.exists &&
+                    !partial.user?.rut &&
+                    !loadvr
                       ? { display: "block" }
                       : { display: "none" }
                   }
@@ -769,6 +815,9 @@ export default function NewConductor() {
                       onChange={(e) => verifyMail(e)}
                       value={form.email}
                     />
+                    {exists && (
+                      <h5 className={Style.yaExiste}>El correo ya existe!</h5>
+                    )}
                     <h4 className={`${Style.clave} col-2 mt-2 mt-md-2 mt-lg-2`}>
                       Nacionalidad (*)
                     </h4>

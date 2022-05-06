@@ -148,9 +148,10 @@ export default function BackOfficeEmpresa() {
           >
             <div className={`${Style.menu} container-fluid`}>
               <a className={`${Style.welcome} navbar-brand`} href="#">
-                {window.location.pathname.includes('/back_office_empresas/mis_datos') ?
+                {/* {window.location.pathname.includes('/back_office_empresas/mis_datos') ?
                 `Bienvenido ${user.name}` : 'Bienvenido Juan'  
-              }
+              } */}
+                Bienvenido {user.name}
               </a>
               <button
                 className={`${Style.buttonHamburguer} navbar-toggler`}
@@ -297,19 +298,15 @@ export default function BackOfficeEmpresa() {
                   <Fade>
                     <UsuariosEmpresas />
                   </Fade>
-                )
-                : ruta === "/back_office_empresas/usuarios/nuevo_usuario" ? (
+                ) : ruta === "/back_office_empresas/usuarios/nuevo_usuario" ? (
                   <Fade>
                     <UsuariosEmpresasNuevo />
                   </Fade>
-                )
-                : ruta === "/back_office_empresas/agendar_viaje" ? (
+                ) : ruta === "/back_office_empresas/agendar_viaje" ? (
                   <Fade>
                     <ViajesEmpresas />
                   </Fade>
-                )
-                
-                : null}
+                ) : null}
               </div>
             </div>
           </section>

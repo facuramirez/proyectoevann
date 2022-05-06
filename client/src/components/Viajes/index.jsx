@@ -1,23 +1,19 @@
-import { Link } from "react-router-dom";
 import Style from "./Viajes.module.css";
 import Table from "react-bootstrap/Table";
-import { TiEdit, TiDeleteOutline } from "react-icons/ti";
-import { FiUsers } from "react-icons/fi";
-import { autoss } from "./data";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { AiFillCar } from "react-icons/ai";
+// import { autoss } from "./data";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { initialGetCars, filterCars } from "../../globalState/Actions";
-import { FcSearch } from "react-icons/fc";
+import { filterCars, getTrips } from "../../globalState/Actions";
 import { ImEye } from "react-icons/im";
 // import { moment } from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import swal from "sweetalert";
 import { CSVLink } from "react-csv";
+import axios from "axios";
 
 export default function Viajes() {
+  let { trips } = useSelector((state) => state);
   let [form, setForm] = useState({
     nroViaje: "",
     cliente: "",
@@ -34,11 +30,22 @@ export default function Viajes() {
 
   const dispatch = useDispatch();
   let cars;
-  let [autos, setAutos] = useState([]);
+  let [viajesLocal, setViajesLocal] = useState([]);
   const [filter, setFilter] = useState({
     desde: "",
     hasta: "",
   });
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_TRIPS}/bookings/`)
+      .then((response) => {
+        dispatch(getTrips(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   // ============== PAGINADO =============
   let [currentPage, setCurrentPage] = useState(1);
@@ -46,11 +53,11 @@ export default function Viajes() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  cars = autos.slice(indexOfFirstRegister, indexOfLastRegister);
+  trips = trips.slice(indexOfFirstRegister, indexOfLastRegister);
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(autos.length / registerPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(trips.length / registerPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -61,9 +68,9 @@ export default function Viajes() {
 
   // =====================================
 
-  useEffect(() => {
-    setAutos(autoss);
-  }, []);
+  // useEffect(() => {
+  //   setAutos(tripss);
+  // }, []);
 
   const editCar = (e, id) => {
     e.preventDefault();
@@ -85,13 +92,13 @@ export default function Viajes() {
 
     let selectValue = parseInt(e.target.value);
 
-    cars = autos.slice(0, selectValue);
+    trips = trips.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
-    dispatch(filterCars(cars));
+    dispatch(filterCars(trips));
   };
 
-  cars = cars.sort((a, b) => {
+  trips = trips.sort((a, b) => {
     const as = a.fecha.split("-");
     const ad = new Date(as[0], as[1] - 1, as[2]);
     const bs = b.fecha.split("-");
@@ -167,15 +174,15 @@ export default function Viajes() {
     let hasta = filter.hasta.split("-");
     hasta = new Date(hasta[0], hasta[1] - 1, hasta[2]);
 
-    cars = autoss.map((car) => {
+    trips = trips.map((car) => {
       let dateCar = car.fecha.split("-");
       dateCar = new Date(dateCar[0], dateCar[1] - 1, dateCar[2]);
 
       if (dateCar > desde && dateCar < hasta) return car;
     });
 
-    cars = cars.filter((car) => car !== undefined);
-    setAutos(cars);
+    trips = trips.filter((trip) => trip !== undefined);
+    setViajesLocal(trips);
   };
 
   const dates = (e) => {
@@ -202,16 +209,16 @@ export default function Viajes() {
   const csvReport = {
     filename: "Viajes.csv",
     headers: headers,
-    data: cars,
+    data: trips,
   };
 
   const filterReset = (e) => {
     let hoy = new Date();
-  
+
     let dia = hoy.getDate();
     let mes = hoy.getMonth() + 1;
     let año = hoy.getFullYear();
-    if(mes.toString().length === 1) mes = `0${mes.toString()}`;
+    if (mes.toString().length === 1) mes = `0${mes.toString()}`;
     hoy = `${año}-${mes}-${dia}`;
 
     setFilter({ desde: "1900-01-01", hasta: hoy });
@@ -226,40 +233,43 @@ export default function Viajes() {
           </div>
 
           <div className="col-12">
-            <div className={`${Style.select} row mb-3 justify-content-between`}>
-              <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
-                <div className={`${Style.firstLine}`}>
-                  <div>
-                    <h6
-                      className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
-                    >
-                      Registros por página
-                    </h6>
-                    <select
-                      className={`${Style.regPag} dropBox col-3 col-sm-2 col-md-3 col-lg-3`}
-                      onChange={(e) => dropBox(e)}
-                    >
-                      <option
-                        value="5"
-                        defaultValue
+            {trips.length > 0 && (
+              <div
+                className={`${Style.select} row mb-3 justify-content-between`}
+              >
+                <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
+                  <div className={`${Style.firstLine}`}>
+                    <div>
+                      <h6
+                        className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
+                      >
+                        Registros por página
+                      </h6>
+                      <select
+                        className={`${Style.regPag} dropBox col-3 col-sm-2 col-md-3 col-lg-3`}
                         onChange={(e) => dropBox(e)}
                       >
-                        5
-                      </option>
-                      <option value="10" onChange={(e) => dropBox(e)}>
-                        10
-                      </option>
-                      <option value="20" onChange={(e) => dropBox(e)}>
-                        20
-                      </option>
-                    </select>
+                        <option
+                          value="5"
+                          defaultValue
+                          onChange={(e) => dropBox(e)}
+                        >
+                          5
+                        </option>
+                        <option value="10" onChange={(e) => dropBox(e)}>
+                          10
+                        </option>
+                        <option value="20" onChange={(e) => dropBox(e)}>
+                          20
+                        </option>
+                      </select>
+                    </div>
+                    <div className={`${Style.export}`}>
+                      <CSVLink {...csvReport}>Exportar a Excel</CSVLink>
+                    </div>
                   </div>
-                  <div className={`${Style.export}`}>
-                    <CSVLink {...csvReport}>Exportar a Excel</CSVLink>
-                  </div>
-                </div>
 
-                {/* <div className="row mt-2">
+                  {/* <div className="row mt-2">
                     <h6
                       className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
                     >
@@ -267,80 +277,80 @@ export default function Viajes() {
                     </h6>
                   </div> */}
 
-                <div className={`${Style.divDesde} row mt-3`}>
-                  <h6
-                    className={`${Style.registers} ${Style.filter} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
-                  >
-                    * desde:
-                  </h6>
-
-                  <form
-                    className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
-                    noValidate
-                  >
-                    <TextField
-                      id="date"
-                      label=""
-                      type="date"
-                      name="desde"
-                      value={filter.desde}
-                      onChange={(e) => dates(e)}
-                      // defaultValue="2017-05-24"
-                      className={`${Style.fechaNacField} ${classes.textField}`}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </form>
-                  <div className={Style.filtrar}>
-                    <button
-                      className={`${Style.buttonFiltrar} btn btn-dark filtrar`}
-                      onClick={(e) => filterDate(e)}
+                  <div className={`${Style.divDesde} row mt-3`}>
+                    <h6
+                      className={`${Style.registers} ${Style.filter} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
                     >
-                      Filtrar
-                    </button>
-                  </div>
-                  <div className={Style.resetFilter}>
-                    <button
-                      className={`${Style.buttonResetear} btn btn-dark`}
-                      onClick={(e) => filterReset(e)}
+                      * desde:
+                    </h6>
+
+                    <form
+                      className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
+                      noValidate
                     >
-                      Reiniciar
-                    </button>
+                      <TextField
+                        id="date"
+                        label=""
+                        type="date"
+                        name="desde"
+                        value={filter.desde}
+                        onChange={(e) => dates(e)}
+                        // defaultValue="2017-05-24"
+                        className={`${Style.fechaNacField} ${classes.textField}`}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </form>
+                    <div className={Style.filtrar}>
+                      <button
+                        className={`${Style.buttonFiltrar} btn btn-dark filtrar`}
+                        onClick={(e) => filterDate(e)}
+                      >
+                        Filtrar
+                      </button>
+                    </div>
+                    <div className={Style.resetFilter}>
+                      <button
+                        className={`${Style.buttonResetear} btn btn-dark`}
+                        onClick={(e) => filterReset(e)}
+                      >
+                        Reiniciar
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                <div className="row mt-2">
-                  <h6
-                    className={`${Style.registers} ${Style.filter} ${Style.hasta} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
-                  >
-                    * hasta:
-                  </h6>
+                  <div className="row mt-2">
+                    <h6
+                      className={`${Style.registers} ${Style.filter} ${Style.hasta} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
+                    >
+                      * hasta:
+                    </h6>
 
-                  <form
-                    className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
-                    noValidate
-                  >
-                    <TextField
-                      id="date"
-                      label=""
-                      type="date"
-                      name="hasta"
-                      value={filter.hasta}
-                      onChange={(e) => dates(e)}
-                      // defaultValue="2017-05-24"
-                      className={`${Style.fechaNacField} ${classes.textField}`}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </form>
-                </div>
-              </section>
-              {/* <section
+                    <form
+                      className={`${classes.container} ${Style.inputFecha} mt-sm-1 p-0 p-sm-0 col-11 col-sm-11 col-md-3 col-lg-3`}
+                      noValidate
+                    >
+                      <TextField
+                        id="date"
+                        label=""
+                        type="date"
+                        name="hasta"
+                        value={filter.hasta}
+                        onChange={(e) => dates(e)}
+                        // defaultValue="2017-05-24"
+                        className={`${Style.fechaNacField} ${classes.textField}`}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </form>
+                  </div>
+                </section>
+                {/* <section
                 className={`${Style.divButtons} col-12 col-sm-12 col-md-7 col-lg-7 mt-3 mt-sm-3`}
               > */}
-              {/* <div
+                {/* <div
                   className={`${Style.buttonsTwo} row justify-content-sm-start justify-content-md-center justify-content-lg-end`}
                 >
                   <input
@@ -353,10 +363,11 @@ export default function Viajes() {
                     className={`${Style.searchIcon} col-5 col-sm-5 col-md-1 col-lg-1`}
                   />
                 </div> */}
-              {/* </section> */}
-            </div>
+                {/* </section> */}
+              </div>
+            )}
 
-            {cars.length > 0 ? (
+            {trips.length > 0 ? (
               <div style={{ minHeight: "50vh" }}>
                 <div className={`${Style.table} col-12`}>
                   <Table striped bordered hover variant="dark">
@@ -371,7 +382,7 @@ export default function Viajes() {
                       </tr>
                     </thead>
                     <tbody className={Style.tableB}>
-                      {cars.map((element, index) => (
+                      {trips.map((element, index) => (
                         <tr key={index}>
                           <td>{element.id}</td>
                           <td>{element.asociado}</td>
@@ -453,7 +464,7 @@ export default function Viajes() {
               <div style={{ minHeight: "50vh" }}>
                 <br />
                 <h1 className={`${Style.noCars} mt-4`}>
-                  No hay autos para mostrar
+                  No hay viajes para mostrar
                 </h1>
               </div>
             )}
