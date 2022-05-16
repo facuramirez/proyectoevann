@@ -18,7 +18,8 @@ import {
   GET_PENDING_DATA,
   GET_CONVENIOS,
   GET_USERS_BUSINESS,
-  GET_TRIPS
+  GET_TRIPS,
+  GET_BOOKINS
 } from "./Actions";
 
 const initialState = {
@@ -40,11 +41,17 @@ const initialState = {
   pendingData: [],
   convenios: [],
   usersBusiness: [],
-  trips: []
+  trips: [],
+  bookins: []
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case GET_BOOKINS:
+      return {
+        ...state,
+        bookins: action.payload,
+      };
     case GET_TRIPS:
       return {
         ...state,

@@ -498,6 +498,7 @@ export default function NewConductor() {
     // console.log(data, "DATAAAAAAAAAAAA");
     console.log(form, "FORMM");
     console.log(error, "ERROR");
+    console.log(formData, "FORM DATA !!!");
 
     if (
       form.rut &&

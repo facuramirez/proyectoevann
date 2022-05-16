@@ -227,17 +227,50 @@ function App() {
         component={BackOfficeAdm}
       />
 
+      <Route
+        exact
+        path="/back_office_administracion/viajes"
+        component={BackOfficeAdm}
+      />
+
       <Route exact path="/iniciar_sesion_empresas" component={LoginEmpresa} />
 
-      <Route exact path="/back_office_empresas" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/mis_datos" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/mis_datos/editar" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/cambiar_contraseña" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/usuarios" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/usuarios/nuevo_usuario" component={BackOfficeEmpresas} />
-      <Route exact path="/back_office_empresas/agendar_viaje" component={BackOfficeEmpresas} />
+      <Route
+        exact
+        path="/back_office_empresas"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/mis_datos"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/mis_datos/editar"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/cambiar_contraseña"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/usuarios"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/usuarios/nuevo_usuario"
+        component={BackOfficeEmpresas}
+      />
+      <Route
+        exact
+        path="/back_office_empresas/agendar_viaje"
+        component={BackOfficeEmpresas}
+      />
 
-      
       {/* <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos" component={BackOfficeAdm} /> 
       <Route exact path="/back_office_administracion/pendientes_aprobacion/vehiculos/detalles" component={BackOfficeAdm} />
       <Route exact path="/back_office_administracion/pendientes_aprobacion/conductores" component={BackOfficeAdm} /> 

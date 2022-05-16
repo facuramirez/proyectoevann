@@ -135,7 +135,7 @@ export default function NewCarForm() {
 
   useEffect(() => {
      axios
-      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/models/?make=${idMake}`)
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars/models/?make_id=${idMake}`)
       .then((response) => {
         console.log(response.data, 'models');
         setModels(response.data);
@@ -150,7 +150,7 @@ export default function NewCarForm() {
     let name = e.target.name;
     let value = e.target.value;
 
-    console.log(idMake, 'make');
+    // console.log(idMake, 'make');
 
     if ((name === "make")) {
       let make = makes.filter((make) => make.name === value);
@@ -244,6 +244,7 @@ export default function NewCarForm() {
 
     console.log(form, "FORMMMMMMMM");
     console.log(error, "ERRORRRRRRR");
+    console.log(formData, 'FORM DATA');
     if (
       form.circulacion &&
       form.responsabilidad &&

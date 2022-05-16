@@ -43,6 +43,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "../../axiosConfig";
 import { dataUser } from "../../globalState/Actions";
+import ViajesAdm from "../ViajesAdm";
 
 export default function BackOfficeAdm() {
   let dispatch = useDispatch();
@@ -140,6 +141,7 @@ export default function BackOfficeAdm() {
                       Administración de Usuarios
                     </Link>
                   </li>
+
                   {/* <li className={`nav-item active d-md-block d-lg-none`}>
                     <Link to="/back_office_administracion/facturas_y_pagos">
                       Facturas y Pagos
@@ -164,6 +166,9 @@ export default function BackOfficeAdm() {
                     <Link to="/back_office_administracion/convenios">
                       Convenios
                     </Link>
+                  </li>
+                  <li className={`nav-item active d-md-block d-lg-none`}>
+                    <Link to="/back_office_administracion/viajes">Viajes</Link>
                   </li>
                   <li className="nav-item active">
                     <a
@@ -235,6 +240,9 @@ export default function BackOfficeAdm() {
                   <Link to="/back_office_administracion/convenios">
                     Convenios
                   </Link>
+                </div>
+                <div className={`${Style.options} col-12`}>
+                  <Link to="/back_office_administracion/viajes">Viajes</Link>
                 </div>
               </div>
             </div>
@@ -380,6 +388,11 @@ export default function BackOfficeAdm() {
                   "/back_office_administracion/convenios/nuevo_convenio" ? (
                   <Fade>
                     <NuevoConvenio />
+                  </Fade>
+                ) : ruta ===
+                  "/back_office_administracion/viajes" ? (
+                  <Fade>
+                    <ViajesAdm />
                   </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/viajes" ? (
