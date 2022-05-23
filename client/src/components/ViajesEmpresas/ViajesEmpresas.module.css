@@ -38,8 +38,7 @@
   text-align: left;
   padding: 1.5rem 0.5rem 2rem 0.5rem;
   color: white;
-  min-height: 200px;
-  height: 280px;
+  height: fit-content;
   /* max-height: 300px; */
 }
 
@@ -296,7 +295,7 @@
   border-bottom: 1px solid rgb(54, 232, 210);
 }
 
-.misDatos{
+.misDatos {
   display: flex;
   flex-flow: row wrap;
   align-items: start;
@@ -305,10 +304,9 @@
   width: 80%;
   margin: 0px auto;
   height: fit-content;
-  
 }
 
-.misDatos label{
+.misDatos label {
   background-color: rgb(33, 37, 41);
   border-radius: 20px;
   padding: 0.3rem;
@@ -319,10 +317,33 @@
   width: 40%;
 }
 
-.misDatos .lbl{
+.misDatos .lbl {
   font-weight: bold;
 }
 
+.containerPagination {
+  width: 50%;
+  margin: 0px auto;
+  margin-top: 2rem;
+  /* border: 1px solid rgb(33, 37, 41);; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.containerPagination .pagePagination {
+  border-radius: 15px;
+  background-color: rgb(33, 37, 41);
+  color: white;
+  text-align: center;
+  width: 32px;
+  height: fit-content;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.containerPagination .pagePagination:hover {
+  color: #ccc;
+}
 
 @media (max-width: 992px) {
   .formComplete {
@@ -365,7 +386,7 @@
   .formRegister {
     width: 80%;
     /* height: fit-content !important; */
-    min-height: 510px;
+    /* min-height: 510px; */
   }
   .titleForm h4 {
     font-size: 1rem;

@@ -12,10 +12,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { dataUser, getId } from "../../globalState/Actions";
 import { useDispatch } from "react-redux";
+import { Button } from "antd";
 
 export default function LoginEmpresa() {
   let history = useHistory();
   let dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -164,7 +166,7 @@ export default function LoginEmpresa() {
   const login = async (e) => {
     e.preventDefault();
     // history.push("/back_office_empresas/mis_datos");
-    
+    setLoading(true);
     // TODO: lo siguiente es para ingresar al BackOffice una vez que esten las rutas
     let data = {
       username: form.mail,
@@ -180,6 +182,7 @@ export default function LoginEmpresa() {
         await axios
           .get(`${process.env.REACT_APP_BACKEND}/users/info/`)
           .then((response) => {
+            setLoading(false);
             dispatch(dataUser(response.data));
             history.push("/back_office_empresas/mis_datos");
             swal({
@@ -190,10 +193,12 @@ export default function LoginEmpresa() {
             });
           })
           .catch((error) => {
+            setLoading(false);
             console.log(error);
           });
       })
       .catch((error) => {
+        setLoading(false);
         swal({
           title: "Datos Incorrectos!",
           text: "El correo y/o la contraseña no son válidos",
@@ -246,7 +251,9 @@ export default function LoginEmpresa() {
 
               <div className={`${Style.data} col-12 col-md-12 col-lg-12`}>
                 <div className={`row`}>
-                  <h4 className={`col-2 col-sm-2 col-md-2 col-lg-2`}>Usuario</h4>
+                  <h4 className={`col-2 col-sm-2 col-md-2 col-lg-2`}>
+                    Usuario
+                  </h4>
                   <input
                     autoFocus
                     className={`${Style.mailInp} mail col-12 col-sm-9 col-md-9 col-lg-9 mt-1 mt-sm-1 mt-md-0 mt-lg-0`}
@@ -297,12 +304,25 @@ export default function LoginEmpresa() {
                     <FaArrowAltCircleLeft className={Style.iconBack} />
                     Volver
                   </button>
-                  <button
+                  {/* <button
                     className={`col-3 col-md-3 col-lg-3 ${Style.save}`}
                     onClick={(e) => login(e)}
                   >
                     Ingresar
-                  </button>
+                  </button> */}
+                  <Button
+                    className={`col-3 col-md-3 col-lg-3 ${Style.save}`}
+                    onClick={(e) => login(e)}
+                    loading={loading ? true : false}
+                    style={
+                      loading
+                        ? { backgroundColor: "rgba(55, 55, 55, 1)" }
+                        : { width: 'fit-content !important'}
+                    }
+                    disabled={loading ? true : false}
+                  >
+                    {loading ? "Ingresando" : "Ingresar"}
+                  </Button>
                 </div>
               </div>
             </div>

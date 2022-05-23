@@ -13,9 +13,11 @@ import Fade from "react-reveal/Fade";
 import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "../../axiosConfig";
+import { Button } from "antd";
 
 export default function RegisterTwo() {
   let history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   let inputRepeatEmail;
   let inputRepeatPass;
@@ -434,9 +436,11 @@ export default function RegisterTwo() {
         buttons: ["NO", "SI"],
       }).then(async (response) => {
         if (response) {
+          setLoading(true);
           await axios
             .post(`${process.env.REACT_APP_BACKEND}/owners/`, data)
             .then(async (response) => {
+              setLoading(false);
               await swal({
                 title: "Administrador registrado con éxito!",
                 text: "Por favor verifica tu correo para validar la cuenta",
@@ -447,6 +451,7 @@ export default function RegisterTwo() {
               history.push("/asociados/iniciar_sesion");
             })
             .catch((error) => {
+              setLoading(false);
               console.log(error, "ERROR POST OWNER");
             });
         } // cierro if
@@ -882,12 +887,25 @@ export default function RegisterTwo() {
                   <FaArrowAltCircleLeft className={Style.iconBack} />
                   Volver
                 </button>
-                <button
+                {/* <button
                   className={`${Style.save} notActive`}
                   onClick={(e) => save(e)}
                 >
                   Guardar
-                </button>
+                </button> */}
+                <Button
+                  className={`${Style.save} notActive`}
+                  onClick={(e) => save(e)}
+                  loading={loading ? true : false}
+                  style={
+                    loading
+                      ? { backgroundColor: "rgba(55, 55, 55, 1)" }
+                      : null
+                  }
+                  disabled={loading ? true : false}
+                >
+                  {loading ? "Registrando" : "Registrar"}
+                </Button>
               </div>
             </div>
           </div>

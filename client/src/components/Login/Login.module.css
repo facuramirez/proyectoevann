@@ -153,6 +153,10 @@
     border: none;
 }
 
+.save span:nth-child(2) {
+    margin-left: 7px;
+}
+
 .save:hover{
     color: #ccc;
 }

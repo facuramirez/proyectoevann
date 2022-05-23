@@ -13,13 +13,21 @@ import Fade from "react-reveal/Fade";
 import LightSpeed from "react-reveal/LightSpeed";
 import Reveal from "react-reveal/Reveal";
 import axios from "axios";
-import PlacesAutocomplete from 'react-places-autocomplete';
-
-
+import PlacesAutocomplete from "react-places-autocomplete";
+import { Pagination } from "antd";
 
 export default function ViajesEmpresas() {
   const history = useHistory();
   const [step, setStep] = useState(1);
+  const [current, setCurrent] = useState(1);
+
+  const setPage = (name) => {
+    if (name === "previous" && current === 1) return setCurrent(1);
+    if (name === "next" && current === 3) return setCurrent(3);
+
+    if (name === "previous") return setCurrent((c) => c - 1);
+    if (name === "next") return setCurrent((c) => c + 1);
+  };
 
   // ====== MATERIAL UI (Calendario Fecha de Nacimiento) =======
   const useStyles = makeStyles((theme) => ({
@@ -288,20 +296,6 @@ export default function ViajesEmpresas() {
     setForm({ ...form, [name]: number });
   };
 
-  const verifyCel2 = (e) => {
-    let number = e.target.value;
-    let name = e.target.name;
-
-    if (/^\d*$/.test(number)) {
-      setError({ ...error, [name]: "" });
-    } else {
-      setError({ ...error, [name]: "Error" });
-    }
-
-    setForm({ ...form, [name]: number });
-  };
-
-
   const verifyAdmin = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -312,22 +306,25 @@ export default function ViajesEmpresas() {
       setError({ ...error, [name]: "" });
     }
     setForm({ ...form, [name]: value });
+  };
+
+  // const uploadFiles = (e) => {
+  //   let name = e.target.name;
+  //   let file = e.target.files[0];
+
+  //   if (!file) {
+  //     setError({ ...error, [name]: "Error" });
+  //   } else {
+  //     setError({ ...error, [name]: "" });
+  //   }
+
+  //   setForm({ ...form, [name]: file });
+  // };
+
+  useEffect(() => {
     console.log(form, "form");
     console.log(error, "error");
-  };
-
-  const uploadFiles = (e) => {
-    let name = e.target.name;
-    let file = e.target.files[0];
-
-    if (!file) {
-      setError({ ...error, [name]: "Error" });
-    } else {
-      setError({ ...error, [name]: "" });
-    }
-
-    setForm({ ...form, [name]: file });
-  };
+  }, [form]);
 
   let formData = new FormData();
 
@@ -344,10 +341,10 @@ export default function ViajesEmpresas() {
 
   const next_save = async (e) => {
     e.preventDefault();
-    setStep(step + 1);
-    if(step === 3) {
-      console.log(form, 'form');
+    if (step === 3) {
+      return console.log(form, "form");
     }
+    setStep(step + 1);
   };
 
   const back = (e) => {
@@ -361,8 +358,16 @@ export default function ViajesEmpresas() {
         <div className={`${Style.containerRegister} row`}>
           <div className={Style.form}></div>
           <div className={`${Style.formComplete}`}>
-            <h1 className={`${Style.title}`} style={step === 3 ? {marginTop: '3.2rem'}:null}>Agendar Viaje</h1>
-            <div className={`${Style.formRegister}`} style={step === 3 ? {minHeight: '400px'}:null}>
+            <h1
+              className={`${Style.title}`}
+              style={step === 3 ? { marginTop: "3.2rem" } : null}
+            >
+              Agendar Viaje
+            </h1>
+            <div
+              className={`${Style.formRegister}`}
+              style={step === 3 ? { minHeight: "400px" } : null}
+            >
               <div className={Style.titleForm}>
                 <h4
                   className={Style.titleEdit}
@@ -493,7 +498,7 @@ export default function ViajesEmpresas() {
                       type="time"
                       name="hora"
                       value={form.hora}
-                      onChange={(e) => verifyCel(e)}
+                      onChange={(e) => verifyData(e)}
                     />
                   </div>
 
@@ -513,7 +518,7 @@ export default function ViajesEmpresas() {
                       className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
                       type="text"
                       name="destino"
-                      onChange={(e) => verifyMail(e)}
+                      onChange={(e) => verifyData(e)}
                       value={form.destino}
                     />
 
@@ -806,31 +811,74 @@ export default function ViajesEmpresas() {
                   </div>
                 </div>
               ) : (
-                <div
-                  className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}
-                >
-                  <label className={`${Style.lbl}`}>Origen:</label>
-                  <label className={`${Style.datos}`}>Calle Córdoba 123</label>
+                <>
+                  <div
+                    className={`${Style.misDatos} mt-4 mb-4 mb-sm-0 mb-md-0 mb-lg-0`}
+                  >
+                    {current === 1 && (
+                      <>
+                        <label className={`${Style.lbl}`}>Origen:</label>
+                        <label className={`${Style.datos}`}>
+                          {form.origen ? (
+                            form.origen
+                          ) : (
+                            <span style={{ fontStyle: "italic" }}>
+                              (completar formulario)
+                            </span>
+                          )}
+                        </label>
 
-                  <label className={`${Style.lbl}`}>Fecha:</label>
-                  <label className={`${Style.datos}`}>15-04-2022</label>
+                        <label className={`${Style.lbl}`}>Fecha:</label>
+                        <label className={`${Style.datos}`}>
+                          {form.fecha ? (
+                            form.fecha
+                          ) : (
+                            <span style={{ fontStyle: "italic" }}>
+                              (completar formulario)
+                            </span>
+                          )}
+                        </label>
 
-                  <label className={`${Style.lbl}`}>Destino:</label>
-                  <label className={`${Style.datos}`}>Calle San Jose 395</label>
+                        <label className={`${Style.lbl}`}>Destino:</label>
+                        <label className={`${Style.datos}`}>
+                          {form.destino ? (
+                            form.destino
+                          ) : (
+                            <span style={{ fontStyle: "italic" }}>
+                              (completar formulario)
+                            </span>
+                          )}
+                        </label>
 
-                  <label className={`${Style.lbl}`}>Persona1:</label>
-                  <label className={`${Style.datos}`}>......</label>
+                        <label className={`${Style.lbl}`}>Hora:</label>
+                        <label className={`${Style.datos}`}>
+                          {form.hora ? (
+                            form.hora
+                          ) : (
+                            <span style={{ fontStyle: "italic" }}>
+                              (completar formulario)
+                            </span>
+                          )}
+                        </label>
+                      </>
+                    )}
 
-                  <label className={`${Style.lbl}`}>Persona2:</label>
-                  <label className={`${Style.datos}`}>......</label>
+                    {current === 2 && (
+                      <>
+                        <label className={`${Style.lbl}`}>Persona1:</label>
+                        <label className={`${Style.datos}`}>......</label>
 
-                  <label className={`${Style.lbl}`}>Persona3:</label>
-                  <label className={`${Style.datos}`}>....</label>
+                        <label className={`${Style.lbl}`}>Persona2:</label>
+                        <label className={`${Style.datos}`}>......</label>
 
-                  <label className={`${Style.lbl}`}>Persona4:</label>
-                  <label className={`${Style.datos}`}>....</label>
+                        <label className={`${Style.lbl}`}>Persona3:</label>
+                        <label className={`${Style.datos}`}>....</label>
 
-                  {/* <label className={`${Style.lbl}`}>Apellido:</label>
+                        <label className={`${Style.lbl}`}>Persona4:</label>
+                        <label className={`${Style.datos}`}>....</label>
+                      </>
+                    )}
+                    {/* <label className={`${Style.lbl}`}>Apellido:</label>
                   <label className={`${Style.datos}`}>{user.last_name}</label>
 
                   <label className={`${Style.lbl}`}>Nombre:</label>
@@ -854,7 +902,41 @@ export default function ViajesEmpresas() {
                   <label className={`${Style.datos}`}>
                     {user.phone_number2 ? user.phone_number2 : "-"}
                   </label> */}
-                </div>
+                  </div>
+
+                  <div className={Style.containerPagination}>
+                    <span
+                      className={Style.pagePagination}
+                      onClick={() => setPage("previous")}
+                    >
+                      {"<"}
+                    </span>
+                    <span
+                      className={Style.pagePagination}
+                      onClick={() => setCurrent(1)}
+                    >
+                      1
+                    </span>
+                    <span
+                      className={Style.pagePagination}
+                      onClick={() => setCurrent(2)}
+                    >
+                      2
+                    </span>
+                    <span
+                      className={Style.pagePagination}
+                      onClick={() => setCurrent(3)}
+                    >
+                      3
+                    </span>
+                    <span
+                      className={Style.pagePagination}
+                      onClick={() => setPage("next")}
+                    >
+                      {">"}
+                    </span>
+                  </div>
+                </>
               )}
             </div>
             <div className={Style.containerSave}>

@@ -150,6 +150,10 @@
     color: #ccc;
 }
 
+.save span:nth-child(2) {
+    margin-left: 7px;
+}
+
 .disabled{
     
     cursor: pointer;
