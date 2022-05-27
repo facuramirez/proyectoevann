@@ -19,6 +19,8 @@ export const GET_CONVENIOS = "GET_CONVENIOS";
 export const GET_USERS_BUSINESS = "GET_USERS_BUSINESS";
 export const GET_TRIPS = "GET_TRIPS";
 export const GET_BOOKINS = "GET_BOOKINS";
+export const GET_CAR_DRIVERS = "GET_CAR_DRIVERS";
+
 
 export function getTrips(trips) {
   // cars = cars.slice(0, 5);
@@ -79,6 +81,10 @@ export function getAdmins(data) {
 
 export function getBookins(data) {
   return { type: GET_BOOKINS, payload: data };
+}
+
+export function getCarDrivers(data) {
+  return { type: GET_CAR_DRIVERS, payload: data };
 }
 
 export function getOwner(owner) {

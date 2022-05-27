@@ -16,7 +16,6 @@ import PasswordAdmin from "./components/PasswordAdmin/index";
 import PasswordFirst from "./components/PasswordFirst";
 import { Route, Switch } from "react-router-dom";
 
-
 function App() {
   return (
     <div className="App">
@@ -231,6 +230,12 @@ function App() {
       <Route
         exact
         path="/back_office_administracion/viajes"
+        component={BackOfficeAdm}
+      />
+
+      <Route
+        exact
+        path="/back_office_administracion/viajes/:id"
         component={BackOfficeAdm}
       />
 

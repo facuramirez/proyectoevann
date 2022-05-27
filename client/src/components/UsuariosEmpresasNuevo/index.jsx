@@ -56,9 +56,9 @@ export default function UsuariosEmpresasNuevo() {
   });
 
   useEffect(() => {
-    console.log(form, 'form');
-  }, [form])
-  
+    console.log(form, "form");
+  }, [form]);
+
   const clear = (e) => {
     e.preventDefault();
     let inputs = document.querySelectorAll("input");
@@ -185,7 +185,6 @@ export default function UsuariosEmpresasNuevo() {
       ...form,
       [name]: value,
     });
-
   };
 
   const verifyCel = (e) => {
@@ -256,7 +255,9 @@ export default function UsuariosEmpresasNuevo() {
       }).then((response) => {
         if (response) {
           axios
-            .post(`${process.env.REACT_APP_BACKEND}/companiers/users/`, form)
+            .post(`${process.env.REACT_APP_BACKEND}/companies/users/`, {
+              user_data: form,
+            })
             .then(async (response) => {
               if (response) {
                 await swal({

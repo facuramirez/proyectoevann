@@ -1,25 +1,41 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Style from "./ViajesEmpresas.module.css";
-import register from "../../img/register.jpg";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import swal from "sweetalert";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import Zoom from "react-reveal/Zoom";
-import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
-import LightSpeed from "react-reveal/LightSpeed";
-import Reveal from "react-reveal/Reveal";
 import axios from "axios";
-import PlacesAutocomplete from "react-places-autocomplete";
-import { Pagination } from "antd";
+import { getUsersBusiness } from "../../globalState/Actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ViajesEmpresas() {
   const history = useHistory();
   const [step, setStep] = useState(1);
   const [current, setCurrent] = useState(1);
+  let [loading, setLoading] = useState(true);
+  let { usersBusiness } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/companies/users/`)
+      .then((response) => {
+        setLoading(false);
+        dispatch(getUsersBusiness(response.data));
+        console.log(response.data, "USERS EN COMPANIES");
+      })
+      .catch((error) => {
+        swal({
+          title: "Error!",
+          text: "No se pudieron obtener los conductores. Verifique su conexión o intente de nuevo mas tarde.",
+          icon: "warning",
+          buttons: ["", "OK"],
+        });
+      });
+  }, []);
 
   const setPage = (name) => {
     if (name === "previous" && current === 1) return setCurrent(1);
@@ -343,7 +359,41 @@ export default function ViajesEmpresas() {
   const next_save = async (e) => {
     e.preventDefault();
     if (step === 3) {
-      return console.log(form, "form");
+      return swal({
+        title: "¿Guardar viaje?",
+        text: "Por favor, confirme si desea guardar el viaje",
+        icon: "warning",
+        buttons: ["NO", "SI"],
+      }).then(async (response) => {
+        if (response) {
+          let data = {
+            origin: form.origen,
+            origin_coordinates: { latitude: 123.223, longitude: 123441.123 },
+            date: form.fecha,
+            hour: form.hora,
+            destination: form.destino,
+            destination_coordinates: {
+              latitude: 124.223,
+              longitude: 123421.123,
+            },
+            passengers: [
+              {
+                traveler: 7,
+                in_origin: form.aborda1,
+                origin: !form.aborda1 ? form.dir1 : null,
+                origin_coordinates: {
+                  latitude: !form.aborda1 ? 124.223 : null,
+                  longitude: !form.aborda1 ? 123421.123 : null,
+                },
+              },
+            ],
+          };
+          await axios
+            .post(`${process.env.REACT_APP_TRIPS}/bookings/`, data)
+            .then((response) => console.log(response.data))
+            .catch((error) => console.log(error));
+        }
+      });
     }
     setStep(step + 1);
   };
@@ -367,7 +417,7 @@ export default function ViajesEmpresas() {
             </h1>
             <div
               className={`${Style.formRegister}`}
-              style={step === 3 ? { minHeight: "400px" } : null}
+              // style={step === 3 ? { minHeight: "400px" } : null}
             >
               <div className={Style.titleForm}>
                 <h4
@@ -547,10 +597,15 @@ export default function ViajesEmpresas() {
                         <option value="-" defaultValue>
                           Seleccionar persona
                         </option>
-                        <option value={"Persona 1"}>Persona 1</option>
+                        {usersBusiness.map((userBusiness) => (
+                          <option value={userBusiness.name}>
+                            {`${userBusiness.name} ${userBusiness.last_name}`}
+                          </option>
+                        ))}
+                        {/* <option value={"Persona 1"}>Persona 1</option>
                         <option value={"Persona 2"}>Persona 2</option>
                         <option value={"Persona 3"}>Persona 3</option>
-                        <option value={"Persona 4"}>Persona 4</option>
+                        <option value={"Persona 4"}>Persona 4</option> */}
                       </select>
                     </div>
                     <div
@@ -606,7 +661,7 @@ export default function ViajesEmpresas() {
                       </div>
                     ) : null}
                   </div>
-                  <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
+                  {/* <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
                     <div
                       className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
                     >
@@ -823,7 +878,7 @@ export default function ViajesEmpresas() {
                         </h5>
                       </div>
                     ) : null}
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <>
@@ -895,10 +950,14 @@ export default function ViajesEmpresas() {
                           className={`${Style.datos}`}
                           style={{ fontWeight: "normal", fontStyle: "italic" }}
                         >
-                          {form.dir1 ? form.dir1 : "(completar formulario)"}
+                          {form.dir1
+                            ? form.dir1
+                            : form.aborda1
+                            ? "(completar formulario)"
+                            : "-"}
                         </label>
 
-                        <label
+                        {/* <label
                           className={`${Style.lbl}`}
                           style={{ fontWeight: "normal", fontStyle: "italic" }}
                         >
@@ -950,7 +1009,7 @@ export default function ViajesEmpresas() {
                           style={{ fontWeight: "normal", fontStyle: "italic" }}
                         >
                           {form.dir4 ? form.dir4 : "(completar formulario)"}
-                        </label>
+                        </label> */}
                       </div>
                     )}
                     {/* <label className={`${Style.lbl}`}>Apellido:</label>
@@ -1004,12 +1063,7 @@ export default function ViajesEmpresas() {
                     >
                       2
                     </span>
-                    {/* <span
-                      className={Style.pagePagination}
-                      onClick={() => setCurrent(3)}
-                    >
-                      3
-                    </span> */}
+
                     <span
                       className={Style.pagePagination}
                       onClick={() => setPage("next")}

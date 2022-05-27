@@ -1,19 +1,22 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Style from "./ViajesAdm.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { AiOutlineCar } from "react-icons/ai";
 import { autos } from "./data";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBookins } from "../../globalState/Actions";
+import { getBookins, getCarDrivers } from "../../globalState/Actions";
 import axios from "axios";
 import Loader from "../Loader";
+import swal from "sweetalert";
 
-export default function ViajesAdm() {
+export default function AsignarViajesAdm() {
   const dispatch = useDispatch();
   let [loading, setLoading] = useState(true);
-  let { bookins } = useSelector((state) => state);
+  let { get_car_drivers } = useSelector((state) => state);
+  const { id } = useParams();
   const history = useHistory();
 
   // useEffect(() => {
@@ -21,14 +24,14 @@ export default function ViajesAdm() {
   //     .get(`${process.env.REACT_APP_BACKEND}/companies`)
   //     .then((response) => console.log(response.data, "DASDASDS"));
   // }, []);
-  
+
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_TRIPS}/bookings`)
+      .get(`${process.env.REACT_APP_BACKOFFICE}/cars-drivers`)
       .then((response) => {
         setLoading(false);
         console.log(response.data);
-        dispatch(getBookins(response.data));
+        dispatch(getCarDrivers(response.data));
       })
       .catch((error) => {
         console.log(error);
@@ -57,11 +60,18 @@ export default function ViajesAdm() {
 
   let indexOfLastRegister = currentPage * registerPerPage;
   let indexOfFirstRegister = indexOfLastRegister - registerPerPage;
-  bookins = bookins.slice(indexOfFirstRegister, indexOfLastRegister);
+  get_car_drivers = get_car_drivers.slice(
+    indexOfFirstRegister,
+    indexOfLastRegister
+  );
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(bookins.length / registerPerPage); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(get_car_drivers.length / registerPerPage);
+    i++
+  ) {
     pageNumbers.push(i);
   }
 
@@ -76,9 +86,39 @@ export default function ViajesAdm() {
   //   dispatch(initialGetCars(autos));
   // }, [autos]);
 
-  const viewDrivers = (e, id) => {
+  const assignCar = (e, idConductor) => {
     e.preventDefault();
-    history.push(`/back_office_administracion/viajes/${id}`);
+    swal({
+      title: "¿Asignar conductor al viaje?",
+      text: "Por favor, confirme si desea concretar eta operación",
+      icon: "warning",
+      buttons: ["NO", "SI"],
+    }).then(async (response) => {
+      if (response) {
+        await axios
+          .post(`${process.env.REACT_APP_TRIPS}/bookings/${id}/`, {
+            driver_car_id: idConductor,
+          })
+          .then(async (response) => {
+            await swal({
+              title: "Operación exitosa!",
+              text: "El viaje fue asignado correctamente.",
+              icon: "success",
+              buttons: [""],
+              timer: 2000,
+            });
+            history.push("/back_office_administracion/viajes");
+          })
+          .catch((error) => {
+            alert("Error al cerrar sesión!");
+          });
+      }
+    });
+  };
+
+  const back = (e) => {
+    e.preventDefault();
+    history.push("/back_office_administracion/viajes");
   };
 
   const deleteCar = (e, id) => {
@@ -96,7 +136,7 @@ export default function ViajesAdm() {
 
     let selectValue = parseInt(e.target.value);
 
-    bookins = bookins.slice(0, selectValue);
+    get_car_drivers = get_car_drivers.slice(0, selectValue);
     setRegisterPerPage(selectValue);
     setCurrentPage(1);
     // dispatch(filterCars(cars));
@@ -131,13 +171,13 @@ export default function ViajesAdm() {
       <div className={`${Style.containerAdmUsuarios} row containerVehiculos`}>
         <div className={`${Style.fondo} row m-0 flex-column`}>
           <div className={`${Style.title} col-12 mt-2`}>
-            <h3>Viajes</h3>
+            <h3>Asignar Viaje</h3>
           </div>
           {loading ? (
             <div>
               <Loader />
             </div>
-          ) : bookins.length > 0 ? (
+          ) : get_car_drivers.length > 0 ? (
             <div className="col-12">
               <div
                 className={`${Style.select} row mt-4 mb-3 justify-content-between`}
@@ -193,28 +233,25 @@ export default function ViajesAdm() {
                   <thead className={`${Style.tableH}`}>
                     <tr>
                       {/* <th>#</th> */}
-                      <th className={`${Style.nombreCompleto}`}>
-                        Empresa
-                      </th>
-                      <th className={`${Style.email}`}>Fecha</th>
-                      <th className={`${Style.cliente}`}>Origen</th>
-                      <th className={`${Style.cliente}`}>Destino</th>
+                      <th className={`${Style.nombreCompleto}`}>Conductor</th>
+                      <th className={`${Style.email}`}>Auto</th>
+
                       {/* <th>Teléfono</th> */}
                       <th className={`${Style.acciones}`}>Acciones</th>
                     </tr>
                   </thead>
                   <tbody className={`${Style.tableB}`}>
-                    {bookins.map((element, index) => (
+                    {get_car_drivers.map((element, index) => (
                       <tr key={index}>
-                        <td>{element.company}</td>
-                        <td>{element.date}</td>
-                        <td>{element.origin}</td>
+                        <td>{element.driver}</td>
+                        <td>{element.car}</td>
+                        {/* <td>{element.origin}</td> */}
                         {/* <td>{element.rut}</td> */}
-                        <td>{element.destination}</td>
+                        {/* <td>{element.destination}</td> */}
                         <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
                         >
-                          <a href="" onClick={(e) => viewDrivers(e, element.id)}>
+                          <a href="" onClick={(e) => assignCar(e, element.id)}>
                             <AiOutlineCar className={Style.edit} />
                           </a>
                           {/* <a href="" onClick={(e) => deleteCar(e, element.id)}>
@@ -244,12 +281,23 @@ export default function ViajesAdm() {
                   ))}
                 </ul>
               </div>
+              <div className={Style.containerSave}>
+                <div className={`${Style.buttons} row w-75 mt-5 m-auto`}>
+                  <button
+                    className={`col-3 ${Style.back}`}
+                    onClick={(e) => back(e)}
+                  >
+                    <FaArrowAltCircleLeft className={Style.iconBack} />
+                    Volver
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
             <div>
               <br />
               <h1 className={`${Style.noCars} mt-4`}>
-                No hay viajes para mostrar
+                No hay conductores para mostrar
               </h1>
             </div>
           )}

@@ -198,11 +198,12 @@ export default function Login() {
       })
       .catch((error) => {
         // si los datos NO estan correctos
+        setLoading(false);
         swal({
           title: "Datos Incorrectos!",
           text: "El correo y/o la contraseña no son válidos",
           icon: "warning",
-          timer: 2500,
+          // timer: 2500,
         });
       });
   };

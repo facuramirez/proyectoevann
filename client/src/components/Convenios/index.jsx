@@ -25,10 +25,15 @@ export default function Convenio() {
   // const ExcelFile = ReactExport.ExcelFile;
   // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   // const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/companies/`)
+      .get(`${process.env.REACT_APP_BACKEND}/companies`)
+      .then((response) => console.log(response.data, "DASDASDS"));
+  }, []);
+  
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/companies`)
       .then((response) => {
         setLoading(false);
         console.log(response.data);
@@ -36,7 +41,7 @@ export default function Convenio() {
         console.log(response.data, "CONVENIOS");
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error al obtener companies');
       });
   }, []);
 

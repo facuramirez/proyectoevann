@@ -44,6 +44,7 @@ import { useDispatch } from "react-redux";
 import axios from "../../axiosConfig";
 import { dataUser } from "../../globalState/Actions";
 import ViajesAdm from "../ViajesAdm";
+import AsignarViajeAdm from "../AsignarViajeAdm";
 
 export default function BackOfficeAdm() {
   let dispatch = useDispatch();
@@ -389,10 +390,13 @@ export default function BackOfficeAdm() {
                   <Fade>
                     <NuevoConvenio />
                   </Fade>
-                ) : ruta ===
-                  "/back_office_administracion/viajes" ? (
+                ) : ruta === "/back_office_administracion/viajes" ? (
                   <Fade>
                     <ViajesAdm />
+                  </Fade>
+                ) : ruta === `/back_office_administracion/viajes/${id}` ? (
+                  <Fade>
+                    <AsignarViajeAdm />
                   </Fade>
                 ) : ruta ===
                   "/back_office_administracion/pendientes_aprobacion/viajes" ? (

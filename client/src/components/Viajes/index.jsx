@@ -21,6 +21,8 @@ export default function Viajes() {
     distancia: "",
   });
 
+  
+
   let [error, setError] = useState({
     nroViaje: "Error",
     cliente: "Error",

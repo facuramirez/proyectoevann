@@ -195,6 +195,7 @@ export default function LoginAdmin() {
           });
       })
       .catch((error) => {
+        setLoading(false);
         swal({
           title: "Datos Incorrectos!",
           text: "El correo y/o la contraseña no son válidos",

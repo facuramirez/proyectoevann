@@ -19,8 +19,8 @@ import Loader from "../Loader";
 
 export default function UsuariosEmpresas() {
   const dispatch = useDispatch();
-  let { usersBusiness } = useSelector((state) => state);
   let [loading, setLoading] = useState(true);
+  let { usersBusiness } = useSelector((state) => state);
 
   useEffect(() => {
     axios
@@ -186,7 +186,7 @@ export default function UsuariosEmpresas() {
                       </tr>
                     </thead>
                     <tbody className={Style.tableB}>
-                      {usersBusiness.map((element, index) => (
+                      {usersBusiness.map((user, index) => (
                         <tr key={index}>
                           <td>{++index}</td>
                           {/* <td>{element.user.name}</td>
@@ -194,10 +194,10 @@ export default function UsuariosEmpresas() {
                           <td>{element.is_approved ? "SI" : "NO"}</td>
                           <td>{element.is_approved ? "SI" : "NO"}</td> */}
 
-                          <td>Fransico</td>
-                          <td>Gimenez</td>
-                          <td>8647586-7</td>
-                          <td>90764568</td>
+                          <td>{user.name}</td>
+                          <td>{user.last_name}</td>
+                          <td>{user.rut}</td>
+                          <td>{user.phone_number}</td>
 
                           {/* <td
                             className={`${Style.buttons} d-flex justify-content-evenly`}
