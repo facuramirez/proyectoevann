@@ -55,6 +55,10 @@ export default function UsuariosEmpresasNuevo() {
     email: "Error",
   });
 
+  useEffect(() => {
+    console.log(form, 'form');
+  }, [form])
+  
   const clear = (e) => {
     e.preventDefault();
     let inputs = document.querySelectorAll("input");

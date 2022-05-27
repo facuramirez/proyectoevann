@@ -23,7 +23,7 @@ export default function ViajesEmpresas() {
 
   const setPage = (name) => {
     if (name === "previous" && current === 1) return setCurrent(1);
-    if (name === "next" && current === 3) return setCurrent(3);
+    if (name === "next" && current === 2) return setCurrent(2);
 
     if (name === "previous") return setCurrent((c) => c - 1);
     if (name === "next") return setCurrent((c) => c + 1);
@@ -170,10 +170,11 @@ export default function ViajesEmpresas() {
   const verifyDays = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    let checked = e.target.checked;
 
     setForm({
       ...form,
-      [name]: form[name] ? false : true,
+      [name]: checked,
     });
 
     // if (value === "") {
@@ -546,8 +547,10 @@ export default function ViajesEmpresas() {
                         <option value="-" defaultValue>
                           Seleccionar persona
                         </option>
-                        <option value={true}>Persona 1</option>
-                        <option value={false}>Persona 2</option>
+                        <option value={"Persona 1"}>Persona 1</option>
+                        <option value={"Persona 2"}>Persona 2</option>
+                        <option value={"Persona 3"}>Persona 3</option>
+                        <option value={"Persona 4"}>Persona 4</option>
                       </select>
                     </div>
                     <div
@@ -559,6 +562,7 @@ export default function ViajesEmpresas() {
                           name="aborda1"
                           onChange={(e) => verifyDays(e)}
                           value={form.aborda1}
+                          checked={form.aborda1 ? true : false}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -615,8 +619,10 @@ export default function ViajesEmpresas() {
                         <option value="-" defaultValue>
                           Seleccionar persona
                         </option>
-                        <option value={true}>Persona 1</option>
-                        <option value={false}>Persona 2</option>
+                        <option value={"Persona 1"}>Persona 1</option>
+                        <option value={"Persona 2"}>Persona 2</option>
+                        <option value={"Persona 3"}>Persona 3</option>
+                        <option value={"Persona 4"}>Persona 4</option>
                       </select>
                     </div>
                     <div
@@ -628,8 +634,11 @@ export default function ViajesEmpresas() {
                           name="aborda2"
                           onChange={(e) => verifyDays(e)}
                           value={form.aborda2}
+                          checked={form.aborda2 ? true : false}
                         />
-                        <label style={{ marginLeft: "0.5rem" }}>
+                        <label
+                          style={{ marginLeft: "0.5rem", fontStyle: "normal" }}
+                        >
                           Aborda en origen
                         </label>
                       </section>
@@ -684,8 +693,10 @@ export default function ViajesEmpresas() {
                         <option value="-" defaultValue>
                           Seleccionar persona
                         </option>
-                        <option value={true}>Persona 1</option>
-                        <option value={false}>Persona 2</option>
+                        <option value={"Persona 1"}>Persona 1</option>
+                        <option value={"Persona 2"}>Persona 2</option>
+                        <option value={"Persona 3"}>Persona 3</option>
+                        <option value={"Persona 4"}>Persona 4</option>
                       </select>
                     </div>
                     <div
@@ -697,6 +708,7 @@ export default function ViajesEmpresas() {
                           name="aborda3"
                           onChange={(e) => verifyDays(e)}
                           value={form.aborda3}
+                          checked={form.aborda3 ? true : false}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -753,8 +765,10 @@ export default function ViajesEmpresas() {
                         <option value="-" defaultValue>
                           Seleccionar persona
                         </option>
-                        <option value={true}>Persona 1</option>
-                        <option value={false}>Persona 2</option>
+                        <option value={"Persona 1"}>Persona 1</option>
+                        <option value={"Persona 2"}>Persona 2</option>
+                        <option value={"Persona 3"}>Persona 3</option>
+                        <option value={"Persona 4"}>Persona 4</option>
                       </select>
                     </div>
                     <div
@@ -766,6 +780,7 @@ export default function ViajesEmpresas() {
                           name="aborda4"
                           onChange={(e) => verifyDays(e)}
                           value={form.aborda4}
+                          checked={form.aborda4 ? true : false}
                         />
                         <label style={{ marginLeft: "0.5rem" }}>
                           Aborda en origen
@@ -864,19 +879,79 @@ export default function ViajesEmpresas() {
                     )}
 
                     {current === 2 && (
-                      <>
-                        <label className={`${Style.lbl}`}>Persona1:</label>
-                        <label className={`${Style.datos}`}>......</label>
+                      <div className={Style.containerStep2}>
+                        <label
+                          className={`${Style.lbl}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.persona1
+                            ? form.persona1
+                            : "(completar formulario)"}
+                        </label>
+                        <label className={`${Style.datos}`}>
+                          Aborda en origen: {form.aborda1 ? "SI" : "NO"}
+                        </label>
+                        <label
+                          className={`${Style.datos}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.dir1 ? form.dir1 : "(completar formulario)"}
+                        </label>
 
-                        <label className={`${Style.lbl}`}>Persona2:</label>
-                        <label className={`${Style.datos}`}>......</label>
+                        <label
+                          className={`${Style.lbl}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.persona2
+                            ? form.persona2
+                            : "(completar formulario)"}
+                        </label>
+                        <label className={`${Style.datos}`}>
+                          Aborda en origen: {form.aborda2 ? "SI" : "NO"}
+                        </label>
+                        <label
+                          className={`${Style.datos}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.dir2 ? form.dir2 : "(completar formulario)"}
+                        </label>
 
-                        <label className={`${Style.lbl}`}>Persona3:</label>
-                        <label className={`${Style.datos}`}>....</label>
+                        <label
+                          className={`${Style.lbl}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.persona3
+                            ? form.persona3
+                            : "(completar formulario)"}
+                        </label>
+                        <label className={`${Style.datos}`}>
+                          Aborda en origen: {form.aborda3 ? "SI" : "NO"}
+                        </label>
+                        <label
+                          className={`${Style.datos}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.dir3 ? form.dir3 : "(completar formulario)"}
+                        </label>
 
-                        <label className={`${Style.lbl}`}>Persona4:</label>
-                        <label className={`${Style.datos}`}>....</label>
-                      </>
+                        <label
+                          className={`${Style.lbl} `}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.persona4
+                            ? form.persona4
+                            : "(completar formulario)"}
+                        </label>
+                        <label className={`${Style.datos} ${Style.aborda}`}>
+                          Aborda en origen: {form.aborda4 ? "SI" : "NO"}
+                        </label>
+                        <label
+                          className={`${Style.datos}`}
+                          style={{ fontWeight: "normal", fontStyle: "italic" }}
+                        >
+                          {form.dir4 ? form.dir4 : "(completar formulario)"}
+                        </label>
+                      </div>
                     )}
                     {/* <label className={`${Style.lbl}`}>Apellido:</label>
                   <label className={`${Style.datos}`}>{user.last_name}</label>
@@ -914,21 +989,27 @@ export default function ViajesEmpresas() {
                     <span
                       className={Style.pagePagination}
                       onClick={() => setCurrent(1)}
+                      style={
+                        current === 1 ? { color: "rgb(54, 232, 210)" } : null
+                      }
                     >
                       1
                     </span>
                     <span
                       className={Style.pagePagination}
                       onClick={() => setCurrent(2)}
+                      style={
+                        current === 2 ? { color: "rgb(54, 232, 210" } : null
+                      }
                     >
                       2
                     </span>
-                    <span
+                    {/* <span
                       className={Style.pagePagination}
                       onClick={() => setCurrent(3)}
                     >
                       3
-                    </span>
+                    </span> */}
                     <span
                       className={Style.pagePagination}
                       onClick={() => setPage("next")}
