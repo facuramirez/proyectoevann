@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import Style from "./ViajesAdm.module.css";
 import Table from "react-bootstrap/Table";
 import { TiEdit, TiDeleteOutline } from "react-icons/ti";
+import { FiMapPin } from "react-icons/fi";
 import { AiOutlineCar } from "react-icons/ai";
 import { autos } from "./data";
 import { useState, useEffect } from "react";
@@ -9,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookins } from "../../globalState/Actions";
 import axios from "axios";
 import Loader from "../Loader";
+import Switch from "react-switch";
 
 export default function ViajesAdm() {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ export default function ViajesAdm() {
   //     .get(`${process.env.REACT_APP_BACKEND}/companies`)
   //     .then((response) => console.log(response.data, "DASDASDS"));
   // }, []);
-  
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_TRIPS}/bookings`)
@@ -34,6 +36,12 @@ export default function ViajesAdm() {
         console.log(error);
       });
   }, []);
+
+  const [currentSwitch, setCurrentSwitch] = useState(false);
+
+  const handleChange = (checked) => {
+    setCurrentSwitch(checked);
+  };
 
   let [form, setForm] = useState({
     nroViaje: "",
@@ -140,7 +148,7 @@ export default function ViajesAdm() {
           ) : bookins.length > 0 ? (
             <div className="col-12">
               <div
-                className={`${Style.select} row mt-4 mb-3 justify-content-between`}
+                className={`${Style.select} row mt-4 mb-3 d-flex flex-column justify-content-between`}
               >
                 <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
                   <div className="row">
@@ -169,6 +177,19 @@ export default function ViajesAdm() {
                     </select>
                   </div>
                 </section>
+                <section className="col-12 col-sm-12 col-md-5 col-lg-5 mt-2 mt-sm-2 mt-md-4 mt-lg-4">
+                  <div className="row d-flex">
+                    <h6
+                      className={`${Style.registers} col-6 col-sm-4 col-md-3 col-lg-3 pt-1 m-0 text-start`}
+                    >
+                      ¿Pendientes de asignación?
+                    </h6>
+                    <div style={{ width: "4rem" }}>
+                      <Switch onChange={handleChange} checked={currentSwitch} />
+                    </div>
+                  </div>
+                </section>
+
                 {/* <section
                   className={`${Style.divButtons} col-12 col-sm-12 col-md-7 col-lg-7 mt-3 mt-sm-3`}
                 >
@@ -192,10 +213,9 @@ export default function ViajesAdm() {
                 <Table striped bordered hover variant="dark">
                   <thead className={`${Style.tableH}`}>
                     <tr>
-                      {/* <th>#</th> */}
-                      <th className={`${Style.nombreCompleto}`}>
-                        Empresa
-                      </th>
+                      <th className={`${Style.nombreCompleto}`}>Nro ticket</th>
+                      <th className={`${Style.nombreCompleto}`}>Empresa</th>
+                      <th className={`${Style.nombreCompleto}`}>Hora</th>
                       <th className={`${Style.email}`}>Fecha</th>
                       <th className={`${Style.cliente}`}>Origen</th>
                       <th className={`${Style.cliente}`}>Destino</th>
@@ -206,7 +226,9 @@ export default function ViajesAdm() {
                   <tbody className={`${Style.tableB}`}>
                     {bookins.map((element, index) => (
                       <tr key={index}>
+                        <td>{element.id}</td>
                         <td>{element.company}</td>
+                        <td>{element.hour}</td>
                         <td>{element.date}</td>
                         <td>{element.origin}</td>
                         {/* <td>{element.rut}</td> */}
@@ -214,8 +236,15 @@ export default function ViajesAdm() {
                         <td
                           className={`${Style.buttons} d-flex justify-content-evenly`}
                         >
-                          <a href="" onClick={(e) => viewDrivers(e, element.id)}>
+                          <a
+                            href=""
+                            onClick={(e) => viewDrivers(e, element.id)}
+                          >
                             <AiOutlineCar className={Style.edit} />
+                          </a>
+
+                          <a href={`${element.map}`} target="_blank">
+                            <FiMapPin className={Style.edit} />
                           </a>
                           {/* <a href="" onClick={(e) => deleteCar(e, element.id)}>
                             <TiDeleteOutline className={Style.delete} />

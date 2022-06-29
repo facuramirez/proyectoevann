@@ -1,13 +1,53 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.selectAsyncMain > div {
+  background-color: rgb(60, 60, 58) !important;
+  color: white !important;
+}
+
+.selectAsyncMain #react-select-2-placeholder {
+  color: #ccc !important;
+  background-color: rgb(60, 60, 58);
+}
+
+.selectAsyncMain .css-1s2u09g-control {
+  background-color: rgb(60, 60, 58);
+}
+
+.css-319lph-ValueContainer {
+  background-color: rgb(60, 60, 58);
+  border-color: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: white !important;
+  
+}
+/* 
+.css-1hb7zxy-IndicatorsContainer {
+  border-color: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  color: white !important;
+}
+
+.css-1pahdxg-control {
+  border-color: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  color: white !important;
+} */

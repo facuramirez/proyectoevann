@@ -204,7 +204,7 @@
 .titleForm {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
   margin-right: 1.5rem;
 }
 
@@ -220,11 +220,29 @@
   border-radius: 0.3rem;
   padding: 0.2rem 0.5rem 0.3rem 0.5rem;
   font-size: 1.2rem;
+  border: none;
+  color: white;
+}
+
+.titleForm .titleEdit:hover {
+  color: rgb(54, 232, 210);
 }
 
 .titleForm .titleEdit:nth-child(2) {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.add_delete_passenger {
+  cursor: default;
+}
+
+.add_delete_passenger > div span:hover {
+  color: rgb(54, 232, 210);
+}
+
+.numberPassenger {
+  width: 2.2rem !important;
 }
 
 /* .docs{
@@ -355,6 +373,30 @@
 
 .containerPagination .pagePagination:hover {
   color: #ccc;
+}
+
+.selectAsync {
+  margin: 0px !important;
+  border-bottom: 1px solid rgb(54, 232, 210);
+  box-shadow: none !important;
+  outline: none !important;
+  color: white !important;
+}
+.selectAsync div {
+  /* background-color: rgb(60, 60, 58) !important; */
+  color: white !important;
+}
+
+.selectAsync:focus,
+.selectAsync:active,
+.selectAsync::selection {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.selectAsync div {
+  margin: 0px !important;
 }
 
 @media (max-width: 992px) {

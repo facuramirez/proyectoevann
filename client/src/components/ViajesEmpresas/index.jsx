@@ -4,20 +4,36 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import swal from "sweetalert";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaHospitalAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import axios from "axios";
 import { getUsersBusiness } from "../../globalState/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import SelectOrigen from "./selectOrigen";
+import SelectDestino from "./selectDestino";
+import SelectAborda from "./selectAborda";
+import { getPassengers } from "./getPassengers";
 
 export default function ViajesEmpresas() {
   const history = useHistory();
   const [step, setStep] = useState(1);
   const [current, setCurrent] = useState(1);
+  const dispatch = useDispatch();
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValueDestino, setSelectedValueDestino] = useState(null);
+  const [selectedValueAborda, setSelectedValueAborda] = useState(null);
+  const [currentPassengers, setCurrentPassengers] = useState(1);
+  const [maxPassengers, setMaxPassengers] = useState(1);
+
   let [loading, setLoading] = useState(true);
   let { usersBusiness } = useSelector((state) => state);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_TRIPS}/bookings/`)
+      .then((response) => console.log(response, "RESPONSE"));
+  }, []);
 
   useEffect(() => {
     axios
@@ -36,6 +52,42 @@ export default function ViajesEmpresas() {
         });
       });
   }, []);
+
+  useEffect(() => {
+    setMaxPassengers(usersBusiness.length);
+    console.log(usersBusiness.length, "sssss");
+  }, [usersBusiness.length]);
+
+  const handleChange = (value) => {
+    setSelectedValue(value);
+    setForm({ ...form, origen: value });
+  };
+
+  const handleChangeDestino = (value) => {
+    setSelectedValueDestino(value);
+    setForm({ ...form, destino: value });
+  };
+
+  const handleChangeAborda = (value, a) => {
+    switch (a.name) {
+      case "aborda_dir1":
+        setForm({ ...form, dir1: value });
+        break;
+      case "aborda_dir2":
+        setForm({ ...form, dir2: value });
+        break;
+      case "aborda_dir3":
+        setForm({ ...form, dir3: value });
+        break;
+      case "aborda_dir4":
+        setForm({ ...form, dir4: value });
+        break;
+      default:
+        break;
+    }
+    console.log(value, "value");
+    console.log(a, "e");
+  };
 
   const setPage = (name) => {
     if (name === "previous" && current === 1) return setCurrent(1);
@@ -338,6 +390,8 @@ export default function ViajesEmpresas() {
   //   setForm({ ...form, [name]: file });
   // };
 
+  const [resume, setResume] = useState([]);
+
   useEffect(() => {
     console.log(form, "form");
     console.log(error, "error");
@@ -358,6 +412,37 @@ export default function ViajesEmpresas() {
 
   const next_save = async (e) => {
     e.preventDefault();
+    console.log(form, "form");
+    const dataPassengers = getPassengers(form, usersBusiness);
+    console.log(dataPassengers, "QUIERO VER");
+    let data = {
+      origin: form.origen.label,
+      // origin_coordinates: { latitude: 123.223, longitude: 123441.123 },
+      date: form.fecha,
+      hour: form.hora,
+      destination: form.destino.label,
+      // destination_coordinates: {
+      //   latitude: 124.223,
+      //   longitude: 123421.123,
+      // },
+
+      // passengers: [
+      //   {
+      //     traveler: 7,
+      //     in_origin: form.aborda1,
+      //     origin: !form.aborda1 ? form.dir1 : null,
+      //     origin_coordinates: {
+      //       latitude: !form.aborda1 ? 124.223 : null,
+      //       longitude: !form.aborda1 ? 123421.123 : null,
+      //     },
+      //   },
+      // ],
+
+      passengers: dataPassengers,
+      origin_id: form.origen.id,
+      destination_id: form.destino.id,
+    };
+    console.log(data, "DATAAAA");
     if (step === 3) {
       return swal({
         title: "¿Guardar viaje?",
@@ -366,28 +451,6 @@ export default function ViajesEmpresas() {
         buttons: ["NO", "SI"],
       }).then(async (response) => {
         if (response) {
-          let data = {
-            origin: form.origen,
-            origin_coordinates: { latitude: 123.223, longitude: 123441.123 },
-            date: form.fecha,
-            hour: form.hora,
-            destination: form.destino,
-            destination_coordinates: {
-              latitude: 124.223,
-              longitude: 123421.123,
-            },
-            passengers: [
-              {
-                traveler: 7,
-                in_origin: form.aborda1,
-                origin: !form.aborda1 ? form.dir1 : null,
-                origin_coordinates: {
-                  latitude: !form.aborda1 ? 124.223 : null,
-                  longitude: !form.aborda1 ? 123421.123 : null,
-                },
-              },
-            ],
-          };
           await axios
             .post(`${process.env.REACT_APP_TRIPS}/bookings/`, data)
             .then((response) => console.log(response.data))
@@ -401,6 +464,70 @@ export default function ViajesEmpresas() {
   const back = (e) => {
     e.preventDefault();
     setStep(step - 1);
+  };
+
+  useEffect(() => {
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("origen")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("destino")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("aborda1")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("aborda2")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("aborda3")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("aborda4")
+    );
+    new window.google.maps.places.Autocomplete(
+      document.getElementById("aborda5")
+    );
+    // console.log(window, 'WINDOW')
+  }, [step]);
+
+  //   function initMap() {
+  //     var input = document.getElementById('clientAddress');
+  //     var autocomplete = new google.maps.places.Autocomplete(input);
+  //     autocomplete.addListener('place_changed', function() {
+  //         var place = autocomplete.getPlace();
+  //         document.getElementById('location-snap').
+  //         innerHTML = place.formatted_address;
+  //         document.getElementById('lat-span').
+  //         innerHTML = place.geometry.location.lat();
+  //         document.getElementById('lon-span').
+  //         innerHTML = place.geometry.location.lng();
+  //     });
+  //  }
+
+  const modifyPassengers = (e) => {
+    const { name } = e.target;
+    if (name === "menos") {
+      if (currentPassengers > 1) {
+        switch (currentPassengers) {
+          case 2:
+            setForm({ ...form, persona2: "", aborda2: false, dir2: "" });
+            break;
+          case 3:
+            setForm({ ...form, persona3: "", aborda3: false, dir3: "" });
+            break;
+          case 4:
+            setForm({ ...form, persona4: "", aborda4: false, dir4: "" });
+            break;
+          default:
+            break;
+        }
+        setCurrentPassengers(currentPassengers - 1);
+      }
+    } else if (name === "mas") {
+      if (currentPassengers < maxPassengers)
+        setCurrentPassengers(currentPassengers + 1);
+    }
   };
 
   return (
@@ -419,52 +546,90 @@ export default function ViajesEmpresas() {
               className={`${Style.formRegister}`}
               // style={step === 3 ? { minHeight: "400px" } : null}
             >
-              <div className={Style.titleForm}>
-                <h4
-                  className={Style.titleEdit}
+              <div
+                className={`${Style.titleForm} ${Style.add_delete_passenger}`}
+              >
+                <div
                   style={
-                    step === 1
+                    step !== 2
                       ? {
-                          backgroundColor: "rgb(54, 232, 210)",
-                          color: "black",
-                          boxShadow: "0px 0px 3px white",
-                          textDecoration: "underline",
+                          visibility: "hidden",
                         }
                       : null
                   }
                 >
-                  Datos del Viaje
-                </h4>
-                <h4
-                  className={Style.titleEdit}
-                  style={
-                    step === 2
-                      ? {
-                          backgroundColor: "rgb(54, 232, 210)",
-                          color: "black",
-                          boxShadow: "0px 0px 3px white",
-                          textDecoration: "underline",
-                        }
-                      : null
-                  }
-                >
-                  Personas
-                </h4>
-                <h4
-                  className={Style.titleEdit}
-                  style={
-                    step === 3
-                      ? {
-                          backgroundColor: "rgb(54, 232, 210)",
-                          color: "black",
-                          boxShadow: "0px 0px 3px white",
-                          textDecoration: "underline",
-                        }
-                      : null
-                  }
-                >
-                  Resumen
-                </h4>
+                  <button
+                    className={Style.titleEdit}
+                    style={{
+                      borderRadius: "50px",
+                      padding: "0px 10px 4px 10px",
+                    }}
+                    name="menos"
+                    onClick={modifyPassengers}
+                  >
+                    -
+                  </button>
+                  <button
+                    className={Style.titleEdit}
+                    style={{
+                      borderRadius: "50px",
+                      padding: "0px 8px 4px 8px",
+                      marginLeft: "5px",
+                    }}
+                    name="mas"
+                    onClick={modifyPassengers}
+                  >
+                    +
+                  </button>
+                </div>
+                <div>
+                  <h4
+                    className={Style.titleEdit}
+                    style={
+                      step === 1
+                        ? {
+                            backgroundColor: "rgb(54, 232, 210)",
+                            color: "black",
+                            boxShadow: "0px 0px 3px white",
+                            textDecoration: "underline",
+                          }
+                        : null
+                    }
+                  >
+                    Datos del Viaje
+                  </h4>
+                  <h4
+                    className={Style.titleEdit}
+                    style={
+                      step === 2
+                        ? {
+                            backgroundColor: "rgb(54, 232, 210)",
+                            color: "black",
+                            boxShadow: "0px 0px 3px white",
+                            textDecoration: "underline",
+                          }
+                        : null
+                    }
+                  >
+                    Personas
+                  </h4>
+                  <h4
+                    className={Style.titleEdit}
+                    style={
+                      step === 3
+                        ? {
+                            backgroundColor: "rgb(54, 232, 210)",
+                            color: "black",
+                            boxShadow: "0px 0px 3px white",
+                            textDecoration: "underline",
+                          }
+                        : null
+                    }
+                  >
+                    Resumen
+                  </h4>
+                </div>
+                <div></div>
               </div>
 
               {step === 1 ? (
@@ -476,14 +641,24 @@ export default function ViajesEmpresas() {
                     >
                       Origen:
                     </h4>
-                    <input
+                    <div
+                      className={`mail mt-0 col-11 col-sm-11 col-md-4 col-lg-4`}
+                    >
+                      <SelectOrigen
+                        handleChange={handleChange}
+                        selectedValue={selectedValue}
+                      />
+                    </div>
+                    {/* <input
                       className={`mail mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4`}
+                      id="origen"
+                      placeholder="Ingrese una dirección"
                       type="text"
                       name="origen"
                       value={form.origen}
                       onChange={(e) => verifyAdmin(e)}
-                    />
-
+                    /> */}
+                    {/* 
                     {(error.name && form.name) ||
                     (error.last_name && form.last_name) ? (
                       <div className={`row d-none d-md-block d-lg-block`}>
@@ -509,7 +684,7 @@ export default function ViajesEmpresas() {
                           Sólo letras (y espacios) sin números
                         </h5>
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </div>
 
                   <div className={`row`}>
@@ -565,76 +740,107 @@ export default function ViajesEmpresas() {
 
                   <div className={`row`}>
                     <h4 className={`col-1 mt-md-2 mt-lg-2`}>Destino:</h4>
-                    <input
+                    <div
+                      className={`mail mt-0 col-11 col-sm-11 col-md-4 col-lg-4`}
+                    >
+                      <SelectDestino
+                        handleChangeDestino={handleChangeDestino}
+                        selectedValueDestino={selectedValueDestino}
+                      />
+                    </div>
+                    {/* <input
                       className={`mt-1 mt-sm-1 col-11 col-sm-11 col-md-4 col-lg-4 mail`}
+                      id="destino"
+                      placeholder="Ingrese una dirección"
                       type="text"
                       name="destino"
                       onChange={(e) => verifyData(e)}
                       value={form.destino}
-                    />
-
+                    /> */}
+                    {/* 
                     {error.email && form.email ? (
                       <div className={`row`}>
                         <h5 className={`${Style.alertTexts} col-6`}>
                           Introduza un correo válido
                         </h5>
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </div>
                 </div>
               ) : step === 2 ? (
                 <div className={`${Style.data}`}>
                   <div className={`row mt-3 mt-sm-3 mt-md-1 mt-lg-1`}>
-                    <div
-                      className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
-                    >
-                      <select
-                        className={`w-100 text-center`}
-                        name="persona1"
-                        value={form.persona1}
-                        onChange={(e) => inputs(e)}
-                      >
-                        <option value="-" defaultValue>
-                          Seleccionar persona
-                        </option>
-                        {usersBusiness.map((userBusiness) => (
-                          <option value={userBusiness.name}>
-                            {`${userBusiness.name} ${userBusiness.last_name}`}
-                          </option>
-                        ))}
-                        {/* <option value={"Persona 1"}>Persona 1</option>
+                    {usersBusiness.map((item, i) => {
+                      if (i + 1 <= currentPassengers)
+                        return (
+                          <>
+                            {i + 1 <= currentPassengers && (
+                              <div
+                                className={`col-11 col-sm-7 col-md-4 col-lg-4 mt-1 mt-md-1 mt-lg-1`}
+                              >
+                                <select
+                                  className={`w-100 text-center`}
+                                  name={`persona${i + 1}`}
+                                  value={form[`persona${i + 1}`]}
+                                  onChange={(e) => inputs(e)}
+                                >
+                                  <option value="-" defaultValue>
+                                    Seleccionar persona
+                                  </option>
+                                  {usersBusiness.map((userBusiness) => (
+                                    <option value={userBusiness.rut}>
+                                      {`${userBusiness.name} ${userBusiness.last_name}`}
+                                    </option>
+                                  ))}
+                                  {/* <option value={"Persona 1"}>Persona 1</option>
                         <option value={"Persona 2"}>Persona 2</option>
                         <option value={"Persona 3"}>Persona 3</option>
                         <option value={"Persona 4"}>Persona 4</option> */}
-                      </select>
-                    </div>
-                    <div
-                      className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
-                    >
-                      <section className="d-flex justify-content-center">
-                        <input
-                          type="checkbox"
-                          name="aborda1"
-                          onChange={(e) => verifyDays(e)}
-                          value={form.aborda1}
-                          checked={form.aborda1 ? true : false}
-                        />
-                        <label style={{ marginLeft: "0.5rem" }}>
-                          Aborda en origen
-                        </label>
-                      </section>
-                    </div>
+                                </select>
+                              </div>
+                            )}
+                            <div
+                              className={`col-11 col-sm-7 col-md-4 col-lg-3 mt-1 mt-md-1 mt-lg-1 text-center`}
+                            >
+                              <section className="d-flex justify-content-center">
+                                <input
+                                  type="checkbox"
+                                  name={`aborda${i + 1}`}
+                                  onChange={(e) => verifyDays(e)}
+                                  value={form[`aborda${i + 1}`]}
+                                  checked={
+                                    form[`aborda${i + 1}`] ? true : false
+                                  }
+                                />
+                                <label style={{ marginLeft: "0.5rem" }}>
+                                  Aborda en origen
+                                </label>
+                              </section>
+                            </div>
 
-                    <input
-                      className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
-                      type="text"
-                      name="dir1"
-                      value={form.dir1}
-                      onChange={(e) => verifyAdmin(e)}
-                      placeholder="Dirección..."
-                    />
+                            <div
+                              className={`mail mt-0 col-11 col-sm-11 col-md-4 col-lg-4`}
+                            >
+                              <SelectAborda
+                                id={i}
+                                handleChangeAborda={handleChangeAborda}
+                                selectedValueAborda={form?.[`dir${i + 1}`]}
+                              />
+                            </div>
+                            {/* <input
+                              className={`mail mt-1 mt-sm-1 col-11 col-sm-7 col-md-3 col-lg-3`}
+                              type="text"
+                              id={`aborda${i + 1}`}
+                              name={`dir${i + 1}`}
+                              value={form[`dir${i + 1}`]}
+                              onChange={(e) => verifyAdmin(e)}
+                              placeholder="Dirección..."
+                            /> */}
+                          </>
+                        );
+                    })}
 
-                    {(error.name && form.name) ||
+                    {/* {(error.name && form.name) ||
                     (error.last_name && form.last_name) ? (
                       <div className={`row d-none d-md-block d-lg-block`}>
                         <h5 className={`${Style.alertTexts} col-6`}>
@@ -659,7 +865,7 @@ export default function ViajesEmpresas() {
                           Sólo letras (y espacios) sin números
                         </h5>
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </div>
                   {/* <div className={`row mt-4 mt-sm-4 mt-md-1 mt-lg-1`}>
                     <div
@@ -889,8 +1095,8 @@ export default function ViajesEmpresas() {
                       <>
                         <label className={`${Style.lbl}`}>Origen:</label>
                         <label className={`${Style.datos}`}>
-                          {form.origen ? (
-                            form.origen
+                          {form.origen.label ? (
+                            form.origen.label
                           ) : (
                             <span style={{ fontStyle: "italic" }}>
                               (completar formulario)
@@ -911,8 +1117,8 @@ export default function ViajesEmpresas() {
 
                         <label className={`${Style.lbl}`}>Destino:</label>
                         <label className={`${Style.datos}`}>
-                          {form.destino ? (
-                            form.destino
+                          {form.destino.label ? (
+                            form.destino.label
                           ) : (
                             <span style={{ fontStyle: "italic" }}>
                               (completar formulario)
@@ -932,86 +1138,65 @@ export default function ViajesEmpresas() {
                         </label>
                       </>
                     )}
-
                     {current === 2 && (
                       <div className={Style.containerStep2}>
-                        <label
-                          className={`${Style.lbl}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.persona1
-                            ? form.persona1
-                            : "(completar formulario)"}
-                        </label>
-                        <label className={`${Style.datos}`}>
-                          Aborda en origen: {form.aborda1 ? "SI" : "NO"}
-                        </label>
-                        <label
-                          className={`${Style.datos}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.dir1
-                            ? form.dir1
-                            : form.aborda1
-                            ? "(completar formulario)"
-                            : "-"}
-                        </label>
+                        {usersBusiness.map((item, i) => {
+                          return (
+                            <div
+                              style={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "space-around",
+                              }}
+                            >
+                              <label className={Style.numberPassenger}>
+                                {i + 1}
+                              </label>
+                              <label
+                                className={`${Style.lbl}`}
+                                style={{
+                                  fontWeight: "normal",
+                                  fontStyle: "italic",
+                                }}
+                              >
+                                {form[`persona${i + 1}`]
+                                  ? form[`persona${i + 1}`]
+                                  : "-"}
+                              </label>
+                              <label className={`${Style.datos}`}>
+                                {form[`persona${i + 1}`] &&
+                                form[`persona${i + 1}`] !== "-"
+                                  ? form[`aborda${i + 1}`]
+                                    ? "Aborda en origen: SI"
+                                    : "Aborda en origen: NO"
+                                  : "-"}
+                              </label>
+                              <label
+                                className={`${Style.datos}`}
+                                style={{
+                                  fontWeight: "normal",
+                                  fontStyle: "italic",
+                                }}
+                              >
+                                {!form[`aborda${i + 1}`] &&
+                                form[`persona${i + 1}`] !== "-" &&
+                                form[`dir${i + 1}`]["label"]
+                                  ? form[`dir${i + 1}`]["label"]
+                                  : "-"}
 
-                        {/* <label
-                          className={`${Style.lbl}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.persona2
-                            ? form.persona2
-                            : "(completar formulario)"}
-                        </label>
-                        <label className={`${Style.datos}`}>
-                          Aborda en origen: {form.aborda2 ? "SI" : "NO"}
-                        </label>
-                        <label
-                          className={`${Style.datos}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.dir2 ? form.dir2 : "(completar formulario)"}
-                        </label>
-
-                        <label
-                          className={`${Style.lbl}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.persona3
-                            ? form.persona3
-                            : "(completar formulario)"}
-                        </label>
-                        <label className={`${Style.datos}`}>
-                          Aborda en origen: {form.aborda3 ? "SI" : "NO"}
-                        </label>
-                        <label
-                          className={`${Style.datos}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.dir3 ? form.dir3 : "(completar formulario)"}
-                        </label>
-
-                        <label
-                          className={`${Style.lbl} `}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.persona4
-                            ? form.persona4
-                            : "(completar formulario)"}
-                        </label>
-                        <label className={`${Style.datos} ${Style.aborda}`}>
-                          Aborda en origen: {form.aborda4 ? "SI" : "NO"}
-                        </label>
-                        <label
-                          className={`${Style.datos}`}
-                          style={{ fontWeight: "normal", fontStyle: "italic" }}
-                        >
-                          {form.dir4 ? form.dir4 : "(completar formulario)"}
-                        </label> */}
+                                {/* {form[`persona${i + 1}`] &&
+                                form[`persona${i + 1}`] !== "-" &&
+                                form[`aborda${i + 1}`] &&
+                                form[`dir${i + 1}`]["label"]
+                                  ? form[`dir${i + 1}`]["label"]
+                                  : "-"} */}
+                              </label>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
+
                     {/* <label className={`${Style.lbl}`}>Apellido:</label>
                   <label className={`${Style.datos}`}>{user.last_name}</label>
 
